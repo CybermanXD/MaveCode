@@ -1,4 +1,4 @@
-{
+﻿{
 	"back": "Terug naar takenoverzicht",
 	"common": {
 		"save": "Opslaan",
@@ -57,8 +57,6 @@
 			"label": "Kwetsbaarheid ontdekt?",
 			"link": "Volg ons openbaarmakingsproces"
 		},
-		"community": "Wil je tips of gewoon even hangen met andere MaveCode-gebruikers? Sluit je aan bij <redditLink>reddit.com/r/MaveCode</redditLink> of <discordLink>discord.gg/VxfP4Vx3gX</discordLink>",
-		"contactAndCommunity": "Contact & Gemeenschap",
 		"manageSettings": "Instellingen Beheren",
 		"debugMode": {
 			"label": "Debugmodus inschakelen",
@@ -1154,3 +1152,4 @@
 		"footer": "Maak je eigen skills met de Skill Writer modus, beschikbaar in de <MarketplaceLink>Modes Marketplace</MarketplaceLink>."
 	}
 }
+

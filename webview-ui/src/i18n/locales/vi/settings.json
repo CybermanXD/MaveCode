@@ -1,4 +1,4 @@
-{
+﻿{
 	"back": "Quay lại chế độ xem tác vụ",
 	"common": {
 		"save": "Lưu",
@@ -57,8 +57,6 @@
 			"label": "Phát hiện lỗ hổng bảo mật?",
 			"link": "Làm theo quy trình công bố của chúng tôi"
 		},
-		"community": "Muốn nhận mẹo hoặc chỉ muốn giao lưu với những người dùng MaveCode khác? Tham gia <redditLink>reddit.com/r/MaveCode</redditLink> hoặc <discordLink>discord.gg/VxfP4Vx3gX</discordLink>",
-		"contactAndCommunity": "Liên Hệ & Cộng Đồng",
 		"manageSettings": "Quản Lý Cài Đặt",
 		"debugMode": {
 			"label": "Bật chế độ debug",
@@ -1154,3 +1152,4 @@
 		"footer": "Tạo các skill của riêng bạn với chế độ Skill Writer, có sẵn tại <MarketplaceLink>Modes Marketplace</MarketplaceLink>."
 	}
 }
+

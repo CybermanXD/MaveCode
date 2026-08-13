@@ -1,172 +1,46 @@
-﻿<p align="center">
-          <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
-          <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
-          <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
-          <a href="https://www.reddit.com/r/MaveCode/"><img src="https://img.shields.io/badge/Join%20r%2FMaveCode-FF4500?style=flat&logo=reddit&logoColor=white" alt="Join r/MaveCode"></a>
-          <a href="https://github.com/MaveCode-Org/MaveCode/issues"><img src="https://img.shields.io/badge/GitHub-Issues-181717?style=flat&logo=github&logoColor=white" alt="GitHub Issues"></a>
-        </p>
-        <p align="center">
-          <em>Butuh bantuan cepat → <a href="https://discord.gg/VxfP4Vx3gX">Gabung ke Discord</a> • Lebih suka async? → <a href="https://www.reddit.com/r/MaveCode/">Gabung ke r/MaveCode</a></em>
-        </p>
+﻿# MaveCode
 
-        # MaveCode
+MaveCode is a VS Code extension that provides AI-assisted software development with project personas, code editing, terminal execution, debugging, planning, and MCP tools.
 
-        > Tim dev bertenaga AI-mu, langsung di editor kamu
+## Install
 
-        ## Kami adalah MaveCode
+Download the latest `mave-code-<version>.vsix` file from the GitHub Releases page, then use **Extensions: Install from VSIX...** in VS Code.
 
-> MaveCode melanjutkan pengembangan proyek ini setelah tim Roo menghentikan
-> pengembangan aktif Roo Code untuk fokus pada [Roomote](https://roomote.dev/).
-> Terima kasih kepada tim Roo atas semua yang telah mereka bangun.
->
-> Tim inti kami terdiri dari para developer yang sebelumnya pernah
-> berkontribusi ke Roo dan sangat peduli pada plugin ini. Kami akan terus
-> menghadirkan pembaruan model, memperbaiki bug, dan merilis fitur, dan kami
-> berencana untuk mendengarkan dengan saksama komunitas yang membuat plugin
-> ini begitu istimewa. Gabung bersama kami di
-> [Discord](https://discord.gg/VxfP4Vx3gX),
-> [Reddit](https://www.reddit.com/r/MaveCode), atau
-> [buka PR atau issue](https://github.com/MaveCode-Org/MaveCode).
->
-> _-MaveCode Team_
-
-## Migrasi dari Roo Code ke MaveCode
-
-
-## Yang Ditambahkan MaveCode Sejak Roo Code
-
-MaveCode dikembangkan di atas fondasi yang dibuat oleh Roo Code dan terus memperluasnya dengan:
-
-- **Kecerdasan codebase Semble** — pencarian kode semantik yang cepat dan sesuai permintaan, dengan penyiapan otomatis dan tanpa workflow pengindeksan terpisah.
-- **Workflow Orchestrator yang lebih kuat** — delegasi yang lebih aman, koordinasi task paralel, pemulihan task induk/anak yang andal, serta isolasi yang lebih baik antara subtask dan profil provider.
-- **Proses otonom yang lebih panjang dengan Destructive Command Guard (DCG)** — memblokir perintah berbahaya secara otomatis sementara pekerjaan tepercaya terus berjalan tanpa permintaan persetujuan berulang.
-- **Model terbaru** — dukungan berkelanjutan untuk keluarga model Claude, GPT, Gemini, Kimi, GLM, Grok, MiniMax, dan lainnya.
-- **Lebih banyak cara untuk terhubung** — provider baru dan yang diperluas, termasuk MaveCode, Moonshot, Kimi Code, Kenari, Friendli, OpenCode Go, dan banyak lagi.
-- **Workflow terminal dan pengeditan yang lebih andal** — perbaikan untuk terminal yang selesai terlalu dini, race condition status task, pengelolaan konteks, pengeditan diff, dan penggunaan tool khusus provider.
-- **Kontrol lebih besar atas workspace kamu** — pengelolaan rules, pembatasan MCP per mode, kontrol path multi-root, opsi reasoning model, dan tindakan untuk meninjau perubahan saat selesai.
-
-## Yang Baru di v3.76.0
-
-- **Jalankan task yang lebih panjang tanpa gangguan dengan Destructive Command Guard (DCG)** — DCG memblokir perintah berbahaya sambil membiarkan Zoo terus bekerja tanpa kamu harus terus-menerus menekan tombol persetujuan, didukung download dan instalasi managed binary yang diperkuat.
-- **Kontrol provider dan keandalan yang lebih baik** — pilih kecepatan respons OpenAI Codex, gunakan konfigurasi DeepSeek terbaru, dan dapatkan isolasi yang lebih kuat antara perubahan profil provider dan task yang sedang berjalan.
-- **Perbaikan penting untuk eksekusi terminal** — Zoo kini menunggu perintah terminal selesai sebelum memulai langkah berikutnya, sehingga pekerjaan tidak saling tumpang tindih dan model tidak melanjutkan terlalu dini.
-- Batching yang lebih cerdas mengelompokkan persetujuan tool terkait sambil tetap memisahkan permintaan yang tidak berkaitan.
-- Pengiriman telemetri dan pengambilan cache model kini lebih tangguh saat terjadi kegagalan dan permintaan bersamaan.
-
-## Apa yang Bisa MaveCode Lakukan Untuk ANDA?
-
-- Menghasilkan Kode dari deskripsi bahasa alami
-- Beradaptasi dengan Mode: Kode, Arsitek, Tanya, Debug, dan Mode Kustom
-- Refactor & Debug kode yang ada
-- Menulis & Memperbarui dokumentasi
-- Menjawab Pertanyaan tentang basis kode Anda
-- Mengotomatiskan tugas-tugas yang berulang
-- Memanfaatkan Server MCP
-
-## Mode
-
-MaveCode beradaptasi dengan cara Anda bekerja, bukan sebaliknya:
-
-- Mode Kode: pengkodean sehari-hari, pengeditan, dan operasi file
-- Mode Arsitek: merencanakan sistem, spesifikasi, dan migrasi
-- Mode Tanya: jawaban cepat, penjelasan, dan dokumen
-- Mode Debug: melacak masalah, menambahkan log, mengisolasi akar penyebab
-- Mode Kustom: buat mode khusus untuk tim atau alur kerja Anda
-
-
-## Sumber daya
-
-- **[Server Discord](https://discord.gg/VxfP4Vx3gX):** Bergabunglah dengan komunitas untuk bantuan dan diskusi real-time.
-- **[Komunitas Reddit](https://www.reddit.com/r/MaveCode):** Bagikan pengalaman Anda dan lihat apa yang sedang dibangun orang lain.
-- **[Masalah GitHub](https://github.com/MaveCode-Org/MaveCode/issues):** Laporkan bug dan lacak pengembangan.
-- **[Permintaan Fitur](https://github.com/MaveCode-Org/MaveCode/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop):** Punya ide? Bagikan dengan para pengembang.
-
----
-
-## Pengaturan & Pengembangan Lokal
-
-1. **Clone** repo:
+You can also install it from a terminal:
 
 ```sh
-git clone https://github.com/MaveCode-Org/MaveCode.git
+code --install-extension mave-code-<version>.vsix
 ```
 
-2. **Instal dependensi**:
+## Build from source
+
+Requirements:
+
+- Node.js 22
+- pnpm 10
+- VS Code
+
+Install dependencies and package the extension:
 
 ```sh
-pnpm install
+pnpm install --frozen-lockfile
+cd src
+pnpm run vscode:prepublish
+pnpm run vsix
 ```
 
-3. **Jalankan ekstensi**:
+The package is written to `bin/mave-code-<version>.vsix`.
 
-Ada beberapa cara untuk menjalankan ekstensi MaveCode:
+## Core capabilities
 
-### Mode Pengembangan (F5)
+- AI-assisted code analysis, editing, and debugging
+- Project-specific bundled personas
+- Terminal command execution with approval controls
+- Custom modes, rules, and workflows
+- MCP server integrations
+- Multiple AI provider configurations
 
-Untuk pengembangan aktif, gunakan debugging bawaan VSCode:
+## License
 
-Tekan `F5` (atau buka **Run** → **Start Debugging**) di VSCode. Ini akan membuka jendela VSCode baru dengan ekstensi MaveCode berjalan.
+Apache License 2.0. See [`LICENSE`](LICENSE).
 
-- Perubahan pada webview akan segera muncul.
-- Perubahan pada ekstensi inti juga akan di-hot reload secara otomatis.
-
-### Instalasi VSIX Otomatis
-
-Untuk membangun dan menginstal ekstensi sebagai paket VSIX langsung ke VSCode:
-
-```sh
-pnpm install:vsix [-y] [--editor=<command>]
-```
-
-Perintah ini akan:
-
-- Menanyakan perintah editor mana yang akan digunakan (code/cursor/code-insiders) - defaultnya adalah 'code'
-- Mencopot pemasangan versi ekstensi yang ada.
-- Membangun paket VSIX terbaru.
-- Menginstal VSIX yang baru dibangun.
-- Meminta Anda untuk me-restart VS Code agar perubahan dapat diterapkan.
-
-Pilihan:
-
-- `-y`: Lewati semua prompt konfirmasi dan gunakan default
-- `--editor=<command>`: Tentukan perintah editor (misalnya, `--editor=cursor` atau `--editor=code-insiders`)
-
-### Instalasi VSIX Manual
-
-Jika Anda lebih suka menginstal paket VSIX secara manual:
-
-1.  Pertama, bangun paket VSIX:
-    ```sh
-    pnpm vsix
-    ```
-2.  File `.vsix` akan dibuat di direktori `bin/` (misalnya, `bin/mave-code-<version>.vsix`).
-3.  Instal secara manual menggunakan VSCode CLI:
-    ```sh
-    code --install-extension bin/mave-code-<version>.vsix
-    ```
-
----
-
-Kami menggunakan [changesets](https://github.com/changesets/changesets) untuk pembuatan versi dan publikasi. Periksa `CHANGELOG.md` kami untuk catatan rilis.
-
----
-
-## Penafian
-
-**Harap dicatat** bahwa MaveCode **tidak** membuat pernyataan atau jaminan apapun mengenai kode, model, atau alat lain yang disediakan atau tersedia sehubungan dengan MaveCode, alat pihak ketiga terkait, atau output yang dihasilkan. Anda menanggung **semua risiko** yang terkait dengan penggunaan alat atau output tersebut; alat tersebut disediakan atas dasar **"SEBAGAIMANA ADANYA"** dan **"SEBAGAIMANA TERSEDIA"**. Risiko tersebut dapat mencakup, namun tidak terbatas pada, pelanggaran kekayaan intelektual, kerentanan atau serangan siber, bias, ketidakakuratan, kesalahan, cacat, virus, waktu henti, kehilangan atau kerusakan properti, dan/atau cedera pribadi. Anda sepenuhnya bertanggung jawab atas penggunaan Anda atas alat atau output tersebut (termasuk, namun tidak terbatas pada, legalitas, kesesuaian, dan hasilnya).
-
----
-
-## Berkontribusi
-
-Kami menyukai kontribusi komunitas! Mulailah dengan membaca [CONTRIBUTING.md](CONTRIBUTING.md) kami.
-
----
-
-## Lisensi
-
-[Apache 2.0 © 2025 MaveCode Org](../../LICENSE)
-
----
-
-**Nikmati MaveCode!** Baik kamu menjaganya tetap dekat atau membiarkannya berkeliaran secara otonom, kami tidak sabar melihat apa yang kamu bangun. Jika kamu punya pertanyaan atau ide fitur, buka sebuah [issue](https://github.com/MaveCode-Org/MaveCode/issues) atau mulai sebuah [discussion](https://github.com/MaveCode-Org/MaveCode/discussions). Selamat ngoding!

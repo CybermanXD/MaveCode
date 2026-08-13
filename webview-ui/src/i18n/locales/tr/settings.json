@@ -1,4 +1,4 @@
-{
+﻿{
 	"back": "Görev görünümüne dön",
 	"common": {
 		"save": "Kaydet",
@@ -57,8 +57,6 @@
 			"label": "Bir güvenlik açığı mı keşfettiniz?",
 			"link": "Açıklama sürecimizi takip edin"
 		},
-		"community": "İpuçları mı istiyorsunuz yoksa sadece diğer MaveCode kullanıcılarıyla takılmak mı istiyorsunuz? <redditLink>reddit.com/r/MaveCode</redditLink> veya <discordLink>discord.gg/VxfP4Vx3gX</discordLink>'a katılın",
-		"contactAndCommunity": "İletişim ve Topluluk",
 		"manageSettings": "Ayarları Yönet",
 		"debugMode": {
 			"label": "Debug modunu etkinleştir",
@@ -1154,3 +1152,4 @@
 		"footer": "Skill Writer modu ile kendi becerilerinizi oluşturun. <MarketplaceLink>Modes Marketplace</MarketplaceLink>'de mevcut."
 	}
 }
+

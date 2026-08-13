@@ -1,4 +1,4 @@
-{
+﻿{
 	"back": "Назад к списку задач",
 	"common": {
 		"save": "Сохранить",
@@ -57,8 +57,6 @@
 			"label": "Обнаружили уязвимость?",
 			"link": "Следуйте нашему процессу раскрытия"
 		},
-		"community": "Хотите получить советы или просто пообщаться с другими пользователями MaveCode? Присоединяйтесь к <redditLink>reddit.com/r/MaveCode</redditLink> или <discordLink>discord.gg/VxfP4Vx3gX</discordLink>",
-		"contactAndCommunity": "Контакты и Сообщество",
 		"manageSettings": "Управление Настройками",
 		"debugMode": {
 			"label": "Включить режим отладки",
@@ -1154,3 +1152,4 @@
 		"footer": "Создавайте собственные навыки с режимом Skill Writer, доступным в <MarketplaceLink>Modes Marketplace</MarketplaceLink>."
 	}
 }
+

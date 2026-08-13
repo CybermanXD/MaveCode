@@ -1,4 +1,4 @@
-{
+﻿{
 	"back": "Zurück zur Aufgabenansicht",
 	"common": {
 		"save": "Speichern",
@@ -57,8 +57,6 @@
 			"label": "Sicherheitslücke entdeckt?",
 			"link": "Folge unserem Offenlegungsprozess"
 		},
-		"community": "Möchtest du Tipps oder dich einfach mit anderen MaveCode-Nutzern austauschen? Tritt <redditLink>reddit.com/r/MaveCode</redditLink> oder <discordLink>discord.gg/VxfP4Vx3gX</discordLink> bei",
-		"contactAndCommunity": "Kontakt & Community",
 		"manageSettings": "Einstellungen verwalten",
 		"debugMode": {
 			"label": "Debug-Modus aktivieren",
@@ -1154,3 +1152,4 @@
 		"footer": "Erstelle deine eigenen Skills mit dem Skill Writer Modus, verfügbar im <MarketplaceLink>Modes Marketplace</MarketplaceLink>."
 	}
 }
+

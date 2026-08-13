@@ -1,7 +1,7 @@
 import { HTMLAttributes, useEffect, useState } from "react"
 import { useAppTranslation } from "@/i18n/TranslationContext"
 import { Trans } from "react-i18next"
-import { ArrowRightLeft, Download, Upload, TriangleAlert, Bug, Lightbulb, Shield, MessagesSquare } from "lucide-react"
+import { ArrowRightLeft, Download, Upload, TriangleAlert } from "lucide-react"
 import { VSCodeButton, VSCodeCheckbox, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
 
 import type { ExtensionMessage, TelemetrySetting } from "@roo-code/types"
@@ -9,7 +9,6 @@ import type { ExtensionMessage, TelemetrySetting } from "@roo-code/types"
 import { Package } from "@roo/package"
 
 import { vscode } from "@/utils/vscode"
-import { EXTERNAL_LINKS } from "@/constants/externalLinks"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui"
 
@@ -126,49 +125,8 @@ export const About = ({ telemetrySetting, setTelemetrySetting, debug, setDebug, 
 				</SearchableSetting>
 			</Section>
 
-			<Section className="space-y-0">
-				<h3>{t("settings:about.contactAndCommunity")}</h3>
-				<div className="flex flex-col gap-3">
-					<div className="flex items-start gap-2">
-						<Bug className="size-4 text-vscode-descriptionForeground shrink-0" />
-						<span>
-							{t("settings:about.bugReport.label")}{" "}
-							<VSCodeLink href={EXTERNAL_LINKS.BUG_REPORT}>
-								{t("settings:about.bugReport.link")}
-							</VSCodeLink>
-						</span>
-					</div>
-					<div className="flex items-start gap-2">
-						<Lightbulb className="size-4 text-vscode-descriptionForeground shrink-0" />
-						<span>
-							{t("settings:about.featureRequest.label")}{" "}
-							<VSCodeLink href={EXTERNAL_LINKS.FEATURE_REQUEST}>
-								{t("settings:about.featureRequest.link")}
-							</VSCodeLink>
-						</span>
-					</div>
-					<div className="flex items-start gap-2">
-						<Shield className="size-4 text-vscode-descriptionForeground shrink-0" />
-						<span>
-							{t("settings:about.securityIssue.label")}{" "}
-							<VSCodeLink href={EXTERNAL_LINKS.SECURITY_POLICY}>
-								{t("settings:about.securityIssue.link")}
-							</VSCodeLink>
-						</span>
-					</div>
-					<div className="flex items-start gap-2">
-						<MessagesSquare className="size-4 text-vscode-descriptionForeground shrink-0" />
-						<span>
-							<Trans
-								i18nKey="settings:about.community"
-								components={{
-									redditLink: <VSCodeLink href={EXTERNAL_LINKS.REDDIT} />,
-									discordLink: <VSCodeLink href={EXTERNAL_LINKS.DISCORD} />,
-								}}
-							/>
-						</span>
-					</div>
-					{setDebug && (
+			{setDebug && (
+				<Section className="space-y-0">
 						<SearchableSetting
 							settingId="about-debug-mode"
 							section="about"
@@ -186,9 +144,8 @@ export const About = ({ telemetrySetting, setTelemetrySetting, debug, setDebug, 
 								{t("settings:about.debugMode.description")}
 							</p>
 						</SearchableSetting>
-					)}
-				</div>
-			</Section>
+				</Section>
+			)}
 
 			<Section className="space-y-0">
 				<SearchableSetting

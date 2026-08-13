@@ -1,13 +1,8 @@
-import { memo, type ReactNode, useState } from "react"
-import { Trans } from "react-i18next"
-import { SiDiscord, SiReddit, SiX } from "react-icons/si"
-import { VSCodeLink } from "@vscode/webview-ui-toolkit/react"
+﻿import { memo, useState } from "react"
 
 import { Package } from "@roo/package"
 import { useAppTranslation } from "@src/i18n/TranslationContext"
-import { vscode } from "@src/utils/vscode"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@src/components/ui"
-import { EXTERNAL_LINKS } from "@src/constants/externalLinks"
 
 interface AnnouncementProps {
 	hideAnnouncement: () => void
@@ -50,57 +45,10 @@ const Announcement = ({ hideAnnouncement }: AnnouncementProps) => {
 						</ul>
 					</div>
 
-					<div className="mt-4 text-sm text-center text-vscode-descriptionForeground">
-						<div className="flex items-center justify-center gap-4">
-							<SocialLink
-								icon={<SiX className="w-4 h-4" aria-hidden />}
-								label="X"
-								href="https://x.com/MaveCodeDev"
-							/>
-							<SocialLink
-								icon={<SiDiscord className="w-4 h-4" aria-hidden />}
-								label="Discord"
-								href="https://discord.gg/VxfP4Vx3gX"
-							/>
-							<SocialLink
-								icon={<SiReddit className="w-4 h-4" aria-hidden />}
-								label="Reddit"
-								href="https://www.reddit.com/r/MaveCode/"
-							/>
-						</div>
-					</div>
-
-					<div className="mt-3 text-sm text-center text-vscode-descriptionForeground">
-						<Trans i18nKey="chat:announcement.support" components={{ githubLink: <GitHubLink /> }} />
-					</div>
 				</div>
 			</DialogContent>
 		</Dialog>
 	)
 }
-
-const SocialLink = ({ icon, label, href }: { icon: ReactNode; label: string; href: string }) => (
-	<VSCodeLink
-		href={href}
-		className="inline-flex items-center gap-1"
-		onClick={(e) => {
-			e.preventDefault()
-			vscode.postMessage({ type: "openExternal", url: href })
-		}}>
-		{icon}
-		<span className="sr-only">{label}</span>
-	</VSCodeLink>
-)
-
-const GitHubLink = ({ children }: { children?: ReactNode }) => (
-	<VSCodeLink
-		href={EXTERNAL_LINKS.GITHUB_REPO}
-		onClick={(e) => {
-			e.preventDefault()
-			vscode.postMessage({ type: "openExternal", url: EXTERNAL_LINKS.GITHUB_REPO })
-		}}>
-		{children}
-	</VSCodeLink>
-)
 
 export default memo(Announcement)

@@ -1,171 +1,46 @@
-﻿<p align="center">
-          <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
-          <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
-          <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
-          <a href="https://www.reddit.com/r/MaveCode/"><img src="https://img.shields.io/badge/Join%20r%2FMaveCode-FF4500?style=flat&logo=reddit&logoColor=white" alt="Join r/MaveCode"></a>
-          <a href="https://github.com/MaveCode-Org/MaveCode/issues"><img src="https://img.shields.io/badge/GitHub-Issues-181717?style=flat&logo=github&logoColor=white" alt="GitHub Issues"></a>
-        </p>
-        <p align="center">
-          <em>빠르게 도움받기 → <a href="https://discord.gg/VxfP4Vx3gX">Discord 참여하기</a> • 비동기가 더 좋아요? → <a href="https://www.reddit.com/r/MaveCode/">r/MaveCode 참여하기</a></em>
-        </p>
+﻿# MaveCode
 
-        # MaveCode
+MaveCode is a VS Code extension that provides AI-assisted software development with project personas, code editing, terminal execution, debugging, planning, and MCP tools.
 
-        > AI로 강화된 너의 개발 팀, 네 에디터 안에
+## Install
 
-        ## 우리는 MaveCode입니다
+Download the latest `mave-code-<version>.vsix` file from the GitHub Releases page, then use **Extensions: Install from VSIX...** in VS Code.
 
-> Roo 팀이 [Roomote](https://roomote.dev/)에 집중하기 위해 Roo Code의 적극적인
-> 개발을 중단한 뒤, MaveCode가 이 프로젝트의 개발을 이어가고 있어. 그동안
-> 쌓아 온 모든 것에 대해 Roo 팀에게 고마워.
->
-> 핵심 팀은 이전에 Roo에 기여했고 이 플러그인을 깊이 아끼는 개발자들로
-> 구성되어 있어. 우리는 계속해서 모델을 업데이트하고, 버그를 수정하고,
-> 기능을 출시할 거고, 이 플러그인을 특별하게 만들어 준 커뮤니티의 목소리에
-> 귀 기울일 계획이야. 우리와 함께해
-> [Discord](https://discord.gg/VxfP4Vx3gX),
-> [Reddit](https://www.reddit.com/r/MaveCode), 또는
-> [PR이나 issue 열기](https://github.com/MaveCode-Org/MaveCode).
->
-> _-MaveCode Team_
-
-## Roo Code에서 MaveCode로 마이그레이션
-
-
-## Roo Code 이후 MaveCode가 추가한 기능
-
-MaveCode는 Roo Code가 만든 기반 위에서 다음 기능을 더하며 계속 확장하고 있어:
-
-- **Semble 코드베이스 인텔리전스** — 자동 설정을 지원하고 별도 인덱싱 워크플로우 없이 사용할 수 있는 빠른 온디맨드 시맨틱 코드 검색.
-- **더 강력한 Orchestrator 워크플로우** — 더 안전한 위임, 병렬 작업 조정, 안정적인 상위/하위 작업 복구, 하위 작업과 프로바이더 프로필 간 격리 강화.
-- **Destructive Command Guard(DCG)를 통한 더 긴 자율 실행** — 신뢰할 수 있는 작업을 승인 요청 반복 없이 계속하면서 위험한 명령은 자동으로 차단.
-- **최신 모델** — 새로운 Claude, GPT, Gemini, Kimi, GLM, Grok, MiniMax 등 다양한 모델 제품군을 지속적으로 지원.
-- **더 다양한 연결 방식** — MaveCode, Moonshot, Kimi Code, Kenari, Friendli, OpenCode Go 등 새롭게 추가되거나 확장된 프로바이더 지원.
-- **더 안정적인 터미널 및 편집 워크플로우** — 터미널 조기 완료, 작업 상태 경합, 컨텍스트 관리, diff 편집, 프로바이더별 도구 사용 문제를 수정.
-- **워크스페이스를 더 세밀하게 제어** — 규칙 관리, 모드별 MCP 제한, 멀티 루트 경로 제어, 모델 reasoning 옵션, 완료 시 변경 사항 검토 작업을 제공.
-
-## v3.76.0의 새로운 기능
-
-- **Destructive Command Guard(DCG)로 더 긴 작업을 중단 없이 실행** — DCG가 위험한 명령을 차단하는 동안 Zoo는 승인 버튼을 계속 누르지 않아도 작업을 이어가며, 관리형 바이너리의 다운로드와 설치도 강화됐어.
-- **향상된 프로바이더 제어와 안정성** — OpenAI Codex 응답 속도를 선택하고, 업데이트된 DeepSeek 구성을 사용하며, 프로바이더 프로필 변경과 실행 중인 작업 사이의 더 강력한 격리를 활용할 수 있어.
-- **중요한 터미널 실행 수정** — Zoo는 이제 터미널 명령이 끝날 때까지 기다린 후 다음 단계를 시작해서, 작업 중첩과 모델의 성급한 진행을 방지해.
-- 더 스마트한 일괄 처리는 관련 도구 승인을 묶으면서 관련 없는 요청은 분리해.
-- 장애와 동시 요청 상황에서도 텔레메트리 전송과 모델 캐시 가져오기가 더 안정적으로 동작해.
-
-## MaveCode가 당신을 위해 무엇을 할 수 있을까요?
-
-- 자연어 설명으로 코드 생성
-- 모드로 적응: 코드, 아키텍트, 질문, 디버그 및 사용자 지정 모드
-- 기존 코드 리팩터링 및 디버깅
-- 문서 작성 및 업데이트
-- 코드베이스에 대한 질문에 답변
-- 반복적인 작업 자동화
-- MCP 서버 활용
-
-## 모드
-
-MaveCode는 당신의 작업 방식에 맞춰 적응합니다.
-
-- 코드 모드: 일상적인 코딩, 편집 및 파일 작업
-- 아키텍트 모드: 시스템, 사양 및 마이그레이션 계획
-- 질문 모드: 빠른 답변, 설명 및 문서
-- 디버그 모드: 문제 추적, 로그 추가, 근본 원인 격리
-- 사용자 지정 모드: 팀이나 워크플로우를 위한 특수 모드 구축
-
-
-## 리소스
-
-- **[Discord 서버](https://discord.gg/VxfP4Vx3gX):** 커뮤니티에 가입하여 실시간 도움과 토론에 참여하세요.
-- **[Reddit 커뮤니티](https://www.reddit.com/r/MaveCode):** 경험을 공유하고 다른 사람들이 무엇을 만들고 있는지 확인하세요.
-- **[GitHub 문제](https://github.com/MaveCode-Org/MaveCode/issues):** 버그를 보고하고 개발을 추적하세요.
-- **[기능 요청](https://github.com/MaveCode-Org/MaveCode/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop):** 아이디어가 있으신가요? 개발자들과 공유하세요.
-
----
-
-## 로컬 설정 및 개발
-
-1. **리포지토리 복제**:
+You can also install it from a terminal:
 
 ```sh
-git clone https://github.com/MaveCode-Org/MaveCode.git
+code --install-extension mave-code-<version>.vsix
 ```
 
-2. **의존성 설치**:
+## Build from source
+
+Requirements:
+
+- Node.js 22
+- pnpm 10
+- VS Code
+
+Install dependencies and package the extension:
 
 ```sh
-pnpm install
+pnpm install --frozen-lockfile
+cd src
+pnpm run vscode:prepublish
+pnpm run vsix
 ```
 
-3. **확장 프로그램 실행**:
+The package is written to `bin/mave-code-<version>.vsix`.
 
-MaveCode 확장 프로그램을 실행하는 방법에는 여러 가지가 있습니다:
+## Core capabilities
 
-### 개발 모드 (F5)
+- AI-assisted code analysis, editing, and debugging
+- Project-specific bundled personas
+- Terminal command execution with approval controls
+- Custom modes, rules, and workflows
+- MCP server integrations
+- Multiple AI provider configurations
 
-활성 개발을 위해 VSCode의 내장 디버깅을 사용하세요:
+## License
 
-VSCode에서 `F5`를 누르거나 **실행** → **디버깅 시작**으로 이동하세요. 그러면 MaveCode 확장 프로그램이 실행되는 새 VSCode 창이 열립니다.
+Apache License 2.0. See [`LICENSE`](LICENSE).
 
-- 웹뷰 변경 사항은 즉시 나타납니다.
-- 핵심 확장 프로그램 변경 사항도 자동으로 핫 리로드됩니다.
-
-### 자동 VSIX 설치
-
-확장 프로그램을 VSIX 패키지로 빌드하여 VSCode에 직접 설치하려면:
-
-```sh
-pnpm install:vsix [-y] [--editor=<command>]
-```
-
-이 명령은 다음을 수행합니다:
-
-- 사용할 편집기 명령을 묻습니다(code/cursor/code-insiders) - 기본값은 'code'입니다.
-- 기존 확장 프로그램 버전을 제거합니다.
-- 최신 VSIX 패키지를 빌드합니다.
-- 새로 빌드된 VSIX를 설치합니다.
-- 변경 사항을 적용하려면 VS Code를 다시 시작하라는 메시지를 표시합니다.
-
-옵션:
-
-- `-y`: 모든 확인 프롬프트를 건너뛰고 기본값을 사용합니다.
-- `--editor=<command>`: 편집기 명령을 지정합니다(예: `--editor=cursor` 또는 `--editor=code-insiders`).
-
-### 수동 VSIX 설치
-
-VSIX 패키지를 수동으로 설치하려면:
-
-1.  먼저 VSIX 패키지를 빌드합니다:
-    ```sh
-    pnpm vsix
-    ```
-2.  `.vsix` 파일이 `bin/` 디렉터리에 생성됩니다(예: `bin/mave-code-<version>.vsix`).
-3.  VSCode CLI를 사용하여 수동으로 설치합니다:
-    ```sh
-    code --install-extension bin/mave-code-<version>.vsix
-    ```
-
----
-
-버전 관리 및 게시는 [changesets](https://github.com/changesets/changesets)를 사용합니다. 릴리스 노트는 `CHANGELOG.md`를 확인하세요.
-
----
-
-## 면책 조항
-
-**참고:** MaveCode는 MaveCode, 관련 타사 도구 또는 그 결과물과 관련하여 제공되거나 사용 가능하게 된 어떠한 코드, 모델 또는 기타 도구에 대해서도 어떠한 진술이나 보증을 하지 **않습니다**. 귀하는 그러한 도구나 결과물의 사용과 관련된 **모든 위험**을 부담합니다. 해당 도구는 **"있는 그대로"** 및 **"사용 가능한 대로"** 제공됩니다. 그러한 위험에는 지적 재산권 침해, 사이버 취약성 또는 공격, 편견, 부정확성, 오류, 결함, 바이러스, 다운타임, 재산 손실 또는 손상 및/또는 개인 상해가 포함될 수 있으며 이에 국한되지 않습니다. 귀하는 그러한 도구 또는 결과물의 사용(합법성, 적절성 및 그 결과를 포함하되 이에 국한되지 않음)에 대해 전적으로 책임을 집니다.
-
----
-
-## 기여하기
-
-우리는 커뮤니티의 기여를 사랑합니다! [CONTRIBUTING.md](CONTRIBUTING.md)를 읽고 시작하세요.
-
----
-
-## 라이선스
-
-[Apache 2.0 © 2025 MaveCode Org](../../LICENSE)
-
----
-
-**MaveCode를 즐겨 보세요!** 짧은 리드줄로 가까이 두든 자율적으로 돌아다니게 하든, 여러분이 무엇을 만들지 기대하고 있습니다. 질문이나 기능 아이디어가 있다면 [issue](https://github.com/MaveCode-Org/MaveCode/issues)를 열거나 [discussion](https://github.com/MaveCode-Org/MaveCode/discussions)을 시작해 주세요. 즐거운 코딩 되세요!

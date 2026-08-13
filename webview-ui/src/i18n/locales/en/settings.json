@@ -1,4 +1,4 @@
-{
+﻿{
 	"back": "Back to tasks view",
 	"common": {
 		"save": "Save",
@@ -57,8 +57,6 @@
 			"label": "Discovered a vulnerability?",
 			"link": "Follow our disclosure process"
 		},
-		"community": "Want tips or to just hang out with other MaveCode users? Join <redditLink>reddit.com/r/MaveCode</redditLink> or <discordLink>discord.gg/VxfP4Vx3gX</discordLink>",
-		"contactAndCommunity": "Contact & Community",
 		"manageSettings": "Manage Settings",
 		"debugMode": {
 			"label": "Enable debug mode",
@@ -1154,3 +1152,4 @@
 		}
 	}
 }
+

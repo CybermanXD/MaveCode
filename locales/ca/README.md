@@ -1,173 +1,46 @@
-﻿<p align="center">
-          <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
-          <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
-          <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
-          <a href="https://www.reddit.com/r/MaveCode/"><img src="https://img.shields.io/badge/Join%20r%2FMaveCode-FF4500?style=flat&logo=reddit&logoColor=white" alt="Join r/MaveCode"></a>
-          <a href="https://github.com/MaveCode-Org/MaveCode/issues"><img src="https://img.shields.io/badge/GitHub-Issues-181717?style=flat&logo=github&logoColor=white" alt="GitHub Issues"></a>
-        </p>
-        <p align="center">
-          <em>Obtén ajuda ràpid → <a href="https://discord.gg/VxfP4Vx3gX">Uneix-te a Discord</a> • Prefereixes anar al teu ritme? → <a href="https://www.reddit.com/r/MaveCode/">Uneix-te a r/MaveCode</a></em>
-        </p>
+﻿# MaveCode
 
-        # MaveCode
+MaveCode is a VS Code extension that provides AI-assisted software development with project personas, code editing, terminal execution, debugging, planning, and MCP tools.
 
-        > El teu equip de desenvolupament impulsat per IA, directament al teu editor
+## Install
 
-        ## Som MaveCode
+Download the latest `mave-code-<version>.vsix` file from the GitHub Releases page, then use **Extensions: Install from VSIX...** in VS Code.
 
-> MaveCode continua el desenvolupament d'aquest projecte després que l'equip de
-> Roo aturés el desenvolupament actiu de Roo Code per centrar-se en
-> [Roomote](https://roomote.dev/). Gràcies a l'equip de Roo per tot el que van
-> construir.
->
-> L'equip principal és un grup de desenvolupadors que ja havien contribuït a
-> Roo anteriorment i que valoren profundament aquest plugin. Continuarem
-> actualitzant models, corregint errors i publicant funcionalitats, i tenim
-> intenció d'escoltar de prop la comunitat que ha fet aquest plugin tan
-> especial. Uneix-te a nosaltres a
-> [Discord](https://discord.gg/VxfP4Vx3gX),
-> [Reddit](https://www.reddit.com/r/MaveCode), o
-> [obre una PR o issue](https://github.com/MaveCode-Org/MaveCode).
->
-> _-MaveCode Team_
-
-## Migració de Roo Code a MaveCode
-
-
-## Què ha afegit MaveCode des de Roo Code
-
-MaveCode parteix de la base creada per Roo Code i continua ampliant-la amb:
-
-- **Intel·ligència de bases de codi amb Semble** — cerca semàntica de codi ràpida i sota demanda, amb configuració automàtica i sense cap procés d'indexació separat.
-- **Fluxos de treball d'Orchestrator més sòlids** — delegació més segura, coordinació de tasques en paral·lel, recuperació fiable de tasques pare/filla i millor aïllament entre subtasques i perfils de proveïdor.
-- **Execucions autònomes més llargues amb Destructive Command Guard (DCG)** — bloqueja automàticament les ordres perilloses mentre el treball de confiança continua sense sol·licituds d'aprovació repetides.
-- **Els models més recents** — compatibilitat contínua amb les noves famílies de models Claude, GPT, Gemini, Kimi, GLM, Grok, MiniMax i altres.
-- **Més maneres de connectar-se** — proveïdors nous i ampliats, com ara MaveCode, Moonshot, Kimi Code, Kenari, Friendli, OpenCode Go i molts més.
-- **Fluxos de terminal i edició més fiables** — correccions per a la finalització prematura del terminal, les condicions de cursa en l'estat de les tasques, la gestió del context, l'edició de diff i l'ús d'eines específiques de cada proveïdor.
-- **Més control sobre el teu espai de treball** — gestió de regles, restriccions MCP per mode, controls de rutes multiarrel, opcions de raonament dels models i accions per revisar els canvis en completar una tasca.
-
-## Novetats a la v3.76.0
-
-- **Executa tasques més llargues i sense interrupcions amb Destructive Command Guard (DCG)** — DCG bloqueja les ordres perilloses mentre permet que Zoo continuï treballant sense que hagis de prémer contínuament botons d'aprovació, amb baixades i instal·lació reforçades del binari gestionat.
-- **Millors controls i més fiabilitat dels proveïdors** — tria la velocitat de resposta d'OpenAI Codex, utilitza configuracions actualitzades de DeepSeek i gaudeix d'un aïllament més sòlid entre els canvis de perfil de proveïdor i les tasques en execució.
-- **Correcció crítica de l'execució al terminal** — Zoo ara espera que les ordres del terminal acabin abans de començar el pas següent, cosa que evita treballs superposats i que el model continuï abans d'hora.
-- L'agrupació més intel·ligent reuneix les aprovacions d'eines relacionades i manté separades les sol·licituds que no hi tenen relació.
-- El lliurament de telemetria i l'obtenció de la memòria cau de models són més resistents davant d'errors i sol·licituds simultànies.
-
-## Què pot fer MaveCode per TU?
-
-- Generar codi a partir de descripcions en llenguatge natural
-- Adaptar-se amb modes: Codi, Arquitecte, Pregunta, Depuració i Modes personalitzats
-- Refactoritzar i depurar codi existent
-- Escriure i actualitzar documentació
-- Respondre preguntes sobre la teva base de codi
-- Automatitzar tasques repetitives
-- Utilitzar servidors MCP
-
-## Modes
-
-MaveCode s'adapta a la teva manera de treballar, no a l'inrevés:
-
-- Mode Codi: codificació diària, edicions i operacions de fitxers
-- Mode Arquitecte: planificar sistemes, especificacions i migracions
-- Mode Pregunta: respostes ràpides, explicacions i documents
-- Mode Depuració: rastrejar problemes, afegir registres, aïllar les causes arrel
-- Modes personalitzats: crea modes especialitzats per al teu equip o flux de treball
-
-
-## Recursos
-
-- **[Servidor de Discord](https://discord.gg/VxfP4Vx3gX):** Uneix-te a la comunitat per obtenir ajuda i discutir en temps real.
-- **[Comunitat de Reddit](https://www.reddit.com/r/MaveCode):** Comparteix les teves experiències i veu què estan construint altres.
-- **[Incidències de GitHub](https://github.com/MaveCode-Org/MaveCode/issues):** Informa d'errors i segueix el desenvolupament.
-- **[Sol·licituds de funcionalitats](https://github.com/MaveCode-Org/MaveCode/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop):** Tens una idea? Comparteix-la amb els desenvolupadors.
-
----
-
-## Configuració i desenvolupament local
-
-1. **Clona** el repositori:
+You can also install it from a terminal:
 
 ```sh
-git clone https://github.com/MaveCode-Org/MaveCode.git
+code --install-extension mave-code-<version>.vsix
 ```
 
-2. **Instal·la les dependències**:
+## Build from source
+
+Requirements:
+
+- Node.js 22
+- pnpm 10
+- VS Code
+
+Install dependencies and package the extension:
 
 ```sh
-pnpm install
+pnpm install --frozen-lockfile
+cd src
+pnpm run vscode:prepublish
+pnpm run vsix
 ```
 
-3. **Executa l'extensió**:
+The package is written to `bin/mave-code-<version>.vsix`.
 
-Hi ha diverses maneres d'executar l'extensió MaveCode:
+## Core capabilities
 
-### Mode de desenvolupament (F5)
+- AI-assisted code analysis, editing, and debugging
+- Project-specific bundled personas
+- Terminal command execution with approval controls
+- Custom modes, rules, and workflows
+- MCP server integrations
+- Multiple AI provider configurations
 
-Per al desenvolupament actiu, utilitza la depuració integrada de VSCode:
+## License
 
-Prem `F5` (o ves a **Executa** → **Inicia la depuració**) a VSCode. Això obrirà una nova finestra de VSCode amb l'extensió MaveCode en funcionament.
+Apache License 2.0. See [`LICENSE`](LICENSE).
 
-- Els canvis a la vista web apareixeran immediatament.
-- Els canvis a l'extensió principal també es recarregaran automàticament.
-
-### Instal·lació automatitzada de VSIX
-
-Per construir i instal·lar l'extensió com un paquet VSIX directament a VSCode:
-
-```sh
-pnpm install:vsix [-y] [--editor=<command>]
-```
-
-Aquesta comanda farà el següent:
-
-- Preguntarà quina comanda d'editor utilitzar (code/cursor/code-insiders) - per defecte és 'code'
-- Desinstal·larà qualsevol versió existent de l'extensió.
-- Construirà l'últim paquet VSIX.
-- Instal·larà el VSIX acabat de construir.
-- Et demanarà que reiniciïs VS Code perquè els canvis tinguin efecte.
-
-Opcions:
-
-- `-y`: Omet totes les confirmacions i utilitza els valors per defecte
-- `--editor=<command>`: Especifica la comanda de l'editor (p. ex., `--editor=cursor` o `--editor=code-insiders`)
-
-### Instal·lació manual de VSIX
-
-Si prefereixes instal·lar el paquet VSIX manualment:
-
-1.  Primer, construeix el paquet VSIX:
-    ```sh
-    pnpm vsix
-    ```
-2.  Es generarà un fitxer `.vsix` al directori `bin/` (p. ej., `bin/mave-code-<versió>.vsix`).
-3.  Instal·la'l manualment utilitzant la CLI de VSCode:
-    ```sh
-    code --install-extension bin/mave-code-<versió>.vsix
-    ```
-
----
-
-Utilitzem [changesets](https://github.com/changesets/changesets) per al versionat i la publicació. Consulta el nostre `CHANGELOG.md` per a les notes de la versió.
-
----
-
-## Avís legal
-
-**Tingueu en compte** que MaveCode, Inc **no** fa cap representació ni garantia pel que fa a cap codi, model o altres eines proporcionades o posades a disposició en relació amb MaveCode, qualsevol eina de tercers associada, o qualsevol resultat. Assumiu **tots els riscos** associats amb l'ús d'aquestes eines o resultats; aquestes eines es proporcionen **"TAL QUAL"** i **"SEGONS DISPONIBILITAT"**. Aquests riscos poden incloure, sense limitació, infraccions de propietat intel·lectual, vulnerabilitats o atacs cibernètics, biaix, inexactituds, errors, defectes, virus, temps d'inactivitat, pèrdua o dany de propietat i/o lesions personals. Sou l'únic responsable del vostre ús d'aquestes eines o resultats (incloent, sense limitació, la legalitat, idoneïtat i resultats dels mateixos).
-
----
-
-## Contribucions
-
-Ens encanten les contribucions de la comunitat! Comença llegint el nostre [CONTRIBUTING.md](CONTRIBUTING.md).
-
----
-
-## Llicència
-
-[Apache 2.0 © 2025 MaveCode Org](../../LICENSE)
-
----
-
-**Gaudeix de MaveCode!** Tant si el portes curt com si el deixes voltar de manera autònoma, tenim moltes ganes de veure què construiràs. Si tens preguntes o idees de funcionalitats, obre una [issue](https://github.com/MaveCode-Org/MaveCode/issues) o inicia una [discussion](https://github.com/MaveCode-Org/MaveCode/discussions). Feliç codi!

@@ -1,4 +1,4 @@
-{
+﻿{
 	"back": "Kembali ke tampilan tugas",
 	"common": {
 		"save": "Simpan",
@@ -57,8 +57,6 @@
 			"label": "Menemukan kerentanan?",
 			"link": "Ikuti proses pengungkapan kami"
 		},
-		"community": "Ingin tips atau hanya nongkrong dengan pengguna MaveCode lainnya? Bergabunglah dengan <redditLink>reddit.com/r/MaveCode</redditLink> atau <discordLink>discord.gg/VxfP4Vx3gX</discordLink>",
-		"contactAndCommunity": "Kontak & Komunitas",
 		"manageSettings": "Kelola Pengaturan",
 		"debugMode": {
 			"label": "Aktifkan mode debug",
@@ -1154,3 +1152,4 @@
 		"footer": "Buat skills Anda sendiri dengan mode Skill Writer, tersedia di <MarketplaceLink>Modes Marketplace</MarketplaceLink>."
 	}
 }
+

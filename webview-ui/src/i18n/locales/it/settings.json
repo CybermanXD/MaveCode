@@ -1,4 +1,4 @@
-{
+﻿{
 	"back": "Torna alla vista attività",
 	"common": {
 		"save": "Salva",
@@ -57,8 +57,6 @@
 			"label": "Hai scoperto una vulnerabilità?",
 			"link": "Segui il nostro processo di divulgazione"
 		},
-		"community": "Vuoi consigli o semplicemente uscire con altri utenti di MaveCode? Unisciti a <redditLink>reddit.com/r/MaveCode</redditLink> o <discordLink>discord.gg/VxfP4Vx3gX</discordLink>",
-		"contactAndCommunity": "Contatti e Comunità",
 		"manageSettings": "Gestisci Impostazioni",
 		"debugMode": {
 			"label": "Abilita modalità debug",
@@ -1154,3 +1152,4 @@
 		"footer": "Crea le tue skill con la modalità Skill Writer, disponibile in <MarketplaceLink>Modes Marketplace</MarketplaceLink>."
 	}
 }
+

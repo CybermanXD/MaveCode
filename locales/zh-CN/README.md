@@ -1,169 +1,46 @@
-﻿<p align="center">
-          <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
-          <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
-          <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
-          <a href="https://www.reddit.com/r/MaveCode/"><img src="https://img.shields.io/badge/Join%20r%2FMaveCode-FF4500?style=flat&logo=reddit&logoColor=white" alt="Join r/MaveCode"></a>
-          <a href="https://github.com/MaveCode-Org/MaveCode/issues"><img src="https://img.shields.io/badge/GitHub-Issues-181717?style=flat&logo=github&logoColor=white" alt="GitHub Issues"></a>
-        </p>
-        <p align="center">
-          <em>快速获取帮助 → <a href="https://discord.gg/VxfP4Vx3gX">加入 Discord</a> • 偏好异步？→ <a href="https://www.reddit.com/r/MaveCode/">加入 r/MaveCode</a></em>
-        </p>
+﻿# MaveCode
 
-        # MaveCode
+MaveCode is a VS Code extension that provides AI-assisted software development with project personas, code editing, terminal execution, debugging, planning, and MCP tools.
 
-        > 你的 AI 驱动开发团队，就在你的编辑器里
+## Install
 
-        ## 我们是 MaveCode
+Download the latest `mave-code-<version>.vsix` file from the GitHub Releases page, then use **Extensions: Install from VSIX...** in VS Code.
 
-> 在 Roo 团队停止 Roo Code 的积极开发、转而专注于 [Roomote](https://roomote.dev/)
-> 之后，MaveCode 将继续开发这个项目。感谢 Roo 团队所构建的一切。
->
-> 核心团队由此前曾为 Roo 做出贡献、并且非常在乎这个插件的开发者组成。我们
-> 会继续更新模型、修复 bug，并发布新功能，也计划认真倾听让这个插件如此特
-> 别的社区。欢迎加入我们，一起在
-> [Discord](https://discord.gg/VxfP4Vx3gX)、
-> [Reddit](https://www.reddit.com/r/MaveCode)，或者
-> [创建 PR 或 issue](https://github.com/MaveCode-Org/MaveCode)。
->
-> _-MaveCode Team_
-
-## 从 Roo Code 迁移到 MaveCode
-
-
-## MaveCode 在 Roo Code 之后新增的功能
-
-MaveCode 基于 Roo Code 打下的基础持续扩展，新增了：
-
-- **Semble 代码库智能** — 快速、按需的语义代码搜索，可自动设置，无需单独的索引流程。
-- **更强大的 Orchestrator 工作流** — 更安全的任务委派、并行任务协调、可靠的父子任务恢复，以及更完善的子任务与提供商配置隔离。
-- **通过 Destructive Command Guard (DCG) 实现更长时间的自主运行** — 自动阻止危险命令，同时让可信工作继续执行，无需反复批准。
-- **最新模型** — 持续支持新的 Claude、GPT、Gemini、Kimi、GLM、Grok、MiniMax 及其他模型系列。
-- **更多连接方式** — 新增和扩展了 MaveCode、Moonshot、Kimi Code、Kenari、Friendli、OpenCode Go 等众多提供商。
-- **更可靠的终端和编辑工作流** — 修复终端过早完成、任务状态竞争、上下文管理、差异更新编辑和提供商专用工具调用等问题。
-- **更全面的工作区控制** — 支持规则管理、按模式限制 MCP、多根工作区路径控制、模型推理选项和完成后的变更审查操作。
-
-## v3.76.0 新增内容
-
-- **通过 Destructive Command Guard (DCG) 长时间、不间断地运行任务** — DCG 会阻止危险命令，同时让 Zoo 继续工作，无需你反复点击批准按钮；托管二进制文件的下载和安装也经过了安全加固。
-- **更完善的提供商控制和可靠性** — 可选择 OpenAI Codex 响应速度、使用更新后的 DeepSeek 配置，并在提供商配置变更与运行中任务之间获得更强的隔离。
-- **重要的终端运行修复** — Zoo 现在会等待终端命令完成后再开始下一步，避免工作重叠和模型过早继续。
-- 更智能的批处理会合并相关工具的批准请求，同时将不相关的请求分开处理。
-- 遇到故障和并发请求时，遥测数据传输与模型缓存获取更加稳定可靠。
-
-## MaveCode 能为您做什么？
-
-- 从自然语言描述生成代码
-- 使用模式进行调整：代码、架构师、提问、调试和自定义模式
-- 重构和调试现有代码
-- 编写和更新文档
-- 回答关于您的代码库的问题
-- 自动化重复性任务
-- 使用 MCP 服务器
-
-## 模式
-
-MaveCode 适应您的工作方式，而不是相反：
-
-- 代码模式：日常编码、编辑和文件操作
-- 架构师模式：规划系统、规范和迁移
-- 提问模式：快速回答、解释和文档
-- 调试模式：跟踪问题、添加日志、隔离根本原因
-- 自定义模式：为您的团队或工作流程构建专门的模式
-
-
-## 资源
-
-- **[Discord 服务器](https://discord.gg/VxfP4Vx3gX):** 加入社区以获得实时帮助和讨论。
-- **[Reddit 社区](https://www.reddit.com/r/MaveCode):** 分享您的经验，看看别人在构建什么。
-- **[GitHub 问题](https://github.com/MaveCode-Org/MaveCode/issues):** 报告错误并跟踪开发。
-- **[功能请求](https://github.com/MaveCode-Org/MaveCode/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop):** 有想法吗？与开发人员分享。
-
----
-
-## 本地设置与开发
-
-1. **克隆**仓库：
+You can also install it from a terminal:
 
 ```sh
-git clone https://github.com/MaveCode-Org/MaveCode.git
+code --install-extension mave-code-<version>.vsix
 ```
 
-2. **安装依赖项**:
+## Build from source
+
+Requirements:
+
+- Node.js 22
+- pnpm 10
+- VS Code
+
+Install dependencies and package the extension:
 
 ```sh
-pnpm install
+pnpm install --frozen-lockfile
+cd src
+pnpm run vscode:prepublish
+pnpm run vsix
 ```
 
-3. **运行扩展程序**:
+The package is written to `bin/mave-code-<version>.vsix`.
 
-有几种方法可以运行 MaveCode 扩展程序：
+## Core capabilities
 
-### 开发模式（F5）
+- AI-assisted code analysis, editing, and debugging
+- Project-specific bundled personas
+- Terminal command execution with approval controls
+- Custom modes, rules, and workflows
+- MCP server integrations
+- Multiple AI provider configurations
 
-对于积极开发，请使用 VSCode 的内置调试功能：
+## License
 
-在 VSCode 中按 `F5`（或转到 **Run** → **Start Debugging**）。这将在运行 MaveCode 扩展程序的新 VSCode 窗口中打开。
+Apache License 2.0. See [`LICENSE`](LICENSE).
 
-- 对 webview 的更改将立即显示。
-- 对核心扩展程序的更改也会自动热重载。
-
-### 自动化 VSIX 安装
-
-要将扩展程序构建为 VSIX 包并直接安装到 VSCode 中：
-
-```sh
-pnpm install:vsix [-y] [--editor=<command>]
-```
-
-此命令将：
-
-- 询问要使用的编辑器命令（code/cursor/code-insiders） - 默认为“code”
-- 卸载任何现有版本的扩展程序。
-- 构建最新的 VSIX 包。
-- 安装新构建的 VSIX。
-- 提示您重新启动 VS Code 以使更改生效。
-
-选项：
-
-- `-y`: 跳过所有确认提示并使用默认值
-- `--editor=<command>`: 指定编辑器命令（例如，`--editor=cursor` 或 `--editor=code-insiders`）
-
-### 手动 VSIX 安装
-
-如果您希望手动安装 VSIX 包：
-
-1.  首先，构建 VSIX 包：
-    ```sh
-    pnpm vsix
-    ```
-2.  将在 `bin/` 目录中生成一个 `.vsix` 文件（例如，`bin/mave-code-<version>.vsix`）。
-3.  使用 VSCode CLI 手动安装
-    ```sh
-    code --install-extension bin/mave-code-<version>.vsix
-    ```
-
----
-
-我们使用 [changesets](https://github.com/changesets/changesets) 进行版本控制和发布。有关发行说明，请查看我们的 `CHANGELOG.md`。
-
----
-
-## 免责声明
-
-**请注意**，MaveCode **不**对与 MaveCode 相关的任何代码、模型或其他工具、任何相关的第三方工具或任何由此产生的输出作出任何陈述或保证。您承担使用任何此类工具或输出的**所有风险**；此类工具均按**“原样”**和**“可用”**的基础提供。此类风险可能包括但不限于知识产权侵权、网络漏洞或攻击、偏见、不准确、错误、缺陷、病毒、停机、财产损失或损害和/或人身伤害。您对自己使用任何此类工具或输出负全部责任（包括但不限于其合法性、适当性和结果）。
-
----
-
-## 贡献
-
-我们欢迎社区贡献！请阅读我们的 [CONTRIBUTING.md](CONTRIBUTING.md) 开始。
-
----
-
-## 许可证
-
-[Apache 2.0 © 2025 MaveCode Org](../../LICENSE)
-
----
-
-**尽情享受 MaveCode！** 无论你是让它保持短绳控制，还是让它自主探索，我们都迫不及待想看看你会构建什么。如果你有问题或功能想法，请提交一个 [issue](https://github.com/MaveCode-Org/MaveCode/issues) 或发起一个 [discussion](https://github.com/MaveCode-Org/MaveCode/discussions)。祝你编码愉快！

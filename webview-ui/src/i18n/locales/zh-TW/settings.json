@@ -1,4 +1,4 @@
-{
+﻿{
 	"back": "回到工作檢視",
 	"common": {
 		"save": "儲存",
@@ -57,8 +57,6 @@
 			"label": "發現安全漏洞？",
 			"link": "遵循我們的揭露流程"
 		},
-		"community": "想要取得使用技巧或與其他 MaveCode 使用者交流？加入 <redditLink>reddit.com/r/MaveCode</redditLink> 或 <discordLink>discord.gg/VxfP4Vx3gX</discordLink>",
-		"contactAndCommunity": "聯絡與社群",
 		"manageSettings": "管理設定",
 		"debugMode": {
 			"label": "啟用偵錯模式",
@@ -1154,3 +1152,4 @@
 		"footer": "使用技能編寫器模式建立您自己的技能，可在 <MarketplaceLink>模式市集</MarketplaceLink> 中取得。"
 	}
 }
+
