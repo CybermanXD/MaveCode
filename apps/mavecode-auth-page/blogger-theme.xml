@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html b:css="false" b:defaultwidgetversion="2" b:layoutsVersion="3" b:responsive="true" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr" lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="referrer" content="no-referrer"/>
+		<title>Sign in to MaveCode</title>
+		<b:skin><![CDATA[
+			:root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+			* { box-sizing: border-box; }
+			body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 24px; color: #fff8d6; background: #0d0b03; }
+			.mave-card { width: min(100%, 460px); padding: 38px; border: 1px solid #8f6b00; border-radius: 20px; background: #1e1702; box-shadow: 0 20px 60px rgba(0, 0, 0, .45); text-align: center; }
+			.mave-logo { margin: 0 auto 22px; color: #facc15; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: clamp(40px, 10vw, 52px); font-style: normal; font-weight: 800; letter-spacing: -2px; line-height: 1; }
+			h1 { margin: 0 0 12px; font-size: 28px; }
+			p { color: #e7ddb0; line-height: 1.55; }
+			#google-button { min-height: 44px; margin: 24px auto 14px; display: flex; justify-content: center; }
+			.mave-status { min-height: 24px; margin: 12px 0; color: #c9b96e; }
+			.mave-status.success { color: #86efac; }
+			.mave-status.error { color: #fca5a5; }
+			.mave-privacy { margin: 22px 0 0; font-size: 12px; color: #9f9257; }
+			#mavecode-required-section { display: none; }
+		]]></b:skin>
+		<script src="https://accounts.google.com/gsi/client" async="async" defer="defer"></script>
+	</head>
+	<body>
+		<main class="mave-card">
+			<div class="mave-logo" aria-label="MaveCode">MaveCode</div>
+			<h1>Sign in to MaveCode</h1>
+			<p>Use an approved Google account to unlock the MaveCode workspace in VS Code.</p>
+			<div id="google-button" aria-live="polite"></div>
+			<p id="status" class="mave-status">Preparing secure sign-in…</p>
+			<p class="mave-privacy">Only your verified Google identity is sent to the MaveCode backend. Provider credentials are never sent to this page or the extension.</p>
+		</main>
+
+		<!-- Blogger requires a section in a theme even though this dedicated page has no widgets. -->
+		<b:section id="mavecode-required-section" class="mavecode-required-section" maxwidgets="0" showaddelement="no"/>
+
+		<script type="text/javascript">//<![CDATA[
+			/*
+			 * BLOGGER SETUP: replace only the PUBLIC Apps Script deployment ID below.
+			 * Never paste an intake secret, provider token, session token, or private key here.
+			 */
+			const MAVECODE_AUTH_CONFIG = Object.freeze({
+				appsScriptUrl: "https://script.google.com/macros/s/AKfycbzzh46NrOfcTOlQjl2mxmfHH5UX5Q-vtrQTbx9burYTAeYGkFUYImjX7UW6TO4NhwdU/exec",
+				googleClientId: "882071644277-evs0shjikfr98hg5k0k6g2ce20qkrna3.apps.googleusercontent.com"
+			});
+
+			(() => {
+				"use strict";
+				const EXACT_CALLBACK_URI = "vscode://MaveCode.mave-code/auth-callback";
+				const params = new URLSearchParams(window.location.search);
+				const transaction = Object.freeze({
+					state: params.get("state") || "",
+					codeChallenge: params.get("code_challenge") || "",
+					callbackUri: params.get("callback_uri") || ""
+				});
+				const status = document.querySelector("#status");
+
+				function setStatus(message, kind = "") {
+					status.textContent = message;
+					status.className = `mave-status ${kind}`.trim();
+				}
+
+				function validOpaque(value) {
+					return /^[A-Za-z0-9_-]{43,128}$/.test(value);
+				}
+
+				function validCallback(value) {
+					try {
+						const callback = new URL(value);
+						return callback.protocol === "vscode:"
+							&& callback.hostname.toLowerCase() === "mavecode.mave-code"
+							&& callback.pathname === "/auth-callback"
+							&& callback.username === ""
+							&& callback.password === ""
+							&& callback.port === ""
+							&& callback.search === ""
+							&& callback.hash === ""
+							&& value === EXACT_CALLBACK_URI;
+					} catch {
+						return false;
+					}
+				}
+
+				function validPublicConfig() {
+					return /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(MAVECODE_AUTH_CONFIG.appsScriptUrl)
+						&& /^[0-9]+-[A-Za-z0-9_-]+\.apps\.googleusercontent\.com$/.test(MAVECODE_AUTH_CONFIG.googleClientId);
+				}
+
+				async function completeGoogleSignIn(response) {
+					try {
+						if (!response || typeof response.credential !== "string" || response.credential.length < 100) throw new Error("Google did not return a valid identity token.");
+						setStatus("Verifying your Google account…");
+						const backend = await fetch(MAVECODE_AUTH_CONFIG.appsScriptUrl, {
+							method: "POST",
+							headers: { "Content-Type": "text/plain;charset=utf-8" },
+							body: JSON.stringify({ action: "auth-google-complete", idToken: response.credential, ...transaction }),
+							credentials: "omit",
+							redirect: "follow"
+						});
+						const payload = await backend.json();
+						if (!payload.ok) throw new Error(payload.error?.message || "This Google account is not allowed.");
+						const result = payload.data;
+						if (!result || result.state !== transaction.state || result.callbackUri !== transaction.callbackUri || !/^mave_code_[A-Za-z0-9_-]{20,}$/.test(result.authorizationCode || "")) throw new Error("The backend returned an invalid authorization response.");
+						setStatus("Approved. Returning to MaveCode…", "success");
+						const callback = new URL(result.callbackUri);
+						callback.searchParams.set("code", result.authorizationCode);
+						callback.searchParams.set("state", result.state);
+						window.location.assign(callback.toString());
+					} catch (error) {
+						setStatus(error instanceof Error ? error.message : "Sign-in failed.", "error");
+					}
+				}
+
+				function initialize() {
+					if (!validPublicConfig()) {
+						setStatus("This sign-in page has not been configured by the MaveCode administrator.", "error");
+						return;
+					}
+					if (!validOpaque(transaction.state) || !validOpaque(transaction.codeChallenge) || !validCallback(transaction.callbackUri)) {
+						setStatus("This sign-in link is invalid or incomplete. Return to VS Code and try again.", "error");
+						return;
+					}
+					if (!globalThis.google?.accounts?.id) {
+						setTimeout(initialize, 100);
+						return;
+					}
+					google.accounts.id.initialize({ client_id: MAVECODE_AUTH_CONFIG.googleClientId, callback: completeGoogleSignIn, auto_select: false, cancel_on_tap_outside: true });
+					google.accounts.id.renderButton(document.querySelector("#google-button"), { theme: "filled_blue", size: "large", shape: "pill", text: "signin_with", width: 300 });
+					setStatus("Choose an approved Google account.");
+				}
+
+				initialize();
+			})();
+		//]]></script>
+	</body>
+</html>

@@ -1,0 +1,175 @@
+<p align="center">
+          <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
+          <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
+          <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
+          <a href="https://www.reddit.com/r/MaveCode/"><img src="https://img.shields.io/badge/Join%20r%2FMaveCode-FF4500?style=flat&logo=reddit&logoColor=white" alt="Join r/MaveCode"></a>
+          <a href="https://github.com/MaveCode-Org/MaveCode/issues"><img src="https://img.shields.io/badge/GitHub-Issues-181717?style=flat&logo=github&logoColor=white" alt="GitHub Issues"></a>
+        </p>
+        <p align="center">
+          <em>Cần trợ giúp nhanh → <a href="https://discord.gg/VxfP4Vx3gX">Tham gia Discord</a> • Thích trao đổi không đồng bộ hơn? → <a href="https://www.reddit.com/r/MaveCode/">Tham gia r/MaveCode</a></em>
+        </p>
+
+        # MaveCode
+
+        > Đội ngũ dev dùng AI của bạn, ngay trong trình chỉnh sửa
+
+        ## Chúng tôi là MaveCode
+
+> MaveCode tiếp tục phát triển dự án này sau khi đội ngũ Roo dừng việc phát
+> triển tích cực Roo Code để tập trung vào [Roomote](https://roomote.dev/).
+> Cảm ơn đội ngũ Roo vì tất cả những gì họ đã xây dựng.
+>
+> Đội ngũ nòng cốt gồm những nhà phát triển từng đóng góp cho Roo trước đây
+> và thực sự quan tâm đến plugin này. Chúng tôi sẽ tiếp tục cập nhật model,
+> sửa lỗi và phát hành tính năng, và chúng tôi dự định lắng nghe sát sao
+> cộng đồng đã làm cho plugin này trở nên đặc biệt. Hãy tham gia cùng chúng
+> tôi trên
+> [Discord](https://discord.gg/VxfP4Vx3gX),
+> [Reddit](https://www.reddit.com/r/MaveCode), hoặc
+> [mở PR hay issue](https://github.com/MaveCode-Org/MaveCode).
+>
+> _-MaveCode Team_
+
+## Chuyển từ Roo Code sang MaveCode
+
+Bạn có thể xem hướng dẫn nhanh để chuyển từ Roo Code sang MaveCode trong [hướng dẫn chuyển đổi Roo→Zoo](https://docs.mavecode.dev/roo-to-zoo-migration). Chúng tôi muốn hỗ trợ người dùng nhiều nhất có thể trong quá trình chuyển đổi, và đó chính là lý do chúng tôi có [Reddit](https://www.reddit.com/r/MaveCode) và [Discord](https://discord.gg/VxfP4Vx3gX). Nếu bạn gặp vấn đề hoặc có câu hỏi, cứ vào hỏi nhé.
+
+## Những gì MaveCode đã bổ sung kể từ Roo Code
+
+MaveCode phát triển trên nền tảng do Roo Code tạo ra và tiếp tục mở rộng với:
+
+- **Trí tuệ codebase Semble** — tìm kiếm mã theo ngữ nghĩa nhanh chóng, theo yêu cầu, tự động thiết lập và không cần workflow lập chỉ mục riêng.
+- **Workflow Orchestrator mạnh mẽ hơn** — ủy quyền an toàn hơn, phối hợp tác vụ song song, khôi phục tác vụ cha/con đáng tin cậy và cách ly tốt hơn giữa tác vụ con với hồ sơ provider.
+- **Chạy tự động lâu hơn với Destructive Command Guard (DCG)** — tự động chặn lệnh nguy hiểm trong khi công việc đáng tin cậy vẫn tiếp tục mà không cần yêu cầu phê duyệt lặp lại.
+- **Các model mới nhất** — liên tục hỗ trợ các dòng model Claude, GPT, Gemini, Kimi, GLM, Grok, MiniMax và nhiều dòng khác.
+- **Nhiều cách kết nối hơn** — các provider mới và được mở rộng, gồm MaveCode, Moonshot, Kimi Code, Kenari, Friendli, OpenCode Go và nhiều provider khác.
+- **Workflow terminal và chỉnh sửa đáng tin cậy hơn** — sửa lỗi terminal hoàn tất quá sớm, xung đột trạng thái tác vụ, quản lý ngữ cảnh, chỉnh sửa diff và sử dụng công cụ riêng của từng provider.
+- **Kiểm soát workspace tốt hơn** — quản lý quy tắc, giới hạn MCP theo từng chế độ, kiểm soát đường dẫn multi-root, tùy chọn reasoning của model và thao tác xem lại thay đổi khi hoàn tất.
+
+## Điểm mới trong v3.76.0
+
+- **Chạy tác vụ lâu hơn, không bị gián đoạn với Destructive Command Guard (DCG)** — DCG chặn các lệnh nguy hiểm trong khi vẫn để Zoo tiếp tục làm việc mà bạn không phải liên tục bấm nút phê duyệt, đồng thời tăng cường bảo mật cho việc tải xuống và cài đặt binary được quản lý.
+- **Kiểm soát provider và độ tin cậy tốt hơn** — chọn tốc độ phản hồi của OpenAI Codex, dùng cấu hình DeepSeek đã cập nhật và hưởng lợi từ khả năng cách ly mạnh hơn giữa thay đổi hồ sơ provider với tác vụ đang chạy.
+- **Bản sửa lỗi quan trọng cho việc chạy lệnh terminal** — Zoo giờ sẽ chờ lệnh terminal hoàn tất trước khi bắt đầu bước tiếp theo, ngăn công việc chồng chéo và model tiếp tục quá sớm.
+- Cơ chế gom nhóm thông minh hơn sẽ nhóm các phê duyệt công cụ liên quan và giữ riêng những yêu cầu không liên quan.
+- Việc gửi telemetry và tải cache model ổn định hơn khi có lỗi hoặc nhiều yêu cầu đồng thời.
+
+## MaveCode có thể làm gì cho BẠN?
+
+- Tạo mã từ mô tả ngôn ngữ tự nhiên
+- Thích ứng với các Chế độ: Mã, Kiến trúc sư, Hỏi, Gỡ lỗi và Chế độ tùy chỉnh
+- Tái cấu trúc & gỡ lỗi mã hiện có
+- Viết & cập nhật tài liệu
+- Trả lời câu hỏi về cơ sở mã của bạn
+- Tự động hóa các tác vụ lặp đi lặp lại
+- Sử dụng Máy chủ MCP
+
+## Chế độ
+
+MaveCode thích ứng với cách bạn làm việc, chứ không phải ngược lại:
+
+- Chế độ Mã: viết mã hàng ngày, chỉnh sửa và các thao tác với tệp
+- Chế độ Kiến trúc sư: lập kế hoạch hệ thống, thông số kỹ thuật và di chuyển
+- Chế độ Hỏi: câu trả lời nhanh, giải thích và tài liệu
+- Chế độ Gỡ lỗi: theo dõi sự cố, thêm nhật ký, cô lập nguyên nhân gốc rễ
+- Chế độ Tùy chỉnh: xây dựng các chế độ chuyên biệt cho nhóm hoặc quy trình làm việc của bạn
+
+Xem thêm: [Sử dụng Chế độ](https://docs.mavecode.dev/basic-usage/using-modes) • [Chế độ tùy chỉnh](https://docs.mavecode.dev/advanced-usage/custom-modes)
+
+## Tài nguyên
+
+- **[Tài liệu](https://docs.mavecode.dev):** Hướng dẫn chính thức để cài đặt, cấu hình và sử dụng thành thạo MaveCode.
+- **[Máy chủ Discord](https://discord.gg/VxfP4Vx3gX):** Tham gia cộng đồng để được trợ giúp và thảo luận trong thời gian thực.
+- **[Cộng đồng Reddit](https://www.reddit.com/r/MaveCode):** Chia sẻ kinh nghiệm của bạn và xem những người khác đang xây dựng gì.
+- **[Vấn đề trên GitHub](https://github.com/MaveCode-Org/MaveCode/issues):** Báo cáo lỗi và theo dõi quá trình phát triển.
+- **[Yêu cầu tính năng](https://github.com/MaveCode-Org/MaveCode/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop):** Có ý tưởng? Hãy chia sẻ với các nhà phát triển.
+
+---
+
+## Cài đặt và phát triển cục bộ
+
+1. **Sao chép** kho lưu trữ:
+
+```sh
+git clone https://github.com/MaveCode-Org/MaveCode.git
+```
+
+2. **Cài đặt các dependency**:
+
+```sh
+pnpm install
+```
+
+3. **Chạy phần mở rộng**:
+
+Có một số cách để chạy phần mở rộng MaveCode:
+
+### Chế độ phát triển (F5)
+
+Để phát triển tích cực, hãy sử dụng tính năng gỡ lỗi tích hợp của VSCode:
+
+Nhấn `F5` (hoặc vào **Run** → **Start Debugging**) trong VSCode. Thao tác này sẽ mở một cửa sổ VSCode mới với phần mở rộng MaveCode đang chạy.
+
+- Các thay đổi đối với webview sẽ xuất hiện ngay lập tức.
+- Các thay đổi đối với phần mở rộng cốt lõi cũng sẽ tự động được tải lại nóng.
+
+### Cài đặt VSIX tự động
+
+Để xây dựng và cài đặt phần mở rộng dưới dạng gói VSIX trực tiếp vào VSCode:
+
+```sh
+pnpm install:vsix [-y] [--editor=<command>]
+```
+
+Lệnh này sẽ:
+
+- Hỏi lệnh soạn thảo nào sẽ sử dụng (code/cursor/code-insiders) - mặc định là 'code'
+- Gỡ cài đặt mọi phiên bản hiện có của phần mở rộng.
+- Xây dựng gói VSIX mới nhất.
+- Cài đặt VSIX vừa được xây dựng.
+- Yêu cầu bạn khởi động lại VS Code để các thay đổi có hiệu lực.
+
+Tùy chọn:
+
+- `-y`: Bỏ qua tất cả các lời nhắc xác nhận và sử dụng các giá trị mặc định
+- `--editor=<command>`: Chỉ định lệnh soạn thảo (ví dụ: `--editor=cursor` hoặc `--editor=code-insiders`)
+
+### Cài đặt VSIX thủ công
+
+Nếu bạn muốn cài đặt gói VSIX theo cách thủ công:
+
+1.  Đầu tiên, hãy xây dựng gói VSIX:
+    ```sh
+    pnpm vsix
+    ```
+2.  Một tệp `.vsix` sẽ được tạo trong thư mục `bin/` (ví dụ: `bin/mave-code-<version>.vsix`).
+3.  Cài đặt thủ công bằng VSCode CLI:
+    ```sh
+    code --install-extension bin/mave-code-<version>.vsix
+    ```
+
+---
+
+Chúng tôi sử dụng [changesets](https://github.com/changesets/changesets) để quản lý phiên bản và xuất bản. Kiểm tra `CHANGELOG.md` của chúng tôi để biết ghi chú phát hành.
+
+---
+
+## Tuyên bố miễn trừ trách nhiệm
+
+**Xin lưu ý** rằng MaveCode **không** đưa ra bất kỳ tuyên bố hay bảo đảm nào liên quan đến bất kỳ mã, mô hình hoặc công cụ nào khác được cung cấp hoặc cung cấp liên quan đến MaveCode, bất kỳ công cụ nào của bên thứ ba được liên kết hoặc bất kỳ kết quả đầu ra nào. Bạn chịu **mọi rủi ro** liên quan đến việc sử dụng bất kỳ công cụ hoặc kết quả đầu ra nào như vậy; các công cụ đó được cung cấp trên cơ sở **"NGUYÊN TRẠNG"** và **"NHƯ HIỆN CÓ"**. Những rủi ro đó có thể bao gồm, nhưng không giới hạn ở, vi phạm sở hữu trí tuệ, các lỗ hổng hoặc tấn công mạng, thiên vị, không chính xác, lỗi, khiếm khuyết, vi-rút, thời gian ngừng hoạt động, mất mát hoặc hư hỏng tài sản và/hoặc thương tích cá nhân. Bạn hoàn toàn chịu trách nhiệm về việc sử dụng bất kỳ công cụ hoặc kết quả đầu ra nào đó (bao gồm, nhưng không giới hạn ở, tính hợp pháp, tính phù hợp và kết quả của chúng).
+
+---
+
+## Đóng góp
+
+Chúng tôi yêu thích những đóng góp của cộng đồng! Bắt đầu bằng cách đọc [CONTRIBUTING.md](CONTRIBUTING.md) của chúng tôi.
+
+---
+
+## Giấy phép
+
+[Apache 2.0 © 2025 MaveCode Org](../../LICENSE)
+
+---
+
+**Hãy tận hưởng MaveCode!** Dù bạn giữ nó trong tầm kiểm soát hay để nó tự do hoạt động, chúng tôi rất nóng lòng muốn xem bạn sẽ xây dựng điều gì. Nếu bạn có câu hỏi hoặc ý tưởng tính năng, hãy mở một [issue](https://github.com/MaveCode-Org/MaveCode/issues) hoặc bắt đầu một [discussion](https://github.com/MaveCode-Org/MaveCode/discussions). Chúc bạn code vui vẻ!

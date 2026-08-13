@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="referrer" content="no-referrer" />
+		<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://accounts.google.com/gsi/client; frame-src https://accounts.google.com/gsi/; connect-src https://script.google.com https://script.googleusercontent.com; style-src 'self'; img-src 'self' data: https://lh3.googleusercontent.com; base-uri 'none'; form-action 'none'" />
+		<title>Sign in to MaveCode</title>
+		<link rel="stylesheet" href="./styles.css" />
+		<script src="https://accounts.google.com/gsi/client" async defer></script>
+		<script src="./auth.js" type="module"></script>
+	</head>
+	<body>
+		<main class="card">
+			<div class="mark" aria-hidden="true">M</div>
+			<h1>Sign in to MaveCode</h1>
+			<p>Use an organization-approved Google account to unlock the MaveCode workspace in VS Code.</p>
+			<div id="google-button" aria-live="polite"></div>
+			<p id="status" class="status">Preparing secure sign-in…</p>
+			<p class="privacy">MaveCode receives your verified email identity only. Provider credentials are never sent to this page or the extension.</p>
+		</main>
+	</body>
+</html>

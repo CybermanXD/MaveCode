@@ -1,0 +1,30 @@
+{
+	"name": "@mavecode/admin-helper",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "Loopback-only OAuth and signed provider credential relay for MaveCode administrators",
+	"scripts": {
+		"dev": "tsx src/main.ts",
+		"start": "node --enable-source-maps dist/main.js",
+		"build": "tsc -p tsconfig.json",
+		"check-types": "tsc --noEmit",
+		"lint": "eslint src test --ext .ts --max-warnings=0",
+		"format": "prettier --write .",
+		"test": "node --import tsx --test test/*.test.ts",
+		"test:coverage": "node --import tsx --experimental-test-coverage --test test/*.test.ts",
+		"clean": "rimraf dist .turbo coverage"
+	},
+	"devDependencies": {
+		"@roo-code/config-eslint": "workspace:^",
+		"@roo-code/config-typescript": "workspace:^",
+		"@types/node": "22.20.1",
+		"@vitest/coverage-v8": "4.1.9",
+		"eslint": "9.39.4",
+		"prettier": "3.8.4",
+		"rimraf": "6.0.1",
+		"tsx": "4.22.4",
+		"typescript": "5.9.3",
+		"vitest": "4.1.9"
+	}
+}

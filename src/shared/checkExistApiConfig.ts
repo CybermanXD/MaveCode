@@ -1,0 +1,51 @@
+import { SECRET_STATE_KEYS, GLOBAL_SECRET_KEYS, providerIdentifiers, ProviderSettings } from "@roo-code/types"
+
+/**
+ * Returns whether a provider profile is sufficiently configured to leave the
+ * welcome/setup gate.
+ *
+ * `maveCodeIsAuthenticated` is needed for MaveCode: auth lives in global
+ * secret storage (`mave-code-auth`), and `maveSessionToken` is not part of
+ * `SECRET_STATE_KEYS`, so session-auth alone would otherwise look unconfigured.
+ */
+export function checkExistKey(config: ProviderSettings | undefined, maveCodeIsAuthenticated?: boolean) {
+	if (!config) {
+		return false
+	}
+
+	// Special case for fake-ai, openai-codex, and qwen-code providers which don't need any configuration.
+	const configurationFreeProviders: ProviderSettings["apiProvider"][] = [
+		providerIdentifiers.fakeAi,
+		providerIdentifiers.openaiCodex,
+		providerIdentifiers.qwenCode,
+	]
+	if (config.apiProvider && configurationFreeProviders.includes(config.apiProvider)) {
+		return true
+	}
+
+	if (config.apiProvider === providerIdentifiers.kimiCode && (config.kimiCodeAuthMethod ?? "oauth") === "oauth") {
+		return true
+	}
+
+	// MaveCode uses session auth (profile token and/or global MaveCode login),
+	// not a traditional API key listed in SECRET_STATE_KEYS.
+	if (config.apiProvider === providerIdentifiers.maveGateway) {
+		return Boolean(config.maveSessionToken) || Boolean(maveCodeIsAuthenticated)
+	}
+
+	// Check all secret keys from the centralized SECRET_STATE_KEYS array.
+	// Filter out keys that are not part of ProviderSettings (global secrets are stored separately)
+	const providerSecretKeys = SECRET_STATE_KEYS.filter((key) => !GLOBAL_SECRET_KEYS.includes(key as any))
+	const hasSecretKey = providerSecretKeys.some((key) => config[key as keyof ProviderSettings] !== undefined)
+
+	// Check additional non-secret configuration properties
+	const hasOtherConfig = [
+		config.awsRegion,
+		config.vertexProjectId,
+		config.ollamaModelId,
+		config.lmStudioModelId,
+		config.vsCodeLmModelSelector,
+	].some((value) => value !== undefined)
+
+	return hasSecretKey || hasOtherConfig
+}

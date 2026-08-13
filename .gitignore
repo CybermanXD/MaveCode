@@ -1,0 +1,98 @@
+# Installed dependencies and package-manager caches
+node_modules/
+.pnpm-store/
+.npm/
+.yarn/cache/
+
+# Generated build, bundle, and packaging output
+dist/
+out/
+out-*/
+build/
+bin/
+*.vsix
+roo-cli-*.tar.gz*
+*.tgz
+
+# Test, coverage, and benchmark output (tests and fixtures remain tracked)
+coverage/
+.nyc_output/
+.vscode-test/
+test-results/
+playwright-report/
+blob-report/
+*.lcov
+
+# Tool and framework caches
+.turbo/
+.cache/
+.vite/
+.vite-port
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+.parcel-cache/
+.vercel/
+
+# Local environment, credentials, and deployment state
+.env
+.env.*
+!.env.sample
+!.env.*.sample
+!.env.example
+!.env.*.example
+.clasp.json
+!.clasp.json.example
+*.local.json
+*.local.yaml
+*.local.yml
+.roo/mcp.json
+
+# Logs, process files, scratch files, and crash dumps
+logs/
+*.log
+*.pid
+*.pid.lock
+*.seed
+*.tmp
+*.temp
+*.swp
+*.swo
+*.stackdump
+tmp/
+temp/
+/progress.txt
+
+# IDE, editor, and operating-system metadata
+.idea/
+.qodo/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.code-workspace
+
+# Local prompts, plans, and machine-specific test state
+/local-prompts/
+/plans/
+/.roo/
+/.roomodes
+/AGENTS.md
+AGENTS.local.md
+.test_env
+mock/
+/progress.txt
+
+# Historical release artwork and local QA evidence are not required to build
+# or install the extension. Publish installable VSIX files as GitHub Releases.
+/releases/
+/qa-*.log
+/focused-*.log
+/src/assets/docs/demo.gif
+
+# Generated documentation sites
+docs/_site/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+
+# Local service data
+qdrant_storage/

@@ -1,0 +1,13 @@
+{
+	"name": "@mavecode/appscript",
+	"version": "0.1.0",
+	"private": true,
+	"description": "MaveCode Apps Script MVP control-plane backend",
+	"scripts": {
+		"build": "node scripts/build.mjs",
+		"check-types": "node --check src/core.js && node --check src/main.js",
+		"lint": "node scripts/lint.mjs",
+		"test": "node --test test/*.test.mjs",
+		"scan:secrets": "node scripts/scan-secrets.mjs"
+	}
+}

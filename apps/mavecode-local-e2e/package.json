@@ -1,0 +1,20 @@
+{
+	"name": "@mavecode/local-e2e",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "Mock-only local end-to-end QA for the MaveCode helper, Apps Script backend, and extension adapter",
+	"scripts": {
+		"test": "node --import tsx --test test/*.test.ts",
+		"check-types": "tsc --noEmit",
+		"lint": "eslint test --ext .ts --max-warnings=0"
+	},
+	"devDependencies": {
+		"@roo-code/config-eslint": "workspace:^",
+		"@roo-code/config-typescript": "workspace:^",
+		"@types/node": "22.20.1",
+		"eslint": "9.39.4",
+		"tsx": "4.22.4",
+		"typescript": "5.9.3"
+	}
+}
