@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
           <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
           <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -32,7 +32,6 @@
 
 ## Roo Code से MaveCode migration
 
-Roo Code से MaveCode में आने के लिए एक quick guide तुम्हें [Roo→Zoo migration guide](https://docs.mavecode.dev/roo-to-zoo-migration) में मिल जाएगी। We plan to help users as much as possible during the transition, और उसी support के लिए हमारा [Reddit](https://www.reddit.com/r/MaveCode) और [Discord](https://discord.gg/VxfP4Vx3gX) है। अगर तुम्हें कोई problem हो या कोई question हो, आकर पूछो।
 
 ## Roo Code के बाद MaveCode ने क्या जोड़ा है
 
@@ -74,11 +73,9 @@ MaveCode, Roo Code की बनाई नींव पर आगे बढ़�
 - डीबग मोड: समस्याओं का पता लगाएं, लॉग जोड़ें, मूल कारणों को अलग करें
 - कस्टम मोड: अपनी टीम या वर्कफ़्लो के लिए विशेष मोड बनाएं
 
-और जानो: [मोड्स का इस्तेमाल](https://docs.mavecode.dev/basic-usage/using-modes) • [कस्टम मोड्स](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## संसाधन
 
-- **[दस्तावेज़ीकरण](https://docs.mavecode.dev):** MaveCode को स्थापित करने, कॉन्फ़िगर करने और उसमें महारत हासिल करने के लिए आधिकारिक गाइड।
 - **[डिस्कॉर्ड सर्वर](https://discord.gg/VxfP4Vx3gX):** रीयल-टाइम सहायता और चर्चा के लिए समुदाय में शामिल हों।
 - **[रेडिट समुदाय](https://www.reddit.com/r/MaveCode):** अपने अनुभव साझा करें और देखें कि दूसरे क्या बना रहे हैं।
 - **[गिटहब मुद्दे](https://github.com/MaveCode-Org/MaveCode/issues):** बग की रिपोर्ट करें और विकास को ट्रैक करें।

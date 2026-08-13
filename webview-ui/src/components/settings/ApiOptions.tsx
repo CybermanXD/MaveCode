@@ -15,7 +15,6 @@ import {
 import {
 	getProviderServiceConfig,
 	getDefaultModelIdForProvider,
-	getProviderDocsSlug,
 	getProviderModelConfig,
 	getStaticModelsForProvider,
 	shouldUseGenericModelPicker,
@@ -93,8 +92,6 @@ import { TemperatureControl } from "./TemperatureControl"
 import { RateLimitSecondsControl } from "./RateLimitSecondsControl"
 import { ConsecutiveMistakeLimitControl } from "./ConsecutiveMistakeLimitControl"
 import { BedrockCustomArn } from "./providers/BedrockCustomArn"
-import { buildDocLink } from "@src/utils/docLinks"
-import { BookOpenText } from "lucide-react"
 
 export interface ApiOptionsProps {
 	uriScheme: string | undefined
@@ -351,19 +348,6 @@ const ApiOptions = ({
 		return getModelValidationError(apiConfiguration, routerModels, organizationAllowList)
 	}, [apiConfiguration, routerModels, organizationAllowList])
 
-	const docs = useMemo(() => {
-		const provider = PROVIDERS.find(({ value }) => value === selectedProvider)
-		if (!provider) {
-			return undefined
-		}
-
-		const slug = getProviderDocsSlug(provider.value)
-		return {
-			url: buildDocLink(`providers/${slug}`, "provider_docs"),
-			name: provider.label,
-		}
-	}, [selectedProvider])
-
 	// Convert providers to SearchableSelect options
 	const providerOptions = useMemo(() => {
 		// First filter by organization allow list
@@ -411,15 +395,7 @@ const ApiOptions = ({
 	return (
 		<div className="flex flex-col gap-3">
 			<div className="flex flex-col gap-1 relative">
-				<div className="flex justify-between items-center">
-					<label className="block font-medium">{t("settings:providers.apiProvider")}</label>
-					{docs && (
-						<VSCodeLink href={docs.url} target="_blank" className="flex gap-2">
-							{t("settings:providers.apiProviderDocs")}
-							<BookOpenText className="size-4 inline ml-2" />
-						</VSCodeLink>
-					)}
-				</div>
+				<label className="block font-medium">{t("settings:providers.apiProvider")}</label>
 				<SearchableSelect
 					value={selectedProvider}
 					onValueChange={(value) => onProviderChange(value as ProviderName)}

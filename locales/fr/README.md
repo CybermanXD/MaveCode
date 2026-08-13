@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
           <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
           <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -33,7 +33,6 @@
 
 ## Migration de Roo Code vers MaveCode
 
-Tu peux trouver un guide rapide pour passer de Roo Code à MaveCode dans le [guide de migration Roo→Zoo](https://docs.mavecode.dev/roo-to-zoo-migration). On veut aider au maximum pendant la transition, et notre [Reddit](https://www.reddit.com/r/MaveCode) et notre [Discord](https://discord.gg/VxfP4Vx3gX) sont là pour ça. Si tu rencontres un problème ou si tu as une question, viens demander.
 
 ## Ce que MaveCode a ajouté depuis Roo Code
 
@@ -75,11 +74,9 @@ MaveCode s'adapte à votre façon de travailler, pas l'inverse :
 - Mode Débogage : tracer les problèmes, ajouter des journaux, isoler les causes profondes
 - Modes Personnalisés : créez des modes spécialisés pour votre équipe ou votre flux de travail
 
-En savoir plus : [Utiliser les Modes](https://docs.mavecode.dev/basic-usage/using-modes) • [Modes personnalisés](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## Ressources
 
-- **[Documentation](https://docs.mavecode.dev):** Le guide officiel pour installer, configurer et maîtriser MaveCode.
 - **[Serveur Discord](https://discord.gg/VxfP4Vx3gX):** Rejoignez la communauté pour obtenir de l'aide en temps réel et discuter.
 - **[Communauté Reddit](https://www.reddit.com/r/MaveCode):** Partagez vos expériences et découvrez ce que les autres construisent.
 - **[Problèmes GitHub](https://github.com/MaveCode-Org/MaveCode/issues):** Signalez des bugs et suivez le développement.

@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension.displayName": "MaveCode",
 	"extension.description": "Een compleet ontwikkelteam van AI-agents in je editor.",
 	"views.contextMenu.label": "MaveCode",
@@ -10,7 +10,6 @@
 	"command.marketplace.title": "Marktplaats",
 	"command.openInEditor.title": "Openen in Editor",
 	"command.settings.title": "Instellingen",
-	"command.documentation.title": "Documentatie",
 	"command.openInNewTab.title": "Openen in Nieuw Tabblad",
 	"command.explainCode.title": "Leg Code Uit",
 	"command.fixCode.title": "Repareer Code",
@@ -50,3 +49,4 @@
 	"settings.workspace.rootResolution.activeEditor.description": "Gebruik de workspace-map die de actieve editor bevat; val terug op de eerste workspace-map. (Standaard — behoudt het oude gedrag.)",
 	"settings.workspace.rootResolution.firstFolder.description": "Gebruik altijd de eerste workspace-map (workspaceFolders[0]). Deterministisch — onafhankelijk van welk bestand op dit moment de focus heeft."
 }
+

@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
           <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
           <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -33,7 +33,6 @@
 
 ## Migració de Roo Code a MaveCode
 
-Pots trobar una guia ràpida per passar de Roo Code a MaveCode a la [guia de migració Roo→Zoo](https://docs.mavecode.dev/roo-to-zoo-migration). Volem ajudar tant com puguem durant la transició, i per això tens el nostre [Reddit](https://www.reddit.com/r/MaveCode) i [Discord](https://discord.gg/VxfP4Vx3gX) per a aquest suport. Si tens problemes o algun dubte, entra i pregunta.
 
 ## Què ha afegit MaveCode des de Roo Code
 
@@ -75,11 +74,9 @@ MaveCode s'adapta a la teva manera de treballar, no a l'inrevés:
 - Mode Depuració: rastrejar problemes, afegir registres, aïllar les causes arrel
 - Modes personalitzats: crea modes especialitzats per al teu equip o flux de treball
 
-Més informació: [Ús de Modes](https://docs.mavecode.dev/basic-usage/using-modes) • [Modes personalitzats](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## Recursos
 
-- **[Documentació](https://docs.mavecode.dev):** La guia oficial per instal·lar, configurar i dominar MaveCode.
 - **[Servidor de Discord](https://discord.gg/VxfP4Vx3gX):** Uneix-te a la comunitat per obtenir ajuda i discutir en temps real.
 - **[Comunitat de Reddit](https://www.reddit.com/r/MaveCode):** Comparteix les teves experiències i veu què estan construint altres.
 - **[Incidències de GitHub](https://github.com/MaveCode-Org/MaveCode/issues):** Informa d'errors i segueix el desenvolupament.

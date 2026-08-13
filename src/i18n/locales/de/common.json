@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension": {
 		"name": "MaveCode",
 		"description": "Ein komplettes Entwicklerteam mit KI in deinem Editor."
@@ -261,10 +261,6 @@
 			"description": "Aufgabenabschluss verhindern, wenn unvollständige Todos in der Todo-Liste vorhanden sind"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Ungültiger Authentifizierungstoken empfangen.",
@@ -293,3 +289,4 @@
 		"addToContext": "Zu MaveCode hinzufügen"
 	}
 }
+

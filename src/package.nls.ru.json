@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension.displayName": "MaveCode",
 	"extension.description": "Целая команда ИИ-разработчиков в вашем редакторе.",
 	"views.contextMenu.label": "MaveCode",
@@ -10,7 +10,6 @@
 	"command.marketplace.title": "Маркетплейс",
 	"command.openInEditor.title": "Открыть в редакторе",
 	"command.settings.title": "Настройки",
-	"command.documentation.title": "Документация",
 	"command.openInNewTab.title": "Открыть в новой вкладке",
 	"command.explainCode.title": "Объяснить код",
 	"command.fixCode.title": "Исправить код",
@@ -50,3 +49,4 @@
 	"settings.workspace.rootResolution.activeEditor.description": "Использовать папку рабочей области, содержащую активный редактор; при необходимости вернуться к первой папке рабочей области. (По умолчанию — сохраняет прежнее поведение.)",
 	"settings.workspace.rootResolution.firstFolder.description": "Всегда использовать первую папку рабочей области (workspaceFolders[0]). Детерминированно — не зависит от того, какой файл сейчас в фокусе."
 }
+

@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
           <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
           <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -33,7 +33,6 @@
 
 ## Migratie van Roo Code naar MaveCode
 
-Je vindt een korte handleiding voor de overstap van Roo Code naar MaveCode in de [Roo→Zoo-migratiegids](https://docs.mavecode.dev/roo-to-zoo-migration). We willen gebruikers zo goed mogelijk helpen tijdens de overgang, en precies daarvoor zijn onze [Reddit](https://www.reddit.com/r/MaveCode) en [Discord](https://discord.gg/VxfP4Vx3gX) er. Als je ergens tegenaan loopt of vragen hebt, kom langs en vraag het.
 
 ## Wat MaveCode sinds Roo Code heeft toegevoegd
 
@@ -75,11 +74,9 @@ MaveCode past zich aan jouw werkwijze aan, niet andersom:
 - Debug Modus: spoor problemen op, voeg logs toe, isoleer de oorzaak
 - Aangepaste Modi: bouw gespecialiseerde modi voor je team of workflow
 
-Meer info: [Modi gebruiken](https://docs.mavecode.dev/basic-usage/using-modes) • [Aangepaste modi](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## Hulpbronnen
 
-- **[Documentatie](https://docs.mavecode.dev):** De officiële gids voor het installeren, configureren en beheersen van MaveCode.
 - **[Discord Server](https://discord.gg/VxfP4Vx3gX):** Word lid van de community voor realtime hulp en discussie.
 - **[Reddit Community](https://www.reddit.com/r/MaveCode):** Deel je ervaringen en kijk wat anderen bouwen.
 - **[GitHub Issues](https://github.com/MaveCode-Org/MaveCode/issues):** Meld bugs en volg de ontwikkeling.

@@ -3,7 +3,6 @@ import { useAppTranslation } from "@/i18n/TranslationContext"
 import { vscode } from "@/utils/vscode"
 import { VSCodeCheckbox, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
 import { Trans } from "react-i18next"
-import { buildDocLink } from "@src/utils/docLinks"
 import { useEvent, useMount } from "react-use"
 import { Terminal } from "lucide-react"
 
@@ -179,14 +178,7 @@ export const TerminalSettings = ({
 							</VSCodeCheckbox>
 							<div className="text-vscode-descriptionForeground text-sm mt-1">
 								<Trans i18nKey="settings:terminal.shellIntegrationDisabled.description">
-									<VSCodeLink
-										href={buildDocLink(
-											"features/shell-integration#use-inline-terminal-recommended",
-											"settings_terminal_shell_integration_disabled",
-										)}
-										style={{ display: "inline" }}>
-										{" "}
-									</VSCodeLink>
+									
 								</Trans>
 							</div>
 						</SearchableSetting>
@@ -251,14 +243,7 @@ export const TerminalSettings = ({
 
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
 										<Trans i18nKey="settings:terminal.profile.description">
-											<VSCodeLink
-												href={buildDocLink(
-													"features/shell-integration",
-													"settings_terminal_profile",
-												)}
-												style={{ display: "inline" }}>
-												{" "}
-											</VSCodeLink>
+											
 										</Trans>
 									</div>
 								</SearchableSetting>
@@ -282,14 +267,7 @@ export const TerminalSettings = ({
 									</VSCodeCheckbox>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
 										<Trans i18nKey="settings:terminal.inheritEnv.description">
-											<VSCodeLink
-												href={buildDocLink(
-													"features/shell-integration#inherit-environment-variables",
-													"settings_terminal_inherit_env",
-												)}
-												style={{ display: "inline" }}>
-												{" "}
-											</VSCodeLink>
+											
 										</Trans>
 									</div>
 								</SearchableSetting>
@@ -320,14 +298,7 @@ export const TerminalSettings = ({
 									</div>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
 										<Trans i18nKey="settings:terminal.shellIntegrationTimeout.description">
-											<VSCodeLink
-												href={buildDocLink(
-													"features/shell-integration#terminal-shell-integration-timeout",
-													"settings_terminal_shell_integration_timeout",
-												)}
-												style={{ display: "inline" }}>
-												{" "}
-											</VSCodeLink>
+											
 										</Trans>
 									</div>
 								</SearchableSetting>
@@ -356,14 +327,7 @@ export const TerminalSettings = ({
 									</div>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
 										<Trans i18nKey="settings:terminal.commandDelay.description">
-											<VSCodeLink
-												href={buildDocLink(
-													"features/shell-integration#terminal-command-delay",
-													"settings_terminal_command_delay",
-												)}
-												style={{ display: "inline" }}>
-												{" "}
-											</VSCodeLink>
+											
 										</Trans>
 									</div>
 								</SearchableSetting>
@@ -384,14 +348,7 @@ export const TerminalSettings = ({
 									</VSCodeCheckbox>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
 										<Trans i18nKey="settings:terminal.powershellCounter.description">
-											<VSCodeLink
-												href={buildDocLink(
-													"features/shell-integration#enable-powershell-counter-workaround",
-													"settings_terminal_powershell_counter",
-												)}
-												style={{ display: "inline" }}>
-												{" "}
-											</VSCodeLink>
+											
 										</Trans>
 									</div>
 								</SearchableSetting>
@@ -412,14 +369,7 @@ export const TerminalSettings = ({
 									</VSCodeCheckbox>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
 										<Trans i18nKey="settings:terminal.zshClearEolMark.description">
-											<VSCodeLink
-												href={buildDocLink(
-													"features/shell-integration#clear-zsh-eol-mark",
-													"settings_terminal_zsh_clear_eol_mark",
-												)}
-												style={{ display: "inline" }}>
-												{" "}
-											</VSCodeLink>
+											
 										</Trans>
 									</div>
 								</SearchableSetting>
@@ -436,14 +386,7 @@ export const TerminalSettings = ({
 									</VSCodeCheckbox>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
 										<Trans i18nKey="settings:terminal.zshOhMy.description">
-											<VSCodeLink
-												href={buildDocLink(
-													"features/shell-integration#enable-oh-my-zsh-integration",
-													"settings_terminal_zsh_oh_my",
-												)}
-												style={{ display: "inline" }}>
-												{" "}
-											</VSCodeLink>
+											
 										</Trans>
 									</div>
 								</SearchableSetting>
@@ -460,14 +403,7 @@ export const TerminalSettings = ({
 									</VSCodeCheckbox>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
 										<Trans i18nKey="settings:terminal.zshP10k.description">
-											<VSCodeLink
-												href={buildDocLink(
-													"features/shell-integration#enable-powerlevel10k-integration",
-													"settings_terminal_zsh_p10k",
-												)}
-												style={{ display: "inline" }}>
-												{" "}
-											</VSCodeLink>
+											
 										</Trans>
 									</div>
 								</SearchableSetting>
@@ -484,14 +420,7 @@ export const TerminalSettings = ({
 									</VSCodeCheckbox>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
 										<Trans i18nKey="settings:terminal.zdotdir.description">
-											<VSCodeLink
-												href={buildDocLink(
-													"features/shell-integration#enable-zdotdir-handling",
-													"settings_terminal_zdotdir",
-												)}
-												style={{ display: "inline" }}>
-												{" "}
-											</VSCodeLink>
+											
 										</Trans>
 									</div>
 								</SearchableSetting>

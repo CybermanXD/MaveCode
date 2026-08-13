@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension.displayName": "MaveCode",
 	"extension.description": "आपके एडिटर में एआई एजेंट्स की पूरी डेवलपमेंट टीम।",
 	"command.newTask.title": "नया कार्य",
@@ -24,7 +24,6 @@
 	"command.marketplace.title": "मार्केटप्लेस",
 	"command.openInEditor.title": "एडिटर में खोलें",
 	"command.settings.title": "सेटिंग्स",
-	"command.documentation.title": "दस्तावेज़ीकरण",
 	"configuration.title": "MaveCode",
 	"commands.allowedCommands.description": "वे कमांड जो स्वचालित रूप से निष्पादित की जा सकती हैं जब 'हमेशा निष्पादन संचालन को स्वीकृत करें' सक्रिय हो",
 	"commands.deniedCommands.description": "कमांड प्रीफिक्स जो स्वचालित रूप से अस्वीकार कर दिए जाएंगे बिना अनुमोदन मांगे। अनुमतित कमांड के साथ संघर्ष की स्थिति में, सबसे लंबा प्रीफिक्स मैच प्राथमिकता लेता है। सभी कमांड को अस्वीकार करने के लिए * जोड़ें।",
@@ -50,3 +49,4 @@
 	"settings.workspace.rootResolution.activeEditor.description": "उस workspace folder का इस्तेमाल करो जिसमें active editor है; पहले workspace folder पर fall back करो। (Default — legacy behavior बनाए रखता है।)",
 	"settings.workspace.rootResolution.firstFolder.description": "हमेशा पहले workspace folder (workspaceFolders[0]) का इस्तेमाल करो। Deterministic — इस बात से स्वतंत्र कि अभी कौन सी file focused है।"
 }
+

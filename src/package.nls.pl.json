@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension.displayName": "MaveCode",
 	"extension.description": "Pełny zespół programistów AI w twoim edytorze.",
 	"command.newTask.title": "Nowe Zadanie",
@@ -24,7 +24,6 @@
 	"command.marketplace.title": "Marketplace",
 	"command.openInEditor.title": "Otwórz w Edytorze",
 	"command.settings.title": "Ustawienia",
-	"command.documentation.title": "Dokumentacja",
 	"configuration.title": "MaveCode",
 	"commands.allowedCommands.description": "Polecenia, które mogą być wykonywane automatycznie, gdy włączona jest opcja 'Zawsze zatwierdzaj operacje wykonania'",
 	"commands.deniedCommands.description": "Prefiksy poleceń, które będą automatycznie odrzucane bez pytania o zatwierdzenie. W przypadku konfliktów z dozwolonymi poleceniami, najdłuższe dopasowanie prefiksu ma pierwszeństwo. Dodaj * aby odrzucić wszystkie polecenia.",
@@ -50,3 +49,4 @@
 	"settings.workspace.rootResolution.activeEditor.description": "Użyj folderu workspace zawierającego aktywny edytor; w razie potrzeby wróć do pierwszego folderu workspace. (Domyślnie — zachowuje dotychczasowe zachowanie.)",
 	"settings.workspace.rootResolution.firstFolder.description": "Zawsze używaj pierwszego folderu workspace (workspaceFolders[0]). Deterministyczne — niezależne od tego, który plik jest aktualnie aktywny."
 }
+

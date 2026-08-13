@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension": {
 		"name": "MaveCode",
 		"description": "Un intero team di sviluppatori AI nel tuo editor."
@@ -266,10 +266,6 @@
 			"description": "Impedire il completamento delle attività quando ci sono todo incompleti nella lista dei todo"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Ricevuto un token di autenticazione non valido.",
@@ -298,3 +294,4 @@
 		"addToContext": "Aggiungi a MaveCode"
 	}
 }
+

@@ -1,4 +1,4 @@
-{
+﻿{
 	"input": {
 		"task_prompt": "O que você quer que o Zoo faça?",
 		"task_placeholder": "Digite sua tarefa aqui"
@@ -266,10 +266,6 @@
 			"description": "Impedir a conclusão de tarefas quando há todos incompletos na lista de todos"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Token de autenticação inválido recebido.",
@@ -298,3 +294,4 @@
 		"addToContext": "Adicionar ao MaveCode"
 	}
 }
+

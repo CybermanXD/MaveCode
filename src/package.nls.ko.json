@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension.displayName": "MaveCode",
 	"extension.description": "에디터에서 작동하는 AI 에이전트 개발팀.",
 	"command.newTask.title": "새 작업",
@@ -24,7 +24,6 @@
 	"command.marketplace.title": "마켓플레이스",
 	"command.openInEditor.title": "에디터에서 열기",
 	"command.settings.title": "설정",
-	"command.documentation.title": "문서",
 	"configuration.title": "MaveCode",
 	"commands.allowedCommands.description": "'항상 실행 작업 승인' 이 활성화되어 있을 때 자동으로 실행할 수 있는 명령어",
 	"commands.deniedCommands.description": "승인을 요청하지 않고 자동으로 거부될 명령어 접두사. 허용된 명령어와 충돌하는 경우 가장 긴 접두사 일치가 우선됩니다. 모든 명령어를 거부하려면 *를 추가하세요.",
@@ -50,3 +49,4 @@
 	"settings.workspace.rootResolution.activeEditor.description": "활성 편집기가 있는 워크스페이스 폴더를 사용하고, 첫 번째 워크스페이스 폴더로 폴백합니다. (기본값 — 기존 동작을 유지합니다.)",
 	"settings.workspace.rootResolution.firstFolder.description": "항상 첫 번째 워크스페이스 폴더(workspaceFolders[0])를 사용합니다. 결정적이며, 현재 포커스된 파일과 무관합니다."
 }
+

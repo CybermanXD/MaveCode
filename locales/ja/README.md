@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
           <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
           <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -32,7 +32,6 @@
 
 ## Roo Code から MaveCode への移行
 
-Roo Code から MaveCode へ移行するためのクイックガイドは、[Roo→Zoo 移行ガイド](https://docs.mavecode.dev/roo-to-zoo-migration) で確認できます。移行中のユーザーをできるだけ支援したいと考えていて、そのために [Reddit](https://www.reddit.com/r/MaveCode) と [Discord](https://discord.gg/VxfP4Vx3gX) を用意しています。困ったことや質問があれば、気軽に参加して聞いてください。
 
 ## Roo Code 以降に MaveCode が追加した機能
 
@@ -74,11 +73,9 @@ MaveCodeは、あなたの働き方に合わせるように適応します。
 - デバッグモード：問題の追跡、ログの追加、根本原因の特定
 - カスタムモード：チームやワークフローに特化したモードの構築
 
-詳しくは: [モードの使い方](https://docs.mavecode.dev/basic-usage/using-modes) • [カスタムモード](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## リソース
 
-- **[ドキュメント](https://docs.mavecode.dev):** MaveCodeのインストール、設定、習熟のための公式ガイド。
 - **[Discordサーバー](https://discord.gg/VxfP4Vx3gX):** コミュニティに参加して、リアルタイムのヘルプやディスカッションに参加できます。
 - **[Redditコミュニティ](https://www.reddit.com/r/MaveCode):** あなたの経験を共有し、他の人が何を構築しているかを見ることができます。
 - **[GitHub Issues](https://github.com/MaveCode-Org/MaveCode/issues):** バグを報告し、開発を追跡します。

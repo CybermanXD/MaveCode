@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
           <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
           <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -32,7 +32,6 @@
 
 ## Migrasi dari Roo Code ke MaveCode
 
-Kamu bisa menemukan panduan singkat untuk berpindah dari Roo Code ke MaveCode di [panduan migrasi Roo→Zoo](https://docs.mavecode.dev/roo-to-zoo-migration). Kami ingin membantu pengguna semaksimal mungkin selama masa transisi, dan itulah gunanya [Reddit](https://www.reddit.com/r/MaveCode) dan [Discord](https://discord.gg/VxfP4Vx3gX) kami. Kalau kamu mengalami masalah atau punya pertanyaan, langsung mampir dan tanya.
 
 ## Yang Ditambahkan MaveCode Sejak Roo Code
 
@@ -74,11 +73,9 @@ MaveCode beradaptasi dengan cara Anda bekerja, bukan sebaliknya:
 - Mode Debug: melacak masalah, menambahkan log, mengisolasi akar penyebab
 - Mode Kustom: buat mode khusus untuk tim atau alur kerja Anda
 
-Pelajari lebih lanjut: [Menggunakan Mode](https://docs.mavecode.dev/basic-usage/using-modes) • [Mode Kustom](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## Sumber daya
 
-- **[Dokumentasi](https://docs.mavecode.dev):** Panduan resmi untuk menginstal, mengonfigurasi, dan menguasai MaveCode.
 - **[Server Discord](https://discord.gg/VxfP4Vx3gX):** Bergabunglah dengan komunitas untuk bantuan dan diskusi real-time.
 - **[Komunitas Reddit](https://www.reddit.com/r/MaveCode):** Bagikan pengalaman Anda dan lihat apa yang sedang dibangun orang lain.
 - **[Masalah GitHub](https://github.com/MaveCode-Org/MaveCode/issues):** Laporkan bug dan lacak pengembangan.

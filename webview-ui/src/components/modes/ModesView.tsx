@@ -25,7 +25,6 @@ import {
 import { TOOL_GROUPS } from "@roo/tools"
 
 import { vscode } from "@src/utils/vscode"
-import { buildDocLink } from "@src/utils/docLinks"
 import { useAppTranslation } from "@src/i18n/TranslationContext"
 import { useExtensionState } from "@src/context/ExtensionStateContext"
 import { Section } from "@src/components/settings/Section"
@@ -711,14 +710,8 @@ const ModesView = () => {
 
 					<div className="text-sm text-vscode-descriptionForeground mb-3">
 						<Trans i18nKey="prompts:modes.createModeHelpText">
-							<VSCodeLink
-								href={buildDocLink("basic-usage/using-modes", "prompts_view_modes")}
-								style={{ display: "inline" }}
-								aria-label="Learn about using modes"></VSCodeLink>
-							<VSCodeLink
-								href={buildDocLink("features/custom-modes", "prompts_view_modes")}
-								style={{ display: "inline" }}
-								aria-label="Learn about customizing modes"></VSCodeLink>
+							
+							
 						</Trans>
 					</div>
 
@@ -1306,7 +1299,7 @@ const ModesView = () => {
 							values={{
 								mode: getCurrentMode()?.name || "Code",
 								slug: getCurrentMode()?.slug || "code",
-							}}
+							}}>
 							components={{
 								span: (
 									<span
@@ -1327,69 +1320,8 @@ const ModesView = () => {
 										}}
 									/>
 								),
-								"0": (
-									<VSCodeLink
-										href={buildDocLink(
-											"features/custom-instructions#global-rules-directory",
-											"prompts_mode_specific_global_rules",
-										)}
-										style={{ display: "inline" }}
-										aria-label="Learn about global custom instructions for modes"
-									/>
-								),
+								"0": <span />,
 							}}
-						/>
-					</div>
-				</div>
-
-				<div className="pb-4 border-b border-vscode-input-border">
-					<div className="flex gap-2 mb-4">
-						<Button
-							variant="primary"
-							onClick={() => {
-								const currentMode = getCurrentMode()
-								if (currentMode) {
-									vscode.postMessage({
-										type: "getSystemPrompt",
-										mode: currentMode.slug,
-									})
-								}
-							}}
-							data-testid="preview-prompt-button">
-							{t("prompts:systemPrompt.preview")}
-						</Button>
-						<StandardTooltip content={t("prompts:systemPrompt.copy")}>
-							<Button
-								variant="ghost"
-								size="icon"
-								onClick={() => {
-									const currentMode = getCurrentMode()
-									if (currentMode) {
-										vscode.postMessage({
-											type: "copySystemPrompt",
-											mode: currentMode.slug,
-										})
-									}
-								}}
-								data-testid="copy-prompt-button">
-								<span className="codicon codicon-copy"></span>
-							</Button>
-						</StandardTooltip>
-					</div>
-				</div>
-
-				<div className="pb-5">
-					<h3 className="text-vscode-foreground mb-3">{t("prompts:globalCustomInstructions.title")}</h3>
-
-					<div className="text-sm text-vscode-descriptionForeground mb-2">
-						<Trans i18nKey="prompts:globalCustomInstructions.description">
-							<VSCodeLink
-								href={buildDocLink(
-									"features/custom-instructions#setting-up-global-rules",
-									"prompts_global_custom_instructions",
-								)}
-								style={{ display: "inline" }}
-								aria-label="Learn more about global custom instructions"></VSCodeLink>
 						</Trans>
 					</div>
 					<VSCodeTextArea
@@ -1426,16 +1358,6 @@ const ModesView = () => {
 												},
 											})
 										}
-									/>
-								),
-								"0": (
-									<VSCodeLink
-										href={buildDocLink(
-											"features/custom-instructions#setting-up-global-rules",
-											"prompts_global_rules",
-										)}
-										style={{ display: "inline" }}
-										aria-label="Learn about setting up global custom instructions"
 									/>
 								),
 							}}

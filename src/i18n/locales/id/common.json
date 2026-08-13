@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension": {
 		"name": "MaveCode",
 		"description": "Tim pengembang AI lengkap di editor kamu."
@@ -266,10 +266,6 @@
 			"description": "Mencegah penyelesaian tugas ketika ada todo yang belum selesai dalam daftar todo"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Token autentikasi yang diterima tidak valid.",
@@ -298,3 +294,4 @@
 		"addToContext": "Tambahkan ke MaveCode"
 	}
 }
+

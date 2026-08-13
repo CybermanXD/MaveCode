@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension": {
 		"name": "MaveCode",
 		"description": "Целая команда ИИ-разработчиков в вашем редакторе."
@@ -266,10 +266,6 @@
 			"description": "Предотвратить завершение задач при наличии незавершенных дел в списке дел"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Получен недействительный token аутентификации.",
@@ -298,3 +294,4 @@
 		"addToContext": "Добавить в MaveCode"
 	}
 }
+

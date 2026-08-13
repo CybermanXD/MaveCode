@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension": {
 		"name": "MaveCode",
 		"description": "에디터 내에서 동작하는 AI 개발팀 전체입니다."
@@ -266,10 +266,6 @@
 			"description": "할 일 목록에 미완료된 할 일이 있을 때 작업 완료를 방지"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: 잘못된 인증 token을 수신했습니다.",
@@ -298,3 +294,4 @@
 		"addToContext": "MaveCode에 추가"
 	}
 }
+

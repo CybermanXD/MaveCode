@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension": {
 		"name": "MaveCode",
 		"description": "エディター内のAIデベロッパーチーム全体。"
@@ -266,10 +266,6 @@
 			"description": "Todoリストに未完了のTodoがある場合、タスクの完了を防ぐ"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: 無効な認証 token を受信しました。",
@@ -298,3 +294,4 @@
 		"addToContext": "MaveCodeに追加"
 	}
 }
+

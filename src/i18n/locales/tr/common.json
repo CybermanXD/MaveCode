@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension": {
 		"name": "MaveCode",
 		"description": "Düzenleyicinizde tam bir AI geliştirici ekibi."
@@ -266,10 +266,6 @@
 			"description": "Todo listesinde tamamlanmamış todolar olduğunda görev tamamlanmasını engelle"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Geçersiz kimlik doğrulama token'ı alındı.",
@@ -298,3 +294,4 @@
 		"addToContext": "MaveCode'a ekle"
 	}
 }
+

@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension": {
 		"name": "MaveCode",
 		"description": "您編輯器中的完整 AI 開發團隊。"
@@ -266,10 +266,6 @@
 			"description": "當待辦事項清單中有未完成的待辦事項時阻止工作完成"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: 收到無效的認證 token。",
@@ -298,3 +294,4 @@
 		"addToContext": "新增至 MaveCode"
 	}
 }
+

@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
           <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
           <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -33,7 +33,6 @@
 
 ## Переход с Roo Code на MaveCode
 
-Короткое руководство по переходу с Roo Code на MaveCode можно найти в [гайде по миграции Roo→Zoo](https://docs.mavecode.dev/roo-to-zoo-migration). Мы хотим как можно лучше помочь пользователям во время перехода, и именно для этого у нас есть [Reddit](https://www.reddit.com/r/MaveCode) и [Discord](https://discord.gg/VxfP4Vx3gX). Если у тебя возникнут проблемы или вопросы, заходи и спрашивай.
 
 ## Что MaveCode добавил после Roo Code
 
@@ -75,11 +74,9 @@ MaveCode адаптируется к вашему стилю работы, а н
 - Режим Отладка: отслеживание проблем, добавление логов, изоляция первопричин
 - Пользовательские режимы: создавайте специализированные режимы для вашей команды или рабочего процесса
 
-Подробнее: [Использование режимов](https://docs.mavecode.dev/basic-usage/using-modes) • [Пользовательские режимы](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## Ресурсы
 
-- **[Документация](https://docs.mavecode.dev):** Официальное руководство по установке, настройке и освоению MaveCode.
 - **[Сервер Discord](https://discord.gg/VxfP4Vx3gX):** Присоединяйтесь к сообществу для получения помощи и обсуждений в реальном времени.
 - **[Сообщество Reddit](https://www.reddit.com/r/MaveCode):** Делитесь своим опытом и смотрите, что создают другие.
 - **[Проблемы на GitHub](https://github.com/MaveCode-Org/MaveCode/issues):** Сообщайте об ошибках и отслеживайте разработку.

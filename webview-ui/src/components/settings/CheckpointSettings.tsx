@@ -2,7 +2,6 @@ import { HTMLAttributes } from "react"
 import { useAppTranslation } from "@/i18n/TranslationContext"
 import { VSCodeCheckbox, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
 import { Trans } from "react-i18next"
-import { buildDocLink } from "@src/utils/docLinks"
 import { Slider } from "@/components/ui"
 
 import { SetCachedStateField } from "./types"
@@ -46,11 +45,7 @@ export const CheckpointSettings = ({
 					</VSCodeCheckbox>
 					<div className="text-vscode-descriptionForeground text-sm mt-1">
 						<Trans i18nKey="settings:checkpoints.enable.description">
-							<VSCodeLink
-								href={buildDocLink("features/checkpoints", "settings_checkpoints")}
-								style={{ display: "inline" }}>
-								{" "}
-							</VSCodeLink>
+							
 						</Trans>
 					</div>
 				</SearchableSetting>

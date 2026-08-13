@@ -1,4 +1,4 @@
-{
+﻿{
 	"input": {
 		"task_prompt": "Què vols que faci Zoo?",
 		"task_placeholder": "Escriu la teva tasca aquí"
@@ -266,10 +266,6 @@
 			"description": "Evitar la finalització de tasques quan hi ha todos incomplets a la llista de todos"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: S'ha rebut un token d'autenticació no vàlid.",
@@ -298,3 +294,4 @@
 		"addToContext": "Afegeix a MaveCode"
 	}
 }
+

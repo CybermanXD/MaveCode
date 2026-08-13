@@ -19,7 +19,6 @@ import {
 	ToggleSwitch,
 	StandardTooltip,
 } from "@src/components/ui"
-import { buildDocLink } from "@src/utils/docLinks"
 import { Section } from "@src/components/settings/Section"
 import { SectionHeader } from "@src/components/settings/SectionHeader"
 
@@ -56,11 +55,7 @@ const McpView = ({ mcpEnabled: propsMcpEnabled, setMcpEnabled }: McpViewProps = 
 						marginTop: "5px",
 					}}>
 					<Trans i18nKey="mcp:description">
-						<VSCodeLink
-							href={buildDocLink("features/mcp/using-mcp-in-roo", "mcp_settings")}
-							style={{ display: "inline" }}>
-							Learn More
-						</VSCodeLink>
+						
 					</Trans>
 				</div>
 
@@ -167,14 +162,7 @@ const McpView = ({ mcpEnabled: propsMcpEnabled, setMcpEnabled }: McpViewProps = 
 								fontSize: "12px",
 								color: "var(--vscode-descriptionForeground)",
 							}}>
-							<VSCodeLink
-								href={buildDocLink(
-									"features/mcp/using-mcp-in-roo#editing-mcp-settings-files",
-									"mcp_edit_settings",
-								)}
-								style={{ display: "inline" }}>
-								{t("mcp:learnMoreEditingSettings")}
-							</VSCodeLink>
+							
 						</div>
 					</>
 				)}

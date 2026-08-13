@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension": {
 		"name": "MaveCode",
 		"description": "Cały zespół programistów AI w Twoim edytorze."
@@ -266,10 +266,6 @@
 			"description": "Zapobiegaj ukończeniu zadania gdy na liście zadań są nieukończone zadania"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Otrzymano nieprawidłowy token uwierzytelniania.",
@@ -298,3 +294,4 @@
 		"addToContext": "Dodaj do MaveCode"
 	}
 }
+

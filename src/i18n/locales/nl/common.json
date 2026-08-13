@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension": {
 		"name": "MaveCode",
 		"description": "Een compleet ontwikkelteam van AI-agenten in je editor."
@@ -266,10 +266,6 @@
 			"description": "Voorkom taakafronding wanneer er onvolledige todos in de todolijst staan"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Ongeldig authenticatietoken ontvangen.",
@@ -298,3 +294,4 @@
 		"addToContext": "Toevoegen aan MaveCode"
 	}
 }
+

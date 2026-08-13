@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension": {
 		"name": "MaveCode",
 		"description": "Un equipo completo de desarrolladores con IA en tu editor."
@@ -261,10 +261,6 @@
 			"description": "Prevenir la finalización de tareas cuando hay todos incompletos en la lista de todos"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Se recibió un token de autenticación inválido.",
@@ -293,3 +289,4 @@
 		"addToContext": "Añadir a MaveCode"
 	}
 }
+

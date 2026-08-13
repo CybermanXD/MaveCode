@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension": {
 		"name": "MaveCode",
 		"description": "Une équipe complète de développeurs IA dans votre éditeur."
@@ -266,10 +266,6 @@
 			"description": "Empêcher la finalisation des tâches lorsqu'il y a des todos incomplets dans la liste de todos"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Jeton d'authentification invalide reçu.",
@@ -298,3 +294,4 @@
 		"addToContext": "Ajouter à MaveCode"
 	}
 }
+

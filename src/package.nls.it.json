@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension.displayName": "MaveCode",
 	"extension.description": "Un intero team di sviluppo di agenti IA nel tuo editor.",
 	"command.newTask.title": "Nuovo Task",
@@ -24,7 +24,6 @@
 	"command.marketplace.title": "Marketplace",
 	"command.openInEditor.title": "Apri nell'Editor",
 	"command.settings.title": "Impostazioni",
-	"command.documentation.title": "Documentazione",
 	"configuration.title": "MaveCode",
 	"commands.allowedCommands.description": "Comandi che possono essere eseguiti automaticamente quando 'Approva sempre le operazioni di esecuzione' è attivato",
 	"commands.deniedCommands.description": "Prefissi di comandi che verranno automaticamente rifiutati senza richiedere approvazione. In caso di conflitti con comandi consentiti, la corrispondenza del prefisso più lungo ha la precedenza. Aggiungi * per rifiutare tutti i comandi.",
@@ -50,3 +49,4 @@
 	"settings.workspace.rootResolution.activeEditor.description": "Usa la cartella del workspace che contiene l'editor attivo; ripiega sulla prima cartella del workspace. (Predefinito — mantiene il comportamento legacy.)",
 	"settings.workspace.rootResolution.firstFolder.description": "Usa sempre la prima cartella del workspace (workspaceFolders[0]). Deterministico — indipendente dal file attualmente attivo."
 }
+

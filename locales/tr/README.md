@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
           <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
           <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -33,7 +33,6 @@
 
 ## Roo Code'dan MaveCode'a geçiş
 
-Roo Code'dan MaveCode'a geçmek için hızlı bir rehberi [Roo→Zoo geçiş rehberinde](https://docs.mavecode.dev/roo-to-zoo-migration) bulabilirsin. Geçiş sürecinde kullanıcılara elimizden geldiğince yardımcı olmak istiyoruz ve bunun için [Reddit](https://www.reddit.com/r/MaveCode) ile [Discord](https://discord.gg/VxfP4Vx3gX) topluluklarımız var. Bir sorun yaşarsan ya da soruların olursa gel ve sor.
 
 ## MaveCode'un Roo Code'dan Sonra Ekledikleri
 
@@ -75,11 +74,9 @@ MaveCode, sizin çalışma şeklinize uyum sağlar, tam tersi değil:
 - Hata Ayıklama Modu: sorunları izleyin, günlükler ekleyin, kök nedenleri izole edin
 - Özel Modlar: ekibiniz veya iş akışınız için özel modlar oluşturun
 
-Daha fazla: [Modları kullanma](https://docs.mavecode.dev/basic-usage/using-modes) • [Özel modlar](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## Kaynaklar
 
-- **[Dokümantasyon](https://docs.mavecode.dev):** MaveCode'u yükleme, yapılandırma ve ustalaşma konusundaki resmi kılavuz.
 - **[Discord Sunucusu](https://discord.gg/VxfP4Vx3gX):** Gerçek zamanlı yardım ve tartışma için topluluğa katılın.
 - **[Reddit Topluluğu](https://www.reddit.com/r/MaveCode):** Deneyimlerinizi paylaşın ve başkalarının ne inşa ettiğini görün.
 - **[GitHub Sorunları](https://github.com/MaveCode-Org/MaveCode/issues):** Hataları bildirin ve gelişimi takip edin.

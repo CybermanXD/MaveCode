@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
   <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
   <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
   <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -31,7 +31,6 @@
 
 ## Roo Code to MaveCode migration
 
-You can find a quick guide for migrating from Roo Code to MaveCode in the [Roo→Zoo migration guide](https://docs.mavecode.dev/roo-to-zoo-migration). We plan to try and help users as they transition over, we have our [Reddit](https://www.reddit.com/r/MaveCode) and [Discord](https://discord.gg/VxfP4Vx3gX)
 for this exact support, so if you are having problems or if you have question, jump on and ask.
 
 ## What MaveCode Has Added Since Roo Code
@@ -100,14 +99,10 @@ MaveCode adapts to how you work:
 - Debug Mode: trace issues, add logs, isolate root causes
 - Custom Modes: build specialized modes for your team or workflow
 
-Learn more: [Using Modes](https://docs.mavecode.dev/basic-usage/using-modes) •
-[Custom Modes](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## Resources
 
-- **[Documentation](https://docs.mavecode.dev):** The official guide to
   installing, configuring, and mastering MaveCode.
-- **[MaveCode MVP docs](docs/README.md):** Phase 1.12 documentation for the
   implemented Admin Helper, Apps Script backend, MaveCode provider, local QA,
   deployment smoke tests, security review, and production migration plan.
 - **Built VSIX:** The local Phase 1 release artifact is

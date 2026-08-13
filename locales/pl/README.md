@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
           <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
           <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -31,7 +31,6 @@
 
 ## Migracja z Roo Code do MaveCode
 
-Szybki przewodnik po przejściu z Roo Code do MaveCode znajdziesz w [przewodniku migracji Roo→Zoo](https://docs.mavecode.dev/roo-to-zoo-migration). Chcemy jak najlepiej pomagać użytkownikom w czasie przejścia i właśnie do tego służą nasze [Reddit](https://www.reddit.com/r/MaveCode) oraz [Discord](https://discord.gg/VxfP4Vx3gX). Jeśli masz problem albo pytanie, wpadaj i pytaj.
 
 ## Co MaveCode dodał od czasu Roo Code
 
@@ -73,11 +72,9 @@ MaveCode dostosowuje się do Twojego sposobu pracy, a nie odwrotnie:
 - Tryb Debugowanie: śledzenie problemów, dodawanie logów, izolowanie przyczyn źródłowych
 - Tryby niestandardowe: buduj specjalistyczne tryby dla swojego zespołu lub przepływu pracy
 
-Więcej: [Korzystanie z trybów](https://docs.mavecode.dev/basic-usage/using-modes) • [Tryby niestandardowe](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## Zasoby
 
-- **[Dokumentacja](https://docs.mavecode.dev):** Oficjalny przewodnik po instalacji, konfiguracji i opanowaniu MaveCode.
 - **[Serwer Discord](https://discord.gg/VxfP4Vx3gX):** Dołącz do społeczności, aby uzyskać pomoc i dyskutować w czasie rzeczywistym.
 - **[Społeczność Reddit](https://www.reddit.com/r/MaveCode):** Dziel się swoimi doświadczeniami i zobacz, co budują inni.
 - **[Problemy na GitHub](https://github.com/MaveCode-Org/MaveCode/issues):** Zgłaszaj błędy i śledź rozwój.

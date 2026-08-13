@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
           <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
           <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -33,7 +33,6 @@
 
 ## Migração do Roo Code para o MaveCode
 
-Você encontra um guia rápido para migrar do Roo Code para o MaveCode no [guia de migração Roo→Zoo](https://docs.mavecode.dev/roo-to-zoo-migration). Queremos ajudar os usuários durante essa transição da melhor forma possível, e é exatamente para isso que temos nosso [Reddit](https://www.reddit.com/r/MaveCode) e nosso [Discord](https://discord.gg/VxfP4Vx3gX). Se você tiver algum problema ou dúvida, apareça por lá e pergunte.
 
 ## O que o MaveCode adicionou desde o Roo Code
 
@@ -75,11 +74,9 @@ O MaveCode se adapta à sua maneira de trabalhar, e não o contrário:
 - Modo Depuração: rastreie problemas, adicione logs, isole as causas raiz
 - Modos Personalizados: crie modos especializados para sua equipe ou fluxo de trabalho
 
-Saiba mais: [Usar Modos](https://docs.mavecode.dev/basic-usage/using-modes) • [Modos personalizados](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## Recursos
 
-- **[Documentação](https://docs.mavecode.dev):** O guia oficial para instalar, configurar e dominar o MaveCode.
 - **[Servidor do Discord](https://discord.gg/VxfP4Vx3gX):** Junte-se à comunidade para ajuda e discussão em tempo real.
 - **[Comunidade do Reddit](https://www.reddit.com/r/MaveCode):** Compartilhe suas experiências e veja o que os outros estão construindo.
 - **[Issues do GitHub](https://github.com/MaveCode-Org/MaveCode/issues):** Relate bugs e acompanhe o desenvolvimento.

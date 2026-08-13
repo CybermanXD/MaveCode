@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension.displayName": "MaveCode",
 	"extension.description": "A whole dev team of AI agents in your editor.",
 	"views.contextMenu.label": "MaveCode",
@@ -10,7 +10,6 @@
 	"command.marketplace.title": "Marketplace",
 	"command.openInEditor.title": "Open in Editor",
 	"command.settings.title": "Settings",
-	"command.documentation.title": "Documentation",
 	"command.openInNewTab.title": "Open In New Tab",
 	"command.explainCode.title": "Explain Code",
 	"command.fixCode.title": "Fix Code",
@@ -50,3 +49,4 @@
 	"settings.workspace.rootResolution.activeEditor.description": "Use the workspace folder containing the active editor; fall back to the first workspace folder. (Default — preserves legacy behavior.)",
 	"settings.workspace.rootResolution.firstFolder.description": "Always use the first workspace folder (workspaceFolders[0]). Deterministic — independent of which file is currently focused."
 }
+

@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension.displayName": "MaveCode",
 	"extension.description": "Ein komplettes KI-Agenten-Entwicklungsteam in deinem Editor.",
 	"command.newTask.title": "Neue Aufgabe",
@@ -24,7 +24,6 @@
 	"command.marketplace.title": "Marktplatz",
 	"command.openInEditor.title": "Im Editor Öffnen",
 	"command.settings.title": "Einstellungen",
-	"command.documentation.title": "Dokumentation",
 	"configuration.title": "MaveCode",
 	"commands.allowedCommands.description": "Befehle, die automatisch ausgeführt werden können, wenn 'Ausführungsoperationen immer genehmigen' aktiviert ist",
 	"commands.deniedCommands.description": "Befehlspräfixe, die automatisch abgelehnt werden, ohne nach Genehmigung zu fragen. Bei Konflikten mit erlaubten Befehlen hat die längste Präfix-Übereinstimmung Vorrang. Füge * hinzu, um alle Befehle abzulehnen.",
@@ -50,3 +49,4 @@
 	"settings.workspace.rootResolution.activeEditor.description": "Verwende den Workspace-Ordner, der den aktiven Editor enthält; greife auf den ersten Workspace-Ordner zurück. (Standard – behält das bisherige Verhalten bei.)",
 	"settings.workspace.rootResolution.firstFolder.description": "Verwende immer den ersten Workspace-Ordner (workspaceFolders[0]). Deterministisch – unabhängig davon, welche Datei gerade fokussiert ist."
 }
+

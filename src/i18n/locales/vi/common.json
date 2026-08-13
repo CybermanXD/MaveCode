@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension": {
 		"name": "MaveCode",
 		"description": "Toàn bộ đội ngũ phát triển AI trong trình soạn thảo của bạn."
@@ -273,10 +273,6 @@
 			"description": "Ngăn chặn hoàn thành nhiệm vụ khi có các todo chưa hoàn thành trong danh sách todo"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Nhận được token xác thực không hợp lệ.",
@@ -305,3 +301,4 @@
 		"addToContext": "Thêm vào MaveCode"
 	}
 }
+

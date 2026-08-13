@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension.displayName": "MaveCode",
 	"extension.description": "在你的編輯器中提供完整的 AI 代理開發團隊。",
 	"command.newTask.title": "新建任務",
@@ -24,7 +24,6 @@
 	"command.marketplace.title": "應用市場",
 	"command.openInEditor.title": "在編輯器中開啟",
 	"command.settings.title": "設定",
-	"command.documentation.title": "文件",
 	"configuration.title": "MaveCode",
 	"commands.allowedCommands.description": "當啟用'始終批准執行操作'時可以自動執行的命令",
 	"commands.deniedCommands.description": "將自動拒絕而無需請求批准的命令前綴。與允許命令衝突時，最長前綴匹配優先。新增 * 拒絕所有命令。",
@@ -50,3 +49,4 @@
 	"settings.workspace.rootResolution.activeEditor.description": "使用包含使用中編輯器的工作區資料夾；回退到第一個工作區資料夾。（預設——保留舊行為。）",
 	"settings.workspace.rootResolution.firstFolder.description": "一律使用第一個工作區資料夾（workspaceFolders[0]）。具決定性——與目前聚焦的檔案無關。"
 }
+

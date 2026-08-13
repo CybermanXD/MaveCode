@@ -19,7 +19,6 @@ import {
 	StandardTooltip,
 } from "@/components/ui"
 import { vscode } from "@/utils/vscode"
-import { buildDocLink } from "@/utils/docLinks"
 
 import { SectionHeader } from "./SectionHeader"
 import { CreateSlashCommandDialog } from "./CreateSlashCommandDialog"
@@ -147,20 +146,7 @@ export const SlashCommandsSettings: React.FC = () => {
 				<SectionHeader>{t("settings:sections.slashCommands")}</SectionHeader>
 				<div className="flex flex-col gap-2 px-5 py-2">
 					<p className="text-vscode-descriptionForeground text-sm m-0">
-						<Trans
-							i18nKey="settings:slashCommands.description"
-							components={{
-								DocsLink: (
-									<a
-										href={buildDocLink("features/slash-commands", "slash_commands_settings")}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="text-vscode-textLink-foreground hover:underline">
-										Docs
-									</a>
-								),
-							}}
-						/>
+					{t("settings:slashCommands.description")}
 					</p>
 
 					{/* Add Command button */}

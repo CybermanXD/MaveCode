@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
           <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
           <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -33,7 +33,6 @@
 
 ## Migración de Roo Code a MaveCode
 
-Puedes encontrar una guía rápida para pasar de Roo Code a MaveCode en la [guía de migración Roo→Zoo](https://docs.mavecode.dev/roo-to-zoo-migration). Queremos ayudar a los usuarios durante la transición, y para eso tenemos nuestro [Reddit](https://www.reddit.com/r/MaveCode) y [Discord](https://discord.gg/VxfP4Vx3gX). Si tienes problemas o alguna pregunta, entra y pregúntanos.
 
 ## Lo que MaveCode ha añadido desde Roo Code
 
@@ -75,11 +74,9 @@ MaveCode se adapta a tu forma de trabajar, no al revés:
 - Modo Depuración: rastrear problemas, agregar registros, aislar causas raíz
 - Modos Personalizados: crea modos especializados para tu equipo o flujo de trabajo
 
-Más info: [Usar Modos](https://docs.mavecode.dev/basic-usage/using-modes) • [Modos Personalizados](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## Recursos
 
-- **[Documentación](https://docs.mavecode.dev):** La guía oficial para instalar, configurar y dominar MaveCode.
 - **[Servidor de Discord](https://discord.gg/VxfP4Vx3gX):** Únete a la comunidad para obtener ayuda y discutir en tiempo real.
 - **[Comunidad de Reddit](https://www.reddit.com/r/MaveCode):** Comparte tus experiencias y ve lo que otros están construyendo.
 - **[Incidencias de GitHub](https://github.com/MaveCode-Org/MaveCode/issues):** Reporta errores y sigue el desarrollo.

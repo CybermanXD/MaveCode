@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
           <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
           <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -32,7 +32,6 @@
 
 ## Chuyển từ Roo Code sang MaveCode
 
-Bạn có thể xem hướng dẫn nhanh để chuyển từ Roo Code sang MaveCode trong [hướng dẫn chuyển đổi Roo→Zoo](https://docs.mavecode.dev/roo-to-zoo-migration). Chúng tôi muốn hỗ trợ người dùng nhiều nhất có thể trong quá trình chuyển đổi, và đó chính là lý do chúng tôi có [Reddit](https://www.reddit.com/r/MaveCode) và [Discord](https://discord.gg/VxfP4Vx3gX). Nếu bạn gặp vấn đề hoặc có câu hỏi, cứ vào hỏi nhé.
 
 ## Những gì MaveCode đã bổ sung kể từ Roo Code
 
@@ -74,11 +73,9 @@ MaveCode thích ứng với cách bạn làm việc, chứ không phải ngượ
 - Chế độ Gỡ lỗi: theo dõi sự cố, thêm nhật ký, cô lập nguyên nhân gốc rễ
 - Chế độ Tùy chỉnh: xây dựng các chế độ chuyên biệt cho nhóm hoặc quy trình làm việc của bạn
 
-Xem thêm: [Sử dụng Chế độ](https://docs.mavecode.dev/basic-usage/using-modes) • [Chế độ tùy chỉnh](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## Tài nguyên
 
-- **[Tài liệu](https://docs.mavecode.dev):** Hướng dẫn chính thức để cài đặt, cấu hình và sử dụng thành thạo MaveCode.
 - **[Máy chủ Discord](https://discord.gg/VxfP4Vx3gX):** Tham gia cộng đồng để được trợ giúp và thảo luận trong thời gian thực.
 - **[Cộng đồng Reddit](https://www.reddit.com/r/MaveCode):** Chia sẻ kinh nghiệm của bạn và xem những người khác đang xây dựng gì.
 - **[Vấn đề trên GitHub](https://github.com/MaveCode-Org/MaveCode/issues):** Báo cáo lỗi và theo dõi quá trình phát triển.

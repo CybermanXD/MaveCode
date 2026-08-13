@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
           <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
           <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -33,7 +33,6 @@
 
 ## Migration von Roo Code zu MaveCode
 
-Eine kurze Anleitung für den Wechsel von Roo Code zu MaveCode findest du im [Roo→Zoo-Migrationsleitfaden](https://docs.mavecode.dev/roo-to-zoo-migration). Wir wollen Nutzer beim Umstieg so gut wie möglich unterstützen, und genau dafür sind unser [Reddit](https://www.reddit.com/r/MaveCode) und [Discord](https://discord.gg/VxfP4Vx3gX) da. Wenn du Probleme hast oder Fragen auftauchen, komm vorbei und frag nach.
 
 ## Was MaveCode seit Roo Code hinzugefügt hat
 
@@ -75,11 +74,9 @@ MaveCode passt sich an deine Arbeitsweise an, nicht umgekehrt:
 - Debug-Modus: Probleme aufspüren, Protokolle hinzufügen, Ursachen isolieren
 - Benutzerdefinierte Modi: erstelle spezialisierte Modi für dein Team oder deinen Workflow
 
-Mehr erfahren: [Modi verwenden](https://docs.mavecode.dev/basic-usage/using-modes) • [Benutzerdefinierte Modi](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## Ressourcen
 
-- **[Dokumentation](https://docs.mavecode.dev):** Die offizielle Anleitung zur Installation, Konfiguration und Beherrschung von MaveCode.
 - **[Discord-Server](https://discord.gg/VxfP4Vx3gX):** Tritt der Community bei für Echtzeit-Hilfe und Diskussionen.
 - **[Reddit-Community](https://www.reddit.com/r/MaveCode):** Teile deine Erfahrungen und sieh, was andere bauen.
 - **[GitHub Issues](https://github.com/MaveCode-Org/MaveCode/issues):** Melde Fehler und verfolge die Entwicklung.

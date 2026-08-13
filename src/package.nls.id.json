@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension.displayName": "MaveCode",
 	"extension.description": "Tim pengembang AI lengkap di editor kamu.",
 	"views.contextMenu.label": "MaveCode",
@@ -10,7 +10,6 @@
 	"command.marketplace.title": "Marketplace",
 	"command.openInEditor.title": "Buka di Editor",
 	"command.settings.title": "Pengaturan",
-	"command.documentation.title": "Dokumentasi",
 	"command.openInNewTab.title": "Buka di Tab Baru",
 	"command.explainCode.title": "Jelaskan Kode",
 	"command.fixCode.title": "Perbaiki Kode",
@@ -50,3 +49,4 @@
 	"settings.workspace.rootResolution.activeEditor.description": "Gunakan folder workspace yang berisi editor aktif; kembali ke folder workspace pertama. (Default — mempertahankan perilaku lama.)",
 	"settings.workspace.rootResolution.firstFolder.description": "Selalu gunakan folder workspace pertama (workspaceFolders[0]). Deterministik — tidak bergantung pada file mana yang sedang difokuskan."
 }
+

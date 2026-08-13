@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
           <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
           <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -33,7 +33,6 @@
 
 ## Migrazione da Roo Code a MaveCode
 
-Puoi trovare una guida rapida per passare da Roo Code a MaveCode nella [guida alla migrazione Roo→Zoo](https://docs.mavecode.dev/roo-to-zoo-migration). Vogliamo aiutare gli utenti il più possibile durante la transizione, e per questo abbiamo il nostro [Reddit](https://www.reddit.com/r/MaveCode) e il nostro [Discord](https://discord.gg/VxfP4Vx3gX). Se hai problemi o domande, passa pure e chiedi.
 
 ## Cosa ha aggiunto MaveCode rispetto a Roo Code
 
@@ -75,11 +74,9 @@ MaveCode si adatta al tuo modo di lavorare, non il contrario:
 - Modalità Debug: traccia problemi, aggiungi log, isola le cause principali
 - Modalità Personalizzate: crea modalità specializzate per il tuo team o flusso di lavoro
 
-Scopri di più: [Usare le Modalità](https://docs.mavecode.dev/basic-usage/using-modes) • [Modalità personalizzate](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## Risorse
 
-- **[Documentazione](https://docs.mavecode.dev):** La guida ufficiale per installare, configurare e padroneggiare MaveCode.
 - **[Server Discord](https://discord.gg/VxfP4Vx3gX):** Unisciti alla community per aiuto e discussioni in tempo reale.
 - **[Comunità Reddit](https://www.reddit.com/r/MaveCode):** Condividi le tue esperienze e guarda cosa stanno costruendo gli altri.
 - **[Problemi GitHub](https://github.com/MaveCode-Org/MaveCode/issues):** Segnala bug e tieni traccia dello sviluppo.

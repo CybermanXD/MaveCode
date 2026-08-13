@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension.displayName": "MaveCode",
 	"extension.description": "エディタ内のAIエージェントによる開発チーム。",
 	"views.contextMenu.label": "MaveCode",
@@ -10,7 +10,6 @@
 	"command.marketplace.title": "マーケットプレイス",
 	"command.openInEditor.title": "エディタで開く",
 	"command.settings.title": "設定",
-	"command.documentation.title": "ドキュメント",
 	"command.openInNewTab.title": "新しいタブで開く",
 	"command.explainCode.title": "コードの説明",
 	"command.fixCode.title": "コードの修正",
@@ -50,3 +49,4 @@
 	"settings.workspace.rootResolution.activeEditor.description": "アクティブなエディタを含むワークスペースフォルダを使用し、最初のワークスペースフォルダにフォールバックします。（デフォルト — 従来の動作を維持します。）",
 	"settings.workspace.rootResolution.firstFolder.description": "常に最初のワークスペースフォルダ（workspaceFolders[0]）を使用します。決定的で、現在フォーカスされているファイルに依存しません。"
 }
+

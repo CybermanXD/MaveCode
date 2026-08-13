@@ -1,4 +1,4 @@
-{
+﻿{
 	"extension": {
 		"name": "MaveCode",
 		"description": "आपके एडिटर में AI डेवलपर्स की पूरी टीम।"
@@ -266,10 +266,6 @@
 			"description": "जब टूडू सूची में अधूरे टूडू हों तो कार्य पूर्ण होने से रोकें"
 		}
 	},
-	"docsLink": {
-		"label": "Docs",
-		"url": "https://docs.mavecode.dev"
-	},
 	"zooAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: अमान्य प्रमाणीकरण token प्राप्त हुआ।",
@@ -298,3 +294,4 @@
 		"addToContext": "MaveCode में जोड़ें"
 	}
 }
+

@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
           <a href="https://marketplace.visualstudio.com/items?itemName=MaveCode.mave-code"><img src="https://img.shields.io/badge/VS_Code_Marketplace-007ACC?style=flat&logo=visualstudiocode&logoColor=white" alt="VS Code Marketplace"></a>
           <a href="https://x.com/MaveCodeDev"><img src="https://img.shields.io/badge/MaveCode-000000?style=flat&logo=x&logoColor=white" alt="X"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
@@ -29,7 +29,6 @@
 
 ## 從 Roo Code 遷移到 MaveCode
 
-你可以在 [Roo→Zoo 遷移指南](https://docs.mavecode.dev/roo-to-zoo-migration) 中找到從 Roo Code 遷移到 MaveCode 的快速說明。我們希望在大家轉移過程中盡可能提供協助，這也是我們設立 [Reddit](https://www.reddit.com/r/MaveCode) 和 [Discord](https://discord.gg/VxfP4Vx3gX) 社群的原因。如果你遇到問題或有任何疑問，歡迎加入後直接提問。
 
 ## MaveCode 在 Roo Code 之後新增的功能
 
@@ -71,11 +70,9 @@ MaveCode 會配合您的工作方式，而非要您配合它：
 - 偵錯模式：追蹤問題、新增日誌、鎖定根本原因
 - 自訂模式：為您的團隊或工作流程建置專門的模式
 
-更多資訊：[使用模式](https://docs.mavecode.dev/basic-usage/using-modes) • [自訂模式](https://docs.mavecode.dev/advanced-usage/custom-modes)
 
 ## 資源
 
-- **[文件](https://docs.mavecode.dev):** 安裝、設定和掌握 MaveCode 的官方指南。
 - **[Discord 伺服器](https://discord.gg/VxfP4Vx3gX):** 加入社群以獲得即時協助和討論。
 - **[Reddit 社群](https://www.reddit.com/r/MaveCode):** 分享您的經驗，看看其他人正在建立什麼。
 - **[GitHub Issues](https://github.com/MaveCode-Org/MaveCode/issues):** 回報問題並追蹤開發進度。

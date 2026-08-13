@@ -17,7 +17,6 @@ import { type IndexingStatus, type EmbedderProvider, CODEBASE_INDEX_DEFAULTS } f
 import { vscode } from "@src/utils/vscode"
 import { useExtensionState } from "@src/context/ExtensionStateContext"
 import { useAppTranslation } from "@src/i18n/TranslationContext"
-import { buildDocLink } from "@src/utils/docLinks"
 import { cn } from "@src/lib/utils"
 import {
 	Select,
@@ -632,14 +631,7 @@ export const CodeIndexPopover: React.FC<CodeIndexPopoverProps> = ({
 						<div className="flex flex-row items-center gap-1 p-0 mt-0 mb-1 w-full">
 							<h4 className="m-0 pb-2 flex-1">{t("settings:codeIndex.title")}</h4>
 						</div>
-						<p className="my-0 pr-4 text-sm w-full">
-							<Trans i18nKey="settings:codeIndex.description">
-								<VSCodeLink
-									href={buildDocLink("features/experimental/codebase-indexing", "settings")}
-									style={{ display: "inline" }}
-								/>
-							</Trans>
-						</p>
+						<p className="my-0 pr-4 text-sm w-full">{t("settings:codeIndex.description")}</p>
 					</div>
 
 					<div className="p-4">
