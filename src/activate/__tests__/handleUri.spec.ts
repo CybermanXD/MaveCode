@@ -46,11 +46,30 @@ describe("handleUri", () => {
 
 	it("exchanges code and state, propagates the resulting session, and reveals the main UI", async () => {
 		mockHandleAuthCallback.mockResolvedValue(true)
+		const order: string[] = []
+		provider.handleMaveCodeCallback.mockImplementationOnce(async () => {
+			order.push("profile")
+		})
+		provider.revealAuthenticatedWebview.mockImplementationOnce(async () => {
+			order.push("reveal")
+		})
 		await handleUri({ path: "/auth-callback", query: "code=mave_code_abcdefghijklmnopqrstuvwxyz&state=transaction_state" } as any)
 
 		expect(mockHandleAuthCallback).toHaveBeenCalledWith("mave_code_abcdefghijklmnopqrstuvwxyz", "transaction_state")
 		expect(provider.handleMaveCodeCallback).toHaveBeenCalledWith("mave_ext_exchanged_session_12345")
 		expect(provider.revealAuthenticatedWebview).toHaveBeenCalled()
+		expect(order).toEqual(["profile", "reveal"])
+		expect(vscode.window.showInformationMessage).toHaveBeenCalledWith("Signed in to MaveCode.")
+	})
+
+	it("persists authentication when the callback arrives before a provider instance exists", async () => {
+		mockHandleAuthCallback.mockResolvedValue(true)
+		mockGetVisibleInstance.mockReturnValue(undefined)
+		mockGetAllInstances.mockReturnValue([])
+
+		await handleUri({ path: "/auth-callback", query: "code=mave_code_abcdefghijklmnopqrstuvwxyz&state=transaction_state" } as any)
+
+		expect(mockHandleAuthCallback).toHaveBeenCalled()
 		expect(vscode.window.showInformationMessage).toHaveBeenCalledWith("Signed in to MaveCode.")
 	})
 

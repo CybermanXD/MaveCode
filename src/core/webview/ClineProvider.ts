@@ -1011,6 +1011,12 @@ export class ClineProvider
 			return
 		}
 
+		// Authentication and provider readiness are one UI boundary. Await seeding
+		// before creating the React webview so its first state cannot contain a valid
+		// MaveCode session alongside a missing/stale mave-gateway profile. This also
+		// repairs callbacks received while no ClineProvider instance existed.
+		await this.ensureMaveGatewayProfileSeeded()
+
 		if (inTabMode) {
 			setPanel(webviewView, "tab")
 		} else if ("onDidChangeVisibility" in webviewView) {
@@ -1141,17 +1147,17 @@ export class ClineProvider
 			await this.removeClineFromStack()
 		}
 
-		// Ensure mave-gateway profile is seeded for users who signed in before this feature existed.
-		// Without this, users with a valid cached token but no mave-gateway profile would need to
-		// re-authenticate to use MaveCode. Fire-and-forget to avoid blocking webview init.
-		void this.ensureMaveGatewayProfileSeeded().catch((err) => {
-			this.log(`[ensureMaveGatewayProfileSeeded] Error: ${err instanceof Error ? err.message : String(err)}`)
-		})
 	}
 
 	public async revealAuthenticatedWebview(): Promise<void> {
-		if (!this.view) return
+		const startedAt = Date.now()
+		if (!this.view) {
+			this.log("[MaveCode Auth] Authenticated webview reveal skipped: no attached view")
+			return
+		}
+		this.log(`[MaveCode Auth] Authenticated webview reveal started visible=${this.view.visible}`)
 		await this.resolveWebviewView(this.view)
+		this.log(`[MaveCode Auth] Authenticated webview reveal completed elapsedMs=${Date.now() - startedAt}`)
 	}
 
 	public async revealSignedOutWebview(): Promise<void> {

@@ -175,9 +175,10 @@ describe("mave-code-auth", () => {
 		expect(secrets.delete).toHaveBeenCalledWith("mave-code-auth-callback")
 	})
 
-	it("rejects a mismatched state and consumes the local transaction", async () => {
+	it("rejects a mismatched stale callback without consuming the active transaction", async () => {
+		const activeState = "s".repeat(43)
 		const secrets = createSecretStorage({
-			"mave-code-auth-state": "s".repeat(43),
+			"mave-code-auth-state": activeState,
 			"mave-code-auth-verifier": "v".repeat(43),
 			"mave-code-auth-callback": "vscode://MaveCode.mave-code/auth-callback",
 		})
@@ -185,7 +186,15 @@ describe("mave-code-auth", () => {
 
 		await expect(handleAuthCallback("mave_code_abcdefghijklmnopqrstuvwxyz", "x".repeat(43))).resolves.toBe(false)
 		expect(mockAction).not.toHaveBeenCalled()
-		expect(secrets.delete).toHaveBeenCalledTimes(3)
+		expect(secrets.delete).not.toHaveBeenCalledWith("mave-code-auth-state")
+
+		mockAction.mockResolvedValueOnce({
+			sessionToken: "mave_ext_exchanged_session_12345",
+			expiresAt: Date.now() + 120_000,
+			claims: { subject: "allowed@example.invalid", role: "user", issuedAt: 1, expiresAt: 2 },
+		})
+		await expect(handleAuthCallback("mave_code_abcdefghijklmnopqrstuvwxyz", activeState)).resolves.toBe(true)
+		expect(getCachedMaveCodeToken()).toBe("mave_ext_exchanged_session_12345")
 	})
 
 	it("classifies verification failures", async () => {

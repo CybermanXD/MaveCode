@@ -20,12 +20,15 @@ import { handleAuthCallback as handleMaveCodeAuthCallback } from "../services/ma
  */
 async function propagateMaveGatewayCallback(token: string): Promise<void> {
 	const allInstances = ClineProvider.getAllInstances()
-	for (const instance of allInstances) {
+	console.info(`[MaveCode Auth] Profile propagation started providerInstances=${allInstances.length}`)
+	for (const [index, instance] of allInstances.entries()) {
+		const startedAt = Date.now()
 		try {
 			await instance.handleMaveCodeCallback(token)
+			console.info(`[MaveCode Auth] Profile propagation completed providerIndex=${index} elapsedMs=${Date.now() - startedAt}`)
 		} catch (error) {
 			console.error(
-				"Failed to persist MaveCode session for a provider instance:",
+				`[MaveCode Auth] Profile propagation failed providerIndex=${index} elapsedMs=${Date.now() - startedAt}:`,
 				error instanceof Error ? error.message : error,
 			)
 		}
@@ -60,23 +63,36 @@ export const handleUri = async (uri: vscode.Uri) => {
 			break
 		}
 		case "/auth-callback": {
+			const callbackStartedAt = Date.now()
 			const code = query.get("code")
 			const state = query.get("state")
+			const providerCountAtReceipt = ClineProvider.getAllInstances().length
+			console.info(
+				`[MaveCode Auth] URI callback received codePresent=${Boolean(code)} statePresent=${Boolean(state)} providerInstances=${providerCountAtReceipt} visibleProvider=${Boolean(visibleProvider)}`,
+			)
 			if (code && state) {
 				const success = await handleMaveCodeAuthCallback(code, state)
 				if (success) {
-					// Replace the sign-in home immediately. Profile synchronization can
-					// perform storage work and must not leave the UI looking stuck.
-					for (const instance of ClineProvider.getAllInstances()) {
-						await instance.revealAuthenticatedWebview()
-					}
+					const instances = ClineProvider.getAllInstances()
 					const { getCachedMaveCodeToken } = await import("../services/mave-code-auth")
 					const token = getCachedMaveCodeToken()
+					// Persist and activate the provider before loading the authenticated app.
+					// Otherwise React can hydrate against an authenticated token paired with an
+					// incomplete provider configuration and render an empty setup-gated view.
 					if (token) await propagateMaveGatewayCallback(token)
+					console.info(`[MaveCode Auth] Revealing authenticated webviews count=${instances.length}`)
+					for (const instance of instances) {
+						await instance.revealAuthenticatedWebview()
+					}
+					console.info(
+						`[MaveCode Auth] URI callback completed tokenPresent=${Boolean(token)} providerInstances=${instances.length} elapsedMs=${Date.now() - callbackStartedAt}`,
+					)
 					void vscode.window.showInformationMessage("Signed in to MaveCode.")
 				} else {
 					void vscode.window.showErrorMessage("MaveCode sign-in could not be completed. Please try again.")
 				}
+			} else {
+				console.warn("[MaveCode Auth] URI callback ignored because code or state is missing")
 			}
 			break
 		}

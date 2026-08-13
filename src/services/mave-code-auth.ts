@@ -110,6 +110,10 @@ function randomOpaque(bytes = 32): string {
 	return randomBytes(bytes).toString("base64url")
 }
 
+function authTransactionId(state: string | undefined): string {
+	return state ? createHash("sha256").update(state).digest("hex").slice(0, 10) : "missing"
+}
+
 async function sha256Base64Url(value: string): Promise<string> {
 	return createHash("sha256").update(value).digest("base64url")
 }
@@ -136,7 +140,9 @@ async function launchMaveCodeSignIn(): Promise<boolean> {
 }
 
 export async function createMaveCodeSignInUrl(): Promise<string | undefined> {
+	const startedAt = Date.now()
 	if (!secrets || !cachedBackendUrl || !DEFAULT_AUTH_PAGE_URL) {
+		console.warn("[MaveCode Auth] Sign-in URL creation rejected: authentication is not configured")
 		void vscode.window.showErrorMessage("MaveCode sign-in is not configured. Set the managed backend and authentication page URLs.")
 		return undefined
 	}
@@ -144,6 +150,9 @@ export async function createMaveCodeSignInUrl(): Promise<string | undefined> {
 	const verifier = randomOpaque(48)
 	const callbackUri = `${vscode.env.uriScheme}://MaveCode.mave-code/auth-callback`
 	await Promise.all([secrets.store(AUTH_STATE_KEY, state), secrets.store(AUTH_VERIFIER_KEY, verifier), secrets.store(AUTH_CALLBACK_KEY, callbackUri)])
+	console.info(
+		`[MaveCode Auth] Created transaction id=${authTransactionId(state)} callbackScheme=${vscode.env.uriScheme} storageMs=${Date.now() - startedAt}`,
+	)
 	const url = new URL(DEFAULT_AUTH_PAGE_URL)
 	url.searchParams.set("state", state)
 	url.searchParams.set("code_challenge", await sha256Base64Url(verifier))
@@ -157,18 +166,42 @@ export async function issueMaveCodeSession(): Promise<SessionData> {
 }
 
 export async function handleAuthCallback(code: string, state = ""): Promise<boolean> {
+	const startedAt = Date.now()
+	const transactionId = authTransactionId(state)
 	signInLaunch = undefined
-	if (!secrets || !/^mave_code_[A-Za-z0-9_-]{20,}$/.test(code)) return false
+	if (!secrets || !/^mave_code_[A-Za-z0-9_-]{20,}$/.test(code)) {
+		console.warn(
+			`[MaveCode Auth] Callback rejected id=${transactionId} reason=${!secrets ? "secret-storage-unavailable" : "invalid-code-format"}`,
+		)
+		return false
+	}
 	const [expectedState, verifier, callbackUri] = await Promise.all([secrets.get(AUTH_STATE_KEY), secrets.get(AUTH_VERIFIER_KEY), secrets.get(AUTH_CALLBACK_KEY)])
+	const expectedTransactionId = authTransactionId(expectedState)
+	console.info(
+		`[MaveCode Auth] Callback transaction lookup id=${transactionId} expectedId=${expectedTransactionId} stateMatch=${Boolean(expectedState && expectedState === state)} verifierPresent=${Boolean(verifier)} callbackPresent=${Boolean(callbackUri)}`,
+	)
+	if (!expectedState || expectedState !== state || !verifier || !callbackUri) {
+		console.warn(
+			`[MaveCode Auth] Callback rejected id=${transactionId} expectedId=${expectedTransactionId} reason=transaction-mismatch transactionPreserved=${Boolean(expectedState && verifier && callbackUri)} elapsedMs=${Date.now() - startedAt}`,
+		)
+		return false
+	}
+	// Consume only the matching transaction. A delayed callback from an older
+	// browser tab must never delete a newer retry's verifier and state.
 	await Promise.all([secrets.delete(AUTH_STATE_KEY), secrets.delete(AUTH_VERIFIER_KEY), secrets.delete(AUTH_CALLBACK_KEY)])
-	if (!expectedState || expectedState !== state || !verifier || !callbackUri) return false
 	try {
+		console.info(`[MaveCode Auth] Authorization exchange started id=${transactionId}`)
 		const session = await client().action<SessionData>("auth-code-exchange", { authorizationCode: code, state, codeVerifier: verifier, callbackUri })
 		await setMaveCodeToken(session.sessionToken, session.expiresAt)
+		console.info(
+			`[MaveCode Auth] Authorization exchange completed id=${transactionId} tokenPersisted=${Boolean(getCachedMaveCodeToken())} elapsedMs=${Date.now() - startedAt}`,
+		)
 		return true
 	} catch (error) {
 		const code = error instanceof MaveCodeBackendError ? error.code : "AUTH_EXCHANGE_FAILED"
-		console.error(`[MaveCode Auth] Authorization exchange failed: ${code}`)
+		console.error(
+			`[MaveCode Auth] Authorization exchange failed id=${transactionId} code=${code} elapsedMs=${Date.now() - startedAt}`,
+		)
 		await clearMaveCodeToken()
 		return false
 	}
