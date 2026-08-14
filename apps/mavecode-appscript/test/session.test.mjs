@@ -40,3 +40,46 @@ test("expired sessions fail verification and refresh lifetime is independently e
 	deps.setNow(deps.now() + 201)
 	assert.equal(Backend.handle("POST", event({ action: "session-refresh", sessionToken: second.sessionToken }), deps).body.error.code, "SESSION_EXPIRED")
 })
+
+test("runtime cleanup removes auth codes and sessions 24 hours after their usable lifetime", () => {
+	const now = 1_800_000_000_000
+	const retention = 86_400_000
+	const deps = createMocks({
+		now,
+		properties: configuredProperties({
+			"auth-code.expired": JSON.stringify({ expiresAt: now - retention }),
+			"auth-code.retained": JSON.stringify({ expiresAt: now - retention + 1 }),
+			"session.expired": JSON.stringify({ expiresAt: now - retention - 1, refreshUntil: now - retention }),
+			"session.refreshable": JSON.stringify({ expiresAt: now - retention - 1, refreshUntil: now + 1 }),
+			"session.malformed": "not-json",
+			"provider.codex": JSON.stringify({ expiresAt: now - retention - 1 }),
+		}),
+	})
+
+	const response = Backend.handle("GET", { parameter: { action: "health" } }, deps)
+
+	assert.equal(response.status, 200)
+	assert.equal(deps.values.has("auth-code.expired"), false)
+	assert.equal(deps.values.has("session.expired"), false)
+	assert.equal(deps.values.has("auth-code.retained"), true)
+	assert.equal(deps.values.has("session.refreshable"), true)
+	assert.equal(deps.values.has("session.malformed"), true)
+	assert.equal(deps.values.has("provider.codex"), true)
+})
+
+test("runtime cleanup retention can be configured", () => {
+	const now = 1_800_000_000_000
+	const deps = createMocks({
+		now,
+		properties: configuredProperties({
+			MAVECODE_RUNTIME_RECORD_RETENTION_MS: "1000",
+			"auth-code.old": JSON.stringify({ expiresAt: now - 1000 }),
+			"session.old": JSON.stringify({ refreshUntil: now - 1000 }),
+		}),
+	})
+
+	Backend.handle("GET", { parameter: { action: "health" } }, deps)
+
+	assert.equal(deps.values.has("auth-code.old"), false)
+	assert.equal(deps.values.has("session.old"), false)
+})

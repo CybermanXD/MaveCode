@@ -62,6 +62,39 @@ export type DisconnectedMcpConnection = {
 
 export type McpConnection = ConnectedMcpConnection | DisconnectedMcpConnection
 
+export const BUILT_IN_FIGMA_MCP_SERVER = {
+	type: "sse" as const,
+	url: "http://127.0.0.1:3845/sse",
+	disabled: false,
+}
+
+export function addBuiltInFigmaMcpServer(config: unknown): { config: unknown; changed: boolean } {
+	if (!config || typeof config !== "object" || Array.isArray(config)) {
+		return { config, changed: false }
+	}
+
+	const settings = config as Record<string, unknown>
+	const servers = settings.mcpServers
+	if (!servers || typeof servers !== "object" || Array.isArray(servers)) {
+		return { config, changed: false }
+	}
+
+	if (Object.prototype.hasOwnProperty.call(servers, "figma-dev-mode")) {
+		return { config, changed: false }
+	}
+
+	return {
+		config: {
+			...settings,
+			mcpServers: {
+				...(servers as Record<string, unknown>),
+				"figma-dev-mode": BUILT_IN_FIGMA_MCP_SERVER,
+			},
+		},
+		changed: true,
+	}
+}
+
 // Enum for disable reasons
 export enum DisableReason {
 	MCP_DISABLED = "mcpDisabled",
@@ -176,13 +209,13 @@ export class McpHub {
 		if (secretStorage) {
 			this.secretStorage = secretStorage
 		}
-		this.watchMcpSettingsFile()
 		this.watchProjectMcpFile().catch(console.error)
 		this.setupWorkspaceFoldersWatcher()
-		this.initializationPromise = Promise.all([
-			this.initializeGlobalMcpServers(),
-			this.initializeProjectMcpServers(),
-		]).then(() => {})
+		this.initializationPromise = (async () => {
+			await this.seedBuiltInFigmaMcpServer()
+			await this.watchMcpSettingsFile()
+			await Promise.all([this.initializeGlobalMcpServers(), this.initializeProjectMcpServers()])
+		})()
 	}
 
 	/**
@@ -514,6 +547,21 @@ export class McpHub {
 			)
 		}
 		return mcpSettingsFilePath
+	}
+
+	private async seedBuiltInFigmaMcpServer(): Promise<void> {
+		const settingsPath = await this.getMcpSettingsFilePath()
+		try {
+			const content = await fs.readFile(settingsPath, "utf-8")
+			const result = addBuiltInFigmaMcpServer(JSON.parse(content))
+			if (result.changed) {
+				await safeWriteJson(settingsPath, result.config, { prettyPrint: true })
+			}
+		} catch (error) {
+			// Preserve malformed or unreadable user configuration. The normal MCP
+			// initialization path reports it without replacing user-managed content.
+			console.error("Failed to seed built-in Figma MCP server:", error)
+		}
 	}
 
 	private async watchMcpSettingsFile(): Promise<void> {

@@ -32,11 +32,15 @@ Set these values in **Project Settings → Script Properties**. Examples are int
 | `MAVECODE_NONCE_TTL_SECONDS` | no | `600` |
 | `MAVECODE_SESSION_TTL_MS` | no | `900000` |
 | `MAVECODE_REFRESH_TTL_MS` | no | `3600000` |
-| `MAVECODE_MAX_REQUEST_BYTES` | no | `131072` |
+| `MAVECODE_MAX_REQUEST_BYTES` | no | `10485760` (10 MiB aggregate request limit) |
+| `MAVECODE_MAX_MESSAGE_BYTES` | no | `1048576` (1 MiB per message/tool result) |
 | `MAVECODE_MAX_RESPONSE_BYTES` | no | `524288` |
 | `MAVECODE_QUOTA_PER_MINUTE` | no | `20` per extension subject |
+| `MAVECODE_RUNTIME_RECORD_RETENTION_MS` | no | `86400000`; expired authorization codes and sessions are removed after 24 hours |
 
 Generate the intake secret locally with a CSPRNG, enter it directly into Script Properties and the helper's private environment, and never save it in source, shell history, screenshots, or logs. Rotate it after suspected disclosure and redeploy/restart both ends.
+
+Temporary `auth-code.*` and `session.*` Script Properties are runtime records, not configuration. On each backend request, best-effort cleanup removes authorization-code records 24 hours after `expiresAt` and session records 24 hours after `refreshUntil`. Cleanup never removes `provider.codex`, `MAVECODE_*` configuration, malformed records, or sessions that can still be refreshed. Override the 24-hour retention only with `MAVECODE_RUNTIME_RECORD_RETENTION_MS` when operational policy requires it.
 
 ## Action protocol
 

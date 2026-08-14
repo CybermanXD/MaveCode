@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.76.10
+
+- Added the official local Figma Dev Mode MCP server as an enabled built-in integration without overwriting user customization.
+- Added automatic 24-hour cleanup for expired Apps Script authorization-code and session records.
+
 ## 3.76.9
 
 - Rebranded the integration catalog as MaveCode Marketplace and removed marketplace modes.

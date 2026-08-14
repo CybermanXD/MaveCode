@@ -23,7 +23,8 @@ var MaveCodeBackend = (function () {
 		maxToolArgumentBytes: 32768,
 		maxTools: 64,
 		maxToolSchemaBytes: 65536,
-		authCodeTtlMs: 120000
+		authCodeTtlMs: 120000,
+		runtimeRecordRetentionMs: 86400000
 	}
 
 	function ApiError(code, message, status, retryable) {
@@ -39,6 +40,7 @@ var MaveCodeBackend = (function () {
 		try {
 			var request = parseRequest(method, event)
 			var config = readConfig(deps.properties)
+			cleanupExpiredRuntimeRecords(deps, config)
 			var actions = {
 				health: function () { return health(deps, config) },
 				"auth-config": function () { return authConfig(config) },
@@ -93,7 +95,28 @@ var MaveCodeBackend = (function () {
 			maxResponseBytes: positiveNumber(properties.getProperty("MAVECODE_MAX_RESPONSE_BYTES"), DEFAULTS.maxResponseBytes),
 			quotaPerMinute: positiveNumber(properties.getProperty("MAVECODE_QUOTA_PER_MINUTE"), DEFAULTS.quotaPerMinute),
 			authCodeTtlMs: positiveNumber(properties.getProperty("MAVECODE_AUTH_CODE_TTL_MS"), DEFAULTS.authCodeTtlMs),
+			runtimeRecordRetentionMs: positiveNumber(properties.getProperty("MAVECODE_RUNTIME_RECORD_RETENTION_MS"), DEFAULTS.runtimeRecordRetentionMs),
 			lockWaitMs: DEFAULTS.lockWaitMs
+		}
+	}
+
+	function cleanupExpiredRuntimeRecords(deps, config) {
+		if (!deps.lock.tryLock(config.lockWaitMs)) return
+		try {
+			var properties = deps.properties.getProperties()
+			var now = deps.now()
+			Object.keys(properties).forEach(function (key) {
+				var expiryField = key.indexOf(AUTH_CODE_PREFIX) === 0 ? "expiresAt" : (key.indexOf(SESSION_PREFIX) === 0 ? "refreshUntil" : "")
+				if (!expiryField) return
+				var record
+				try { record = JSON.parse(properties[key]) } catch (_) { return }
+				var expiresAt = Number(record && record[expiryField])
+				if (isFinite(expiresAt) && expiresAt + config.runtimeRecordRetentionMs <= now) deps.properties.deleteProperty(key)
+			})
+		} catch (error) {
+			deps.log("runtime-record-cleanup-failed", { message: redact(error && error.message ? error.message : "Unknown cleanup error") })
+		} finally {
+			deps.lock.releaseLock()
 		}
 	}
 

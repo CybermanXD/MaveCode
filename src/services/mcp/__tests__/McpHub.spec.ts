@@ -6,7 +6,7 @@ import type { ExtensionContext, Uri } from "vscode"
 import type { ClineProvider } from "../../../core/webview/ClineProvider"
 
 import type { McpHub as McpHubType, McpConnection, ConnectedMcpConnection, DisconnectedMcpConnection } from "../McpHub"
-import { ServerConfigSchema, McpHub } from "../McpHub"
+import { BUILT_IN_FIGMA_MCP_SERVER, ServerConfigSchema, McpHub, addBuiltInFigmaMcpServer } from "../McpHub"
 import { OAUTH_FLOW_TIMEOUT_MS } from "../constants"
 import { t } from "../../../i18n"
 
@@ -81,6 +81,41 @@ vi.mock("vscode", () => ({
 	},
 }))
 vi.mock("../../../core/webview/ClineProvider")
+
+describe("addBuiltInFigmaMcpServer", () => {
+	it("adds the enabled official local Figma Dev Mode server while preserving existing servers", () => {
+		const existingServer = { command: "node", args: ["server.js"] }
+		const result = addBuiltInFigmaMcpServer({ mcpServers: { existing: existingServer }, custom: true })
+
+		expect(result.changed).toBe(true)
+		expect(result.config).toEqual({
+			mcpServers: {
+				existing: existingServer,
+				"figma-dev-mode": BUILT_IN_FIGMA_MCP_SERVER,
+			},
+			custom: true,
+		})
+	})
+
+	it("does not overwrite a customized or disabled Figma server", () => {
+		const config = {
+			mcpServers: {
+				"figma-dev-mode": { type: "sse", url: "http://localhost:9999/sse", disabled: true },
+			},
+		}
+
+		const result = addBuiltInFigmaMcpServer(config)
+
+		expect(result).toEqual({ config, changed: false })
+	})
+
+	it.each([null, [], {}, { mcpServers: null }, { mcpServers: [] }])(
+		"does not replace malformed settings: %j",
+		(config) => {
+			expect(addBuiltInFigmaMcpServer(config)).toEqual({ config, changed: false })
+		},
+	)
+})
 
 // Mock the MCP SDK modules
 vi.mock("@modelcontextprotocol/sdk/client/stdio.js", () => ({
@@ -181,6 +216,8 @@ describe("McpHub", () => {
 
 		mcpHub = new McpHub(mockProvider as ClineProvider)
 		await mcpHub.waitUntilReady()
+		vi.mocked(fs.writeFile).mockClear()
+		vi.mocked(safeWriteJson).mockClear()
 	})
 
 	afterEach(() => {
