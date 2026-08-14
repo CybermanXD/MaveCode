@@ -1,7 +1,6 @@
 import { HTMLAttributes } from "react"
 import { useAppTranslation } from "@/i18n/TranslationContext"
-import { VSCodeCheckbox, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
-import { Trans } from "react-i18next"
+import { VSCodeCheckbox } from "@vscode/webview-ui-toolkit/react"
 import { Slider } from "@/components/ui"
 
 import { SetCachedStateField } from "./types"
@@ -44,9 +43,7 @@ export const CheckpointSettings = ({
 						<span className="font-medium">{t("settings:checkpoints.enable.label")}</span>
 					</VSCodeCheckbox>
 					<div className="text-vscode-descriptionForeground text-sm mt-1">
-						<Trans i18nKey="settings:checkpoints.enable.description">
-							
-						</Trans>
+						{t("settings:checkpoints.enable.description")}
 					</div>
 				</SearchableSetting>
 

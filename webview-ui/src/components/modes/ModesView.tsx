@@ -708,13 +708,6 @@ const ModesView = () => {
 						</div>
 					</div>
 
-					<div className="text-sm text-vscode-descriptionForeground mb-3">
-						<Trans i18nKey="prompts:modes.createModeHelpText">
-							
-							
-						</Trans>
-					</div>
-
 					<div className="flex items-center gap-1 mb-3">
 						{isRenamingMode ? (
 							<>
@@ -950,8 +943,8 @@ const ModesView = () => {
 					</div>
 				</div>
 
-				{/* Role Definition section */}
-				<div className="mb-4">
+				{/* Managed persona metadata remains implemented but is hidden from the managed UI. */}
+				<div className="hidden" aria-hidden="true">
 					<div className="flex justify-between items-center mb-1">
 						<div className="font-bold">{t("prompts:roleDefinition.title")}</div>
 						{!findModeBySlug(visualMode, customModes) && (
@@ -1007,7 +1000,7 @@ const ModesView = () => {
 				</div>
 
 				{/* Description section */}
-				<div className="mb-4">
+				<div className="hidden" aria-hidden="true">
 					<div className="flex justify-between items-center mb-1">
 						<div className="font-bold">{t("prompts:description.title")}</div>
 						{!findModeBySlug(visualMode, customModes) && (
@@ -1061,7 +1054,7 @@ const ModesView = () => {
 				</div>
 
 				{/* When to Use section */}
-				<div className="mb-4">
+				<div className="hidden" aria-hidden="true">
 					<div className="flex justify-between items-center mb-1">
 						<div className="font-bold">{t("prompts:whenToUse.title")}</div>
 						{!findModeBySlug(visualMode, customModes) && (
@@ -1230,8 +1223,8 @@ const ModesView = () => {
 					</div>
 				</>
 
-				{/* Role definition for both built-in and custom modes */}
-				<div className="mb-2">
+				{/* Custom-instruction editors remain implemented but are hidden from the managed UI. */}
+				<div className="hidden" aria-hidden="true">
 					<div className="flex justify-between items-center mb-1">
 						<div className="font-bold">{t("prompts:customInstructions.title")}</div>
 						{!findModeBySlug(visualMode, customModes) && (

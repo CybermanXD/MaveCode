@@ -74,7 +74,7 @@ describe("generateErrorDiagnostics", () => {
 		})
 
 		expect(result.success).toBe(true)
-		expect(result.filePath).toContain("zoo-diagnostics-")
+		expect(result.filePath).toContain("mavecode-diagnostics-")
 
 		// Verify we attempted to read API history
 		expect(fs.readFile).toHaveBeenCalledWith(path.join("/mock/task-dir", "api_conversation_history.json"), "utf8")
@@ -83,10 +83,8 @@ describe("generateErrorDiagnostics", () => {
 		expect(fs.writeFile).toHaveBeenCalledTimes(1)
 		const [writtenPath, writtenContent] = vi.mocked(fs.writeFile).mock.calls[0]
 		// taskId.slice(0, 8) = "test-tas" from "test-task-id"
-		expect(String(writtenPath)).toContain("zoo-diagnostics-test-tas")
-		expect(String(writtenContent)).toContain(
-			"// Please share this file with MaveCode Support (support@mavecode.dev) to diagnose the issue faster",
-		)
+		expect(String(writtenPath)).toContain("mavecode-diagnostics-test-tas")
+		expect(() => JSON.parse(String(writtenContent))).not.toThrow()
 		expect(String(writtenContent)).toContain('"error":')
 		expect(String(writtenContent)).toContain('"history":')
 		expect(String(writtenContent)).toContain('"version": "1.2.3"')

@@ -1,6 +1,5 @@
 import React, { useState } from "react"
-import { Trans } from "react-i18next"
-import { VSCodeLink, VSCodePanels, VSCodePanelTab, VSCodePanelView } from "@vscode/webview-ui-toolkit/react"
+import { VSCodePanels, VSCodePanelTab, VSCodePanelView } from "@vscode/webview-ui-toolkit/react"
 
 import type { McpServer } from "@roo-code/types"
 
@@ -47,18 +46,6 @@ const McpView = ({ mcpEnabled: propsMcpEnabled, setMcpEnabled }: McpViewProps = 
 			<SectionHeader>{t("mcp:title")}</SectionHeader>
 
 			<Section>
-				<div
-					style={{
-						color: "var(--vscode-foreground)",
-						fontSize: "13px",
-						marginBottom: "10px",
-						marginTop: "5px",
-					}}>
-					<Trans i18nKey="mcp:description">
-						
-					</Trans>
-				</div>
-
 				<McpEnabledToggle mcpEnabled={mcpEnabled} setMcpEnabled={setMcpEnabled} />
 
 				{mcpEnabled && (

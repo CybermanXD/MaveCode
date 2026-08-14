@@ -124,6 +124,10 @@ type SettingsViewProps = {
 	targetSection?: string
 }
 
+const setManagedSettingsInert = (element: HTMLDivElement | null) => {
+	element?.setAttribute("inert", "")
+}
+
 const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, targetSection }, ref) => {
 	const { t } = useAppTranslation()
 
@@ -792,25 +796,30 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 
 						{/* Auto-Approve Section */}
 						{renderTab === "autoApprove" && (
-							<div className="opacity-50 pointer-events-none" aria-disabled="true"><AutoApproveSettings
-								alwaysAllowReadOnly={alwaysAllowReadOnly}
-								alwaysAllowReadOnlyOutsideWorkspace={alwaysAllowReadOnlyOutsideWorkspace}
-								alwaysAllowWrite={alwaysAllowWrite}
-								alwaysAllowWriteOutsideWorkspace={alwaysAllowWriteOutsideWorkspace}
-								alwaysAllowWriteProtected={alwaysAllowWriteProtected}
-								alwaysAllowMcp={alwaysAllowMcp}
-								alwaysAllowModeSwitch={alwaysAllowModeSwitch}
-								alwaysAllowSubtasks={alwaysAllowSubtasks}
-								alwaysAllowExecute={alwaysAllowExecute}
-								destructiveCommandGuardEnabled={destructiveCommandGuardEnabled}
-								alwaysAllowFollowupQuestions={alwaysAllowFollowupQuestions}
-								followupAutoApproveTimeoutMs={followupAutoApproveTimeoutMs}
-								allowedCommands={allowedCommands}
-								allowedMaxRequests={allowedMaxRequests ?? undefined}
-								allowedMaxCost={allowedMaxCost ?? undefined}
-								deniedCommands={deniedCommands}
-								setCachedStateField={setCachedStateField}
-							/></div>
+							<div
+								ref={setManagedSettingsInert}
+								className="opacity-50 pointer-events-none"
+								aria-disabled="true">
+								<AutoApproveSettings
+									alwaysAllowReadOnly={alwaysAllowReadOnly}
+									alwaysAllowReadOnlyOutsideWorkspace={alwaysAllowReadOnlyOutsideWorkspace}
+									alwaysAllowWrite={alwaysAllowWrite}
+									alwaysAllowWriteOutsideWorkspace={alwaysAllowWriteOutsideWorkspace}
+									alwaysAllowWriteProtected={alwaysAllowWriteProtected}
+									alwaysAllowMcp={alwaysAllowMcp}
+									alwaysAllowModeSwitch={alwaysAllowModeSwitch}
+									alwaysAllowSubtasks={alwaysAllowSubtasks}
+									alwaysAllowExecute={alwaysAllowExecute}
+									destructiveCommandGuardEnabled={destructiveCommandGuardEnabled}
+									alwaysAllowFollowupQuestions={alwaysAllowFollowupQuestions}
+									followupAutoApproveTimeoutMs={followupAutoApproveTimeoutMs}
+									allowedCommands={allowedCommands}
+									allowedMaxRequests={allowedMaxRequests ?? undefined}
+									allowedMaxCost={allowedMaxCost ?? undefined}
+									deniedCommands={deniedCommands}
+									setCachedStateField={setCachedStateField}
+								/>
+							</div>
 						)}
 
 						{/* Slash Commands Section */}
@@ -844,28 +853,33 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 
 						{/* Context Management Section */}
 						{renderTab === "contextManagement" && (
-							<ContextManagementSettings
-								autoCondenseContext={autoCondenseContext}
-								autoCondenseContextPercent={autoCondenseContextPercent}
-								listApiConfigMeta={listApiConfigMeta ?? []}
-								maxOpenTabsContext={maxOpenTabsContext}
-								maxWorkspaceFiles={maxWorkspaceFiles ?? 200}
-								showRooIgnoredFiles={showRooIgnoredFiles}
-								enableSubfolderRules={enableSubfolderRules}
-								maxImageFileSize={maxImageFileSize}
-								maxTotalImageSize={maxTotalImageSize}
-								profileThresholds={profileThresholds}
-								includeDiagnosticMessages={includeDiagnosticMessages}
-								maxDiagnosticMessages={maxDiagnosticMessages}
-								writeDelayMs={writeDelayMs}
-								diffFuzzyThreshold={diffFuzzyThreshold}
-								includeCurrentTime={includeCurrentTime}
-								includeCurrentCost={includeCurrentCost}
-								maxGitStatusFiles={maxGitStatusFiles}
-								customSupportPrompts={customSupportPrompts || {}}
-								setCustomSupportPrompts={setCustomSupportPromptsField}
-								setCachedStateField={setCachedStateField}
-							/>
+							<div
+								ref={setManagedSettingsInert}
+								className="opacity-50 pointer-events-none"
+								aria-disabled="true">
+								<ContextManagementSettings
+									autoCondenseContext={autoCondenseContext}
+									autoCondenseContextPercent={autoCondenseContextPercent}
+									listApiConfigMeta={listApiConfigMeta ?? []}
+									maxOpenTabsContext={maxOpenTabsContext}
+									maxWorkspaceFiles={maxWorkspaceFiles ?? 200}
+									showRooIgnoredFiles={showRooIgnoredFiles}
+									enableSubfolderRules={enableSubfolderRules}
+									maxImageFileSize={maxImageFileSize}
+									maxTotalImageSize={maxTotalImageSize}
+									profileThresholds={profileThresholds}
+									includeDiagnosticMessages={includeDiagnosticMessages}
+									maxDiagnosticMessages={maxDiagnosticMessages}
+									writeDelayMs={writeDelayMs}
+									diffFuzzyThreshold={diffFuzzyThreshold}
+									includeCurrentTime={includeCurrentTime}
+									includeCurrentCost={includeCurrentCost}
+									maxGitStatusFiles={maxGitStatusFiles}
+									customSupportPrompts={customSupportPrompts || {}}
+									setCustomSupportPrompts={setCustomSupportPromptsField}
+									setCachedStateField={setCachedStateField}
+								/>
+							</div>
 						)}
 
 						{/* Terminal Section */}
@@ -887,14 +901,26 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 						)}
 
 						{/* Modes Section */}
-						{renderTab === "modes" && <ModesView />}
+						{renderTab === "modes" && (
+							<div
+								ref={setManagedSettingsInert}
+								className="opacity-50 pointer-events-none"
+								aria-disabled="true">
+								<ModesView />
+							</div>
+						)}
 
 						{/* MCP Section */}
 						{renderTab === "mcp" && (
-							<div className="opacity-50 pointer-events-none" aria-disabled="true"><McpView
-								mcpEnabled={mcpEnabled}
-								setMcpEnabled={(value) => setCachedStateField("mcpEnabled", value)}
-							/></div>
+							<div
+								ref={setManagedSettingsInert}
+								className="opacity-50 pointer-events-none"
+								aria-disabled="true">
+								<McpView
+									mcpEnabled={mcpEnabled}
+									setMcpEnabled={(value) => setCachedStateField("mcpEnabled", value)}
+								/>
+							</div>
 						)}
 
 						{/* Worktrees Section */}

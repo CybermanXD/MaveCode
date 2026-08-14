@@ -63,20 +63,15 @@ export async function generateErrorDiagnostics(params: GenerateDiagnosticsParams
 			history,
 		}
 
-		// Prepend human-readable guidance comments before the JSON payload
-		const headerComment =
-			"// Please share this file with MaveCode Support (support@mavecode.dev) to diagnose the issue faster\n" +
-			"// Just make sure you're OK sharing the contents of the conversation below.\n\n"
 		const jsonContent = JSON.stringify(diagnostics, null, 2)
-		const fullContent = headerComment + jsonContent
 
 		// Create a temporary diagnostics file
 		const tmpDir = os.tmpdir()
 		const timestamp = Date.now()
-		const tempFileName = `zoo-diagnostics-${taskId.slice(0, 8)}-${timestamp}.json`
+		const tempFileName = `mavecode-diagnostics-${taskId.slice(0, 8)}-${timestamp}.json`
 		const tempFilePath = path.join(tmpDir, tempFileName)
 
-		await fs.writeFile(tempFilePath, fullContent, "utf8")
+		await fs.writeFile(tempFilePath, jsonContent, "utf8")
 
 		// Open the diagnostics file in VS Code
 		const doc = await vscode.workspace.openTextDocument(tempFilePath)

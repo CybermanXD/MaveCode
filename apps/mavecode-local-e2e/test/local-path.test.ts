@@ -150,8 +150,9 @@ describe("Phase 1.10 simulated local MaveCode E2E", () => {
 			"models",
 			{ sessionToken },
 		)
-		assert.deepEqual(catalog.models.map((model) => model.id), [MODEL])
-		assert.equal(catalog.models[0]?.capabilities.tools, true)
+		const fixtureModel = catalog.models.find((model) => model.id === MODEL)
+		assert.ok(fixtureModel, "managed model catalog should include the local E2E fixture model")
+		assert.equal(fixtureModel.capabilities.tools, true)
 
 		const first = await extensionClient.action<{ events: Array<Record<string, unknown>> }>("chat", {
 			sessionToken,

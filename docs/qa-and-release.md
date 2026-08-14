@@ -82,8 +82,7 @@ Because this phase edits Markdown only, validation focuses on documentation corr
 - All deployment examples use placeholders.
 - No real Apps Script deployment ID, OAuth client ID, provider account ID, runtime URL, bearer token, refresh token, ID token, session token, or intake secret appears in docs.
 - Root [`../README.md`](../README.md) points to this documentation set and built VSIX.
-- [`../FORK_NOTES.md`](../FORK_NOTES.md) preserves upstream attribution and license notes.
-- [`../PRODUCT_PLAN.md`](../PRODUCT_PLAN.md) marks Phase 1.12 complete only after documentation validation.
+- [`../FORK_NOTES.md`](../FORK_NOTES.md) records the fork relationship and product identity.
 - [`implementation/PHASE_1_VERTICAL_SLICE.md`](implementation/PHASE_1_VERTICAL_SLICE.md) marks the documentation phase complete only after validation.
 
 Manual search patterns that should return placeholders only:

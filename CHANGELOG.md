@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.76.9
+
+- Rebranded the integration catalog as MaveCode Marketplace and removed marketplace modes.
+- Locked managed Modes, Auto Approve, MCP, and Context settings against pointer and keyboard interaction.
+- Removed inherited mode guidance, checkpoint/MCP promotional copy, and the chat code-index icon.
+- Removed unsupported contact channels and public conduct, contribution, privacy, security, license, and private planning files.
+
 ## 3.76.8
 
 - Enforced administrator-only Code and Ask modes across listings, direct mode changes, task startup, and history resume.

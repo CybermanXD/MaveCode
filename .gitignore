@@ -74,6 +74,8 @@ Desktop.ini
 # Local prompts, plans, and machine-specific test state
 /local-prompts/
 /plans/
+/PRODUCT_PLAN.md
+/MaveCode_CVonfig.md
 /.roo/
 /.roomodes
 /AGENTS.md

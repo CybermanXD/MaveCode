@@ -28,7 +28,6 @@ This directory is the Phase 1.12 documentation set for the fully implemented Mav
 - Extension Apps Script client: [`../src/services/mavecode-appscript-client.ts`](../src/services/mavecode-appscript-client.ts)
 - Extension session service: [`../src/services/mave-code-auth.ts`](../src/services/mave-code-auth.ts)
 - Sanitized release runner: [`../scripts/run-sanitized-tests.mjs`](../scripts/run-sanitized-tests.mjs)
-- Product plan: [`../PRODUCT_PLAN.md`](../PRODUCT_PLAN.md)
 - Vertical-slice plan: [`implementation/PHASE_1_VERTICAL_SLICE.md`](implementation/PHASE_1_VERTICAL_SLICE.md)
 
 ## Secret-handling rule

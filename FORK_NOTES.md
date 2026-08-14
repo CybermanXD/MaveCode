@@ -6,11 +6,10 @@
 - Extension package: `mave-code`
 - Command and configuration namespace: `mave-code`
 - Source baseline: MaveCode 3.76.0
-- License: Apache-2.0; upstream copyright and attribution are retained in `LICENSE` and project history.
 
 ## Product direction
 
-MaveCode is the Universal AI Workspace described in `PRODUCT_PLAN.md`. The extension is the trusted client for a centrally managed workspace. End users install the extension, authenticate once, and receive organization-approved models, agents, prompts, rules, and MCP servers without handling provider credentials.
+MaveCode is a separately branded AI coding extension and the trusted client for a centrally managed workspace. End users install the extension, authenticate once, and receive organization-approved models, personas, prompts, rules, and MCP integrations without handling provider credentials.
 
 ## Architectural boundaries
 

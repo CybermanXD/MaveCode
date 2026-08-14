@@ -39,8 +39,3 @@ The package is written to `bin/mave-code-<version>.vsix`.
 - Custom modes, rules, and workflows
 - MCP server integrations
 - Multiple AI provider configurations
-
-## License
-
-Apache License 2.0. See [`LICENSE`](LICENSE).
-

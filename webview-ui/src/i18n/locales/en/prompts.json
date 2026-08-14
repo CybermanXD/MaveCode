@@ -8,7 +8,7 @@
 		"editModesConfig": "Edit modes configuration",
 		"editGlobalModes": "Edit Global Modes",
 		"editProjectModes": "Edit Project Modes (.roomodes)",
-		"createModeHelpText": "Modes are specialized personas that tailor Zoo's behavior. <0>Learn about Using Modes</0> or <1>Customizing Modes.</1>",
+		"createModeHelpText": "",
 		"selectMode": "Search modes",
 		"noMatchFound": "No modes found"
 	},
@@ -42,14 +42,14 @@
 	},
 	"whenToUse": {
 		"title": "When to Use (optional)",
-		"description": "Guidance for Zoo for when this mode should be used. This helps the Orchestrator choose the right mode for a task.",
+		"description": "",
 		"resetToDefault": "Reset to default 'When to Use' description"
 	},
 	"customInstructions": {
 		"title": "Mode-specific Custom Instructions (optional)",
 		"resetToDefault": "Reset to default",
 		"description": "Add behavioral guidelines specific to {{modeName}} mode.",
-		"loadFromFile": "Custom instructions specific to {{mode}} mode can also be loaded from the <span>.roo/rules-{{slug}}/</span> folder in your workspace or from the global <0>.roo/rules-{{slug}}/</0> (.roorules-{{slug}} and .clinerules-{{slug}} are deprecated and will stop working soon)."
+		"loadFromFile": ""
 	},
 	"exportMode": {
 		"title": "Export Mode",
@@ -72,7 +72,7 @@
 	"globalCustomInstructions": {
 		"title": "Custom Instructions for All Modes",
 		"description": "These instructions apply to all modes. They provide a base set of behaviors that can be enhanced by mode-specific instructions below. <0>Learn more</0>",
-		"loadFromFile": "Instructions can also be loaded from the <span>.roo/rules/</span> folder in your workspace or from the global <0>.roo/rules/</0> (.roorules and .clinerules are deprecated and will stop working soon)."
+		"loadFromFile": ""
 	},
 	"systemPrompt": {
 		"preview": "Preview System Prompt",
@@ -174,7 +174,7 @@
 		},
 		"whenToUse": {
 			"label": "When to Use (optional)",
-			"description": "Guidance for Zoo for when this mode should be used. This helps the Orchestrator choose the right mode for a task."
+			"description": ""
 		},
 		"tools": {
 			"label": "Available Tools",
