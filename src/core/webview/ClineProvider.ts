@@ -3626,12 +3626,29 @@ export class ClineProvider
 
 	// Modes
 
+	private async getAuthorizedModes(customModes?: Awaited<ReturnType<CustomModesManager["getCustomModes"]>>) {
+		const modes = [...DEFAULT_MODES, ...(customModes ?? (await this.customModesManager.getCustomModes()))]
+		const { isMaveCodeAdmin } = await import("../../services/mave-code-auth")
+
+		return isMaveCodeAdmin() ? modes : modes.filter(({ slug }) => !["code", "ask"].includes(slug))
+	}
+
+	private getModeFallback(modes: readonly { slug: string }[]): Mode {
+		const fallback = modes.find(({ slug }) => slug === "standard") ?? modes.find(({ slug }) => slug === "enphase") ?? modes[0]
+
+		if (!fallback) {
+			throw new Error("No authorized MaveCode persona is available.")
+		}
+
+		return fallback.slug as Mode
+	}
+
 	public async getModes(): Promise<{ slug: string; name: string }[]> {
 		try {
 			const customModes = await this.customModesManager.getCustomModes()
-			return [...DEFAULT_MODES, ...customModes].map(({ slug, name }) => ({ slug, name }))
+			return (await this.getAuthorizedModes(customModes)).map(({ slug, name }) => ({ slug, name }))
 		} catch (error) {
-			return DEFAULT_MODES.map(({ slug, name }) => ({ slug, name }))
+			return (await this.getAuthorizedModes([])).map(({ slug, name }) => ({ slug, name }))
 		}
 	}
 
@@ -3641,6 +3658,10 @@ export class ClineProvider
 	}
 
 	public async setMode(mode: string): Promise<void> {
+		const authorizedModes = await this.getAuthorizedModes()
+		if (!authorizedModes.some(({ slug }) => slug === mode)) {
+			throw new Error("This mode is not available for the current MaveCode account.")
+		}
 		await this.setValues({ mode })
 	}
 

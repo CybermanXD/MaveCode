@@ -74,9 +74,10 @@ export const ModeSelector = ({
 		}))
 	}, [customModes, customModePrompts, maveCodeIsAdmin])
 
-	// Find the selected mode, falling back to default if current mode doesn't exist (e.g., after workspace switch)
+	// Find the selected mode, falling back to the first authorized persona when the
+	// built-in default (Code) is intentionally unavailable to non-admin users.
 	const selectedMode = React.useMemo(() => {
-		return modes.find((mode) => mode.slug === value) ?? modes.find((mode) => mode.slug === defaultModeSlug)
+		return modes.find((mode) => mode.slug === value) ?? modes.find((mode) => mode.slug === defaultModeSlug) ?? modes[0]
 	}, [modes, value])
 
 	// Notify parent when current mode is invalid so it can update its state
@@ -92,7 +93,7 @@ export const ModeSelector = ({
 			return
 		}
 
-		const fallbackMode = modes.find((mode) => mode.slug === defaultModeSlug)
+		const fallbackMode = modes.find((mode) => mode.slug === defaultModeSlug) ?? modes[0]
 		if (fallbackMode) {
 			lastNotifiedInvalidModeRef.current = value
 			onChange(fallbackMode.slug as Mode)

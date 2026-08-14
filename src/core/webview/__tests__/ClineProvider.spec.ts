@@ -303,6 +303,7 @@ vi.mock("../../../api/providers/fetchers/lmstudio", () => ({
 vi.mock("../../../services/mave-code-auth", () => ({
 	getMaveCodeBaseUrl: vi.fn(() => "https://www.mavecode.dev"),
 	getCachedMaveCodeToken: vi.fn(() => "mave_ext_test_session"),
+	isMaveCodeAdmin: vi.fn(() => true),
 	startMaveCodeSignIn: vi.fn().mockResolvedValue(true),
 	handleAuthCallback: vi.fn(),
 	setMaveCodeUserInfo: vi.fn(),
