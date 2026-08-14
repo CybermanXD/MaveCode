@@ -209,9 +209,20 @@ test("chat rejects malformed tool IDs, arguments, ordering, protocol, and limits
 	assert.equal(send([{ role: "user", content: "x" }, { role: "tool", toolCallId: "missing", content: "x" }]).body.error.code, "INVALID_MESSAGE_ORDER")
 	assert.equal(send([{ role: "user", content: "x" }, { role: "assistant", content: "", toolCalls: [{ id: "bad id", name: "x", arguments: "{}" }] }]).body.error.code, "INVALID_TOOL_CALL")
 	assert.equal(send([{ role: "user", content: "x" }, { role: "assistant", content: "", toolCalls: [{ id: "call_1", name: "x", arguments: "{" }] }]).body.error.code, "INVALID_TOOL_ARGUMENTS")
-	assert.equal(send([{ role: "user", content: "x".repeat(65_537) }]).body.error.code, "PAYLOAD_TOO_LARGE")
+	assert.equal(send([{ role: "user", content: "x".repeat(65_537) }]).status, 200)
+	assert.equal(send([{ role: "user", content: "x".repeat(1_048_577) }]).body.error.code, "PAYLOAD_TOO_LARGE")
 	assert.equal(send([{ role: "user", content: [{ type: "image_url", imageUrl: "http://unsafe.invalid/x.png" }] }]).body.error.code, "INVALID_IMAGE")
 	assert.equal(Backend.handle("POST", event({ action: "chat", protocolVersion: "future", sessionToken: token, model: "codex-test-model", messages: [{ role: "user", content: "x" }] }), deps).body.error.code, "PROTOCOL_MISMATCH")
+})
+
+test("chat supports a configurable per-message safety limit", () => {
+	const deps = readyDeps(() => ({ getResponseCode: () => 200, getContentText: () => JSON.stringify({ output_text: "x" }) }), { MAVECODE_MAX_MESSAGE_BYTES: "10" })
+	const response = Backend.handle("POST", event({
+		action: "chat", protocolVersion: "mavecode.v1", sessionToken: issue(deps), model: "codex-test-model",
+		messages: [{ role: "user", content: "x".repeat(11) }],
+	}), deps)
+	assert.equal(response.body.error.code, "PAYLOAD_TOO_LARGE")
+	assert.equal(response.body.error.message, "Message content exceeds size limit")
 })
 
 test("provider errors expose safe actionable diagnostics without leaking the response", () => {

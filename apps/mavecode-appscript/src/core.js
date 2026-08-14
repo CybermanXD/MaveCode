@@ -18,7 +18,7 @@ var MaveCodeBackend = (function () {
 		maxResponseBytes: 524288,
 		quotaPerMinute: 20,
 		lockWaitMs: 5000,
-		maxMessageBytes: 65536,
+		maxMessageBytes: 1048576,
 		maxImageBytes: 5242880,
 		maxToolArgumentBytes: 32768,
 		maxTools: 64,
@@ -89,6 +89,7 @@ var MaveCodeBackend = (function () {
 			sessionTtlMs: positiveNumber(properties.getProperty("MAVECODE_SESSION_TTL_MS"), DEFAULTS.sessionTtlMs),
 			refreshTtlMs: positiveNumber(properties.getProperty("MAVECODE_REFRESH_TTL_MS"), DEFAULTS.refreshTtlMs),
 			maxRequestBytes: positiveNumber(properties.getProperty("MAVECODE_MAX_REQUEST_BYTES"), DEFAULTS.maxRequestBytes),
+			maxMessageBytes: positiveNumber(properties.getProperty("MAVECODE_MAX_MESSAGE_BYTES"), DEFAULTS.maxMessageBytes),
 			maxResponseBytes: positiveNumber(properties.getProperty("MAVECODE_MAX_RESPONSE_BYTES"), DEFAULTS.maxResponseBytes),
 			quotaPerMinute: positiveNumber(properties.getProperty("MAVECODE_QUOTA_PER_MINUTE"), DEFAULTS.quotaPerMinute),
 			authCodeTtlMs: positiveNumber(properties.getProperty("MAVECODE_AUTH_CODE_TTL_MS"), DEFAULTS.authCodeTtlMs),
@@ -330,7 +331,7 @@ var MaveCodeBackend = (function () {
 		var model = request.body.model
 		if (typeof model !== "string" || config.modelAllowlist.indexOf(model) < 0) throw new ApiError("MODEL_NOT_ALLOWED", "Requested model is not allowed", 403)
 		if (request.body.protocolVersion !== PROTOCOL) throw new ApiError("PROTOCOL_MISMATCH", "Chat protocol is not supported", 400)
-		var messages = validateMessages(request.body.messages)
+		var messages = validateMessages(request.body.messages, config.maxMessageBytes)
 		var tools = validateTools(request.body.tools)
 		var toolChoice = validateToolChoice(request.body.toolChoice, tools)
 		var parallelToolCalls = request.body.parallelToolCalls === undefined ? true : request.body.parallelToolCalls
@@ -401,7 +402,7 @@ var MaveCodeBackend = (function () {
 		try { deps.log(event, details) } catch (_) { /* Diagnostics must never break a request. */ }
 	}
 
-	function validateMessages(messages) {
+	function validateMessages(messages, maxMessageBytes) {
 		if (!Array.isArray(messages) || !messages.length || messages.length > 200) throw new ApiError("INVALID_REQUEST", "Messages must be a non-empty array", 400)
 		var pending = {}
 		var seenNonSystem = false
@@ -410,7 +411,7 @@ var MaveCodeBackend = (function () {
 			if (!message || ["system", "user", "assistant", "tool"].indexOf(message.role) < 0) throw new ApiError("INVALID_REQUEST", "Message role is not supported", 400)
 			if (message.role === "system") {
 				if (seenNonSystem || typeof message.content !== "string" || !message.content) throw new ApiError("INVALID_MESSAGE_ORDER", "System messages must be non-empty and precede the conversation", 400)
-				checkSizedString(message.content, DEFAULTS.maxMessageBytes, "Message content")
+				checkSizedString(message.content, maxMessageBytes, "Message content")
 				return { role: "system", content: message.content }
 			}
 			seenNonSystem = true
@@ -418,15 +419,15 @@ var MaveCodeBackend = (function () {
 				validateToolCallId(message.toolCallId)
 				if (!pending[message.toolCallId]) throw new ApiError("INVALID_MESSAGE_ORDER", "Tool result does not match a pending tool call", 400)
 				if (typeof message.content !== "string") throw new ApiError("INVALID_REQUEST", "Tool result must contain text", 400)
-				checkSizedString(message.content, DEFAULTS.maxMessageBytes, "Tool result")
+				checkSizedString(message.content, maxMessageBytes, "Tool result")
 				delete pending[message.toolCallId]
 				previousRole = "tool"
 				return { role: "tool", toolCallId: message.toolCallId, content: message.content }
 			}
 			if (Object.keys(pending).length) throw new ApiError("INVALID_MESSAGE_ORDER", "All tool calls must have results before the next message", 400)
 			if (!previousRole && message.role !== "user") throw new ApiError("INVALID_MESSAGE_ORDER", "Conversation must begin with a user message", 400)
-			var result = { role: message.role, content: message.role === "user" ? validateUserContent(message.content) : (typeof message.content === "string" ? message.content : "") }
-			if (typeof result.content === "string" && result.content) checkSizedString(result.content, DEFAULTS.maxMessageBytes, "Message content")
+			var result = { role: message.role, content: message.role === "user" ? validateUserContent(message.content, maxMessageBytes) : (typeof message.content === "string" ? message.content : "") }
+			if (typeof result.content === "string" && result.content) checkSizedString(result.content, maxMessageBytes, "Message content")
 			if (message.role === "assistant" && message.toolCalls !== undefined) {
 				if (!Array.isArray(message.toolCalls) || !message.toolCalls.length || message.toolCalls.length > DEFAULTS.maxTools) throw new ApiError("INVALID_REQUEST", "Assistant tool calls are invalid", 400)
 				result.toolCalls = message.toolCalls.map(function (call) {
@@ -442,15 +443,15 @@ var MaveCodeBackend = (function () {
 		})
 	}
 
-	function validateUserContent(content) {
-		if (typeof content === "string") { checkSizedString(content, DEFAULTS.maxMessageBytes, "Message content"); return content }
+	function validateUserContent(content, maxMessageBytes) {
+		if (typeof content === "string") { checkSizedString(content, maxMessageBytes, "Message content"); return content }
 		if (!Array.isArray(content) || !content.length || content.length > 32) throw new ApiError("INVALID_REQUEST", "User content must contain text or images", 400)
 		var hasContent = false
 		var result = content.map(function (part) {
 			if (!part || typeof part !== "object") throw new ApiError("INVALID_REQUEST", "User content part is invalid", 400)
 			if (part.type === "text") {
 				if (typeof part.text !== "string") throw new ApiError("INVALID_REQUEST", "Text content is invalid", 400)
-				checkSizedString(part.text, DEFAULTS.maxMessageBytes, "Message content")
+				checkSizedString(part.text, maxMessageBytes, "Message content")
 				if (part.text) hasContent = true
 				return { type: "text", text: part.text }
 			}

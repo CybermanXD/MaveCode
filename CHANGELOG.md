@@ -1,7 +1,6 @@
 # Changelog
 
-## 3.76.5
+## 3.76.6
 
-- Restored the packaged authenticated webview application.
-- Fixed stale browser callbacks invalidating newer sign-in attempts.
-- Fixed provider initialization ordering after sign-in.
+- Fixed large bundled persona prompts failing through Mave Gateway.
+- Matched Mave Gateway's Codex request behavior for large system instructions.

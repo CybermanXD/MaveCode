@@ -30,6 +30,46 @@ type GatewayMessage =
 
 type GatewayUserContentPart = { type: "text"; text: string } | { type: "image_url"; imageUrl: string }
 
+// Keep compatibility with already-deployed mavecode.v1 backends, which accepted
+// multiple leading system messages but capped each individual message at 64 KiB.
+// The complete request still has the backend's independent aggregate size limit.
+const LEGACY_GATEWAY_MESSAGE_BYTES = 60 * 1024
+
+function utf8Length(value: string): number {
+	return Buffer.byteLength(value, "utf8")
+}
+
+export function splitGatewaySystemPrompt(prompt: string, maxBytes = LEGACY_GATEWAY_MESSAGE_BYTES): string[] {
+	if (!prompt || utf8Length(prompt) <= maxBytes) return prompt ? [prompt] : []
+	if (!Number.isSafeInteger(maxBytes) || maxBytes < 1) throw new Error("Gateway message size must be positive")
+
+	const chunks: string[] = []
+	let remaining = prompt
+	while (remaining) {
+		let low = 1
+		let high = remaining.length
+		let end = 1
+		while (low <= high) {
+			const middle = Math.floor((low + high) / 2)
+			const candidateEnd =
+				middle < remaining.length && /[\uD800-\uDBFF]/.test(remaining[middle - 1]) ? middle - 1 : middle
+			if (candidateEnd > 0 && utf8Length(remaining.slice(0, candidateEnd)) <= maxBytes) {
+				end = candidateEnd
+				low = middle + 1
+			} else {
+				high = middle - 1
+			}
+		}
+
+		// Prefer a nearby line boundary so injected rules/references remain readable.
+		const lineBreak = remaining.lastIndexOf("\n", end - 1)
+		if (lineBreak >= Math.floor(end * 0.75)) end = lineBreak + 1
+		chunks.push(remaining.slice(0, end))
+		remaining = remaining.slice(end)
+	}
+	return chunks
+}
+
 function normalizeTextContent(content: unknown, message: string): string {
 	if (typeof content === "string") return content
 	if (
@@ -189,7 +229,11 @@ export class MaveGatewayHandler extends BaseProvider implements SingleCompletion
 			return { role: "user", content: normalizeUserContent(message.content) }
 		})
 		const signal = (metadata as (ApiHandlerCreateMessageMetadata & { signal?: AbortSignal }) | undefined)?.signal
-		const response = await this.chat([{ role: "system", content: systemPrompt }, ...converted], metadata, signal)
+		const systemMessages: GatewayMessage[] = splitGatewaySystemPrompt(systemPrompt).map((content) => ({
+			role: "system",
+			content,
+		}))
+		const response = await this.chat([...systemMessages, ...converted], metadata, signal)
 		for (const event of response.events) {
 			if (event.type === "text" && event.text) yield { type: "text", text: event.text }
 			if (event.type === "tool_call")

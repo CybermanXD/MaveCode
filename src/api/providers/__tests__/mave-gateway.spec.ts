@@ -2,7 +2,12 @@
 
 import type { ApiHandlerOptions } from "../../../shared/api"
 import { collectStream } from "../../../test-utils/stream"
-import { MaveGatewayHandler, classifyGatewayApiError, toGatewayStreamError } from "../mave-gateway"
+import {
+	MaveGatewayHandler,
+	classifyGatewayApiError,
+	splitGatewaySystemPrompt,
+	toGatewayStreamError,
+} from "../mave-gateway"
 
 const { mockBackendAction, mockGetCachedToken, mockClearToken, mockGetModels } = vitest.hoisted(() => ({
 	mockBackendAction: vitest.fn(),
@@ -149,6 +154,34 @@ describe("MaveGatewayHandler", () => {
 			undefined,
 		)
 		expect(chunks).toEqual([{ type: "text", text: "hello" }])
+	})
+
+	it("splits oversized persona instructions for legacy gateway message limits without losing content", async () => {
+		mockBackendAction.mockResolvedValueOnce({
+			id: "response-large-system",
+			model: "managed/codex",
+			events: [{ type: "text", text: "ok" }, { type: "completed" }],
+		})
+		const systemPrompt = `${"a".repeat(61_000)}\n${"😀".repeat(20_000)}\nfinal rule`
+
+		await collectStream(
+			new MaveGatewayHandler(options).createMessage(systemPrompt, [{ role: "user", content: "start" }]),
+		)
+
+		const request = mockBackendAction.mock.calls[0][1]
+		const systemMessages = request.messages.filter((message: { role: string }) => message.role === "system")
+		expect(systemMessages.length).toBeGreaterThan(1)
+		expect(systemMessages.every((message: { content: string }) => Buffer.byteLength(message.content) <= 60 * 1024)).toBe(
+			true,
+		)
+		expect(systemMessages.map((message: { content: string }) => message.content).join("")).toBe(systemPrompt)
+	})
+
+	it("splits UTF-8 text only at valid character boundaries", () => {
+		const prompt = "😀😀😀"
+		const chunks = splitGatewaySystemPrompt(prompt, 5)
+		expect(chunks).toEqual(["😀", "😀", "😀"])
+		expect(chunks.join("")).toBe(prompt)
 	})
 
 	it("forwards image content to the managed multimodal backend", async () => {
