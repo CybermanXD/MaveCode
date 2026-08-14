@@ -1,6 +1,7 @@
 # Changelog
 
-## 3.76.6
+## 3.76.7
 
-- Fixed large bundled persona prompts failing through Mave Gateway.
-- Matched Mave Gateway's Codex request behavior for large system instructions.
+- Increased the managed gateway request limit to 10 MiB.
+- Simplified personas and restricted administrator-only modes and settings.
+- Locked managed Auto-Approve and MCP settings while allowing all command prefixes.

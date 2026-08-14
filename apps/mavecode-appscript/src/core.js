@@ -14,7 +14,7 @@ var MaveCodeBackend = (function () {
 		nonceTtlSeconds: 600,
 		sessionTtlMs: 900000,
 		refreshTtlMs: 3600000,
-		maxRequestBytes: 8388608,
+		maxRequestBytes: 10485760,
 		maxResponseBytes: 524288,
 		quotaPerMinute: 20,
 		lockWaitMs: 5000,

@@ -19,6 +19,7 @@ let cachedToken = ""
 let cachedExpiry = 0
 let cachedBackendUrl = DEFAULT_BACKEND_URL
 let signInLaunch: Promise<boolean> | undefined
+let cachedRole = ""
 
 type SessionData = {
 	sessionToken: string
@@ -78,6 +79,10 @@ export function getCachedMaveCodeToken(): string {
 	return cachedToken
 }
 
+export function isMaveCodeAdmin(): boolean {
+	return cachedRole === "admin"
+}
+
 /** Migration-only fallback for profiles created before Apps Script sessions. */
 export function resolveMaveGatewaySessionToken(legacyProfileToken?: string): string | undefined {
 	return cachedToken || legacyProfileToken || undefined
@@ -98,6 +103,7 @@ export async function setMaveCodeToken(token: string, expiresAt = cachedExpiry):
 export async function clearMaveCodeToken(): Promise<void> {
 	cachedToken = ""
 	cachedExpiry = 0
+	cachedRole = ""
 	await secrets?.delete(TOKEN_KEY)
 	await secrets?.delete(EXPIRY_KEY)
 }
@@ -193,6 +199,7 @@ export async function handleAuthCallback(code: string, state = ""): Promise<bool
 		console.info(`[MaveCode Auth] Authorization exchange started id=${transactionId}`)
 		const session = await client().action<SessionData>("auth-code-exchange", { authorizationCode: code, state, codeVerifier: verifier, callbackUri })
 		await setMaveCodeToken(session.sessionToken, session.expiresAt)
+		cachedRole = session.claims.role
 		console.info(
 			`[MaveCode Auth] Authorization exchange completed id=${transactionId} tokenPersisted=${Boolean(getCachedMaveCodeToken())} elapsedMs=${Date.now() - startedAt}`,
 		)
@@ -210,7 +217,8 @@ export async function handleAuthCallback(code: string, state = ""): Promise<bool
 export async function verifyMaveCodeToken(): Promise<"valid" | "invalid" | "unreachable"> {
 	if (!cachedToken) return "invalid"
 	try {
-		await client().action("session-verify", { sessionToken: cachedToken })
+		const session = await client().action<{ claims: SessionData["claims"] }>("session-verify", { sessionToken: cachedToken })
+		cachedRole = session.claims.role
 		return "valid"
 	} catch (error) {
 		if (
@@ -227,6 +235,7 @@ export async function refreshMaveCodeSession(): Promise<boolean> {
 	try {
 		const session = await client().action<SessionData>("session-refresh", { sessionToken: cachedToken })
 		await setMaveCodeToken(session.sessionToken, session.expiresAt)
+		cachedRole = session.claims.role
 		return true
 	} catch (error) {
 		if (

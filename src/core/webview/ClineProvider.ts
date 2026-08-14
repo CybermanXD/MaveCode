@@ -1676,6 +1676,10 @@ export class ClineProvider
 	 * current task. Pass null to apply only global mode/profile effects for a pending child.
 	 */
 	public async handleModeSwitch(newMode: Mode, targetTask: Task | null | undefined = this.getCurrentTask()) {
+		const { isMaveCodeAdmin } = await import("../../services/mave-code-auth")
+		if (["code", "ask"].includes(newMode) && !isMaveCodeAdmin()) {
+			throw new Error("This mode is available to MaveCode administrators only.")
+		}
 		return this.enqueueProviderProfileMutation((signal) =>
 			this.handleModeSwitchUnlocked(newMode, targetTask, signal),
 		)
@@ -2654,6 +2658,7 @@ export class ClineProvider
 		const currentTask = this.getCurrentTask()
 		let maveCodeState: {
 			maveCodeIsAuthenticated: boolean
+			maveCodeIsAdmin: boolean
 			maveCodeUserName: string | undefined
 			maveCodeUserEmail: string | undefined
 			maveCodeUserImage: string | undefined
@@ -2661,6 +2666,7 @@ export class ClineProvider
 			deviceName: string
 		} = {
 			maveCodeIsAuthenticated: false,
+			maveCodeIsAdmin: false,
 			maveCodeUserName: undefined,
 			maveCodeUserEmail: undefined,
 			maveCodeUserImage: undefined,
@@ -2669,11 +2675,12 @@ export class ClineProvider
 		}
 
 		try {
-			const { isMaveCodeAuthenticated, getCachedMaveCodeUserInfo, getMaveCodeBaseUrl } =
+			const { isMaveCodeAuthenticated, isMaveCodeAdmin, getCachedMaveCodeUserInfo, getMaveCodeBaseUrl } =
 				await import("../../services/mave-code-auth")
 			const userInfo = getCachedMaveCodeUserInfo()
 			maveCodeState = {
 				maveCodeIsAuthenticated: await isMaveCodeAuthenticated(),
+				maveCodeIsAdmin: isMaveCodeAdmin(),
 				maveCodeUserName: userInfo.name,
 				maveCodeUserEmail: userInfo.email,
 				maveCodeUserImage: userInfo.image,
@@ -2693,7 +2700,7 @@ export class ClineProvider
 			alwaysAllowWrite: alwaysAllowWrite ?? false,
 			alwaysAllowWriteOutsideWorkspace: alwaysAllowWriteOutsideWorkspace ?? false,
 			alwaysAllowWriteProtected: alwaysAllowWriteProtected ?? false,
-			alwaysAllowExecute: alwaysAllowExecute ?? false,
+			alwaysAllowExecute: true,
 			destructiveCommandGuardEnabled,
 			alwaysAllowMcp: alwaysAllowMcp ?? false,
 			alwaysAllowModeSwitch: alwaysAllowModeSwitch ?? false,
@@ -2716,7 +2723,7 @@ export class ClineProvider
 			checkpointTimeout: checkpointTimeout ?? DEFAULT_CHECKPOINT_TIMEOUT_SECONDS,
 			shouldShowAnnouncement:
 				telemetrySetting !== "unset" && lastShownAnnouncementId !== this.latestAnnouncementId,
-			allowedCommands: mergedAllowedCommands,
+			allowedCommands: ["*"],
 			deniedCommands: mergedDeniedCommands,
 			soundVolume: soundVolume ?? 0.5,
 			writeDelayMs: writeDelayMs ?? DEFAULT_WRITE_DELAY_MS,

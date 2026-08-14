@@ -17,7 +17,6 @@ import {
 	FlaskConical,
 	TriangleAlert,
 	Globe,
-	Info,
 	MessageSquare,
 	LucideIcon,
 	SquareSlash,
@@ -75,7 +74,6 @@ import { ContextManagementSettings } from "./ContextManagementSettings"
 import { TerminalSettings } from "./TerminalSettings"
 import { ExperimentalSettings } from "./ExperimentalSettings"
 import { LanguageSettings } from "./LanguageSettings"
-import { About } from "./About"
 import { Section } from "./Section"
 import PromptsSettings from "./PromptsSettings"
 import { SlashCommandsSettings } from "./SlashCommandsSettings"
@@ -130,16 +128,12 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 	const { t } = useAppTranslation()
 
 	const extensionState = useExtensionState()
-	const { currentApiConfigName, listApiConfigMeta, uriScheme, settingsImportedAt, mode } = extensionState
+	const { currentApiConfigName, listApiConfigMeta, uriScheme, settingsImportedAt, mode, maveCodeIsAdmin } = extensionState
 
 	const [isDiscardDialogShow, setDiscardDialogShow] = useState(false)
 	const [isChangeDetected, setChangeDetected] = useState(false)
 	const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined)
-	const [activeTab, setActiveTab] = useState<SectionName>(
-		targetSection && sectionNames.includes(targetSection as SectionName)
-			? (targetSection as SectionName)
-			: "providers",
-	)
+	const [activeTab, setActiveTab] = useState<SectionName>("providers")
 
 	const scrollPositions = useRef<Record<SectionName, number>>(
 		Object.fromEntries(sectionNames.map((s) => [s, 0])) as Record<SectionName, number>,
@@ -535,32 +529,24 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 	const sections: { id: SectionName; icon: LucideIcon }[] = useMemo(
 		() => [
 			{ id: "providers", icon: Plug },
-			{ id: "modes", icon: UsersRound },
-			{ id: "skills", icon: GraduationCap },
-			{ id: "slashCommands", icon: SquareSlash },
-			{ id: "rules", icon: ScrollText },
+			...(maveCodeIsAdmin ? [{ id: "modes" as const, icon: UsersRound }] : []),
 			{ id: "autoApprove", icon: CheckCheck },
 			{ id: "mcp", icon: Server },
 			{ id: "checkpoints", icon: GitCommitVertical },
 			{ id: "notifications", icon: Bell },
-			{ id: "contextManagement", icon: Database },
-			{ id: "terminal", icon: SquareTerminal },
-			{ id: "prompts", icon: MessageSquare },
-			{ id: "worktrees", icon: GitBranch },
+			...(maveCodeIsAdmin ? [{ id: "contextManagement" as const, icon: Database }] : []),
 			{ id: "ui", icon: Glasses },
-			{ id: "experimental", icon: FlaskConical },
 			{ id: "language", icon: Globe },
-			{ id: "about", icon: Info },
 		],
-		[], // No dependencies needed now
+		[maveCodeIsAdmin],
 	)
 
 	// Update target section logic to set active tab
 	useEffect(() => {
-		if (targetSection && sectionNames.includes(targetSection as SectionName)) {
+		if (targetSection && sections.some(({ id }) => id === targetSection)) {
 			setActiveTab(targetSection as SectionName)
 		}
-	}, [targetSection])
+	}, [targetSection, sections])
 
 	// Function to scroll the active tab into view for vertical layout
 	const scrollToActiveTab = useCallback(() => {
@@ -602,13 +588,13 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 	// Track which tabs have been indexed (visited at least once)
 	const [indexingTabIndex, setIndexingTabIndex] = useState(0)
 	const initialTab = useRef<SectionName>(activeTab)
-	const isIndexing = indexingTabIndex < sectionNames.length
+	const isIndexing = indexingTabIndex < sections.length
 	const isIndexingComplete = !isIndexing
 	const tabTitlesRegistered = useRef(false)
 
 	// Index all tabs by cycling through them on mount
 	useLayoutEffect(() => {
-		if (indexingTabIndex >= sectionNames.length) {
+		if (indexingTabIndex >= sections.length) {
 			// All tabs indexed, now register tab titles as searchable items
 			if (!tabTitlesRegistered.current && searchContextValue) {
 				sections.forEach(({ id }) => {
@@ -633,7 +619,7 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 	}, [indexingTabIndex, searchContextValue, sections, t])
 
 	// Determine which tab content to render (for indexing or active display)
-	const renderTab = isIndexing ? sectionNames[indexingTabIndex] : activeTab
+	const renderTab = isIndexing ? sections[indexingTabIndex]?.id : activeTab
 
 	// Handle search navigation - switch to the correct tab and scroll to the element
 	const handleSearchNavigate = useCallback(
@@ -806,7 +792,7 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 
 						{/* Auto-Approve Section */}
 						{renderTab === "autoApprove" && (
-							<AutoApproveSettings
+							<div className="opacity-50 pointer-events-none" aria-disabled="true"><AutoApproveSettings
 								alwaysAllowReadOnly={alwaysAllowReadOnly}
 								alwaysAllowReadOnlyOutsideWorkspace={alwaysAllowReadOnlyOutsideWorkspace}
 								alwaysAllowWrite={alwaysAllowWrite}
@@ -824,7 +810,7 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 								allowedMaxCost={allowedMaxCost ?? undefined}
 								deniedCommands={deniedCommands}
 								setCachedStateField={setCachedStateField}
-							/>
+							/></div>
 						)}
 
 						{/* Slash Commands Section */}
@@ -905,10 +891,10 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 
 						{/* MCP Section */}
 						{renderTab === "mcp" && (
-							<McpView
+							<div className="opacity-50 pointer-events-none" aria-disabled="true"><McpView
 								mcpEnabled={mcpEnabled}
 								setMcpEnabled={(value) => setCachedStateField("mcpEnabled", value)}
-							/>
+							/></div>
 						)}
 
 						{/* Worktrees Section */}
@@ -962,15 +948,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 							<LanguageSettings language={language || "en"} setCachedStateField={setCachedStateField} />
 						)}
 
-						{/* About Section */}
-						{renderTab === "about" && (
-							<About
-								telemetrySetting={telemetrySetting}
-								setTelemetrySetting={setTelemetrySetting}
-								debug={cachedState.debug}
-								setDebug={setDebug}
-							/>
-						)}
 					</SearchIndexProvider>
 				</TabContent>
 			</div>

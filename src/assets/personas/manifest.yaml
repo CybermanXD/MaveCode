@@ -10,14 +10,6 @@ personas:
       - references/css1.txt
       - references/css2.txt
       - references/Enphase_Main_Reference.html
-  - id: standardcode
-    version: 1.0.0
-    definition: persona.yaml
-    rules:
-      - rules/core.md
-      - rules/workflow.md
-    references:
-      - references/project.md
   - id: standard
     version: 1.1.0
     definition: persona.yaml

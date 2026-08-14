@@ -225,6 +225,16 @@ test("chat supports a configurable per-message safety limit", () => {
 	assert.equal(response.body.error.message, "Message content exceeds size limit")
 })
 
+test("chat accepts requests up to the 10 MiB aggregate default", () => {
+	const deps = readyDeps(() => ({ getResponseCode: () => 200, getContentText: () => JSON.stringify({ output_text: "x" }) }))
+	const token = issue(deps)
+	const response = Backend.handle("POST", event({
+		action: "chat", protocolVersion: "mavecode.v1", sessionToken: token, model: "codex-test-model",
+		messages: Array.from({ length: 11 }, () => ({ role: "user", content: "x".repeat(900_000) })),
+	}), deps)
+	assert.equal(response.status, 200)
+})
+
 test("provider errors expose safe actionable diagnostics without leaking the response", () => {
 	const deps = readyDeps(() => ({ getResponseCode: () => 401, getContentText: () => JSON.stringify({ access_token: "must-not-escape", error: { code: "token_expired", message: "Bearer must-not-escape" } }) }))
 	const response = Backend.handle("POST", event({ action: "chat", protocolVersion: "mavecode.v1", sessionToken: issue(deps), model: "codex-test-model", messages: [{ role: "user", content: "hello" }] }), deps)

@@ -406,6 +406,7 @@ export type ExtensionState = Pick<
 		error?: string
 	}
 	maveCodeIsAuthenticated?: boolean
+	maveCodeIsAdmin?: boolean
 	maveCodeUserName?: string
 	maveCodeUserEmail?: string
 	maveCodeUserImage?: string

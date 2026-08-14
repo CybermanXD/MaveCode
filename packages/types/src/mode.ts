@@ -177,7 +177,7 @@ export type CustomSupportPrompts = z.infer<typeof customSupportPromptsSchema>
  * DEFAULT_MODES
  */
 
-export const DEFAULT_MODES: readonly ModeConfig[] = [
+const LEGACY_DEFAULT_MODES: readonly ModeConfig[] = [
 	{
 		slug: "architect",
 		name: "🏗️ Architect",
@@ -237,3 +237,8 @@ export const DEFAULT_MODES: readonly ModeConfig[] = [
 			"Your role is to coordinate complex workflows by delegating tasks to specialized modes. As an orchestrator, you should:\n\n1. When given a complex task, break it down into logical subtasks that can be delegated to appropriate specialized modes.\n\n2. For each subtask, use the `new_task` tool to delegate. Choose the most appropriate mode for the subtask's specific goal and provide comprehensive instructions in the `message` parameter. These instructions must include:\n    *   All necessary context from the parent task or previous subtasks required to complete the work.\n    *   A clearly defined scope, specifying exactly what the subtask should accomplish.\n    *   An explicit statement that the subtask should *only* perform the work outlined in these instructions and not deviate.\n    *   An instruction for the subtask to signal completion by using the `attempt_completion` tool, providing a concise yet thorough summary of the outcome in the `result` parameter, keeping in mind that this summary will be the source of truth used to keep track of what was completed on this project.\n    *   A statement that these specific instructions supersede any conflicting general instructions the subtask's mode might have.\n\n3. Track and manage the progress of all subtasks. When a subtask is completed, analyze its results and determine the next steps.\n\n4. Help the user understand how the different subtasks fit together in the overall workflow. Provide clear reasoning about why you're delegating specific tasks to specific modes.\n\n5. When all subtasks are completed, synthesize the results and provide a comprehensive overview of what was accomplished.\n\n6. Ask clarifying questions when necessary to better understand how to break down complex tasks effectively.\n\n7. Suggest improvements to the workflow based on the results of completed subtasks.\n\nUse subtasks to maintain clarity. If a request significantly shifts focus or requires a different expertise (mode), consider creating a subtask rather than overloading the current one.",
 	},
 ] as const
+
+/** MaveCode exposes project personas plus admin-only Code and Ask modes. */
+export const DEFAULT_MODES: readonly ModeConfig[] = LEGACY_DEFAULT_MODES.filter(({ slug }) =>
+	["code", "ask"].includes(slug),
+)
