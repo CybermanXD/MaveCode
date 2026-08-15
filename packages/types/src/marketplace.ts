@@ -27,7 +27,7 @@ export type McpInstallationMethod = z.infer<typeof mcpInstallationMethodSchema>
 /**
  * Component type validation
  */
-export const marketplaceItemTypeSchema = z.enum(["mode", "mcp"] as const)
+export const marketplaceItemTypeSchema = z.enum(["mode", "mcp", "persona"] as const)
 
 export type MarketplaceItemType = z.infer<typeof marketplaceItemTypeSchema>
 
@@ -61,6 +61,17 @@ export const mcpMarketplaceItemSchema = baseMarketplaceItemSchema.extend({
 
 export type McpMarketplaceItem = z.infer<typeof mcpMarketplaceItemSchema>
 
+export const personaMarketplaceItemSchema = baseMarketplaceItemSchema.extend({
+	version: z.string().min(1),
+	packageUrl: z.string().url(),
+	sha256: z.string().regex(/^[a-f0-9]{64}$/),
+	packageSize: z.number().int().positive(),
+	signingKeyId: z.string().min(1),
+	minimumMaveCodeVersion: z.string().min(1),
+})
+
+export type PersonaMarketplaceItem = z.infer<typeof personaMarketplaceItemSchema>
+
 /**
  * Unified marketplace item schema using discriminated union
  */
@@ -72,6 +83,9 @@ export const marketplaceItemSchema = z.discriminatedUnion("type", [
 	// MCP marketplace item
 	mcpMarketplaceItemSchema.extend({
 		type: z.literal("mcp"),
+	}),
+	personaMarketplaceItemSchema.extend({
+		type: z.literal("persona"),
 	}),
 ])
 

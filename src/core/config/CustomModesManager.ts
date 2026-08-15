@@ -59,7 +59,10 @@ export class CustomModesManager {
 		private readonly context: vscode.ExtensionContext,
 		private readonly onUpdate: () => Promise<void>,
 	) {
-		this.bundledPersonaManager = new BundledPersonaManager(this.context.extensionUri.fsPath)
+		this.bundledPersonaManager = new BundledPersonaManager(
+			this.context.extensionUri.fsPath,
+			this.context.globalStorageUri.fsPath,
+		)
 		this.watchCustomModesFiles().catch((error) => {
 			console.error("[CustomModesManager] Failed to setup file watchers:", error)
 		})

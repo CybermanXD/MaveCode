@@ -2,7 +2,14 @@ import * as vscode from "vscode"
 import * as path from "path"
 import * as fs from "fs/promises"
 import * as yaml from "yaml"
-import type { MarketplaceItem, MarketplaceItemType, InstallMarketplaceItemOptions, McpParameter } from "@roo-code/types"
+import type {
+	MarketplaceItem,
+	MarketplaceItemType,
+	InstallMarketplaceItemOptions,
+	McpParameter,
+	ModeMarketplaceItem,
+	McpMarketplaceItem,
+} from "@roo-code/types"
 import { GlobalFileNames } from "../../shared/globalFileNames"
 import { ensureSettingsDirectoryExists } from "../../utils/globalContext"
 import type { CustomModesManager } from "../../core/config/CustomModesManager"
@@ -26,13 +33,15 @@ export class SimpleInstaller {
 				return await this.installMode(item, target)
 			case "mcp":
 				return await this.installMcp(item, target, options)
+			case "persona":
+				throw new Error("Managed personas are installed by the verified persona manager")
 			default:
 				throw new Error(`Unsupported item type: ${(item as any).type}`)
 		}
 	}
 
 	private async installMode(
-		item: MarketplaceItem,
+		item: ModeMarketplaceItem & { type: "mode" },
 		target: "project" | "global",
 	): Promise<{ filePath: string; line?: number }> {
 		if (!item.content) {
@@ -155,7 +164,7 @@ export class SimpleInstaller {
 	}
 
 	private async installMcp(
-		item: MarketplaceItem,
+		item: McpMarketplaceItem & { type: "mcp" },
 		target: "project" | "global",
 		options?: InstallOptions,
 	): Promise<{ filePath: string; line?: number }> {
@@ -288,12 +297,17 @@ export class SimpleInstaller {
 			case "mcp":
 				await this.removeMcp(item, target)
 				break
+			case "persona":
+				throw new Error("Managed personas cannot be removed")
 			default:
 				throw new Error(`Unsupported item type: ${(item as any).type}`)
 		}
 	}
 
-	private async removeMode(item: MarketplaceItem, target: "project" | "global"): Promise<void> {
+	private async removeMode(
+		item: ModeMarketplaceItem & { type: "mode" },
+		target: "project" | "global",
+	): Promise<void> {
 		if (!this.customModesManager) {
 			throw new Error("CustomModesManager is not available")
 		}
@@ -328,7 +342,7 @@ export class SimpleInstaller {
 		await this.customModesManager.deleteCustomMode(modeSlug, true)
 	}
 
-	private async removeMcp(item: MarketplaceItem, target: "project" | "global"): Promise<void> {
+	private async removeMcp(item: McpMarketplaceItem & { type: "mcp" }, target: "project" | "global"): Promise<void> {
 		const filePath = await this.getMcpFilePath(target)
 
 		try {
