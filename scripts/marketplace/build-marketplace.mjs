@@ -46,7 +46,7 @@ const readPersonaFiles = async (personaDirectory, files, kind) => {
 		assertRelativePath(relativePath, `${kind} path`)
 		const absolutePath = path.resolve(personaDirectory, relativePath)
 		assert(absolutePath.startsWith(`${personaDirectory}${path.sep}`), `${kind} path escapes persona directory`)
-		const content = await readFile(absolutePath, "utf8")
+		const content = (await readFile(absolutePath, "utf8")).replace(/\r\n/g, "\n")
 		assert(Buffer.byteLength(content) <= 5 * 1024 * 1024, `${kind} file ${relativePath} is too large`)
 		results.push({ path: relativePath.replaceAll("\\", "/"), content })
 	}
