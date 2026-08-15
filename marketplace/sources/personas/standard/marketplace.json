@@ -1,0 +1,7 @@
+{
+	"id": "standard",
+	"name": "Standard",
+	"description": "Self-contained Standard project engineering persona",
+	"tags": ["mavecode", "engineering", "general"],
+	"minimumMaveCodeVersion": "3.76.11"
+}

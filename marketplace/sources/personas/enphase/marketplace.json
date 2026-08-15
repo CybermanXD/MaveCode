@@ -1,0 +1,7 @@
+{
+	"id": "enphase",
+	"name": "Enphase",
+	"description": "Self-contained Enphase project engineering persona",
+	"tags": ["mavecode", "enphase", "email"],
+	"minimumMaveCodeVersion": "3.76.11"
+}

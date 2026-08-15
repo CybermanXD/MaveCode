@@ -112,16 +112,10 @@ export function MarketplaceView({ stateManager, onDone, targetTab }: Marketplace
 							<h3 className="font-bold m-0">{t("marketplace:title")}</h3>
 						</div>
 					</div>
-
 				</TabHeader>
 
 				<TabContent className="p-3 pt-2">
-					<MarketplaceListView
-						stateManager={stateManager}
-						allTags={allTags}
-						filteredTags={filteredTags}
-						filterByType="mcp"
-					/>
+					<MarketplaceListView stateManager={stateManager} allTags={allTags} filteredTags={filteredTags} />
 				</TabContent>
 			</Tab>
 		</TooltipProvider>

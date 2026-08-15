@@ -88,6 +88,7 @@ async function main() {
 							["../webview-ui/audio", "webview-ui/audio"],
 							["assets/marketplace", "dist/assets/marketplace"],
 							["assets/personas", "dist/assets/personas"],
+							["../marketplace/keys", "dist/assets/marketplace-keys"],
 						],
 						srcDir,
 						buildDir,

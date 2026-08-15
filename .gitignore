@@ -77,6 +77,8 @@ Desktop.ini
 /PRODUCT_PLAN.md
 /MaveCode_CVonfig.md
 /FIGMA_PLAN.md
+/marketplace/published/
+/.marketplace-signing-key.pem
 /.roo/
 /.roomodes
 /AGENTS.md

@@ -5,6 +5,8 @@
 		"node": "22.23.1"
 	},
 	"scripts": {
+		"marketplace:build": "node scripts/marketplace/build-marketplace.mjs --unsigned --update-version-digests",
+		"marketplace:test": "node scripts/marketplace/build-marketplace.test.mjs",
 		"preinstall": "node scripts/bootstrap.mjs",
 		"prepare": "husky",
 		"install": "node scripts/bootstrap.mjs",
@@ -46,7 +48,8 @@
 		"rimraf": "6.0.1",
 		"tsx": "4.22.4",
 		"turbo": "2.10.0",
-		"typescript": "5.9.3"
+		"typescript": "5.9.3",
+		"yaml": "2.8.1"
 	},
 	"lint-staged": {
 		"*.{js,jsx,ts,tsx,json,css,md}": [

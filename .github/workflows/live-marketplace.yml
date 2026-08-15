@@ -1,0 +1,65 @@
+name: Publish Live MaveCode Marketplace
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/assets/personas/**"
+      - "marketplace/sources/**"
+      - "scripts/marketplace/**"
+      - ".github/workflows/live-marketplace.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: live-marketplace
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    environment: marketplace-production
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout reviewed source
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+        with:
+          install-args: "--frozen-lockfile"
+
+      - name: Scan marketplace sources for likely secrets
+        shell: bash
+        run: |
+          if grep -RInE --exclude='*.html' '(BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|refresh[_-]?token|access[_-]?token|client[_-]?secret|api[_-]?key[[:space:]]*[:=])' marketplace/sources src/assets/personas; then
+            echo "Potential secret found in marketplace source."
+            exit 1
+          fi
+
+      - name: Ensure committed version digests are current
+        run: |
+          node scripts/marketplace/build-marketplace.mjs --unsigned --update-version-digests
+          git diff --exit-code -- marketplace/version-digests.json
+
+      - name: Build and sign deterministic marketplace snapshot
+        env:
+          MARKETPLACE_ED25519_PRIVATE_KEY: ${{ secrets.MARKETPLACE_ED25519_PRIVATE_KEY }}
+          MARKETPLACE_SIGNING_KEY_ID: mavecode-marketplace-2026-01
+          MARKETPLACE_BASE_URL: https://cybermanxd.github.io/MaveCode
+        run: |
+          export SOURCE_DATE_EPOCH="$(git show -s --format=%ct HEAD)"
+          node scripts/marketplace/build-marketplace.mjs
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: marketplace/published
+
+      - name: Deploy complete marketplace snapshot
+        uses: actions/deploy-pages@f81c0a56d3e01a7c883d80b7f1fdf9f0a2b57f9c # v4

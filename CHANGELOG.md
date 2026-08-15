@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.76.11
+
+- Added a signed GitHub-backed live marketplace for managed persona updates.
+- Added Standard and Enphase as independently published, immutable marketplace personas with bundled offline fallback.
+- Added deterministic marketplace packaging, version-digest enforcement, secret scanning, and GitHub Pages publication.
+
 ## 3.76.10
 
 - Added the official local Figma Dev Mode MCP server as an enabled built-in integration without overwriting user customization.

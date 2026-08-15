@@ -11,6 +11,7 @@ import { GlobalFileNames } from "../../shared/globalFileNames"
 import { ensureSettingsDirectoryExists } from "../../utils/globalContext"
 import { t } from "../../i18n"
 import type { CustomModesManager } from "../../core/config/CustomModesManager"
+import { RemotePersonaManager } from "../personas/RemotePersonaManager"
 
 import { ConfigLoader } from "./ConfigLoader"
 import { SimpleInstaller } from "./SimpleInstaller"
@@ -24,6 +25,7 @@ export interface MarketplaceItemsResponse {
 export class MarketplaceManager {
 	private configLoader: ConfigLoader
 	private installer: SimpleInstaller
+	private remotePersonaManager: RemotePersonaManager
 
 	constructor(
 		private readonly context: vscode.ExtensionContext,
@@ -31,11 +33,16 @@ export class MarketplaceManager {
 	) {
 		this.configLoader = new ConfigLoader(context.extensionUri.fsPath)
 		this.installer = new SimpleInstaller(context, customModesManager)
+		this.remotePersonaManager = new RemotePersonaManager(context.globalStorageUri.fsPath)
 	}
 
 	async getMarketplaceItems(): Promise<MarketplaceItemsResponse> {
 		try {
-			const marketplaceItems = await this.configLoader.loadAllItems()
+			const [localItems, personaItems] = await Promise.all([
+				this.configLoader.loadAllItems(),
+				this.remotePersonaManager.getMarketplaceItems(),
+			])
+			const marketplaceItems = [...personaItems, ...localItems.filter((item) => item.type === "mcp")]
 
 			return {
 				organizationMcps: [],
@@ -111,6 +118,13 @@ export class MarketplaceManager {
 		vscode.window.showInformationMessage(t("marketplace:installation.installing", { itemName: item.name }))
 
 		try {
+			if (item.type === "persona") {
+				await this.remotePersonaManager.getPersonas()
+				vscode.window.showInformationMessage(
+					t("marketplace:installation.installSuccess", { itemName: item.name }),
+				)
+				return this.context.globalStorageUri.fsPath
+			}
 			const result = await this.installer.installItem(item, { target, parameters })
 			vscode.window.showInformationMessage(t("marketplace:installation.installSuccess", { itemName: item.name }))
 
@@ -165,6 +179,9 @@ export class MarketplaceManager {
 		vscode.window.showInformationMessage(t("marketplace:installation.removing", { itemName: item.name }))
 
 		try {
+			if (item.type === "persona") {
+				throw new Error(`Managed persona '${item.id}' cannot be removed.`)
+			}
 			await this.installer.removeItem(item, { target })
 			vscode.window.showInformationMessage(t("marketplace:installation.removeSuccess", { itemName: item.name }))
 
@@ -193,6 +210,9 @@ export class MarketplaceManager {
 		const metadata = {
 			project: {} as Record<string, { type: string }>,
 			global: {} as Record<string, { type: string }>,
+		}
+		for (const persona of await this.remotePersonaManager.getMarketplaceItems()) {
+			metadata.global[persona.id] = { type: "persona" }
 		}
 
 		// Check project-level installations
