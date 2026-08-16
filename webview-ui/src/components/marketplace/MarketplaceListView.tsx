@@ -10,7 +10,6 @@ import { MarketplaceViewStateManager } from "./MarketplaceViewStateManager"
 import { useAppTranslation } from "@/i18n/TranslationContext"
 import { useStateManager } from "./useStateManager"
 import { useExtensionState } from "@/context/ExtensionStateContext"
-import { IssueFooter } from "./IssueFooter"
 
 export interface MarketplaceListViewProps {
 	stateManager: MarketplaceViewStateManager
@@ -60,7 +59,7 @@ export function MarketplaceListView({ stateManager, allTags, filteredTags, filte
 					/>
 				</div>
 				<div className="mt-2 flex gap-2">
-					<Select
+					{filterByType !== "persona" && <Select
 						value={state.filters.installed}
 						onValueChange={(value: "all" | "installed" | "not_installed") =>
 							manager.transition({
@@ -78,7 +77,7 @@ export function MarketplaceListView({ stateManager, allTags, filteredTags, filte
 								{t("marketplace:filters.installed.notInstalled")}
 							</SelectItem>
 						</SelectContent>
-					</Select>
+					</Select>}
 					{allTags.length > 0 && (
 						<div className="flex-1">
 							<Popover open={isTagPopoverOpen} onOpenChange={(open) => setIsTagPopoverOpen(open)}>
@@ -288,7 +287,6 @@ export function MarketplaceListView({ stateManager, allTags, filteredTags, filte
 				</div>
 			)}
 
-			<IssueFooter />
 		</>
 	)
 }

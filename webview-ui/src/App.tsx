@@ -66,7 +66,6 @@ const App = () => {
 	// Create a persistent state manager
 	const marketplaceStateManager = useMemo(() => new MarketplaceViewStateManager(), [])
 
-	const [showAnnouncement, setShowAnnouncement] = useState(false)
 	const [tab, setTab] = useState<Tab>("chat")
 	const handledImportRef = useRef<number | undefined>(undefined)
 
@@ -165,11 +164,8 @@ const App = () => {
 	useEvent("message", onMessage)
 
 	useEffect(() => {
-		if (shouldShowAnnouncement && tab === "chat") {
-			setShowAnnouncement(true)
-			vscode.postMessage({ type: "didShowAnnouncement" })
-		}
-	}, [shouldShowAnnouncement, tab])
+		if (shouldShowAnnouncement) vscode.postMessage({ type: "didShowAnnouncement" })
+	}, [shouldShowAnnouncement])
 
 	useEffect(() => {
 		const isRecoverableTab = tab === "settings" || tab === "marketplace"
@@ -243,14 +239,12 @@ const App = () => {
 				<MarketplaceView
 					stateManager={marketplaceStateManager}
 					onDone={() => switchTab("chat")}
-					targetTab={currentMarketplaceTab as "mcp" | "mode" | undefined}
+					targetTab={currentMarketplaceTab as "mcp" | "persona" | undefined}
 				/>
 			)}
 			<ChatView
 				ref={chatViewRef}
 				isHidden={tab !== "chat"}
-				showAnnouncement={showAnnouncement}
-				hideAnnouncement={() => setShowAnnouncement(false)}
 			/>
 			{deleteMessageDialogState.hasCheckpoint ? (
 				<MemoizedCheckpointRestoreDialog

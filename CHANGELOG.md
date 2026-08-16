@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.76.12
+
+- Restored separate MCP and Personas tabs in Marketplace.
+- Replaced managed-persona install/remove actions with persistent enable/disable controls.
+- Made Standard permanently enabled and protected every managed persona slug from custom-mode shadowing.
+- Removed the Marketplace issue-report footer and release-notes popups, including version-click popups.
+
 ## 3.76.11
 
 - Added a signed GitHub-backed live marketplace for managed persona updates.

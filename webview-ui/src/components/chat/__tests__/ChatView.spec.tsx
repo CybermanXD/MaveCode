@@ -677,14 +677,8 @@ describe("ChatView - Version Indicator Tests", () => {
 		expect(getByTestId("version-indicator")).toBeInTheDocument()
 	})
 
-	it("opens announcement modal when version indicator is clicked", async () => {
-		// Mock VersionIndicator to return a button with onClick
-		mockVersionIndicator.mockImplementation(({ onClick }: { onClick?: () => void }) =>
-			React.createElement("button", {
-				"data-testid": "version-indicator",
-				onClick,
-			}),
-		)
+	it("does not open announcement modal from the version indicator", async () => {
+		mockVersionIndicator.mockReturnValue(React.createElement("div", { "data-testid": "version-indicator" }))
 
 		const { getByTestId, queryByTestId } = renderChatView({ showAnnouncement: false })
 
@@ -699,16 +693,7 @@ describe("ChatView - Version Indicator Tests", () => {
 			expect(getByTestId("version-indicator")).toBeInTheDocument()
 		})
 
-		// Click version indicator
-		const versionIndicator = getByTestId("version-indicator")
-		act(() => {
-			versionIndicator.click()
-		})
-
-		// Wait for announcement modal to appear
-		await waitFor(() => {
-			expect(queryByTestId("announcement-modal")).toBeInTheDocument()
-		})
+		expect(queryByTestId("announcement-modal")).not.toBeInTheDocument()
 	})
 
 	it("version indicator has correct styling classes", () => {

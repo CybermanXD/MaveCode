@@ -13,7 +13,7 @@ import { ExtensionStateContext } from "@/context/ExtensionStateContext"
 interface MarketplaceViewProps {
 	onDone?: () => void
 	stateManager: MarketplaceViewStateManager
-	targetTab?: "mcp" | "mode"
+	targetTab?: "mcp" | "persona"
 }
 export function MarketplaceView({ stateManager, onDone, targetTab }: MarketplaceViewProps) {
 	const { t } = useAppTranslation()
@@ -43,7 +43,7 @@ export function MarketplaceView({ stateManager, onDone, targetTab }: Marketplace
 	}, [state.allItems, hasReceivedInitialState])
 
 	useEffect(() => {
-		if (targetTab && (targetTab === "mcp" || targetTab === "mode")) {
+		if (targetTab && (targetTab === "mcp" || targetTab === "persona")) {
 			manager.transition({ type: "SET_ACTIVE_TAB", payload: { tab: targetTab } })
 		}
 	}, [targetTab, manager])
@@ -112,10 +112,21 @@ export function MarketplaceView({ stateManager, onDone, targetTab }: Marketplace
 							<h3 className="font-bold m-0">{t("marketplace:title")}</h3>
 						</div>
 					</div>
+					<div className="flex gap-1 px-2 pt-2 border-b border-vscode-panel-border">
+						{(["mcp", "persona"] as const).map((tab) => (
+							<Button
+								key={tab}
+								variant="ghost"
+								className={`rounded-none px-3 pb-2 border-b-2 ${state.activeTab === tab ? "border-vscode-focusBorder text-vscode-foreground" : "border-transparent text-vscode-descriptionForeground"}`}
+								onClick={() => manager.transition({ type: "SET_ACTIVE_TAB", payload: { tab } })}>
+								{tab === "mcp" ? "MCP" : "Personas"}
+							</Button>
+						))}
+					</div>
 				</TabHeader>
 
 				<TabContent className="p-3 pt-2">
-					<MarketplaceListView stateManager={stateManager} allTags={allTags} filteredTags={filteredTags} />
+					<MarketplaceListView stateManager={stateManager} allTags={allTags} filteredTags={filteredTags} filterByType={state.activeTab} />
 				</TabContent>
 			</Tab>
 		</TooltipProvider>

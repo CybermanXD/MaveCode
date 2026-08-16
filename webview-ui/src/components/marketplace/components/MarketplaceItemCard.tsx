@@ -23,6 +23,8 @@ import {
 
 interface ItemInstalledMetadata {
 	type: string
+	enabled?: boolean
+	required?: boolean
 }
 
 interface MarketplaceItemCardProps {
@@ -77,6 +79,9 @@ export const MarketplaceItemCard: React.FC<MarketplaceItemCardProps> = ({ item, 
 	const isInstalledGlobally = !!installed.global
 	const isInstalledInProject = !!installed.project
 	const isInstalled = isInstalledGlobally || isInstalledInProject
+	const personaMetadata = item.type === "persona" ? installed.global : undefined
+	const personaEnabled = personaMetadata?.enabled !== false
+	const personaRequired = personaMetadata?.required === true || item.id === "standard"
 
 	const handleInstallClick = () => {
 		// Send telemetry for install button click
@@ -112,7 +117,17 @@ export const MarketplaceItemCard: React.FC<MarketplaceItemCardProps> = ({ item, 
 						</div>
 					</div>
 					<div className="flex items-center gap-1">
-						{isInstalled ? (
+						{item.type === "persona" ? (
+							<Button
+								size="sm"
+								variant={personaEnabled ? "secondary" : "primary"}
+								className="text-xs h-5 py-0 px-2"
+								disabled={personaRequired}
+								title={personaRequired ? "Standard is always enabled" : undefined}
+								onClick={() => vscode.postMessage({ type: "setManagedPersonaEnabled", mpItem: item, personaEnabled: !personaEnabled })}>
+								{personaRequired ? "Always enabled" : personaEnabled ? "Disable" : "Enable"}
+							</Button>
+						) : isInstalled ? (
 							/* Single Remove button when installed */
 							<StandardTooltip
 								content={
@@ -159,7 +174,7 @@ export const MarketplaceItemCard: React.FC<MarketplaceItemCardProps> = ({ item, 
 				{(isInstalled || (item.tags && item.tags.length > 0)) && (
 					<div className="relative flex flex-wrap gap-1 my-2">
 						{/* Installation status badge on the left */}
-						{isInstalled && (
+						{isInstalled && item.type !== "persona" && (
 							<span className="text-xs px-2 py-0.5 rounded-sm h-5 flex items-center bg-green-600/20 text-green-400 border border-green-600/30 shrink-0">
 								{t("marketplace:items.card.installed")}
 							</span>
@@ -197,15 +212,15 @@ export const MarketplaceItemCard: React.FC<MarketplaceItemCardProps> = ({ item, 
 			</div>
 
 			{/* Installation Modal - Outside the clickable card */}
-			<MarketplaceInstallModal
+			{item.type !== "persona" && <MarketplaceInstallModal
 				item={item}
 				isOpen={showInstallModal}
 				onClose={() => setShowInstallModal(false)}
 				hasWorkspace={!!cwd}
-			/>
+			/>}
 
 			{/* Remove Confirmation Dialog */}
-			<AlertDialog open={showRemoveConfirm} onOpenChange={setShowRemoveConfirm}>
+			{item.type !== "persona" && <AlertDialog open={showRemoveConfirm} onOpenChange={setShowRemoveConfirm}>
 				<AlertDialogContent>
 					<AlertDialogHeader>
 						<AlertDialogTitle>
@@ -245,7 +260,7 @@ export const MarketplaceItemCard: React.FC<MarketplaceItemCardProps> = ({ item, 
 						</AlertDialogAction>
 					</AlertDialogFooter>
 				</AlertDialogContent>
-			</AlertDialog>
+			</AlertDialog>}
 		</>
 	)
 }

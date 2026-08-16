@@ -62,6 +62,7 @@ export class CustomModesManager {
 		this.bundledPersonaManager = new BundledPersonaManager(
 			this.context.extensionUri.fsPath,
 			this.context.globalStorageUri.fsPath,
+			this.context.globalState,
 		)
 		this.watchCustomModesFiles().catch((error) => {
 			console.error("[CustomModesManager] Failed to setup file watchers:", error)
@@ -230,8 +231,10 @@ export class CustomModesManager {
 	}
 
 	private async mergeCustomModes(projectModes: ModeConfig[], globalModes: ModeConfig[]): Promise<ModeConfig[]> {
-		const slugs = new Set<string>()
-		const merged: ModeConfig[] = []
+		const bundledPersonas = await this.bundledPersonaManager.getPersonas()
+		const managedSlugs = await this.bundledPersonaManager.getManagedPersonaSlugs()
+		const slugs = new Set<string>(managedSlugs)
+		const merged: ModeConfig[] = [...bundledPersonas]
 
 		// Add project mode (takes precedence)
 		for (const mode of projectModes) {
@@ -368,7 +371,7 @@ export class CustomModesManager {
 		}
 
 		const bundledPersonas = await this.bundledPersonaManager.getPersonas()
-		const bundledSlugs = new Set(bundledPersonas.map(({ slug }) => slug))
+		const bundledSlugs = await this.bundledPersonaManager.getManagedPersonaSlugs()
 
 		// Get modes from settings file.
 		const settingsPath = await this.getCustomModesFilePath()
@@ -397,7 +400,9 @@ export class CustomModesManager {
 		// Combine modes in the correct order: project modes first, then global modes.
 		const mergedModes = [
 			...bundledPersonas,
-			...roomodesModes.map((mode) => ({ ...mode, source: "project" as const })),
+			...roomodesModes
+				.filter((mode) => !bundledSlugs.has(mode.slug))
+				.map((mode) => ({ ...mode, source: "project" as const })),
 			...settingsModes
 				.filter((mode) => !projectModes.has(mode.slug) && !bundledSlugs.has(mode.slug))
 				.map((mode) => ({ ...mode, source: "global" as const })),
@@ -411,9 +416,23 @@ export class CustomModesManager {
 		return mergedModes
 	}
 
+	public async setManagedPersonaEnabled(slug: string, enabled: boolean): Promise<void> {
+		const requiredPersona = "standard"
+		const key = "mavecode.managedPersonas.disabled"
+		const managedSlugs = await this.bundledPersonaManager.getManagedPersonaSlugs()
+		if (!managedSlugs.has(slug)) throw new Error(`Unknown managed persona '${slug}'.`)
+		if (slug === requiredPersona && !enabled) throw new Error("Standard persona cannot be disabled.")
+		const disabled = new Set(this.context.globalState.get<string[]>(key, []))
+		enabled ? disabled.delete(slug) : disabled.add(slug)
+		disabled.delete(requiredPersona)
+		await this.context.globalState.update(key, [...disabled].sort())
+		this.clearCache()
+		await this.onUpdate()
+	}
+
 	public async updateCustomMode(slug: string, config: ModeConfig): Promise<void> {
 		try {
-			if ((await this.bundledPersonaManager.getPersonas()).some((mode) => mode.slug === slug)) {
+			if ((await this.bundledPersonaManager.getManagedPersonaSlugs()).has(slug)) {
 				throw new Error(`Bundled persona '${slug}' is read-only and is updated with MaveCode.`)
 			}
 			// Validate the mode configuration before saving
@@ -523,7 +542,7 @@ export class CustomModesManager {
 
 	public async deleteCustomMode(slug: string, fromMarketplace = false): Promise<void> {
 		try {
-			if ((await this.bundledPersonaManager.getPersonas()).some((mode) => mode.slug === slug)) {
+			if ((await this.bundledPersonaManager.getManagedPersonaSlugs()).has(slug)) {
 				throw new Error(`Bundled persona '${slug}' cannot be deleted.`)
 			}
 			const settingsPath = await this.getCustomModesFilePath()

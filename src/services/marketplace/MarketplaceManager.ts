@@ -170,6 +170,12 @@ export class MarketplaceManager {
 		}
 	}
 
+	async setManagedPersonaEnabled(item: MarketplaceItem, enabled: boolean): Promise<void> {
+		if (item.type !== "persona") throw new Error("Only managed personas can be enabled or disabled.")
+		if (!this.customModesManager) throw new Error("Managed persona settings are unavailable.")
+		await this.customModesManager.setManagedPersonaEnabled(item.id, enabled)
+	}
+
 	async removeInstalledMarketplaceItem(
 		item: MarketplaceItem,
 		options?: { target?: "global" | "project" },
@@ -208,11 +214,13 @@ export class MarketplaceManager {
 		global: Record<string, { type: string }>
 	}> {
 		const metadata = {
-			project: {} as Record<string, { type: string }>,
-			global: {} as Record<string, { type: string }>,
+			project: {} as Record<string, { type: string; enabled?: boolean; required?: boolean }>,
+			global: {} as Record<string, { type: string; enabled?: boolean; required?: boolean }>,
 		}
+		const disabled = new Set(this.context.globalState.get<string[]>("mavecode.managedPersonas.disabled", []))
 		for (const persona of await this.remotePersonaManager.getMarketplaceItems()) {
-			metadata.global[persona.id] = { type: "persona" }
+			const required = persona.id === "standard"
+			metadata.global[persona.id] = { type: "persona", enabled: required || !disabled.has(persona.id), required }
 		}
 
 		// Check project-level installations

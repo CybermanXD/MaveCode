@@ -2,6 +2,8 @@ import * as fs from "fs/promises"
 import * as path from "path"
 import * as yaml from "yaml"
 
+import type * as vscode from "vscode"
+
 import { modeConfigSchema, type ModeConfig } from "@roo-code/types"
 
 import { RemotePersonaManager } from "./RemotePersonaManager"
@@ -22,6 +24,8 @@ const readText = (root: string, relativePath: string) => fs.readFile(path.join(r
 
 /** Loads the immutable personas shipped in the current VSIX. */
 export class BundledPersonaManager {
+	private static readonly DISABLED_PERSONAS_KEY = "mavecode.managedPersonas.disabled"
+	private static readonly REQUIRED_PERSONA = "standard"
 	private cachedBundled?: ModeConfig[]
 
 	private readonly remotePersonaManager?: RemotePersonaManager
@@ -29,11 +33,12 @@ export class BundledPersonaManager {
 	constructor(
 		private readonly extensionPath: string,
 		globalStoragePath?: string,
+		private readonly globalState?: vscode.Memento,
 	) {
 		this.remotePersonaManager = globalStoragePath ? new RemotePersonaManager(globalStoragePath) : undefined
 	}
 
-	public async getPersonas(): Promise<ModeConfig[]> {
+	public async getPersonas(includeDisabled = false): Promise<ModeConfig[]> {
 		const packagedRoot = path.join(this.extensionPath, "dist", "assets", "personas")
 		const sourceRoot = path.join(this.extensionPath, "assets", "personas")
 		const root = await fs
@@ -76,13 +81,28 @@ export class BundledPersonaManager {
 			const remotePersonas = (await this.remotePersonaManager?.getPersonas()) ?? []
 			const remoteBySlug = new Map(remotePersonas.map((persona) => [persona.slug, persona]))
 			const bundledSlugs = new Set(personas.map((persona) => persona.slug))
-			return [
+			const merged = [
 				...personas.map((persona) => remoteBySlug.get(persona.slug) ?? persona),
 				...remotePersonas.filter((persona) => !bundledSlugs.has(persona.slug)),
 			]
+			if (includeDisabled) return merged
+			const disabled = new Set(this.globalState?.get<string[]>(BundledPersonaManager.DISABLED_PERSONAS_KEY, []) ?? [])
+			disabled.delete(BundledPersonaManager.REQUIRED_PERSONA)
+			return merged.filter((persona) => !disabled.has(persona.slug))
 		} catch (error) {
 			console.error("[BundledPersonaManager] Failed to load bundled personas:", error)
-			return []
+			return this.cachedBundled?.filter((persona) => {
+				if (includeDisabled) return true
+				const disabled = new Set(
+					this.globalState?.get<string[]>(BundledPersonaManager.DISABLED_PERSONAS_KEY, []) ?? [],
+				)
+				disabled.delete(BundledPersonaManager.REQUIRED_PERSONA)
+				return !disabled.has(persona.slug)
+			}) ?? []
 		}
+	}
+
+	public async getManagedPersonaSlugs(): Promise<Set<string>> {
+		return new Set((await this.getPersonas(true)).map(({ slug }) => slug))
 	}
 }
