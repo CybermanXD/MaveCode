@@ -304,11 +304,11 @@ describe("MarketplaceViewStateManager", () => {
 		it("should update active tab", async () => {
 			await stateManager.transition({
 				type: "SET_ACTIVE_TAB",
-				payload: { tab: "mode" },
+				payload: { tab: "persona" },
 			})
 
 			const state = stateManager.getState()
-			expect(state.activeTab).toBe("mode")
+			expect(state.activeTab).toBe("persona")
 		})
 
 		it("should preserve items when switching tabs", async () => {
@@ -324,11 +324,11 @@ describe("MarketplaceViewStateManager", () => {
 			// Switch tab
 			await stateManager.transition({
 				type: "SET_ACTIVE_TAB",
-				payload: { tab: "mode" },
+				payload: { tab: "persona" },
 			})
 
 			const state = stateManager.getState()
-			expect(state.activeTab).toBe("mode")
+			expect(state.activeTab).toBe("persona")
 			expect(state.allItems).toEqual(mockMarketplaceItems)
 			expect(state.displayItems).toEqual(mockMarketplaceItems)
 		})

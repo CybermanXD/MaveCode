@@ -3361,6 +3361,19 @@ export const webviewMessageHandler = async (
 			break
 		}
 
+		case "setManagedPersonaEnabled": {
+			if (marketplaceManager && message.mpItem?.type === "persona" && typeof message.personaEnabled === "boolean") {
+				try {
+					await marketplaceManager.setManagedPersonaEnabled(message.mpItem, message.personaEnabled)
+					await provider.fetchMarketplaceData()
+					await provider.postStateToWebview()
+				} catch (error) {
+					vscode.window.showErrorMessage(error instanceof Error ? error.message : String(error))
+				}
+			}
+			break
+		}
+
 		case "installMarketplaceItemWithParameters": {
 			if (marketplaceManager && message.payload && "item" in message.payload && "parameters" in message.payload) {
 				try {

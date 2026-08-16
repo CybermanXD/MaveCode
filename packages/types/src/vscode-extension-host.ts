@@ -625,6 +625,7 @@ export interface WebviewMessage {
 		| "showMdmAuthRequiredNotification"
 		| "fetchMarketplaceData"
 		| "removeInstalledMarketplaceItem"
+		| "setManagedPersonaEnabled"
 		| "marketplaceInstallResult"
 		| "shareTaskSuccess"
 		| "importRooHistory"
@@ -698,6 +699,7 @@ export interface WebviewMessage {
 	url?: string // For openExternal
 	mpItem?: MarketplaceItem
 	mpInstallOptions?: InstallMarketplaceItemOptions
+	personaEnabled?: boolean
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	config?: Record<string, any> // Add config to the payload
 	visibility?: ShareVisibility // For share visibility

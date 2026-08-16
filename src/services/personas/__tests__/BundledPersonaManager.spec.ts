@@ -25,4 +25,17 @@ describe("BundledPersonaManager", () => {
 		expect(enphase.customInstructions).toContain("Enphase core rules")
 		expect(enphase.customInstructions).not.toContain("Standard core rules")
 	})
+
+	it("filters disabled optional personas but never filters Standard", async () => {
+		const extensionPath = path.resolve(__dirname, "../../../..")
+		const globalState = {
+			get: () => ["enphase", "standard"],
+			update: async () => undefined,
+		} as any
+		const manager = new BundledPersonaManager(extensionPath, undefined, globalState)
+
+		expect((await manager.getPersonas()).map(({ slug }) => slug)).toEqual(["standard"])
+		expect((await manager.getPersonas(true)).map(({ slug }) => slug)).toEqual(["enphase", "standard"])
+		expect(await manager.getManagedPersonaSlugs()).toEqual(new Set(["enphase", "standard"]))
+	})
 })
