@@ -239,7 +239,7 @@ export class SembleProvider implements ISembleProvider {
 	// --- Private Helpers ---
 
 	/**
-	 * Converts Semble CLI results to Zoo's VectorStoreSearchResult format.
+	 * Converts Semble CLI results to MaveCode's VectorStoreSearchResult format.
 	 *
 	 * Semble v0.4.0+ returns results in a flat format (no `chunk` wrapper):
 	 *   { file_path, start_line, end_line, score, content }

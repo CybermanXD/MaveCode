@@ -38,7 +38,7 @@ describe("rules service", () => {
 	let cwd: string
 
 	beforeEach(async () => {
-		tempDir = await fs.mkdtemp(path.join(tmpdir(), "zoo-rules-"))
+		tempDir = await fs.mkdtemp(path.join(tmpdir(), "mavecode-rules-"))
 		homeDir = path.join(tempDir, "home")
 		cwd = path.join(tempDir, "workspace")
 		mockHome.path = homeDir

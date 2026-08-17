@@ -23,11 +23,11 @@ describe("importRooTaskHistory", () => {
 
 	const mockStorageConfiguration = ({
 		roo = "",
-		zoo = "",
+		mavecode = "",
 		throwOnRoo = false,
 	}: {
 		roo?: string
-		zoo?: string
+		mavecode?: string
 		throwOnRoo?: boolean
 	} = {}) => {
 		const getConfigurationMock = vi.mocked(vscode.workspace.getConfiguration)
@@ -45,7 +45,7 @@ describe("importRooTaskHistory", () => {
 					}
 
 					if (resolvedSection === "mave-code") {
-						return zoo
+						return mavecode
 					}
 
 					return ""
@@ -63,58 +63,58 @@ describe("importRooTaskHistory", () => {
 		await fs.rm(tempRoot, { recursive: true, force: true })
 	})
 
-	it("resolves Roo and Zoo storage roots from extension domains and configured custom paths", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+	it("resolves Roo and MaveCode storage roots from extension domains and configured custom paths", async () => {
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 		const rooCustomStoragePath = path.join(tempRoot, "roo-custom")
-		const zooCustomStoragePath = path.join(tempRoot, "zoo-custom")
+		const mavecodeCustomStoragePath = path.join(tempRoot, "mavecode-custom")
 
 		mockStorageConfiguration({
 			roo: rooCustomStoragePath,
-			zoo: zooCustomStoragePath,
+			mavecode: mavecodeCustomStoragePath,
 		})
 
-		const result = await resolveRooHistoryImportPaths(zooGlobalStoragePath)
+		const result = await resolveRooHistoryImportPaths(mavecodeGlobalStoragePath)
 
 		expect(result.rooExtensionDomain).toBe("RooVeterinaryInc.roo-cline")
-		expect(result.zooExtensionDomain).toBe("MaveCode.mave-code")
+		expect(result.mavecodeExtensionDomain).toBe("MaveCode.mave-code")
 		expect(result.rooStorageRoots).toEqual([
 			path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline"),
 			rooCustomStoragePath,
 		])
-		expect(result.zooStorageRoot).toBe(zooCustomStoragePath)
+		expect(result.mavecodeStorageRoot).toBe(mavecodeCustomStoragePath)
 	})
 
 	it("falls back to the default Roo storage root when reading Roo custom storage fails", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 
 		mockStorageConfiguration({ throwOnRoo: true })
 
-		const result = await resolveRooHistoryImportPaths(zooGlobalStoragePath)
+		const result = await resolveRooHistoryImportPaths(mavecodeGlobalStoragePath)
 
 		expect(result.rooStorageRoots).toEqual([path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline")])
-		expect(result.zooStorageRoot).toBe(zooGlobalStoragePath)
+		expect(result.mavecodeStorageRoot).toBe(mavecodeGlobalStoragePath)
 	})
 
 	it("dedupes Roo storage roots when the custom path matches the default Roo storage root", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 		const rooDefaultStorageRoot = path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline")
 
 		mockStorageConfiguration({ roo: rooDefaultStorageRoot })
 
-		const result = await resolveRooHistoryImportPaths(zooGlobalStoragePath)
+		const result = await resolveRooHistoryImportPaths(mavecodeGlobalStoragePath)
 
 		expect(result.rooStorageRoots).toEqual([rooDefaultStorageRoot])
 	})
 
-	it("copies Roo task directories into the active Zoo storage root", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+	it("copies Roo task directories into the active MaveCode storage root", async () => {
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 		const rooDefaultStorageRoot = path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline")
 		const rooCustomStorageRoot = path.join(tempRoot, "roo-custom")
-		const zooCustomStorageRoot = path.join(tempRoot, "zoo-custom")
+		const mavecodeCustomStorageRoot = path.join(tempRoot, "mavecode-custom")
 
 		mockStorageConfiguration({
 			roo: rooCustomStorageRoot,
-			zoo: zooCustomStorageRoot,
+			mavecode: mavecodeCustomStorageRoot,
 		})
 
 		await fs.mkdir(path.join(rooDefaultStorageRoot, "tasks", "task-default"), { recursive: true })
@@ -135,27 +135,27 @@ describe("importRooTaskHistory", () => {
 			"custom",
 		)
 
-		const result = await importRooTaskHistory(zooGlobalStoragePath)
+		const result = await importRooTaskHistory(mavecodeGlobalStoragePath)
 
 		expect(result.foundTaskCount).toBe(2)
 		expect(result.importedTaskCount).toBe(2)
 		expect(result.importedFileCount).toBe(4)
 		expect(
-			await fs.readFile(path.join(zooCustomStorageRoot, "tasks", "task-default", "ui_messages.json"), "utf8"),
+			await fs.readFile(path.join(mavecodeCustomStorageRoot, "tasks", "task-default", "ui_messages.json"), "utf8"),
 		).toBe("default")
 		expect(
 			await fs.readFile(
-				path.join(zooCustomStorageRoot, "tasks", "task-custom", "api_conversation_history.json"),
+				path.join(mavecodeCustomStorageRoot, "tasks", "task-custom", "api_conversation_history.json"),
 				"utf8",
 			),
 		).toBe("custom")
-		await expect(fs.access(path.join(zooCustomStorageRoot, "tasks", "_index.json"))).rejects.toMatchObject({
+		await expect(fs.access(path.join(mavecodeCustomStorageRoot, "tasks", "_index.json"))).rejects.toMatchObject({
 			code: "ENOENT",
 		})
 	})
 
-	it("does not overwrite an existing Zoo task directory when the same Roo history is imported again", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+	it("does not overwrite an existing MaveCode task directory when the same Roo history is imported again", async () => {
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 		const rooDefaultStorageRoot = path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline")
 
 		mockStorageConfiguration()
@@ -167,7 +167,7 @@ describe("importRooTaskHistory", () => {
 		)
 		await fs.writeFile(path.join(rooDefaultStorageRoot, "tasks", "task-repeat", "ui_messages.json"), "first-ui")
 
-		const firstImportResult = await importRooTaskHistory(zooGlobalStoragePath)
+		const firstImportResult = await importRooTaskHistory(mavecodeGlobalStoragePath)
 
 		expect(firstImportResult.importedTaskCount).toBe(1)
 		expect(firstImportResult.importedFileCount).toBe(2)
@@ -178,21 +178,21 @@ describe("importRooTaskHistory", () => {
 		)
 		await fs.writeFile(path.join(rooDefaultStorageRoot, "tasks", "task-repeat", "ui_messages.json"), "second-ui")
 
-		const secondImportResult = await importRooTaskHistory(zooGlobalStoragePath)
+		const secondImportResult = await importRooTaskHistory(mavecodeGlobalStoragePath)
 
 		expect(secondImportResult.foundTaskCount).toBe(1)
 		expect(secondImportResult.importedTaskCount).toBe(0)
 		expect(secondImportResult.importedFileCount).toBe(0)
 		expect(
-			await fs.readFile(path.join(zooGlobalStoragePath, "tasks", "task-repeat", "history_item.json"), "utf8"),
+			await fs.readFile(path.join(mavecodeGlobalStoragePath, "tasks", "task-repeat", "history_item.json"), "utf8"),
 		).toBe(makeHistoryItem("task-repeat", { source: "first-import" }))
 		expect(
-			await fs.readFile(path.join(zooGlobalStoragePath, "tasks", "task-repeat", "ui_messages.json"), "utf8"),
+			await fs.readFile(path.join(mavecodeGlobalStoragePath, "tasks", "task-repeat", "ui_messages.json"), "utf8"),
 		).toBe("first-ui")
 	})
 
 	it("deterministically keeps the first importable Roo task when duplicate task IDs exist across roots", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 		const rooDefaultStorageRoot = path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline")
 		const rooCustomStorageRoot = path.join(tempRoot, "roo-custom")
 
@@ -222,26 +222,26 @@ describe("importRooTaskHistory", () => {
 			"custom-only-ui",
 		)
 
-		const result = await importRooTaskHistory(zooGlobalStoragePath)
+		const result = await importRooTaskHistory(mavecodeGlobalStoragePath)
 
 		expect(result.importedTaskCount).toBe(2)
 		expect(result.importedFileCount).toBe(4)
 		expect(
-			await fs.readFile(path.join(zooGlobalStoragePath, "tasks", "task-shared", "history_item.json"), "utf8"),
+			await fs.readFile(path.join(mavecodeGlobalStoragePath, "tasks", "task-shared", "history_item.json"), "utf8"),
 		).toBe(makeHistoryItem("task-shared", { source: "default-root" }))
 		expect(
-			await fs.readFile(path.join(zooGlobalStoragePath, "tasks", "task-shared", "ui_messages.json"), "utf8"),
+			await fs.readFile(path.join(mavecodeGlobalStoragePath, "tasks", "task-shared", "ui_messages.json"), "utf8"),
 		).toBe("default-ui")
 		expect(
 			await fs.readFile(
-				path.join(zooGlobalStoragePath, "tasks", "task-custom-only", "history_item.json"),
+				path.join(mavecodeGlobalStoragePath, "tasks", "task-custom-only", "history_item.json"),
 				"utf8",
 			),
 		).toBe(makeHistoryItem("task-custom-only", { source: "custom-root" }))
 	})
 
 	it("reports Roo history import progress as files are copied", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 		const rooDefaultStorageRoot = path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline")
 		const onProgress = vi.fn()
 
@@ -258,7 +258,7 @@ describe("importRooTaskHistory", () => {
 			"api",
 		)
 
-		await importRooTaskHistory(zooGlobalStoragePath, onProgress)
+		await importRooTaskHistory(mavecodeGlobalStoragePath, onProgress)
 
 		expect(onProgress.mock.calls).toEqual([
 			[
@@ -305,13 +305,13 @@ describe("importRooTaskHistory", () => {
 	})
 
 	it("imports only top-level task history files and skips checkpoint directories", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 		const rooDefaultStorageRoot = path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline")
-		const zooCustomStorageRoot = path.join(tempRoot, "shared-storage")
+		const mavecodeCustomStorageRoot = path.join(tempRoot, "shared-storage")
 
 		mockStorageConfiguration({
-			roo: zooCustomStorageRoot,
-			zoo: zooCustomStorageRoot,
+			roo: mavecodeCustomStorageRoot,
+			mavecode: mavecodeCustomStorageRoot,
 		})
 
 		await fs.mkdir(path.join(rooDefaultStorageRoot, "tasks", "task-visible", "checkpoints", ".git", "objects"), {
@@ -337,43 +337,43 @@ describe("importRooTaskHistory", () => {
 		await fs.writeFile(path.join(rooDefaultStorageRoot, "tasks", ".task-hidden", "history_item.json"), "hidden-dir")
 		await fs.writeFile(path.join(rooDefaultStorageRoot, "tasks", "_task-hidden", "history_item.json"), "hidden-dir")
 
-		const result = await importRooTaskHistory(zooGlobalStoragePath)
+		const result = await importRooTaskHistory(mavecodeGlobalStoragePath)
 
 		expect(result.rooStorageRoots).toEqual([rooDefaultStorageRoot])
 		expect(result.importedTaskCount).toBe(1)
 		expect(result.importedFileCount).toBe(4)
 		expect(
-			await fs.readFile(path.join(zooCustomStorageRoot, "tasks", "task-visible", "ui_messages.json"), "utf8"),
+			await fs.readFile(path.join(mavecodeCustomStorageRoot, "tasks", "task-visible", "ui_messages.json"), "utf8"),
 		).toBe("visible-ui")
 		expect(
 			await fs.readFile(
-				path.join(zooCustomStorageRoot, "tasks", "task-visible", "api_conversation_history.json"),
+				path.join(mavecodeCustomStorageRoot, "tasks", "task-visible", "api_conversation_history.json"),
 				"utf8",
 			),
 		).toBe("visible-api")
 		expect(
-			await fs.readFile(path.join(zooCustomStorageRoot, "tasks", "task-visible", "task_metadata.json"), "utf8"),
+			await fs.readFile(path.join(mavecodeCustomStorageRoot, "tasks", "task-visible", "task_metadata.json"), "utf8"),
 		).toBe("metadata")
-		await expect(fs.access(path.join(zooCustomStorageRoot, "tasks", ".task-hidden"))).rejects.toMatchObject({
+		await expect(fs.access(path.join(mavecodeCustomStorageRoot, "tasks", ".task-hidden"))).rejects.toMatchObject({
 			code: "ENOENT",
 		})
-		await expect(fs.access(path.join(zooCustomStorageRoot, "tasks", "_task-hidden"))).rejects.toMatchObject({
+		await expect(fs.access(path.join(mavecodeCustomStorageRoot, "tasks", "_task-hidden"))).rejects.toMatchObject({
 			code: "ENOENT",
 		})
 		await expect(
 			fs.access(
-				path.join(zooCustomStorageRoot, "tasks", "task-visible", "checkpoints", ".git", "objects", "object"),
+				path.join(mavecodeCustomStorageRoot, "tasks", "task-visible", "checkpoints", ".git", "objects", "object"),
 			),
 		).rejects.toMatchObject({
 			code: "ENOENT",
 		})
-		await expect(fs.access(path.join(zooCustomStorageRoot, "tasks", "loose.json"))).rejects.toMatchObject({
+		await expect(fs.access(path.join(mavecodeCustomStorageRoot, "tasks", "loose.json"))).rejects.toMatchObject({
 			code: "ENOENT",
 		})
 	})
 
 	it("ignores missing Roo task roots while still importing from available roots", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 		const rooDefaultStorageRoot = path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline")
 		const rooMissingCustomStorageRoot = path.join(tempRoot, "roo-missing")
 
@@ -394,18 +394,18 @@ describe("importRooTaskHistory", () => {
 			taskDefaultHistoryJson,
 		)
 
-		const result = await importRooTaskHistory(zooGlobalStoragePath)
+		const result = await importRooTaskHistory(mavecodeGlobalStoragePath)
 
 		expect(result.rooStorageRoots).toEqual([rooDefaultStorageRoot, rooMissingCustomStorageRoot])
 		expect(result.importedTaskCount).toBe(1)
 		expect(result.importedFileCount).toBe(1)
 		expect(
-			await fs.readFile(path.join(zooGlobalStoragePath, "tasks", "task-default", "history_item.json"), "utf8"),
+			await fs.readFile(path.join(mavecodeGlobalStoragePath, "tasks", "task-default", "history_item.json"), "utf8"),
 		).toBe(taskDefaultHistoryJson)
 	})
 
 	it("skips tasks that do not have an importable history_item.json", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 		const rooDefaultStorageRoot = path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline")
 
 		mockStorageConfiguration()
@@ -416,40 +416,40 @@ describe("importRooTaskHistory", () => {
 			"ui only",
 		)
 
-		const result = await importRooTaskHistory(zooGlobalStoragePath)
+		const result = await importRooTaskHistory(mavecodeGlobalStoragePath)
 
 		expect(result.importedTaskCount).toBe(0)
 		expect(result.importedFileCount).toBe(0)
-		await expect(fs.access(path.join(zooGlobalStoragePath, "tasks", "task-missing-history"))).rejects.toMatchObject(
+		await expect(fs.access(path.join(mavecodeGlobalStoragePath, "tasks", "task-missing-history"))).rejects.toMatchObject(
 			{
 				code: "ENOENT",
 			},
 		)
 	})
 
-	it("does not delete an existing Zoo task when the Roo task is missing history_item.json", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+	it("does not delete an existing MaveCode task when the Roo task is missing history_item.json", async () => {
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 		const rooDefaultStorageRoot = path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline")
-		const existingZooTaskDirectory = path.join(zooGlobalStoragePath, "tasks", "task-existing")
+		const existingMaveCodeTaskDirectory = path.join(mavecodeGlobalStoragePath, "tasks", "task-existing")
 
 		mockStorageConfiguration()
 
 		await fs.mkdir(path.join(rooDefaultStorageRoot, "tasks", "task-existing"), { recursive: true })
 		await fs.writeFile(path.join(rooDefaultStorageRoot, "tasks", "task-existing", "ui_messages.json"), "ui only")
-		await fs.mkdir(existingZooTaskDirectory, { recursive: true })
-		await fs.writeFile(path.join(existingZooTaskDirectory, "history_item.json"), "existing")
+		await fs.mkdir(existingMaveCodeTaskDirectory, { recursive: true })
+		await fs.writeFile(path.join(existingMaveCodeTaskDirectory, "history_item.json"), "existing")
 
-		const result = await importRooTaskHistory(zooGlobalStoragePath)
+		const result = await importRooTaskHistory(mavecodeGlobalStoragePath)
 
 		expect(result.importedTaskCount).toBe(0)
 		expect(result.importedFileCount).toBe(0)
-		expect(await fs.readFile(path.join(existingZooTaskDirectory, "history_item.json"), "utf8")).toBe("existing")
+		expect(await fs.readFile(path.join(existingMaveCodeTaskDirectory, "history_item.json"), "utf8")).toBe("existing")
 	})
 
-	it("does not overwrite an existing Zoo task when the Roo task is otherwise importable", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+	it("does not overwrite an existing MaveCode task when the Roo task is otherwise importable", async () => {
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 		const rooDefaultStorageRoot = path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline")
-		const existingZooTaskDirectory = path.join(zooGlobalStoragePath, "tasks", "task-existing")
+		const existingMaveCodeTaskDirectory = path.join(mavecodeGlobalStoragePath, "tasks", "task-existing")
 
 		mockStorageConfiguration()
 
@@ -459,20 +459,20 @@ describe("importRooTaskHistory", () => {
 			makeHistoryItem("task-existing", { source: "roo" }),
 		)
 		await fs.writeFile(path.join(rooDefaultStorageRoot, "tasks", "task-existing", "ui_messages.json"), "roo-ui")
-		await fs.mkdir(existingZooTaskDirectory, { recursive: true })
-		await fs.writeFile(path.join(existingZooTaskDirectory, "history_item.json"), "existing")
-		await fs.writeFile(path.join(existingZooTaskDirectory, "ui_messages.json"), "existing-ui")
+		await fs.mkdir(existingMaveCodeTaskDirectory, { recursive: true })
+		await fs.writeFile(path.join(existingMaveCodeTaskDirectory, "history_item.json"), "existing")
+		await fs.writeFile(path.join(existingMaveCodeTaskDirectory, "ui_messages.json"), "existing-ui")
 
-		const result = await importRooTaskHistory(zooGlobalStoragePath)
+		const result = await importRooTaskHistory(mavecodeGlobalStoragePath)
 
 		expect(result.importedTaskCount).toBe(0)
 		expect(result.importedFileCount).toBe(0)
-		expect(await fs.readFile(path.join(existingZooTaskDirectory, "history_item.json"), "utf8")).toBe("existing")
-		expect(await fs.readFile(path.join(existingZooTaskDirectory, "ui_messages.json"), "utf8")).toBe("existing-ui")
+		expect(await fs.readFile(path.join(existingMaveCodeTaskDirectory, "history_item.json"), "utf8")).toBe("existing")
+		expect(await fs.readFile(path.join(existingMaveCodeTaskDirectory, "ui_messages.json"), "utf8")).toBe("existing-ui")
 	})
 
 	it("rejects task IDs containing dots or underscore prefixes to prevent traversal", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 		const rooDefaultStorageRoot = path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline")
 
 		mockStorageConfiguration()
@@ -493,18 +493,18 @@ describe("importRooTaskHistory", () => {
 			makeHistoryItem("task-safe"),
 		)
 
-		const result = await importRooTaskHistory(zooGlobalStoragePath)
+		const result = await importRooTaskHistory(mavecodeGlobalStoragePath)
 
 		expect(result.importedTaskCount).toBe(1)
 		for (const name of unsafeCandidates) {
-			await expect(fs.access(path.join(zooGlobalStoragePath, "tasks", name))).rejects.toMatchObject({
+			await expect(fs.access(path.join(mavecodeGlobalStoragePath, "tasks", name))).rejects.toMatchObject({
 				code: "ENOENT",
 			})
 		}
 	})
 
 	it("rejects tasks whose history_item.json id field does not match the directory name or contains unsafe characters", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 		const rooDefaultStorageRoot = path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline")
 
 		mockStorageConfiguration()
@@ -537,23 +537,23 @@ describe("importRooTaskHistory", () => {
 			makeHistoryItem("task-valid"),
 		)
 
-		const result = await importRooTaskHistory(zooGlobalStoragePath)
+		const result = await importRooTaskHistory(mavecodeGlobalStoragePath)
 
 		expect(result.importedTaskCount).toBe(1)
-		await expect(fs.access(path.join(zooGlobalStoragePath, "tasks", "task-mismatch"))).rejects.toMatchObject({
+		await expect(fs.access(path.join(mavecodeGlobalStoragePath, "tasks", "task-mismatch"))).rejects.toMatchObject({
 			code: "ENOENT",
 		})
-		await expect(fs.access(path.join(zooGlobalStoragePath, "tasks", "task-traversal"))).rejects.toMatchObject({
+		await expect(fs.access(path.join(mavecodeGlobalStoragePath, "tasks", "task-traversal"))).rejects.toMatchObject({
 			code: "ENOENT",
 		})
-		await expect(fs.access(path.join(zooGlobalStoragePath, "tasks", "task-invalid-schema"))).rejects.toMatchObject({
+		await expect(fs.access(path.join(mavecodeGlobalStoragePath, "tasks", "task-invalid-schema"))).rejects.toMatchObject({
 			code: "ENOENT",
 		})
-		await expect(fs.access(path.join(zooGlobalStoragePath, "tasks", "task-valid"))).resolves.toBeUndefined()
+		await expect(fs.access(path.join(mavecodeGlobalStoragePath, "tasks", "task-valid"))).resolves.toBeUndefined()
 	})
 
 	it("rethrows unexpected task-root errors while importing Roo history", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 		const rooDefaultStorageRoot = path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline")
 
 		mockStorageConfiguration()
@@ -561,7 +561,7 @@ describe("importRooTaskHistory", () => {
 		await fs.mkdir(rooDefaultStorageRoot, { recursive: true })
 		await fs.writeFile(path.join(rooDefaultStorageRoot, "tasks"), "not a directory")
 
-		await expect(importRooTaskHistory(zooGlobalStoragePath)).rejects.toMatchObject({
+		await expect(importRooTaskHistory(mavecodeGlobalStoragePath)).rejects.toMatchObject({
 			code: "ENOTDIR",
 		})
 	})
@@ -575,7 +575,7 @@ describe("importRooTaskHistory", () => {
 	})
 
 	it("imports the complete file set when two calls run concurrently against the same Roo task", async () => {
-		const zooGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
+		const mavecodeGlobalStoragePath = path.join(tempRoot, "globalStorage", "mavecodeorganization.mave-code")
 		const rooDefaultStorageRoot = path.join(tempRoot, "globalStorage", "rooveterinaryinc.roo-cline")
 
 		mockStorageConfiguration()
@@ -595,14 +595,14 @@ describe("importRooTaskHistory", () => {
 		)
 
 		const [result1, result2] = await Promise.all([
-			importRooTaskHistory(zooGlobalStoragePath),
-			importRooTaskHistory(zooGlobalStoragePath),
+			importRooTaskHistory(mavecodeGlobalStoragePath),
+			importRooTaskHistory(mavecodeGlobalStoragePath),
 		])
 
 		// Exactly one call should win the atomic rename; the other should skip gracefully.
 		expect(result1.importedTaskCount + result2.importedTaskCount).toBe(1)
 
-		const destTaskDir = path.join(zooGlobalStoragePath, "tasks", "task-concurrent")
+		const destTaskDir = path.join(mavecodeGlobalStoragePath, "tasks", "task-concurrent")
 
 		// The winning import must have written all three files completely.
 		expect(await fs.readFile(path.join(destTaskDir, "history_item.json"), "utf8")).toBe(
@@ -614,7 +614,7 @@ describe("importRooTaskHistory", () => {
 		)
 
 		// No staging directories should be left behind.
-		const tasksEntries = await fs.readdir(path.join(zooGlobalStoragePath, "tasks"))
+		const tasksEntries = await fs.readdir(path.join(mavecodeGlobalStoragePath, "tasks"))
 		expect(tasksEntries.filter((e) => e.startsWith("_staging_"))).toHaveLength(0)
 	})
 })

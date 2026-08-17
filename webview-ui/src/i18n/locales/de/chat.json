@@ -130,7 +130,7 @@
 		"title": "Modi",
 		"marketplace": "Modus-Marketplace",
 		"settings": "Modus-Einstellungen",
-		"description": "Spezialisierte Personas, die Zoos Verhalten anpassen.",
+		"description": "Spezialisierte Personas, die MaveCodes Verhalten anpassen.",
 		"searchPlaceholder": "Modi suchen...",
 		"noResults": "Keine Ergebnisse gefunden"
 	},
@@ -144,7 +144,7 @@
 	"diffError": {
 		"title": "Bearbeitung fehlgeschlagen"
 	},
-	"troubleMessage": "Zoo hat Probleme...",
+	"troubleMessage": "MaveCode hat Probleme...",
 	"apiRequest": {
 		"title": "API-Anfrage",
 		"failed": "API-Anfrage fehlgeschlagen",
@@ -187,43 +187,43 @@
 		"current": "Aktuell"
 	},
 	"instructions": {
-		"wantsToFetch": "Zoo möchte detaillierte Anweisungen abrufen, um bei der aktuellen Aufgabe zu helfen"
+		"wantsToFetch": "MaveCode möchte detaillierte Anweisungen abrufen, um bei der aktuellen Aufgabe zu helfen"
 	},
 	"fileOperations": {
-		"wantsToRead": "Zoo möchte diese Datei lesen",
-		"wantsToReadAndXMore": "Zoo möchte diese Datei und {{count}} weitere lesen",
-		"wantsToReadOutsideWorkspace": "Zoo möchte diese Datei außerhalb des Arbeitsbereichs lesen",
-		"didRead": "Zoo hat diese Datei gelesen",
-		"wantsToEdit": "Zoo möchte diese Datei bearbeiten",
-		"wantsToEditOutsideWorkspace": "Zoo möchte diese Datei außerhalb des Arbeitsbereichs bearbeiten",
-		"wantsToEditProtected": "Zoo möchte eine geschützte Konfigurationsdatei bearbeiten",
-		"wantsToCreate": "Zoo möchte eine neue Datei erstellen",
-		"wantsToSearchReplace": "Zoo möchte in dieser Datei suchen und ersetzen",
-		"didSearchReplace": "Zoo hat Suchen und Ersetzen in dieser Datei durchgeführt",
-		"wantsToInsert": "Zoo möchte Inhalte in diese Datei einfügen",
-		"wantsToInsertWithLineNumber": "Zoo möchte Inhalte in diese Datei in Zeile {{lineNumber}} einfügen",
-		"wantsToInsertAtEnd": "Zoo möchte Inhalte am Ende dieser Datei anhängen",
-		"wantsToReadMultiple": "Zoo möchte mehrere Dateien lesen",
-		"wantsToApplyBatchChanges": "Zoo möchte Änderungen an mehreren Dateien vornehmen",
-		"wantsToGenerateImage": "Zoo möchte ein Bild generieren",
-		"wantsToGenerateImageOutsideWorkspace": "Zoo möchte ein Bild außerhalb des Arbeitsbereichs generieren",
-		"wantsToGenerateImageProtected": "Zoo möchte ein Bild an einem geschützten Ort generieren",
-		"didGenerateImage": "Zoo hat ein Bild generiert"
+		"wantsToRead": "MaveCode möchte diese Datei lesen",
+		"wantsToReadAndXMore": "MaveCode möchte diese Datei und {{count}} weitere lesen",
+		"wantsToReadOutsideWorkspace": "MaveCode möchte diese Datei außerhalb des Arbeitsbereichs lesen",
+		"didRead": "MaveCode hat diese Datei gelesen",
+		"wantsToEdit": "MaveCode möchte diese Datei bearbeiten",
+		"wantsToEditOutsideWorkspace": "MaveCode möchte diese Datei außerhalb des Arbeitsbereichs bearbeiten",
+		"wantsToEditProtected": "MaveCode möchte eine geschützte Konfigurationsdatei bearbeiten",
+		"wantsToCreate": "MaveCode möchte eine neue Datei erstellen",
+		"wantsToSearchReplace": "MaveCode möchte in dieser Datei suchen und ersetzen",
+		"didSearchReplace": "MaveCode hat Suchen und Ersetzen in dieser Datei durchgeführt",
+		"wantsToInsert": "MaveCode möchte Inhalte in diese Datei einfügen",
+		"wantsToInsertWithLineNumber": "MaveCode möchte Inhalte in diese Datei in Zeile {{lineNumber}} einfügen",
+		"wantsToInsertAtEnd": "MaveCode möchte Inhalte am Ende dieser Datei anhängen",
+		"wantsToReadMultiple": "MaveCode möchte mehrere Dateien lesen",
+		"wantsToApplyBatchChanges": "MaveCode möchte Änderungen an mehreren Dateien vornehmen",
+		"wantsToGenerateImage": "MaveCode möchte ein Bild generieren",
+		"wantsToGenerateImageOutsideWorkspace": "MaveCode möchte ein Bild außerhalb des Arbeitsbereichs generieren",
+		"wantsToGenerateImageProtected": "MaveCode möchte ein Bild an einem geschützten Ort generieren",
+		"didGenerateImage": "MaveCode hat ein Bild generiert"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Zoo möchte die Dateien auf oberster Ebene in diesem Verzeichnis anzeigen",
-		"didViewTopLevel": "Zoo hat die Dateien auf oberster Ebene in diesem Verzeichnis angezeigt",
-		"wantsToViewRecursive": "Zoo möchte rekursiv alle Dateien in diesem Verzeichnis anzeigen",
-		"didViewRecursive": "Zoo hat rekursiv alle Dateien in diesem Verzeichnis angezeigt",
-		"wantsToSearch": "Zoo möchte dieses Verzeichnis nach <code>{{regex}}</code> durchsuchen",
-		"didSearch": "Zoo hat dieses Verzeichnis nach <code>{{regex}}</code> durchsucht",
-		"wantsToSearchOutsideWorkspace": "Zoo möchte dieses Verzeichnis (außerhalb des Arbeitsbereichs) nach <code>{{regex}}</code> durchsuchen",
-		"didSearchOutsideWorkspace": "Zoo hat dieses Verzeichnis (außerhalb des Arbeitsbereichs) nach <code>{{regex}}</code> durchsucht",
-		"wantsToViewTopLevelOutsideWorkspace": "Zoo möchte die Dateien auf oberster Ebene in diesem Verzeichnis (außerhalb des Arbeitsbereichs) anzeigen",
-		"didViewTopLevelOutsideWorkspace": "Zoo hat die Dateien auf oberster Ebene in diesem Verzeichnis (außerhalb des Arbeitsbereichs) angezeigt",
-		"wantsToViewRecursiveOutsideWorkspace": "Zoo möchte rekursiv alle Dateien in diesem Verzeichnis (außerhalb des Arbeitsbereichs) anzeigen",
-		"didViewRecursiveOutsideWorkspace": "Zoo hat rekursiv alle Dateien in diesem Verzeichnis (außerhalb des Arbeitsbereichs) angezeigt",
-		"wantsToViewMultipleDirectories": "Zoo möchte mehrere Verzeichnisse anzeigen"
+		"wantsToViewTopLevel": "MaveCode möchte die Dateien auf oberster Ebene in diesem Verzeichnis anzeigen",
+		"didViewTopLevel": "MaveCode hat die Dateien auf oberster Ebene in diesem Verzeichnis angezeigt",
+		"wantsToViewRecursive": "MaveCode möchte rekursiv alle Dateien in diesem Verzeichnis anzeigen",
+		"didViewRecursive": "MaveCode hat rekursiv alle Dateien in diesem Verzeichnis angezeigt",
+		"wantsToSearch": "MaveCode möchte dieses Verzeichnis nach <code>{{regex}}</code> durchsuchen",
+		"didSearch": "MaveCode hat dieses Verzeichnis nach <code>{{regex}}</code> durchsucht",
+		"wantsToSearchOutsideWorkspace": "MaveCode möchte dieses Verzeichnis (außerhalb des Arbeitsbereichs) nach <code>{{regex}}</code> durchsuchen",
+		"didSearchOutsideWorkspace": "MaveCode hat dieses Verzeichnis (außerhalb des Arbeitsbereichs) nach <code>{{regex}}</code> durchsucht",
+		"wantsToViewTopLevelOutsideWorkspace": "MaveCode möchte die Dateien auf oberster Ebene in diesem Verzeichnis (außerhalb des Arbeitsbereichs) anzeigen",
+		"didViewTopLevelOutsideWorkspace": "MaveCode hat die Dateien auf oberster Ebene in diesem Verzeichnis (außerhalb des Arbeitsbereichs) angezeigt",
+		"wantsToViewRecursiveOutsideWorkspace": "MaveCode möchte rekursiv alle Dateien in diesem Verzeichnis (außerhalb des Arbeitsbereichs) anzeigen",
+		"didViewRecursiveOutsideWorkspace": "MaveCode hat rekursiv alle Dateien in diesem Verzeichnis (außerhalb des Arbeitsbereichs) angezeigt",
+		"wantsToViewMultipleDirectories": "MaveCode möchte mehrere Verzeichnisse anzeigen"
 	},
 	"commandOutput": "Befehlsausgabe",
 	"commandExecution": {
@@ -247,24 +247,24 @@
 	"response": "Antwort",
 	"arguments": "Argumente",
 	"text": {
-		"rooSaid": "Zoo hat gesagt"
+		"rooSaid": "MaveCode hat gesagt"
 	},
 	"feedback": {
 		"youSaid": "Du hast gesagt"
 	},
 	"mcp": {
-		"wantsToUseTool": "Zoo möchte ein Tool auf dem {{serverName}} MCP-Server verwenden",
-		"wantsToAccessResource": "Zoo möchte auf eine Ressource auf dem {{serverName}} MCP-Server zugreifen"
+		"wantsToUseTool": "MaveCode möchte ein Tool auf dem {{serverName}} MCP-Server verwenden",
+		"wantsToAccessResource": "MaveCode möchte auf eine Ressource auf dem {{serverName}} MCP-Server zugreifen"
 	},
 	"modes": {
-		"wantsToSwitch": "Zoo möchte zum <code>{{mode}}</code>-Modus wechseln",
-		"wantsToSwitchWithReason": "Zoo möchte zum <code>{{mode}}</code>-Modus wechseln, weil: {{reason}}",
-		"didSwitch": "Zoo hat zum <code>{{mode}}</code>-Modus gewechselt",
-		"didSwitchWithReason": "Zoo hat zum <code>{{mode}}</code>-Modus gewechselt, weil: {{reason}}"
+		"wantsToSwitch": "MaveCode möchte zum <code>{{mode}}</code>-Modus wechseln",
+		"wantsToSwitchWithReason": "MaveCode möchte zum <code>{{mode}}</code>-Modus wechseln, weil: {{reason}}",
+		"didSwitch": "MaveCode hat zum <code>{{mode}}</code>-Modus gewechselt",
+		"didSwitchWithReason": "MaveCode hat zum <code>{{mode}}</code>-Modus gewechselt, weil: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Zoo möchte eine neue Teilaufgabe im <code>{{mode}}</code>-Modus erstellen",
-		"wantsToFinish": "Zoo möchte diese Teilaufgabe abschließen",
+		"wantsToCreate": "MaveCode möchte eine neue Teilaufgabe im <code>{{mode}}</code>-Modus erstellen",
+		"wantsToFinish": "MaveCode möchte diese Teilaufgabe abschließen",
 		"newTaskContent": "Teilaufgabenanweisungen",
 		"completionContent": "Teilaufgabe abgeschlossen",
 		"resultContent": "Teilaufgabenergebnisse",
@@ -273,7 +273,7 @@
 		"goToSubtask": "Aufgabe anzeigen"
 	},
 	"questions": {
-		"hasQuestion": "Zoo hat eine Frage"
+		"hasQuestion": "MaveCode hat eine Frage"
 	},
 	"taskCompleted": "Aufgabe abgeschlossen",
 	"modelResponseIncomplete": "Modellantwort unvollständig",
@@ -289,7 +289,7 @@
 		"copyToClipboard": "In Zwischenablage kopieren",
 		"copied": "Kopiert!",
 		"diagnostics": "Detaillierte Fehlerinformationen abrufen",
-		"proxyProvider": "Du scheinst einen Proxy-basierten Anbieter zu verwenden. Überprüfe unbedingt seine Protokolle und stelle sicher, dass er Zoos Anfragen nicht umschreibt."
+		"proxyProvider": "Du scheinst einen Proxy-basierten Anbieter zu verwenden. Überprüfe unbedingt seine Protokolle und stelle sicher, dass er MaveCodes Anfragen nicht umschreibt."
 	},
 	"powershell": {
 		"issues": "Es scheint, dass du Probleme mit Windows PowerShell hast, bitte sieh dir dies an"
@@ -332,8 +332,8 @@
 		}
 	},
 	"skill": {
-		"wantsToLoad": "Zoo möchte eine Fähigkeit laden",
-		"didLoad": "Zoo hat eine Fähigkeit geladen"
+		"wantsToLoad": "MaveCode möchte eine Fähigkeit laden",
+		"didLoad": "MaveCode hat eine Fähigkeit geladen"
 	},
 	"followUpSuggest": {
 		"copyToInput": "In Eingabefeld kopieren (oder Shift + Klick)",
@@ -344,9 +344,9 @@
 		"support": "Bitte unterstütze MaveCode, indem du uns auf <githubLink>GitHub</githubLink> einen Stern gibst.",
 		"release": {
 			"heading": "Was ist neu:",
-			"highlight1": "Führe mit Destructive Command Guard (DCG) längere Aufgaben ohne Unterbrechung aus — DCG blockiert gefährliche Befehle, während Zoo weiterarbeitet, ohne dass du ständig Freigabeschaltflächen drücken musst.",
+			"highlight1": "Führe mit Destructive Command Guard (DCG) längere Aufgaben ohne Unterbrechung aus — DCG blockiert gefährliche Befehle, während MaveCode weiterarbeitet, ohne dass du ständig Freigabeschaltflächen drücken musst.",
 			"highlight2": "Bessere Anbietersteuerung und Zuverlässigkeit — wähle die Antwortgeschwindigkeit von OpenAI Codex, nutze aktualisierte DeepSeek-Konfigurationen und halte laufende Aufgaben von Profiländerungen isoliert.",
-			"highlight3": "Kritische Fehlerbehebung bei der Terminalausführung — Zoo wartet jetzt, bis Terminalbefehle beendet sind, bevor der nächste Schritt beginnt."
+			"highlight3": "Kritische Fehlerbehebung bei der Terminalausführung — MaveCode wartet jetzt, bis Terminalbefehle beendet sind, bevor der nächste Schritt beginnt."
 		},
 		"cloudAgents": {
 			"heading": "Neu in der Cloud:",
@@ -376,18 +376,18 @@
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Limit für automatisch genehmigte Anfragen erreicht",
-			"description": "Zoo hat das automatisch genehmigte Limit von {{count}} API-Anfrage(n) erreicht. Möchtest du den Zähler zurücksetzen und mit der Aufgabe fortfahren?",
+			"description": "MaveCode hat das automatisch genehmigte Limit von {{count}} API-Anfrage(n) erreicht. Möchtest du den Zähler zurücksetzen und mit der Aufgabe fortfahren?",
 			"button": "Zurücksetzen und fortfahren"
 		},
 		"autoApprovedCostLimitReached": {
-			"description": "Zoo hat das automatisch genehmigte Kostenlimit von ${{count}} erreicht. Möchten Sie die Kosten zurücksetzen und mit der Aufgabe fortfahren?",
+			"description": "MaveCode hat das automatisch genehmigte Kostenlimit von ${{count}} erreicht. Möchten Sie die Kosten zurücksetzen und mit der Aufgabe fortfahren?",
 			"title": "Kostengrenze für automatische Genehmigung erreicht",
 			"button": "Zurücksetzen und Fortfahren"
 		}
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Zoo möchte den Codebase nach <code>{{query}}</code> durchsuchen",
-		"wantsToSearchWithPath": "Zoo möchte den Codebase nach <code>{{query}}</code> in <code>{{path}}</code> durchsuchen",
+		"wantsToSearch": "MaveCode möchte den Codebase nach <code>{{query}}</code> durchsuchen",
+		"wantsToSearchWithPath": "MaveCode möchte den Codebase nach <code>{{query}}</code> in <code>{{path}}</code> durchsuchen",
 		"didSearch_one": "1 Ergebnis gefunden",
 		"didSearch_other": "{{count}} Ergebnisse gefunden",
 		"resultTooltip": "Ähnlichkeitswert: {{score}} (klicken zum Öffnen der Datei)"
@@ -469,8 +469,8 @@
 		"clickToEdit": "Klicken zum Bearbeiten der Nachricht"
 	},
 	"slashCommand": {
-		"wantsToRun": "Zoo möchte einen Slash-Befehl ausführen",
-		"didRun": "Zoo hat einen Slash-Befehl ausgeführt"
+		"wantsToRun": "MaveCode möchte einen Slash-Befehl ausführen",
+		"didRun": "MaveCode hat einen Slash-Befehl ausgeführt"
 	},
 	"todo": {
 		"partial": "{{completed}} von {{total}} To-Dos erledigt",
@@ -489,7 +489,7 @@
 		"openMcpSettings": "MCP-Einstellungen öffnen"
 	},
 	"readCommandOutput": {
-		"title": "Zoo las Befehlsausgabe"
+		"title": "MaveCode las Befehlsausgabe"
 	},
 	"retiredProvider": {
 		"title": "Anbieter wird nicht mehr unterstützt",

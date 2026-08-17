@@ -92,9 +92,9 @@ describe("webviewMessageHandler - importRooHistory", () => {
 
 			return {
 				rooExtensionDomain: "RooVeterinaryInc.roo-cline",
-				zooExtensionDomain: "MaveCode.mave-code",
+				mavecodeExtensionDomain: "MaveCode.mave-code",
 				rooStorageRoots: ["/mock/roo-storage"],
-				zooStorageRoot: "/mock/storage",
+				mavecodeStorageRoot: "/mock/storage",
 				foundTaskCount: 2,
 				importedTaskCount: 2,
 				importedFileCount: 4,
@@ -149,9 +149,9 @@ describe("webviewMessageHandler - importRooHistory", () => {
 	it("uses the singular success message when one Roo task history is imported", async () => {
 		importRooTaskHistoryMock.mockResolvedValue({
 			rooExtensionDomain: "RooVeterinaryInc.roo-cline",
-			zooExtensionDomain: "MaveCode.mave-code",
+			mavecodeExtensionDomain: "MaveCode.mave-code",
 			rooStorageRoots: ["/mock/roo-storage"],
-			zooStorageRoot: "/mock/storage",
+			mavecodeStorageRoot: "/mock/storage",
 			foundTaskCount: 1,
 			importedTaskCount: 1,
 			importedFileCount: 2,
@@ -176,9 +176,9 @@ describe("webviewMessageHandler - importRooHistory", () => {
 	it("shows a 'not found' warning when no Roo history exists at all", async () => {
 		importRooTaskHistoryMock.mockResolvedValue({
 			rooExtensionDomain: "RooVeterinaryInc.roo-cline",
-			zooExtensionDomain: "MaveCode.mave-code",
+			mavecodeExtensionDomain: "MaveCode.mave-code",
 			rooStorageRoots: ["/mock/roo-storage"],
-			zooStorageRoot: "/mock/storage",
+			mavecodeStorageRoot: "/mock/storage",
 			foundTaskCount: 0,
 			importedTaskCount: 0,
 			importedFileCount: 0,
@@ -205,12 +205,12 @@ describe("webviewMessageHandler - importRooHistory", () => {
 		expect(vscode.window.showInformationMessage).not.toHaveBeenCalled()
 	})
 
-	it("shows an 'already imported' warning when all Roo tasks are already in Zoo", async () => {
+	it("shows an 'already imported' warning when all Roo tasks are already in MaveCode", async () => {
 		importRooTaskHistoryMock.mockResolvedValue({
 			rooExtensionDomain: "RooVeterinaryInc.roo-cline",
-			zooExtensionDomain: "MaveCode.mave-code",
+			mavecodeExtensionDomain: "MaveCode.mave-code",
 			rooStorageRoots: ["/mock/roo-storage"],
-			zooStorageRoot: "/mock/storage",
+			mavecodeStorageRoot: "/mock/storage",
 			foundTaskCount: 3,
 			importedTaskCount: 0,
 			importedFileCount: 0,

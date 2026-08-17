@@ -43,9 +43,9 @@ import {
 	DEFAULT_WRITE_DELAY_MS,
 	DEFAULT_DIFF_FUZZY_THRESHOLD,
 	DEFAULT_DESTRUCTIVE_COMMAND_GUARD_ENABLED,
-	DEFAULT_AUTO_CLOSE_ZOO_OPENED_FILES,
-	DEFAULT_AUTO_CLOSE_ZOO_OPENED_FILES_AFTER_USER_EDITED,
-	DEFAULT_AUTO_CLOSE_ZOO_OPENED_NEW_FILES,
+	DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES,
+	DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES_AFTER_USER_EDITED,
+	DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_NEW_FILES,
 	ORGANIZATION_ALLOW_ALL,
 	DEFAULT_MODES,
 	DEFAULT_CHECKPOINT_TIMEOUT_SECONDS,
@@ -2130,9 +2130,9 @@ export class ClineProvider
 			// in sync. The model lookup in requestRouterModels uses .find() which returns the
 			// first mave-gateway profile it finds — if that profile has a stale token, requests fail.
 			const allProfiles = await this.providerSettingsManager.listConfig()
-			const zooProfiles = allProfiles.filter((p) => p.apiProvider === providerIdentifiers.maveGateway)
+			const mavecodeProfiles = allProfiles.filter((p) => p.apiProvider === providerIdentifiers.maveGateway)
 
-			if (zooProfiles.length === 0) {
+			if (mavecodeProfiles.length === 0) {
 				// No existing mave-gateway profile — create the canonical default.
 				const newConfiguration: ProviderSettings = {
 					apiProvider: "mave-gateway",
@@ -2146,7 +2146,7 @@ export class ClineProvider
 			} else {
 				// Update every existing mave-gateway profile with the new token and the
 				// derived base URL so that environment-specific routing stays consistent.
-				for (const entry of zooProfiles) {
+				for (const entry of mavecodeProfiles) {
 					const isActiveProfile = isMaveGatewayActive && entry.name === currentApiConfigName
 					const existing = await this.providerSettingsManager.getProfile({ name: entry.name })
 					const updated: ProviderSettings = {
@@ -2165,7 +2165,7 @@ export class ClineProvider
 				}
 
 				if (!isMaveGatewayActive) {
-					await this.activateProviderProfile({ name: zooProfiles[0].name })
+					await this.activateProviderProfile({ name: mavecodeProfiles[0].name })
 				}
 			}
 		} catch (error) {
@@ -2623,9 +2623,9 @@ export class ClineProvider
 			openRouterImageApiKey,
 			openRouterImageGenerationSelectedModel,
 			lockApiConfigAcrossModes,
-			autoCloseZooOpenedFiles,
-			autoCloseZooOpenedFilesAfterUserEdited,
-			autoCloseZooOpenedNewFiles,
+			autoCloseMaveCodeOpenedFiles,
+			autoCloseMaveCodeOpenedFilesAfterUserEdited,
+			autoCloseMaveCodeOpenedNewFiles,
 		} = await this.getState()
 
 		let cloudOrganizations: CloudOrganizationMembership[] = []
@@ -2809,10 +2809,10 @@ export class ClineProvider
 			imageGenerationProvider,
 			openRouterImageApiKey,
 			openRouterImageGenerationSelectedModel,
-			autoCloseZooOpenedFiles: autoCloseZooOpenedFiles ?? DEFAULT_AUTO_CLOSE_ZOO_OPENED_FILES,
-			autoCloseZooOpenedFilesAfterUserEdited:
-				autoCloseZooOpenedFilesAfterUserEdited ?? DEFAULT_AUTO_CLOSE_ZOO_OPENED_FILES_AFTER_USER_EDITED,
-			autoCloseZooOpenedNewFiles: autoCloseZooOpenedNewFiles ?? DEFAULT_AUTO_CLOSE_ZOO_OPENED_NEW_FILES,
+			autoCloseMaveCodeOpenedFiles: autoCloseMaveCodeOpenedFiles ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES,
+			autoCloseMaveCodeOpenedFilesAfterUserEdited:
+				autoCloseMaveCodeOpenedFilesAfterUserEdited ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES_AFTER_USER_EDITED,
+			autoCloseMaveCodeOpenedNewFiles: autoCloseMaveCodeOpenedNewFiles ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_NEW_FILES,
 			openAiCodexIsAuthenticated: await (async () => {
 				try {
 					const { openAiCodexOAuthManager } = await import("../../integrations/openai-codex/oauth")
@@ -3032,9 +3032,9 @@ export class ClineProvider
 			imageGenerationProvider: stateValues.imageGenerationProvider,
 			openRouterImageApiKey: stateValues.openRouterImageApiKey,
 			openRouterImageGenerationSelectedModel: stateValues.openRouterImageGenerationSelectedModel,
-			autoCloseZooOpenedFiles: stateValues.autoCloseZooOpenedFiles,
-			autoCloseZooOpenedFilesAfterUserEdited: stateValues.autoCloseZooOpenedFilesAfterUserEdited,
-			autoCloseZooOpenedNewFiles: stateValues.autoCloseZooOpenedNewFiles,
+			autoCloseMaveCodeOpenedFiles: stateValues.autoCloseMaveCodeOpenedFiles,
+			autoCloseMaveCodeOpenedFilesAfterUserEdited: stateValues.autoCloseMaveCodeOpenedFilesAfterUserEdited,
+			autoCloseMaveCodeOpenedNewFiles: stateValues.autoCloseMaveCodeOpenedNewFiles,
 		}
 	}
 

@@ -321,7 +321,7 @@ describe("TaskHistoryStore migrateFromGlobalState reconciliation", () => {
 	let store: TaskHistoryStore
 
 	beforeEach(async () => {
-		tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "zoo-migrate-test-"))
+		tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), "mavecode-migrate-test-"))
 		store = new TaskHistoryStore(tmpDir)
 		await store.initialize()
 	})

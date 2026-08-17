@@ -24,7 +24,7 @@ const modelInfo: ModelInfo = {
 	supportsPromptCache: false,
 }
 
-const zooModels = { "anthropic/claude-sonnet-4": modelInfo }
+const mavecodeModels = { "anthropic/claude-sonnet-4": modelInfo }
 
 // Test fixtures intentionally carry a single provider key; RouterModels requires
 // every provider key, so cast through unknown for these partial literals.
@@ -44,7 +44,7 @@ const makeQueryClient = () => new QueryClient({ defaultOptions: { queries: { ret
 
 beforeEach(() => {
 	vi.clearAllMocks()
-	mockFetchRouterModels.mockResolvedValue(asRouterModels({ "mave-gateway": zooModels }))
+	mockFetchRouterModels.mockResolvedValue(asRouterModels({ "mave-gateway": mavecodeModels }))
 })
 
 describe("useMaveGatewayRouterModelsSync", () => {
@@ -93,7 +93,7 @@ describe("useMaveGatewayRouterModelsSync", () => {
 
 		await waitFor(() => {
 			const cached = queryClient.getQueryData<RouterModels>(["routerModels", "all"])
-			expect(cached?.["mave-gateway"]).toEqual(zooModels)
+			expect(cached?.["mave-gateway"]).toEqual(mavecodeModels)
 			expect(cached?.openrouter).toEqual(existingOpenrouter)
 		})
 	})

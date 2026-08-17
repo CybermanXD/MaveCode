@@ -280,7 +280,7 @@ describe("Model Validation Functions", () => {
 
 	describe("MaveCode validation", () => {
 		describe("validateApiConfiguration (welcome-view entry point)", () => {
-			it("returns a sign-in error when neither profile token nor Zoo auth is present", () => {
+			it("returns a sign-in error when neither profile token nor MaveCode auth is present", () => {
 				const config: ProviderSettings = {
 					apiProvider: "mave-gateway",
 					maveGatewayModelId: "anthropic/claude-sonnet-4",

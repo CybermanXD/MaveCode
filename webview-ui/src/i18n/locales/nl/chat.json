@@ -121,7 +121,7 @@
 		"title": "Modi",
 		"marketplace": "Modus Marktplaats",
 		"settings": "Modus Instellingen",
-		"description": "Gespecialiseerde persona's die het gedrag van Zoo aanpassen.",
+		"description": "Gespecialiseerde persona's die het gedrag van MaveCode aanpassen.",
 		"searchPlaceholder": "Zoek modi...",
 		"noResults": "Geen resultaten gevonden"
 	},
@@ -182,43 +182,43 @@
 		"current": "Huidig"
 	},
 	"instructions": {
-		"wantsToFetch": "Zoo wil gedetailleerde instructies ophalen om te helpen met de huidige taak"
+		"wantsToFetch": "MaveCode wil gedetailleerde instructies ophalen om te helpen met de huidige taak"
 	},
 	"fileOperations": {
-		"wantsToRead": "Zoo wil dit bestand lezen",
-		"wantsToReadOutsideWorkspace": "Zoo wil dit bestand buiten de werkruimte lezen",
-		"didRead": "Zoo heeft dit bestand gelezen",
-		"wantsToEdit": "Zoo wil dit bestand bewerken",
-		"wantsToEditOutsideWorkspace": "Zoo wil dit bestand buiten de werkruimte bewerken",
-		"wantsToEditProtected": "Zoo wil een beveiligd configuratiebestand bewerken",
-		"wantsToCreate": "Zoo wil een nieuw bestand aanmaken",
-		"wantsToSearchReplace": "Zoo wil zoeken en vervangen in dit bestand",
-		"didSearchReplace": "Zoo heeft zoeken en vervangen uitgevoerd op dit bestand",
-		"wantsToInsert": "Zoo wil inhoud invoegen in dit bestand",
-		"wantsToInsertWithLineNumber": "Zoo wil inhoud invoegen in dit bestand op regel {{lineNumber}}",
-		"wantsToInsertAtEnd": "Zoo wil inhoud toevoegen aan het einde van dit bestand",
-		"wantsToReadAndXMore": "Zoo wil dit bestand en nog {{count}} andere lezen",
-		"wantsToReadMultiple": "Zoo wil meerdere bestanden lezen",
-		"wantsToApplyBatchChanges": "Zoo wil wijzigingen toepassen op meerdere bestanden",
-		"wantsToGenerateImage": "Zoo wil een afbeelding genereren",
-		"wantsToGenerateImageOutsideWorkspace": "Zoo wil een afbeelding genereren buiten de werkruimte",
-		"wantsToGenerateImageProtected": "Zoo wil een afbeelding genereren op een beschermde locatie",
-		"didGenerateImage": "Zoo heeft een afbeelding gegenereerd"
+		"wantsToRead": "MaveCode wil dit bestand lezen",
+		"wantsToReadOutsideWorkspace": "MaveCode wil dit bestand buiten de werkruimte lezen",
+		"didRead": "MaveCode heeft dit bestand gelezen",
+		"wantsToEdit": "MaveCode wil dit bestand bewerken",
+		"wantsToEditOutsideWorkspace": "MaveCode wil dit bestand buiten de werkruimte bewerken",
+		"wantsToEditProtected": "MaveCode wil een beveiligd configuratiebestand bewerken",
+		"wantsToCreate": "MaveCode wil een nieuw bestand aanmaken",
+		"wantsToSearchReplace": "MaveCode wil zoeken en vervangen in dit bestand",
+		"didSearchReplace": "MaveCode heeft zoeken en vervangen uitgevoerd op dit bestand",
+		"wantsToInsert": "MaveCode wil inhoud invoegen in dit bestand",
+		"wantsToInsertWithLineNumber": "MaveCode wil inhoud invoegen in dit bestand op regel {{lineNumber}}",
+		"wantsToInsertAtEnd": "MaveCode wil inhoud toevoegen aan het einde van dit bestand",
+		"wantsToReadAndXMore": "MaveCode wil dit bestand en nog {{count}} andere lezen",
+		"wantsToReadMultiple": "MaveCode wil meerdere bestanden lezen",
+		"wantsToApplyBatchChanges": "MaveCode wil wijzigingen toepassen op meerdere bestanden",
+		"wantsToGenerateImage": "MaveCode wil een afbeelding genereren",
+		"wantsToGenerateImageOutsideWorkspace": "MaveCode wil een afbeelding genereren buiten de werkruimte",
+		"wantsToGenerateImageProtected": "MaveCode wil een afbeelding genereren op een beschermde locatie",
+		"didGenerateImage": "MaveCode heeft een afbeelding gegenereerd"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Zoo wil de bovenliggende bestanden in deze map bekijken",
-		"didViewTopLevel": "Zoo heeft de bovenliggende bestanden in deze map bekeken",
-		"wantsToViewRecursive": "Zoo wil alle bestanden in deze map recursief bekijken",
-		"didViewRecursive": "Zoo heeft alle bestanden in deze map recursief bekeken",
-		"wantsToSearch": "Zoo wil deze map doorzoeken op <code>{{regex}}</code>",
-		"didSearch": "Zoo heeft deze map doorzocht op <code>{{regex}}</code>",
-		"wantsToSearchOutsideWorkspace": "Zoo wil deze map (buiten werkruimte) doorzoeken op <code>{{regex}}</code>",
-		"didSearchOutsideWorkspace": "Zoo heeft deze map (buiten werkruimte) doorzocht op <code>{{regex}}</code>",
-		"wantsToViewTopLevelOutsideWorkspace": "Zoo wil de bovenliggende bestanden in deze map (buiten werkruimte) bekijken",
-		"didViewTopLevelOutsideWorkspace": "Zoo heeft de bovenliggende bestanden in deze map (buiten werkruimte) bekeken",
-		"wantsToViewRecursiveOutsideWorkspace": "Zoo wil alle bestanden in deze map (buiten werkruimte) recursief bekijken",
-		"didViewRecursiveOutsideWorkspace": "Zoo heeft alle bestanden in deze map (buiten werkruimte) recursief bekeken",
-		"wantsToViewMultipleDirectories": "Zoo wil meerdere mappen bekijken"
+		"wantsToViewTopLevel": "MaveCode wil de bovenliggende bestanden in deze map bekijken",
+		"didViewTopLevel": "MaveCode heeft de bovenliggende bestanden in deze map bekeken",
+		"wantsToViewRecursive": "MaveCode wil alle bestanden in deze map recursief bekijken",
+		"didViewRecursive": "MaveCode heeft alle bestanden in deze map recursief bekeken",
+		"wantsToSearch": "MaveCode wil deze map doorzoeken op <code>{{regex}}</code>",
+		"didSearch": "MaveCode heeft deze map doorzocht op <code>{{regex}}</code>",
+		"wantsToSearchOutsideWorkspace": "MaveCode wil deze map (buiten werkruimte) doorzoeken op <code>{{regex}}</code>",
+		"didSearchOutsideWorkspace": "MaveCode heeft deze map (buiten werkruimte) doorzocht op <code>{{regex}}</code>",
+		"wantsToViewTopLevelOutsideWorkspace": "MaveCode wil de bovenliggende bestanden in deze map (buiten werkruimte) bekijken",
+		"didViewTopLevelOutsideWorkspace": "MaveCode heeft de bovenliggende bestanden in deze map (buiten werkruimte) bekeken",
+		"wantsToViewRecursiveOutsideWorkspace": "MaveCode wil alle bestanden in deze map (buiten werkruimte) recursief bekijken",
+		"didViewRecursiveOutsideWorkspace": "MaveCode heeft alle bestanden in deze map (buiten werkruimte) recursief bekeken",
+		"wantsToViewMultipleDirectories": "MaveCode wil meerdere mappen bekijken"
 	},
 	"commandOutput": "Commando-uitvoer",
 	"commandExecution": {
@@ -242,24 +242,24 @@
 	"response": "Antwoord",
 	"arguments": "Argumenten",
 	"text": {
-		"rooSaid": "Zoo zei"
+		"rooSaid": "MaveCode zei"
 	},
 	"feedback": {
 		"youSaid": "Jij zei"
 	},
 	"mcp": {
-		"wantsToUseTool": "Zoo wil een tool gebruiken op de {{serverName}} MCP-server",
-		"wantsToAccessResource": "Zoo wil een bron benaderen op de {{serverName}} MCP-server"
+		"wantsToUseTool": "MaveCode wil een tool gebruiken op de {{serverName}} MCP-server",
+		"wantsToAccessResource": "MaveCode wil een bron benaderen op de {{serverName}} MCP-server"
 	},
 	"modes": {
-		"wantsToSwitch": "Zoo wil overschakelen naar {{mode}} modus",
-		"wantsToSwitchWithReason": "Zoo wil overschakelen naar {{mode}} modus omdat: {{reason}}",
-		"didSwitch": "Zoo is overgeschakeld naar {{mode}} modus",
-		"didSwitchWithReason": "Zoo is overgeschakeld naar {{mode}} modus omdat: {{reason}}"
+		"wantsToSwitch": "MaveCode wil overschakelen naar {{mode}} modus",
+		"wantsToSwitchWithReason": "MaveCode wil overschakelen naar {{mode}} modus omdat: {{reason}}",
+		"didSwitch": "MaveCode is overgeschakeld naar {{mode}} modus",
+		"didSwitchWithReason": "MaveCode is overgeschakeld naar {{mode}} modus omdat: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Zoo wil een nieuwe subtaak aanmaken in {{mode}} modus",
-		"wantsToFinish": "Zoo wil deze subtaak voltooien",
+		"wantsToCreate": "MaveCode wil een nieuwe subtaak aanmaken in {{mode}} modus",
+		"wantsToFinish": "MaveCode wil deze subtaak voltooien",
 		"newTaskContent": "Subtaak-instructies",
 		"completionContent": "Subtaak voltooid",
 		"resultContent": "Subtaakresultaten",
@@ -268,7 +268,7 @@
 		"goToSubtask": "Taak weergeven"
 	},
 	"questions": {
-		"hasQuestion": "Zoo heeft een vraag"
+		"hasQuestion": "MaveCode heeft een vraag"
 	},
 	"taskCompleted": "Taak voltooid",
 	"error": "Fout",
@@ -282,14 +282,14 @@
 	"diffError": {
 		"title": "Bewerking mislukt"
 	},
-	"troubleMessage": "Zoo ondervindt problemen...",
+	"troubleMessage": "MaveCode ondervindt problemen...",
 	"errorDetails": {
 		"link": "Details",
 		"title": "Foutdetails",
 		"copyToClipboard": "Naar klembord kopiëren",
 		"copied": "Gekopieerd!",
 		"diagnostics": "Gedetailleerde foutinformatie ophalen",
-		"proxyProvider": "Je lijkt een proxy-gebaseerde provider te gebruiken. Zorg ervoor dat je de logs controleert en dat het geen Zoo-verzoeken herschrijft."
+		"proxyProvider": "Je lijkt een proxy-gebaseerde provider te gebruiken. Zorg ervoor dat je de logs controleert en dat het geen MaveCode-verzoeken herschrijft."
 	},
 	"powershell": {
 		"issues": "Het lijkt erop dat je problemen hebt met Windows PowerShell, zie deze"
@@ -317,9 +317,9 @@
 		"support": "Steun MaveCode door ons een ster te geven op <githubLink>GitHub</githubLink>.",
 		"release": {
 			"heading": "Wat is nieuw:",
-			"highlight1": "Voer langere taken zonder onderbreking uit met Destructive Command Guard (DCG) — DCG blokkeert gevaarlijke opdrachten terwijl Zoo doorwerkt zonder dat je voortdurend op goedkeuringsknoppen hoeft te drukken.",
+			"highlight1": "Voer langere taken zonder onderbreking uit met Destructive Command Guard (DCG) — DCG blokkeert gevaarlijke opdrachten terwijl MaveCode doorwerkt zonder dat je voortdurend op goedkeuringsknoppen hoeft te drukken.",
 			"highlight2": "Betere providerbediening en betrouwbaarheid — kies de reactiesnelheid van OpenAI Codex, gebruik bijgewerkte DeepSeek-configuraties en houd actieve taken geïsoleerd van profielwijzigingen.",
-			"highlight3": "Kritieke oplossing voor terminaluitvoering — Zoo wacht nu tot terminalopdrachten klaar zijn voordat de volgende stap begint."
+			"highlight3": "Kritieke oplossing voor terminaluitvoering — MaveCode wacht nu tot terminalopdrachten klaar zijn voordat de volgende stap begint."
 		},
 		"cloudAgents": {
 			"heading": "Nieuw in de Cloud:",
@@ -348,8 +348,8 @@
 		}
 	},
 	"skill": {
-		"wantsToLoad": "Zoo wil een vaardigheid laden",
-		"didLoad": "Zoo heeft een vaardigheid geladen"
+		"wantsToLoad": "MaveCode wil een vaardigheid laden",
+		"didLoad": "MaveCode heeft een vaardigheid geladen"
 	},
 	"followUpSuggest": {
 		"copyToInput": "Kopiëren naar invoer (zelfde als shift + klik)",
@@ -376,18 +376,18 @@
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Limiet voor automatisch goedgekeurde verzoeken bereikt",
-			"description": "Zoo heeft de automatisch goedgekeurde limiet van {{count}} API-verzoek(en) bereikt. Wil je de teller resetten en doorgaan met de taak?",
+			"description": "MaveCode heeft de automatisch goedgekeurde limiet van {{count}} API-verzoek(en) bereikt. Wil je de teller resetten en doorgaan met de taak?",
 			"button": "Resetten en doorgaan"
 		},
 		"autoApprovedCostLimitReached": {
 			"title": "Limiet voor automatisch goedgekeurde kosten bereikt",
 			"button": "Resetten en doorgaan",
-			"description": "Zoo heeft de automatisch goedgekeurde kostenlimiet van ${{count}} bereikt. Wilt u de kosten resetten en doorgaan met de taak?"
+			"description": "MaveCode heeft de automatisch goedgekeurde kostenlimiet van ${{count}} bereikt. Wilt u de kosten resetten en doorgaan met de taak?"
 		}
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Zoo wil de codebase doorzoeken op <code>{{query}}</code>",
-		"wantsToSearchWithPath": "Zoo wil de codebase doorzoeken op <code>{{query}}</code> in <code>{{path}}</code>",
+		"wantsToSearch": "MaveCode wil de codebase doorzoeken op <code>{{query}}</code>",
+		"wantsToSearchWithPath": "MaveCode wil de codebase doorzoeken op <code>{{query}}</code> in <code>{{path}}</code>",
 		"didSearch_one": "1 resultaat gevonden",
 		"didSearch_other": "{{count}} resultaten gevonden",
 		"resultTooltip": "Gelijkenisscore: {{score}} (klik om bestand te openen)"
@@ -469,8 +469,8 @@
 		"clickToEdit": "Klik om bericht te bewerken"
 	},
 	"slashCommand": {
-		"wantsToRun": "Zoo wil een slash commando uitvoeren",
-		"didRun": "Zoo heeft een slash commando uitgevoerd"
+		"wantsToRun": "MaveCode wil een slash commando uitvoeren",
+		"didRun": "MaveCode heeft een slash commando uitgevoerd"
 	},
 	"todo": {
 		"partial": "{{completed}} van {{total}} to-do's voltooid",
@@ -489,7 +489,7 @@
 		"openMcpSettings": "MCP-instellingen openen"
 	},
 	"readCommandOutput": {
-		"title": "Zoo read command output"
+		"title": "MaveCode read command output"
 	},
 	"retiredProvider": {
 		"title": "Provider wordt niet meer ondersteund",

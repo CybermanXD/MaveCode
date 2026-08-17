@@ -1224,52 +1224,52 @@ describe("ClineProvider", () => {
 	})
 
 	describe("auto-close settings are included in posted state", () => {
-		it("getStateToPostToWebview returns saved autoCloseZooOpenedFiles value", async () => {
+		it("getStateToPostToWebview returns saved autoCloseMaveCodeOpenedFiles value", async () => {
 			await provider.resolveWebviewView(mockWebviewView)
 
 			// Simulate the updateSettings handler storing the value.
-			await provider.contextProxy.setValue("autoCloseZooOpenedFiles", false)
-			await provider.contextProxy.setValue("autoCloseZooOpenedFilesAfterUserEdited", true)
-			await provider.contextProxy.setValue("autoCloseZooOpenedNewFiles", true)
+			await provider.contextProxy.setValue("autoCloseMaveCodeOpenedFiles", false)
+			await provider.contextProxy.setValue("autoCloseMaveCodeOpenedFilesAfterUserEdited", true)
+			await provider.contextProxy.setValue("autoCloseMaveCodeOpenedNewFiles", true)
 
 			const state = await provider.getStateToPostToWebview()
 
 			// The saved values must be present in the state posted to the webview.
-			expect(state.autoCloseZooOpenedFiles).toBe(false)
-			expect(state.autoCloseZooOpenedFilesAfterUserEdited).toBe(true)
-			expect(state.autoCloseZooOpenedNewFiles).toBe(true)
+			expect(state.autoCloseMaveCodeOpenedFiles).toBe(false)
+			expect(state.autoCloseMaveCodeOpenedFilesAfterUserEdited).toBe(true)
+			expect(state.autoCloseMaveCodeOpenedNewFiles).toBe(true)
 		})
 
-		it("getStateToPostToWebview defaults autoCloseZooOpenedFiles to false when unset", async () => {
+		it("getStateToPostToWebview defaults autoCloseMaveCodeOpenedFiles to false when unset", async () => {
 			await provider.resolveWebviewView(mockWebviewView)
 
 			// Ensure the settings are not set.
-			await provider.contextProxy.setValue("autoCloseZooOpenedFiles", undefined)
-			await provider.contextProxy.setValue("autoCloseZooOpenedFilesAfterUserEdited", undefined)
-			await provider.contextProxy.setValue("autoCloseZooOpenedNewFiles", undefined)
+			await provider.contextProxy.setValue("autoCloseMaveCodeOpenedFiles", undefined)
+			await provider.contextProxy.setValue("autoCloseMaveCodeOpenedFilesAfterUserEdited", undefined)
+			await provider.contextProxy.setValue("autoCloseMaveCodeOpenedNewFiles", undefined)
 
 			const state = await provider.getStateToPostToWebview()
 
 			// Unset values should default to their documented defaults (opt-in).
-			expect(state.autoCloseZooOpenedFiles).toBe(false)
-			expect(state.autoCloseZooOpenedFilesAfterUserEdited).toBe(false)
-			expect(state.autoCloseZooOpenedNewFiles).toBe(false)
+			expect(state.autoCloseMaveCodeOpenedFiles).toBe(false)
+			expect(state.autoCloseMaveCodeOpenedFilesAfterUserEdited).toBe(false)
+			expect(state.autoCloseMaveCodeOpenedNewFiles).toBe(false)
 		})
 
-		it("getState returns saved autoCloseZooOpenedFiles value for DiffViewProvider", async () => {
+		it("getState returns saved autoCloseMaveCodeOpenedFiles value for DiffViewProvider", async () => {
 			await provider.resolveWebviewView(mockWebviewView)
 
-			await provider.contextProxy.setValue("autoCloseZooOpenedFiles", false)
-			await provider.contextProxy.setValue("autoCloseZooOpenedFilesAfterUserEdited", true)
-			await provider.contextProxy.setValue("autoCloseZooOpenedNewFiles", true)
+			await provider.contextProxy.setValue("autoCloseMaveCodeOpenedFiles", false)
+			await provider.contextProxy.setValue("autoCloseMaveCodeOpenedFilesAfterUserEdited", true)
+			await provider.contextProxy.setValue("autoCloseMaveCodeOpenedNewFiles", true)
 
 			const state = await provider.getState()
 
 			// DiffViewProvider reads from getState(); all three fields must be present
 			// so a regression that drops any of them is caught.
-			expect(state.autoCloseZooOpenedFiles).toBe(false)
-			expect(state.autoCloseZooOpenedFilesAfterUserEdited).toBe(true)
-			expect(state.autoCloseZooOpenedNewFiles).toBe(true)
+			expect(state.autoCloseMaveCodeOpenedFiles).toBe(false)
+			expect(state.autoCloseMaveCodeOpenedFilesAfterUserEdited).toBe(true)
+			expect(state.autoCloseMaveCodeOpenedNewFiles).toBe(true)
 		})
 	})
 

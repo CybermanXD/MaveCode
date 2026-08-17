@@ -23,13 +23,13 @@ export function useMaveGatewayRouterModelsSync() {
 
 		try {
 			const partial = await fetchRouterModels(providerIdentifiers.maveGateway)
-			const zooModels = partial[providerIdentifiers.maveGateway]
-			if (!zooModels || Object.keys(zooModels).length === 0) {
+			const mavecodeModels = partial[providerIdentifiers.maveGateway]
+			if (!mavecodeModels || Object.keys(mavecodeModels).length === 0) {
 				return
 			}
 
 			queryClient.setQueryData<RouterModels>(["routerModels", "all"], (current) =>
-				current ? { ...current, [providerIdentifiers.maveGateway]: zooModels } : partial,
+				current ? { ...current, [providerIdentifiers.maveGateway]: mavecodeModels } : partial,
 			)
 		} catch {
 			// Ignore: bulk router fetch may still be in flight.

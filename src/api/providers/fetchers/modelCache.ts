@@ -123,7 +123,7 @@ const cacheDigestCache = new Map<string, string>()
 // CodeQL's js/insufficient-password-hash sink, which flags any password-tainted value flowing
 // into a non-password hashing operation -- and that taint propagates to anything derived from
 // the key, including the compound cache key hashed for the on-disk filename.
-const CACHE_DIGEST_SALT = "zoo-model-cache-key-v1"
+const CACHE_DIGEST_SALT = "mavecode-model-cache-key-v1"
 const CACHE_DIGEST_ITERATIONS = 10_000
 
 /**

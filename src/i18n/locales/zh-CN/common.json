@@ -215,7 +215,7 @@
 		"enter_valid_path": "请输入有效的路径"
 	},
 	"input": {
-		"task_prompt": "让Zoo做什么？",
+		"task_prompt": "让MaveCode做什么？",
 		"task_placeholder": "在这里输入任务"
 	},
 	"settings": {
@@ -271,7 +271,7 @@
 			"description": "当待办事项列表中有未完成的待办事项时阻止任务完成"
 		}
 	},
-	"zooAuth": {
+	"mavecodeAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: 收到无效的认证 token。",
 			"token_verification_failed": "MaveCode: Token 验证失败。",

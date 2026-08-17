@@ -130,7 +130,7 @@
 		"title": "Modlar",
 		"marketplace": "Mod Pazaryeri",
 		"settings": "Mod Ayarları",
-		"description": "Zoo'nun davranışını özelleştiren uzmanlaşmış kişilikler.",
+		"description": "MaveCode'nun davranışını özelleştiren uzmanlaşmış kişilikler.",
 		"searchPlaceholder": "Modları ara...",
 		"noResults": "Sonuç bulunamadı"
 	},
@@ -144,7 +144,7 @@
 	"diffError": {
 		"title": "Düzenleme Başarısız"
 	},
-	"troubleMessage": "Zoo sorun yaşıyor...",
+	"troubleMessage": "MaveCode sorun yaşıyor...",
 	"apiRequest": {
 		"title": "API İsteği",
 		"failed": "API İsteği Başarısız",
@@ -187,43 +187,43 @@
 		"current": "Mevcut"
 	},
 	"instructions": {
-		"wantsToFetch": "Zoo mevcut göreve yardımcı olmak için ayrıntılı talimatlar almak istiyor"
+		"wantsToFetch": "MaveCode mevcut göreve yardımcı olmak için ayrıntılı talimatlar almak istiyor"
 	},
 	"fileOperations": {
-		"wantsToRead": "Zoo bu dosyayı okumak istiyor",
-		"wantsToReadOutsideWorkspace": "Zoo çalışma alanı dışındaki bu dosyayı okumak istiyor",
-		"didRead": "Zoo bu dosyayı okudu",
-		"wantsToEdit": "Zoo bu dosyayı düzenlemek istiyor",
-		"wantsToEditOutsideWorkspace": "Zoo çalışma alanı dışındaki bu dosyayı düzenlemek istiyor",
-		"wantsToEditProtected": "Zoo korumalı bir yapılandırma dosyasını düzenlemek istiyor",
-		"wantsToCreate": "Zoo yeni bir dosya oluşturmak istiyor",
-		"wantsToSearchReplace": "Zoo bu dosyada arama ve değiştirme yapmak istiyor",
-		"didSearchReplace": "Zoo bu dosyada arama ve değiştirme yaptı",
-		"wantsToInsert": "Zoo bu dosyaya içerik eklemek istiyor",
-		"wantsToInsertWithLineNumber": "Zoo bu dosyanın {{lineNumber}}. satırına içerik eklemek istiyor",
-		"wantsToInsertAtEnd": "Zoo bu dosyanın sonuna içerik eklemek istiyor",
-		"wantsToReadAndXMore": "Zoo bu dosyayı ve {{count}} tane daha okumak istiyor",
-		"wantsToReadMultiple": "Zoo birden fazla dosya okumak istiyor",
-		"wantsToApplyBatchChanges": "Zoo birden fazla dosyaya değişiklik uygulamak istiyor",
-		"wantsToGenerateImage": "Zoo bir görsel oluşturmak istiyor",
-		"wantsToGenerateImageOutsideWorkspace": "Zoo çalışma alanının dışında bir görsel oluşturmak istiyor",
-		"wantsToGenerateImageProtected": "Zoo korumalı bir konumda görsel oluşturmak istiyor",
-		"didGenerateImage": "Zoo bir görsel oluşturdu"
+		"wantsToRead": "MaveCode bu dosyayı okumak istiyor",
+		"wantsToReadOutsideWorkspace": "MaveCode çalışma alanı dışındaki bu dosyayı okumak istiyor",
+		"didRead": "MaveCode bu dosyayı okudu",
+		"wantsToEdit": "MaveCode bu dosyayı düzenlemek istiyor",
+		"wantsToEditOutsideWorkspace": "MaveCode çalışma alanı dışındaki bu dosyayı düzenlemek istiyor",
+		"wantsToEditProtected": "MaveCode korumalı bir yapılandırma dosyasını düzenlemek istiyor",
+		"wantsToCreate": "MaveCode yeni bir dosya oluşturmak istiyor",
+		"wantsToSearchReplace": "MaveCode bu dosyada arama ve değiştirme yapmak istiyor",
+		"didSearchReplace": "MaveCode bu dosyada arama ve değiştirme yaptı",
+		"wantsToInsert": "MaveCode bu dosyaya içerik eklemek istiyor",
+		"wantsToInsertWithLineNumber": "MaveCode bu dosyanın {{lineNumber}}. satırına içerik eklemek istiyor",
+		"wantsToInsertAtEnd": "MaveCode bu dosyanın sonuna içerik eklemek istiyor",
+		"wantsToReadAndXMore": "MaveCode bu dosyayı ve {{count}} tane daha okumak istiyor",
+		"wantsToReadMultiple": "MaveCode birden fazla dosya okumak istiyor",
+		"wantsToApplyBatchChanges": "MaveCode birden fazla dosyaya değişiklik uygulamak istiyor",
+		"wantsToGenerateImage": "MaveCode bir görsel oluşturmak istiyor",
+		"wantsToGenerateImageOutsideWorkspace": "MaveCode çalışma alanının dışında bir görsel oluşturmak istiyor",
+		"wantsToGenerateImageProtected": "MaveCode korumalı bir konumda görsel oluşturmak istiyor",
+		"didGenerateImage": "MaveCode bir görsel oluşturdu"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Zoo bu dizindeki üst düzey dosyaları görüntülemek istiyor",
-		"didViewTopLevel": "Zoo bu dizindeki üst düzey dosyaları görüntüledi",
-		"wantsToViewRecursive": "Zoo bu dizindeki tüm dosyaları özyinelemeli olarak görüntülemek istiyor",
-		"didViewRecursive": "Zoo bu dizindeki tüm dosyaları özyinelemeli olarak görüntüledi",
-		"wantsToSearch": "Zoo bu dizinde <code>{{regex}}</code> için arama yapmak istiyor",
-		"didSearch": "Zoo bu dizinde <code>{{regex}}</code> için arama yaptı",
-		"wantsToSearchOutsideWorkspace": "Zoo bu dizinde (çalışma alanı dışında) <code>{{regex}}</code> için arama yapmak istiyor",
-		"didSearchOutsideWorkspace": "Zoo bu dizinde (çalışma alanı dışında) <code>{{regex}}</code> için arama yaptı",
-		"wantsToViewTopLevelOutsideWorkspace": "Zoo bu dizindeki (çalışma alanı dışında) üst düzey dosyaları görüntülemek istiyor",
-		"didViewTopLevelOutsideWorkspace": "Zoo bu dizindeki (çalışma alanı dışında) üst düzey dosyaları görüntüledi",
-		"wantsToViewRecursiveOutsideWorkspace": "Zoo bu dizindeki (çalışma alanı dışında) tüm dosyaları özyinelemeli olarak görüntülemek istiyor",
-		"didViewRecursiveOutsideWorkspace": "Zoo bu dizindeki (çalışma alanı dışında) tüm dosyaları özyinelemeli olarak görüntüledi",
-		"wantsToViewMultipleDirectories": "Zoo birden fazla dizini görüntülemek istiyor"
+		"wantsToViewTopLevel": "MaveCode bu dizindeki üst düzey dosyaları görüntülemek istiyor",
+		"didViewTopLevel": "MaveCode bu dizindeki üst düzey dosyaları görüntüledi",
+		"wantsToViewRecursive": "MaveCode bu dizindeki tüm dosyaları özyinelemeli olarak görüntülemek istiyor",
+		"didViewRecursive": "MaveCode bu dizindeki tüm dosyaları özyinelemeli olarak görüntüledi",
+		"wantsToSearch": "MaveCode bu dizinde <code>{{regex}}</code> için arama yapmak istiyor",
+		"didSearch": "MaveCode bu dizinde <code>{{regex}}</code> için arama yaptı",
+		"wantsToSearchOutsideWorkspace": "MaveCode bu dizinde (çalışma alanı dışında) <code>{{regex}}</code> için arama yapmak istiyor",
+		"didSearchOutsideWorkspace": "MaveCode bu dizinde (çalışma alanı dışında) <code>{{regex}}</code> için arama yaptı",
+		"wantsToViewTopLevelOutsideWorkspace": "MaveCode bu dizindeki (çalışma alanı dışında) üst düzey dosyaları görüntülemek istiyor",
+		"didViewTopLevelOutsideWorkspace": "MaveCode bu dizindeki (çalışma alanı dışında) üst düzey dosyaları görüntüledi",
+		"wantsToViewRecursiveOutsideWorkspace": "MaveCode bu dizindeki (çalışma alanı dışında) tüm dosyaları özyinelemeli olarak görüntülemek istiyor",
+		"didViewRecursiveOutsideWorkspace": "MaveCode bu dizindeki (çalışma alanı dışında) tüm dosyaları özyinelemeli olarak görüntüledi",
+		"wantsToViewMultipleDirectories": "MaveCode birden fazla dizini görüntülemek istiyor"
 	},
 	"commandOutput": "Komut Çıktısı",
 	"commandExecution": {
@@ -248,24 +248,24 @@
 	"response": "Yanıt",
 	"arguments": "Argümanlar",
 	"text": {
-		"rooSaid": "Zoo dedi"
+		"rooSaid": "MaveCode dedi"
 	},
 	"feedback": {
 		"youSaid": "Dediniz ki"
 	},
 	"mcp": {
-		"wantsToUseTool": "Zoo {{serverName}} MCP sunucusunda bir araç kullanmak istiyor",
-		"wantsToAccessResource": "Zoo {{serverName}} MCP sunucusundaki bir kaynağa erişmek istiyor"
+		"wantsToUseTool": "MaveCode {{serverName}} MCP sunucusunda bir araç kullanmak istiyor",
+		"wantsToAccessResource": "MaveCode {{serverName}} MCP sunucusundaki bir kaynağa erişmek istiyor"
 	},
 	"modes": {
-		"wantsToSwitch": "Zoo <code>{{mode}}</code> moduna geçmek istiyor",
-		"wantsToSwitchWithReason": "Zoo <code>{{mode}}</code> moduna geçmek istiyor çünkü: {{reason}}",
-		"didSwitch": "Zoo <code>{{mode}}</code> moduna geçti",
-		"didSwitchWithReason": "Zoo <code>{{mode}}</code> moduna geçti çünkü: {{reason}}"
+		"wantsToSwitch": "MaveCode <code>{{mode}}</code> moduna geçmek istiyor",
+		"wantsToSwitchWithReason": "MaveCode <code>{{mode}}</code> moduna geçmek istiyor çünkü: {{reason}}",
+		"didSwitch": "MaveCode <code>{{mode}}</code> moduna geçti",
+		"didSwitchWithReason": "MaveCode <code>{{mode}}</code> moduna geçti çünkü: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Zoo <code>{{mode}}</code> modunda yeni bir alt görev oluşturmak istiyor",
-		"wantsToFinish": "Zoo bu alt görevi bitirmek istiyor",
+		"wantsToCreate": "MaveCode <code>{{mode}}</code> modunda yeni bir alt görev oluşturmak istiyor",
+		"wantsToFinish": "MaveCode bu alt görevi bitirmek istiyor",
 		"newTaskContent": "Alt Görev Talimatları",
 		"completionContent": "Alt Görev Tamamlandı",
 		"resultContent": "Alt Görev Sonuçları",
@@ -274,7 +274,7 @@
 		"goToSubtask": "Görevi görüntüle"
 	},
 	"questions": {
-		"hasQuestion": "Zoo'nun bir sorusu var"
+		"hasQuestion": "MaveCode'nun bir sorusu var"
 	},
 	"taskCompleted": "Görev Tamamlandı",
 	"modelResponseIncomplete": "Model yanıtı eksik",
@@ -290,7 +290,7 @@
 		"copyToClipboard": "Panoya Kopyala",
 		"copied": "Kopyalandı!",
 		"diagnostics": "Ayrıntılı hata bilgisi al",
-		"proxyProvider": "Proxy tabanlı bir sağlayıcı kullanıyor gibi görünüyorsun. Günlüklerini kontrol ettiğinden ve Zoo'nun isteklerini yeniden yazmadığından emin ol."
+		"proxyProvider": "Proxy tabanlı bir sağlayıcı kullanıyor gibi görünüyorsun. Günlüklerini kontrol ettiğinden ve MaveCode'nun isteklerini yeniden yazmadığından emin ol."
 	},
 	"powershell": {
 		"issues": "Windows PowerShell ile ilgili sorunlar yaşıyor gibi görünüyorsunuz, lütfen şu konuya bakın"
@@ -333,8 +333,8 @@
 		}
 	},
 	"skill": {
-		"wantsToLoad": "Zoo bir beceri yüklemek istiyor",
-		"didLoad": "Zoo bir beceri yükledi"
+		"wantsToLoad": "MaveCode bir beceri yüklemek istiyor",
+		"didLoad": "MaveCode bir beceri yükledi"
 	},
 	"followUpSuggest": {
 		"copyToInput": "Giriş alanına kopyala (veya Shift + tıklama)",
@@ -345,9 +345,9 @@
 		"support": "Lütfen <githubLink>GitHub</githubLink>'da bize yıldız vererek MaveCode'u destekle.",
 		"release": {
 			"heading": "Yenilikler:",
-			"highlight1": "Destructive Command Guard (DCG) ile daha uzun görevleri kesintisiz çalıştır — DCG tehlikeli komutları engellerken Zoo'nun sürekli onay düğmelerine basmana gerek kalmadan çalışmasını sağlar.",
+			"highlight1": "Destructive Command Guard (DCG) ile daha uzun görevleri kesintisiz çalıştır — DCG tehlikeli komutları engellerken MaveCode'nun sürekli onay düğmelerine basmana gerek kalmadan çalışmasını sağlar.",
 			"highlight2": "Daha iyi provider denetimleri ve güvenilirlik — OpenAI Codex yanıt hızını seç, güncellenmiş DeepSeek yapılandırmalarını kullan ve çalışan görevleri profil değişikliklerinden yalıt.",
-			"highlight3": "Kritik terminal yürütme düzeltmesi — Zoo artık bir sonraki adıma başlamadan önce terminal komutlarının bitmesini bekliyor."
+			"highlight3": "Kritik terminal yürütme düzeltmesi — MaveCode artık bir sonraki adıma başlamadan önce terminal komutlarının bitmesini bekliyor."
 		},
 		"cloudAgents": {
 			"heading": "Cloud'daki yenilikler:",
@@ -377,18 +377,18 @@
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Otomatik Onaylanan İstek Limiti Aşıldı",
-			"description": "Zoo, {{count}} API isteği/istekleri için otomatik onaylanan limite ulaştı. Sayacı sıfırlamak ve göreve devam etmek istiyor musunuz?",
+			"description": "MaveCode, {{count}} API isteği/istekleri için otomatik onaylanan limite ulaştı. Sayacı sıfırlamak ve göreve devam etmek istiyor musunuz?",
 			"button": "Sıfırla ve Devam Et"
 		},
 		"autoApprovedCostLimitReached": {
 			"title": "Otomatik Onaylanan Maliyet Sınırına Ulaşıldı",
-			"description": "Zoo otomatik olarak onaylanmış ${{count}} maliyet sınırına ulaştı. Maliyeti sıfırlamak ve göreve devam etmek ister misiniz?",
+			"description": "MaveCode otomatik olarak onaylanmış ${{count}} maliyet sınırına ulaştı. Maliyeti sıfırlamak ve göreve devam etmek ister misiniz?",
 			"button": "Sıfırla ve Devam Et"
 		}
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Zoo kod tabanında <code>{{query}}</code> aramak istiyor",
-		"wantsToSearchWithPath": "Zoo <code>{{path}}</code> içinde kod tabanında <code>{{query}}</code> aramak istiyor",
+		"wantsToSearch": "MaveCode kod tabanında <code>{{query}}</code> aramak istiyor",
+		"wantsToSearchWithPath": "MaveCode <code>{{path}}</code> içinde kod tabanında <code>{{query}}</code> aramak istiyor",
 		"didSearch_one": "1 sonuç bulundu",
 		"didSearch_other": "{{count}} sonuç bulundu",
 		"resultTooltip": "Benzerlik puanı: {{score}} (dosyayı açmak için tıklayın)"
@@ -470,8 +470,8 @@
 		"clickToEdit": "Mesajı düzenlemek için tıkla"
 	},
 	"slashCommand": {
-		"wantsToRun": "Zoo bir slash komutu çalıştırmak istiyor",
-		"didRun": "Zoo bir slash komutu çalıştırdı"
+		"wantsToRun": "MaveCode bir slash komutu çalıştırmak istiyor",
+		"didRun": "MaveCode bir slash komutu çalıştırdı"
 	},
 	"todo": {
 		"partial": "{{total}} yapılacaklar listesinden {{completed}} tanesi tamamlandı",
@@ -490,7 +490,7 @@
 		"openMcpSettings": "MCP Ayarlarını Aç"
 	},
 	"readCommandOutput": {
-		"title": "Zoo read command output"
+		"title": "MaveCode read command output"
 	},
 	"retiredProvider": {
 		"title": "Sağlayıcı artık desteklenmiyor",

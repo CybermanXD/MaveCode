@@ -210,7 +210,7 @@
 		"enter_valid_path": "有効なパスを入力してください"
 	},
 	"input": {
-		"task_prompt": "Zooにどんなことをさせますか？",
+		"task_prompt": "MaveCodeにどんなことをさせますか？",
 		"task_placeholder": "タスクをここに入力してください"
 	},
 	"settings": {
@@ -266,7 +266,7 @@
 			"description": "Todoリストに未完了のTodoがある場合、タスクの完了を防ぐ"
 		}
 	},
-	"zooAuth": {
+	"mavecodeAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: 無効な認証 token を受信しました。",
 			"token_verification_failed": "MaveCode: Token の検証に失敗しました。",

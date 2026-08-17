@@ -6,7 +6,7 @@ export const maveGatewayDefaultModelId = "gpt-5.6-sol"
 // MaveCode serves the same models as Vercel AI Gateway, so prompt caching support is identical
 // We reuse VERCEL_AI_GATEWAY_PROMPT_CACHING_MODELS from vercel-ai-gateway.ts
 // Instead of duplicating, we just export a reference to indicate they're the same
-export { VERCEL_AI_GATEWAY_PROMPT_CACHING_MODELS as ZOO_GATEWAY_PROMPT_CACHING_MODELS } from "./vercel-ai-gateway.js"
+export { VERCEL_AI_GATEWAY_PROMPT_CACHING_MODELS as MAVECODE_GATEWAY_PROMPT_CACHING_MODELS } from "./vercel-ai-gateway.js"
 
 export const maveGatewayDefaultModelInfo: ModelInfo = {
 	maxTokens: 64000,
@@ -21,4 +21,4 @@ export const maveGatewayDefaultModelInfo: ModelInfo = {
 		"Claude Sonnet 4 significantly improves on Sonnet 3.7's industry-leading capabilities, excelling in coding with a state-of-the-art 72.7% on SWE-bench. The model balances performance and efficiency for internal and external use cases, with enhanced steerability for greater control over implementations.",
 }
 
-export const ZOO_GATEWAY_DEFAULT_TEMPERATURE = 0.7
+export const MAVECODE_GATEWAY_DEFAULT_TEMPERATURE = 0.7

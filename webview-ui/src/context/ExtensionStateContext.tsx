@@ -522,9 +522,9 @@ export const ExtensionStateContextProvider: React.FC<{
 	useEffect(() => {
 		const root = document.documentElement
 		if (typeof state.chatFontSize === "number") {
-			root.style.setProperty("--zoo-chat-font-size", `${state.chatFontSize}px`)
+			root.style.setProperty("--mavecode-chat-font-size", `${state.chatFontSize}px`)
 		} else {
-			root.style.removeProperty("--zoo-chat-font-size")
+			root.style.removeProperty("--mavecode-chat-font-size")
 		}
 	}, [state.chatFontSize])
 

@@ -210,7 +210,7 @@
 		"enter_valid_path": "Veuillez entrer un chemin valide"
 	},
 	"input": {
-		"task_prompt": "Que doit faire Zoo ?",
+		"task_prompt": "Que doit faire MaveCode ?",
 		"task_placeholder": "Écris ta tâche ici"
 	},
 	"settings": {
@@ -266,7 +266,7 @@
 			"description": "Empêcher la finalisation des tâches lorsqu'il y a des todos incomplets dans la liste de todos"
 		}
 	},
-	"zooAuth": {
+	"mavecodeAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Jeton d'authentification invalide reçu.",
 			"token_verification_failed": "MaveCode: La vérification du jeton a échoué.",

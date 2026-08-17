@@ -210,7 +210,7 @@
 		"enter_valid_path": "Voer een geldig pad in"
 	},
 	"input": {
-		"task_prompt": "Wat moet Zoo doen?",
+		"task_prompt": "Wat moet MaveCode doen?",
 		"task_placeholder": "Typ hier je taak"
 	},
 	"settings": {
@@ -266,7 +266,7 @@
 			"description": "Voorkom taakafronding wanneer er onvolledige todos in de todolijst staan"
 		}
 	},
-	"zooAuth": {
+	"mavecodeAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Ongeldig authenticatietoken ontvangen.",
 			"token_verification_failed": "MaveCode: Tokenverificatie mislukt.",

@@ -17,7 +17,7 @@ The fork already contains:
 
 ## Audit findings to resolve
 
-1. Several active symbols, headers, error strings, options, and translation keys still use inherited Zoo naming.
+1. Several active symbols, headers, error strings, options, and translation keys still use inherited MaveCode naming.
 2. The default model is Claude Sonnet, but the first backend source is Codex.
 3. Extension auth expects a legacy `mave_ext_` token prefix.
 4. Extension auth expects website-style REST routes that are not yet implemented by Apps Script.
@@ -119,7 +119,7 @@ QA gate:
 
 ### Step 7 — Provider UI completion
 
-Display `MaveCode` in the provider selector, show connection/readiness state, and remove inherited Zoo user-facing text from the active MaveCode path.
+Display `MaveCode` in the provider selector, show connection/readiness state, and remove inherited MaveCode user-facing text from the active MaveCode path.
 
 QA gate:
 

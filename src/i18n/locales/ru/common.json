@@ -210,7 +210,7 @@
 		"enter_valid_path": "Пожалуйста, введите корректный путь"
 	},
 	"input": {
-		"task_prompt": "Что должен сделать Zoo?",
+		"task_prompt": "Что должен сделать MaveCode?",
 		"task_placeholder": "Введите вашу задачу здесь"
 	},
 	"settings": {
@@ -266,7 +266,7 @@
 			"description": "Предотвратить завершение задач при наличии незавершенных дел в списке дел"
 		}
 	},
-	"zooAuth": {
+	"mavecodeAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Получен недействительный token аутентификации.",
 			"token_verification_failed": "MaveCode: Не удалось проверить token.",

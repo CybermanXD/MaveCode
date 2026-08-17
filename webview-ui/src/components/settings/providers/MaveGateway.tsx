@@ -38,7 +38,7 @@ export const MaveGateway = ({
 	simplifySettings,
 }: MaveGatewayProps) => {
 	const backendModels = routerModels?.["mave-gateway"]
-	const zooModels = useMemo(() => {
+	const mavecodeModels = useMemo(() => {
 		if (!backendModels || Object.keys(backendModels).length === 0) return openAiCodexModels
 		return Object.fromEntries(
 			Object.keys(backendModels).map((id) => [
@@ -47,7 +47,7 @@ export const MaveGateway = ({
 			]),
 		)
 	}, [backendModels])
-	const modelIds = useMemo(() => Object.keys(zooModels), [zooModels])
+	const modelIds = useMemo(() => Object.keys(mavecodeModels), [mavecodeModels])
 	const resolvedDefaultModelId = useMemo(() => pickMaveGatewayDefaultModelId(modelIds), [modelIds])
 
 	useEffect(() => {
@@ -68,7 +68,7 @@ export const MaveGateway = ({
 				apiConfiguration={apiConfiguration}
 				setApiConfigurationField={setApiConfigurationField}
 				defaultModelId={resolvedDefaultModelId}
-				models={zooModels}
+				models={mavecodeModels}
 				modelIdKey="maveGatewayModelId"
 				serviceName="MaveCode"
 				serviceUrl={apiConfiguration.maveGatewayBaseUrl ?? ""}

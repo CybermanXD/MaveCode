@@ -210,7 +210,7 @@
 		"enter_valid_path": "Vui lòng nhập đường dẫn hợp lệ"
 	},
 	"input": {
-		"task_prompt": "Bạn muốn Zoo làm gì?",
+		"task_prompt": "Bạn muốn MaveCode làm gì?",
 		"task_placeholder": "Nhập nhiệm vụ của bạn ở đây"
 	},
 	"settings": {
@@ -273,7 +273,7 @@
 			"description": "Ngăn chặn hoàn thành nhiệm vụ khi có các todo chưa hoàn thành trong danh sách todo"
 		}
 	},
-	"zooAuth": {
+	"mavecodeAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Nhận được token xác thực không hợp lệ.",
 			"token_verification_failed": "MaveCode: Xác minh token thất bại.",

@@ -23,7 +23,7 @@ import { setDefaultSuiteTimeout } from "../test-utils"
 const TEST_DIR_NAME = "terminal-profile-e2e"
 const OVERRIDE_FILE = "terminal-profile-override.txt"
 const DEFAULT_FILE = "terminal-profile-default.txt"
-const PROFILE_NAME = "Zoo E2E Bash"
+const PROFILE_NAME = "MaveCode E2E Bash"
 
 suite("Terminal Profile", function () {
 	if (process.platform !== "linux") {
@@ -163,7 +163,7 @@ suite("Terminal Profile", function () {
 			)
 
 			const content = await fs.readFile(path.join(testDir, OVERRIDE_FILE), "utf-8")
-			assert.ok(content.includes("zoo-profile-override-ok"), `Output file should contain marker, got: ${content}`)
+			assert.ok(content.includes("mavecode-profile-override-ok"), `Output file should contain marker, got: ${content}`)
 
 			assert.ok(vscode.window.terminals.length >= 1, "At least one VS Code terminal should exist")
 			const profileTerminal = vscode.window.terminals.find((terminal) => {
@@ -224,7 +224,7 @@ suite("Terminal Profile", function () {
 			)
 
 			const content = await fs.readFile(path.join(testDir, DEFAULT_FILE), "utf-8")
-			assert.ok(content.includes("zoo-profile-default-ok"), `Output file should contain marker, got: ${content}`)
+			assert.ok(content.includes("mavecode-profile-default-ok"), `Output file should contain marker, got: ${content}`)
 		} finally {
 			api.off(RooCodeEventName.Message, messageHandler)
 		}

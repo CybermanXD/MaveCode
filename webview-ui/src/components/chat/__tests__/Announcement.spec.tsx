@@ -45,7 +45,7 @@ vi.mock("@src/i18n/TranslationContext", () => ({
 				"chat:announcement.release.highlight2":
 					"More reliable providers and models — improved router metadata handling, Ollama model refresh, Bedrock proxy support, and Friendli reasoning controls.",
 				"chat:announcement.release.highlight3":
-					"Smoother settings and developer workflows — settings now preserve unsaved edits, short terminal commands complete cleanly, architect plans use workspace-relative paths, and remaining user-facing Roo branding is updated to Zoo.",
+					"Smoother settings and developer workflows — settings now preserve unsaved edits, short terminal commands complete cleanly, architect plans use workspace-relative paths, and remaining user-facing Roo branding is updated to MaveCode.",
 				"chat:announcement.handoff.heading": "The Roo Code plugin is not going away.",
 			}
 
@@ -75,7 +75,7 @@ describe("Announcement", () => {
 		).toBeInTheDocument()
 		expect(
 			screen.getByText(
-				"Smoother settings and developer workflows — settings now preserve unsaved edits, short terminal commands complete cleanly, architect plans use workspace-relative paths, and remaining user-facing Roo branding is updated to Zoo.",
+				"Smoother settings and developer workflows — settings now preserve unsaved edits, short terminal commands complete cleanly, architect plans use workspace-relative paths, and remaining user-facing Roo branding is updated to MaveCode.",
 			),
 		).toBeInTheDocument()
 	})

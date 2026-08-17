@@ -34,9 +34,9 @@ import {
 	type ProviderSettings,
 	type ExperimentId,
 	type TelemetrySetting,
-	DEFAULT_AUTO_CLOSE_ZOO_OPENED_FILES,
-	DEFAULT_AUTO_CLOSE_ZOO_OPENED_FILES_AFTER_USER_EDITED,
-	DEFAULT_AUTO_CLOSE_ZOO_OPENED_NEW_FILES,
+	DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES,
+	DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES_AFTER_USER_EDITED,
+	DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_NEW_FILES,
 	DEFAULT_CHECKPOINT_TIMEOUT_SECONDS,
 	ImageGenerationProvider,
 } from "@roo-code/types"
@@ -212,9 +212,9 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 		includeCurrentTime,
 		includeCurrentCost,
 		maxGitStatusFiles,
-		autoCloseZooOpenedFiles,
-		autoCloseZooOpenedFilesAfterUserEdited,
-		autoCloseZooOpenedNewFiles,
+		autoCloseMaveCodeOpenedFiles,
+		autoCloseMaveCodeOpenedFilesAfterUserEdited,
+		autoCloseMaveCodeOpenedNewFiles,
 	} = cachedState
 
 	const apiConfiguration = useMemo(() => cachedState.apiConfiguration ?? {}, [cachedState.apiConfiguration])
@@ -436,10 +436,10 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 					includeCurrentTime: includeCurrentTime ?? true,
 					includeCurrentCost: includeCurrentCost ?? true,
 					maxGitStatusFiles: maxGitStatusFiles ?? 0,
-					autoCloseZooOpenedFiles: autoCloseZooOpenedFiles ?? DEFAULT_AUTO_CLOSE_ZOO_OPENED_FILES,
-					autoCloseZooOpenedFilesAfterUserEdited:
-						autoCloseZooOpenedFilesAfterUserEdited ?? DEFAULT_AUTO_CLOSE_ZOO_OPENED_FILES_AFTER_USER_EDITED,
-					autoCloseZooOpenedNewFiles: autoCloseZooOpenedNewFiles ?? DEFAULT_AUTO_CLOSE_ZOO_OPENED_NEW_FILES,
+					autoCloseMaveCodeOpenedFiles: autoCloseMaveCodeOpenedFiles ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES,
+					autoCloseMaveCodeOpenedFilesAfterUserEdited:
+						autoCloseMaveCodeOpenedFilesAfterUserEdited ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES_AFTER_USER_EDITED,
+					autoCloseMaveCodeOpenedNewFiles: autoCloseMaveCodeOpenedNewFiles ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_NEW_FILES,
 					profileThresholds,
 					imageGenerationProvider,
 					openRouterImageApiKey,
@@ -944,9 +944,9 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 								reasoningBlockCollapsed={reasoningBlockCollapsed ?? true}
 								enterBehavior={enterBehavior ?? "send"}
 								chatFontSize={chatFontSize ?? undefined}
-								autoCloseZooOpenedFiles={autoCloseZooOpenedFiles}
-								autoCloseZooOpenedFilesAfterUserEdited={autoCloseZooOpenedFilesAfterUserEdited}
-								autoCloseZooOpenedNewFiles={autoCloseZooOpenedNewFiles}
+								autoCloseMaveCodeOpenedFiles={autoCloseMaveCodeOpenedFiles}
+								autoCloseMaveCodeOpenedFilesAfterUserEdited={autoCloseMaveCodeOpenedFilesAfterUserEdited}
+								autoCloseMaveCodeOpenedNewFiles={autoCloseMaveCodeOpenedNewFiles}
 								setCachedStateField={setCachedStateField}
 							/>
 						)}

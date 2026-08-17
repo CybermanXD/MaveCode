@@ -3,9 +3,9 @@ import { useAppTranslation } from "@/i18n/TranslationContext"
 import { VSCodeCheckbox } from "@vscode/webview-ui-toolkit/react"
 import { telemetryClient } from "@/utils/TelemetryClient"
 import {
-	DEFAULT_AUTO_CLOSE_ZOO_OPENED_FILES,
-	DEFAULT_AUTO_CLOSE_ZOO_OPENED_FILES_AFTER_USER_EDITED,
-	DEFAULT_AUTO_CLOSE_ZOO_OPENED_NEW_FILES,
+	DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES,
+	DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES_AFTER_USER_EDITED,
+	DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_NEW_FILES,
 } from "@roo-code/types"
 
 import { SetCachedStateField } from "./types"
@@ -23,9 +23,9 @@ interface UISettingsProps extends HTMLAttributes<HTMLDivElement> {
 	reasoningBlockCollapsed: boolean
 	enterBehavior: "send" | "newline"
 	chatFontSize?: number
-	autoCloseZooOpenedFiles?: boolean
-	autoCloseZooOpenedFilesAfterUserEdited?: boolean
-	autoCloseZooOpenedNewFiles?: boolean
+	autoCloseMaveCodeOpenedFiles?: boolean
+	autoCloseMaveCodeOpenedFilesAfterUserEdited?: boolean
+	autoCloseMaveCodeOpenedNewFiles?: boolean
 	setCachedStateField: SetCachedStateField<keyof ExtensionStateContextType>
 }
 
@@ -33,9 +33,9 @@ export const UISettings = ({
 	reasoningBlockCollapsed,
 	enterBehavior,
 	chatFontSize,
-	autoCloseZooOpenedFiles,
-	autoCloseZooOpenedFilesAfterUserEdited,
-	autoCloseZooOpenedNewFiles,
+	autoCloseMaveCodeOpenedFiles,
+	autoCloseMaveCodeOpenedFilesAfterUserEdited,
+	autoCloseMaveCodeOpenedNewFiles,
 	setCachedStateField,
 	...props
 }: UISettingsProps) => {
@@ -158,65 +158,65 @@ export const UISettings = ({
 						</div>
 					</SearchableSetting>
 
-					{/* Auto-close Zoo opened files */}
+					{/* Auto-close MaveCode opened files */}
 					<SearchableSetting
-						settingId="ui-auto-close-zoo-opened-files"
+						settingId="ui-auto-close-mavecode-opened-files"
 						section="ui"
-						label={t("settings:ui.autoCloseZooOpenedFiles.label")}>
+						label={t("settings:ui.autoCloseMaveCodeOpenedFiles.label")}>
 						<div className="flex flex-col gap-1">
 							<VSCodeCheckbox
-								checked={autoCloseZooOpenedFiles ?? DEFAULT_AUTO_CLOSE_ZOO_OPENED_FILES}
-								onChange={(e: any) => setCachedStateField("autoCloseZooOpenedFiles", e.target.checked)}
-								data-testid="auto-close-zoo-opened-files-checkbox">
-								<span className="font-medium">{t("settings:ui.autoCloseZooOpenedFiles.label")}</span>
+								checked={autoCloseMaveCodeOpenedFiles ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES}
+								onChange={(e: any) => setCachedStateField("autoCloseMaveCodeOpenedFiles", e.target.checked)}
+								data-testid="auto-close-mavecode-opened-files-checkbox">
+								<span className="font-medium">{t("settings:ui.autoCloseMaveCodeOpenedFiles.label")}</span>
 							</VSCodeCheckbox>
 							<div className="text-vscode-descriptionForeground text-sm ml-5 mt-1">
-								{t("settings:ui.autoCloseZooOpenedFiles.description")}
+								{t("settings:ui.autoCloseMaveCodeOpenedFiles.description")}
 							</div>
 						</div>
 					</SearchableSetting>
 
-					{/* Auto-close Zoo opened files after user interaction */}
+					{/* Auto-close MaveCode opened files after user interaction */}
 					<SearchableSetting
-						settingId="ui-auto-close-zoo-opened-files-after-user-edited"
+						settingId="ui-auto-close-mavecode-opened-files-after-user-edited"
 						section="ui"
-						label={t("settings:ui.autoCloseZooOpenedFilesAfterUserEdited.label")}>
+						label={t("settings:ui.autoCloseMaveCodeOpenedFilesAfterUserEdited.label")}>
 						<div className="flex flex-col gap-1">
 							<VSCodeCheckbox
 								checked={
-									autoCloseZooOpenedFilesAfterUserEdited ??
-									DEFAULT_AUTO_CLOSE_ZOO_OPENED_FILES_AFTER_USER_EDITED
+									autoCloseMaveCodeOpenedFilesAfterUserEdited ??
+									DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES_AFTER_USER_EDITED
 								}
 								onChange={(e: any) =>
-									setCachedStateField("autoCloseZooOpenedFilesAfterUserEdited", e.target.checked)
+									setCachedStateField("autoCloseMaveCodeOpenedFilesAfterUserEdited", e.target.checked)
 								}
-								data-testid="auto-close-zoo-opened-files-after-user-edited-checkbox">
+								data-testid="auto-close-mavecode-opened-files-after-user-edited-checkbox">
 								<span className="font-medium">
-									{t("settings:ui.autoCloseZooOpenedFilesAfterUserEdited.label")}
+									{t("settings:ui.autoCloseMaveCodeOpenedFilesAfterUserEdited.label")}
 								</span>
 							</VSCodeCheckbox>
 							<div className="text-vscode-descriptionForeground text-sm ml-5 mt-1">
-								{t("settings:ui.autoCloseZooOpenedFilesAfterUserEdited.description")}
+								{t("settings:ui.autoCloseMaveCodeOpenedFilesAfterUserEdited.description")}
 							</div>
 						</div>
 					</SearchableSetting>
 
-					{/* Auto-close Zoo opened new files */}
+					{/* Auto-close MaveCode opened new files */}
 					<SearchableSetting
-						settingId="ui-auto-close-zoo-opened-new-files"
+						settingId="ui-auto-close-mavecode-opened-new-files"
 						section="ui"
-						label={t("settings:ui.autoCloseZooOpenedNewFiles.label")}>
+						label={t("settings:ui.autoCloseMaveCodeOpenedNewFiles.label")}>
 						<div className="flex flex-col gap-1">
 							<VSCodeCheckbox
-								checked={autoCloseZooOpenedNewFiles ?? DEFAULT_AUTO_CLOSE_ZOO_OPENED_NEW_FILES}
+								checked={autoCloseMaveCodeOpenedNewFiles ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_NEW_FILES}
 								onChange={(e: any) =>
-									setCachedStateField("autoCloseZooOpenedNewFiles", e.target.checked)
+									setCachedStateField("autoCloseMaveCodeOpenedNewFiles", e.target.checked)
 								}
-								data-testid="auto-close-zoo-opened-new-files-checkbox">
-								<span className="font-medium">{t("settings:ui.autoCloseZooOpenedNewFiles.label")}</span>
+								data-testid="auto-close-mavecode-opened-new-files-checkbox">
+								<span className="font-medium">{t("settings:ui.autoCloseMaveCodeOpenedNewFiles.label")}</span>
 							</VSCodeCheckbox>
 							<div className="text-vscode-descriptionForeground text-sm ml-5 mt-1">
-								{t("settings:ui.autoCloseZooOpenedNewFiles.description")}
+								{t("settings:ui.autoCloseMaveCodeOpenedNewFiles.description")}
 							</div>
 						</div>
 					</SearchableSetting>

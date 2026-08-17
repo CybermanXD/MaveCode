@@ -210,7 +210,7 @@
 		"enter_valid_path": "Inserisci un percorso valido"
 	},
 	"input": {
-		"task_prompt": "Cosa deve fare Zoo?",
+		"task_prompt": "Cosa deve fare MaveCode?",
 		"task_placeholder": "Scrivi il tuo compito qui"
 	},
 	"settings": {
@@ -266,7 +266,7 @@
 			"description": "Impedire il completamento delle attività quando ci sono todo incompleti nella lista dei todo"
 		}
 	},
-	"zooAuth": {
+	"mavecodeAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Ricevuto un token di autenticazione non valido.",
 			"token_verification_failed": "MaveCode: Verifica del token non riuscita.",

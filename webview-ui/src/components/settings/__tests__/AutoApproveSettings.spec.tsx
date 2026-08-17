@@ -148,14 +148,14 @@ describe("AutoApproveSettings - Save/Discard contract", () => {
 		expectNoImmediateUpdateSettings()
 	})
 
-	it("hides Zoo command list editors while destructive command guard is enabled", () => {
+	it("hides MaveCode command list editors while destructive command guard is enabled", () => {
 		renderSettings({ destructiveCommandGuardEnabled: true, deniedCommands: ["rm -rf"] })
 
 		expect(screen.queryByTestId("allowed-commands-heading")).not.toBeInTheDocument()
 		expect(screen.queryByTestId("denied-commands-heading")).not.toBeInTheDocument()
 	})
 
-	it("shows Zoo command list editors while destructive command guard is disabled", () => {
+	it("shows MaveCode command list editors while destructive command guard is disabled", () => {
 		renderSettings({ destructiveCommandGuardEnabled: false })
 
 		expect(screen.getByTestId("allowed-commands-heading")).toBeInTheDocument()

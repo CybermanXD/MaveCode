@@ -1,6 +1,6 @@
 ﻿{
 	"input": {
-		"task_prompt": "Què vols que faci Zoo?",
+		"task_prompt": "Què vols que faci MaveCode?",
 		"task_placeholder": "Escriu la teva tasca aquí"
 	},
 	"extension": {
@@ -266,7 +266,7 @@
 			"description": "Evitar la finalització de tasques quan hi ha todos incomplets a la llista de todos"
 		}
 	},
-	"zooAuth": {
+	"mavecodeAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: S'ha rebut un token d'autenticació no vàlid.",
 			"token_verification_failed": "MaveCode: Ha fallat la verificació del token.",

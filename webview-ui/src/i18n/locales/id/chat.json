@@ -151,7 +151,7 @@
 		"title": "Mode",
 		"marketplace": "Marketplace Mode",
 		"settings": "Pengaturan Mode",
-		"description": "Persona khusus yang menyesuaikan perilaku Zoo.",
+		"description": "Persona khusus yang menyesuaikan perilaku MaveCode.",
 		"searchPlaceholder": "Cari mode...",
 		"noResults": "Tidak ada hasil yang ditemukan"
 	},
@@ -227,51 +227,51 @@
 		}
 	},
 	"skill": {
-		"wantsToLoad": "Zoo ingin memuat keterampilan",
-		"didLoad": "Zoo telah memuat keterampilan"
+		"wantsToLoad": "MaveCode ingin memuat keterampilan",
+		"didLoad": "MaveCode telah memuat keterampilan"
 	},
 	"instructions": {
-		"wantsToFetch": "Zoo ingin mengambil instruksi detail untuk membantu tugas saat ini"
+		"wantsToFetch": "MaveCode ingin mengambil instruksi detail untuk membantu tugas saat ini"
 	},
 	"fileOperations": {
-		"wantsToRead": "Zoo ingin membaca file ini",
-		"wantsToReadMultiple": "Zoo ingin membaca beberapa file",
-		"wantsToReadAndXMore": "Zoo ingin membaca file ini dan {{count}} lainnya",
-		"wantsToReadOutsideWorkspace": "Zoo ingin membaca file ini di luar workspace",
-		"didRead": "Zoo membaca file ini",
-		"wantsToEdit": "Zoo ingin mengedit file ini",
-		"wantsToEditOutsideWorkspace": "Zoo ingin mengedit file ini di luar workspace",
-		"wantsToEditProtected": "Zoo ingin mengedit file konfigurasi yang dilindungi",
-		"wantsToApplyBatchChanges": "Zoo ingin menerapkan perubahan ke beberapa file",
-		"wantsToGenerateImage": "Zoo ingin menghasilkan gambar",
-		"wantsToGenerateImageOutsideWorkspace": "Zoo ingin menghasilkan gambar di luar workspace",
-		"wantsToGenerateImageProtected": "Zoo ingin menghasilkan gambar di lokasi yang dilindungi",
-		"didGenerateImage": "Zoo telah menghasilkan gambar",
-		"wantsToCreate": "Zoo ingin membuat file baru",
-		"wantsToSearchReplace": "Zoo ingin mencari dan mengganti di file ini",
-		"didSearchReplace": "Zoo melakukan pencarian dan penggantian pada file ini",
-		"wantsToInsert": "Zoo ingin menyisipkan konten ke file ini",
-		"wantsToInsertWithLineNumber": "Zoo ingin menyisipkan konten ke file ini di baris {{lineNumber}}",
-		"wantsToInsertAtEnd": "Zoo ingin menambahkan konten ke akhir file ini"
+		"wantsToRead": "MaveCode ingin membaca file ini",
+		"wantsToReadMultiple": "MaveCode ingin membaca beberapa file",
+		"wantsToReadAndXMore": "MaveCode ingin membaca file ini dan {{count}} lainnya",
+		"wantsToReadOutsideWorkspace": "MaveCode ingin membaca file ini di luar workspace",
+		"didRead": "MaveCode membaca file ini",
+		"wantsToEdit": "MaveCode ingin mengedit file ini",
+		"wantsToEditOutsideWorkspace": "MaveCode ingin mengedit file ini di luar workspace",
+		"wantsToEditProtected": "MaveCode ingin mengedit file konfigurasi yang dilindungi",
+		"wantsToApplyBatchChanges": "MaveCode ingin menerapkan perubahan ke beberapa file",
+		"wantsToGenerateImage": "MaveCode ingin menghasilkan gambar",
+		"wantsToGenerateImageOutsideWorkspace": "MaveCode ingin menghasilkan gambar di luar workspace",
+		"wantsToGenerateImageProtected": "MaveCode ingin menghasilkan gambar di lokasi yang dilindungi",
+		"didGenerateImage": "MaveCode telah menghasilkan gambar",
+		"wantsToCreate": "MaveCode ingin membuat file baru",
+		"wantsToSearchReplace": "MaveCode ingin mencari dan mengganti di file ini",
+		"didSearchReplace": "MaveCode melakukan pencarian dan penggantian pada file ini",
+		"wantsToInsert": "MaveCode ingin menyisipkan konten ke file ini",
+		"wantsToInsertWithLineNumber": "MaveCode ingin menyisipkan konten ke file ini di baris {{lineNumber}}",
+		"wantsToInsertAtEnd": "MaveCode ingin menambahkan konten ke akhir file ini"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Zoo ingin melihat file tingkat atas di direktori ini",
-		"didViewTopLevel": "Zoo melihat file tingkat atas di direktori ini",
-		"wantsToViewRecursive": "Zoo ingin melihat semua file secara rekursif di direktori ini",
-		"didViewRecursive": "Zoo melihat semua file secara rekursif di direktori ini",
-		"wantsToSearch": "Zoo ingin mencari direktori ini untuk <code>{{regex}}</code>",
-		"didSearch": "Zoo mencari direktori ini untuk <code>{{regex}}</code>",
-		"wantsToSearchOutsideWorkspace": "Zoo ingin mencari direktori ini (di luar workspace) untuk <code>{{regex}}</code>",
-		"didSearchOutsideWorkspace": "Zoo mencari direktori ini (di luar workspace) untuk <code>{{regex}}</code>",
-		"wantsToViewTopLevelOutsideWorkspace": "Zoo ingin melihat file tingkat atas di direktori ini (di luar workspace)",
-		"didViewTopLevelOutsideWorkspace": "Zoo melihat file tingkat atas di direktori ini (di luar workspace)",
-		"wantsToViewRecursiveOutsideWorkspace": "Zoo ingin melihat semua file secara rekursif di direktori ini (di luar workspace)",
-		"didViewRecursiveOutsideWorkspace": "Zoo melihat semua file secara rekursif di direktori ini (di luar workspace)",
-		"wantsToViewMultipleDirectories": "Zoo ingin melihat beberapa direktori"
+		"wantsToViewTopLevel": "MaveCode ingin melihat file tingkat atas di direktori ini",
+		"didViewTopLevel": "MaveCode melihat file tingkat atas di direktori ini",
+		"wantsToViewRecursive": "MaveCode ingin melihat semua file secara rekursif di direktori ini",
+		"didViewRecursive": "MaveCode melihat semua file secara rekursif di direktori ini",
+		"wantsToSearch": "MaveCode ingin mencari direktori ini untuk <code>{{regex}}</code>",
+		"didSearch": "MaveCode mencari direktori ini untuk <code>{{regex}}</code>",
+		"wantsToSearchOutsideWorkspace": "MaveCode ingin mencari direktori ini (di luar workspace) untuk <code>{{regex}}</code>",
+		"didSearchOutsideWorkspace": "MaveCode mencari direktori ini (di luar workspace) untuk <code>{{regex}}</code>",
+		"wantsToViewTopLevelOutsideWorkspace": "MaveCode ingin melihat file tingkat atas di direktori ini (di luar workspace)",
+		"didViewTopLevelOutsideWorkspace": "MaveCode melihat file tingkat atas di direktori ini (di luar workspace)",
+		"wantsToViewRecursiveOutsideWorkspace": "MaveCode ingin melihat semua file secara rekursif di direktori ini (di luar workspace)",
+		"didViewRecursiveOutsideWorkspace": "MaveCode melihat semua file secara rekursif di direktori ini (di luar workspace)",
+		"wantsToViewMultipleDirectories": "MaveCode ingin melihat beberapa direktori"
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Zoo ingin mencari codebase untuk <code>{{query}}</code>",
-		"wantsToSearchWithPath": "Zoo ingin mencari codebase untuk <code>{{query}}</code> di <code>{{path}}</code>",
+		"wantsToSearch": "MaveCode ingin mencari codebase untuk <code>{{query}}</code>",
+		"wantsToSearchWithPath": "MaveCode ingin mencari codebase untuk <code>{{query}}</code> di <code>{{path}}</code>",
 		"didSearch_one": "Ditemukan 1 hasil",
 		"didSearch_other": "Ditemukan {{count}} hasil",
 		"resultTooltip": "Skor kemiripan: {{score}} (klik untuk membuka file)"
@@ -298,24 +298,24 @@
 	"response": "Respons",
 	"arguments": "Argumen",
 	"text": {
-		"rooSaid": "Zoo berkata"
+		"rooSaid": "MaveCode berkata"
 	},
 	"feedback": {
 		"youSaid": "Anda bilang"
 	},
 	"mcp": {
-		"wantsToUseTool": "Zoo ingin menggunakan tool di server MCP {{serverName}}",
-		"wantsToAccessResource": "Zoo ingin mengakses resource di server MCP {{serverName}}"
+		"wantsToUseTool": "MaveCode ingin menggunakan tool di server MCP {{serverName}}",
+		"wantsToAccessResource": "MaveCode ingin mengakses resource di server MCP {{serverName}}"
 	},
 	"modes": {
-		"wantsToSwitch": "Zoo ingin beralih ke mode {{mode}}",
-		"wantsToSwitchWithReason": "Zoo ingin beralih ke mode {{mode}} karena: {{reason}}",
-		"didSwitch": "Zoo beralih ke mode {{mode}}",
-		"didSwitchWithReason": "Zoo beralih ke mode {{mode}} karena: {{reason}}"
+		"wantsToSwitch": "MaveCode ingin beralih ke mode {{mode}}",
+		"wantsToSwitchWithReason": "MaveCode ingin beralih ke mode {{mode}} karena: {{reason}}",
+		"didSwitch": "MaveCode beralih ke mode {{mode}}",
+		"didSwitchWithReason": "MaveCode beralih ke mode {{mode}} karena: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Zoo ingin membuat subtugas baru dalam mode {{mode}}",
-		"wantsToFinish": "Zoo ingin menyelesaikan subtugas ini",
+		"wantsToCreate": "MaveCode ingin membuat subtugas baru dalam mode {{mode}}",
+		"wantsToFinish": "MaveCode ingin menyelesaikan subtugas ini",
 		"newTaskContent": "Instruksi Subtugas",
 		"completionContent": "Subtugas Selesai",
 		"resultContent": "Hasil Subtugas",
@@ -324,7 +324,7 @@
 		"goToSubtask": "Lihat tugas"
 	},
 	"questions": {
-		"hasQuestion": "Zoo punya pertanyaan"
+		"hasQuestion": "MaveCode punya pertanyaan"
 	},
 	"taskCompleted": "Tugas Selesai",
 	"error": "Error",
@@ -338,14 +338,14 @@
 	"diffError": {
 		"title": "Edit Tidak Berhasil"
 	},
-	"troubleMessage": "Zoo mengalami masalah...",
+	"troubleMessage": "MaveCode mengalami masalah...",
 	"errorDetails": {
 		"link": "Details",
 		"title": "Detail Kesalahan",
 		"copyToClipboard": "Salin ke Clipboard",
 		"copied": "Disalin!",
 		"diagnostics": "Dapatkan informasi kesalahan terperinci",
-		"proxyProvider": "Tampaknya kamu menggunakan penyedia berbasis proxy. Pastikan untuk memeriksa log-nya dan memastikan tidak menulis ulang permintaan Zoo."
+		"proxyProvider": "Tampaknya kamu menggunakan penyedia berbasis proxy. Pastikan untuk memeriksa log-nya dan memastikan tidak menulis ulang permintaan MaveCode."
 	},
 	"powershell": {
 		"issues": "Sepertinya kamu mengalami masalah Windows PowerShell, silakan lihat ini"
@@ -373,9 +373,9 @@
 		"support": "Dukung MaveCode dengan memberi kami bintang di <githubLink>GitHub</githubLink>.",
 		"release": {
 			"heading": "Yang Baru:",
-			"highlight1": "Jalankan task yang lebih lama tanpa gangguan dengan Destructive Command Guard (DCG) — DCG memblokir perintah berbahaya sambil membiarkan Zoo terus bekerja tanpa kamu terus-menerus menekan tombol persetujuan.",
+			"highlight1": "Jalankan task yang lebih lama tanpa gangguan dengan Destructive Command Guard (DCG) — DCG memblokir perintah berbahaya sambil membiarkan MaveCode terus bekerja tanpa kamu terus-menerus menekan tombol persetujuan.",
 			"highlight2": "Kontrol dan keandalan provider yang lebih baik — pilih kecepatan respons OpenAI Codex, gunakan konfigurasi DeepSeek terbaru, dan pisahkan task yang sedang berjalan dari perubahan profil.",
-			"highlight3": "Perbaikan penting eksekusi terminal — Zoo kini menunggu perintah terminal selesai sebelum memulai langkah berikutnya."
+			"highlight3": "Perbaikan penting eksekusi terminal — MaveCode kini menunggu perintah terminal selesai sebelum memulai langkah berikutnya."
 		},
 		"cloudAgents": {
 			"heading": "Baru di Cloud:",
@@ -413,12 +413,12 @@
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Batas Permintaan yang Disetujui Otomatis Tercapai",
-			"description": "Zoo telah mencapai batas {{count}} permintaan API yang disetujui otomatis. Apakah Anda ingin mengatur ulang hitungan dan melanjutkan tugas?",
+			"description": "MaveCode telah mencapai batas {{count}} permintaan API yang disetujui otomatis. Apakah Anda ingin mengatur ulang hitungan dan melanjutkan tugas?",
 			"button": "Setel Ulang dan Lanjutkan"
 		},
 		"autoApprovedCostLimitReached": {
 			"title": "Batas Biaya yang Disetujui Otomatis Tercapai",
-			"description": "Zoo telah mencapai batas biaya yang disetujui otomatis sebesar ${{count}}. Apakah Anda ingin mengatur ulang biaya dan melanjutkan tugas?",
+			"description": "MaveCode telah mencapai batas biaya yang disetujui otomatis sebesar ${{count}}. Apakah Anda ingin mengatur ulang biaya dan melanjutkan tugas?",
 			"button": "Setel Ulang dan Lanjutkan"
 		}
 	},
@@ -475,8 +475,8 @@
 		"clickToEdit": "Klik untuk mengedit pesan"
 	},
 	"slashCommand": {
-		"wantsToRun": "Zoo ingin menjalankan perintah slash",
-		"didRun": "Zoo telah menjalankan perintah slash"
+		"wantsToRun": "MaveCode ingin menjalankan perintah slash",
+		"didRun": "MaveCode telah menjalankan perintah slash"
 	},
 	"todo": {
 		"partial": "{{completed}} dari {{total}} to-do selesai",
@@ -495,7 +495,7 @@
 		"openMcpSettings": "Buka Pengaturan MCP"
 	},
 	"readCommandOutput": {
-		"title": "Zoo read command output"
+		"title": "MaveCode read command output"
 	},
 	"retiredProvider": {
 		"title": "Penyedia tidak lagi didukung",

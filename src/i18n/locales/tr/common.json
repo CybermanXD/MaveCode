@@ -210,7 +210,7 @@
 		"enter_valid_path": "Lütfen geçerli bir yol girin"
 	},
 	"input": {
-		"task_prompt": "Zoo ne yapsın?",
+		"task_prompt": "MaveCode ne yapsın?",
 		"task_placeholder": "Görevini buraya yaz"
 	},
 	"settings": {
@@ -266,7 +266,7 @@
 			"description": "Todo listesinde tamamlanmamış todolar olduğunda görev tamamlanmasını engelle"
 		}
 	},
-	"zooAuth": {
+	"mavecodeAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Geçersiz kimlik doğrulama token'ı alındı.",
 			"token_verification_failed": "MaveCode: Token doğrulaması başarısız oldu.",

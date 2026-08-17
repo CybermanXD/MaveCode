@@ -210,7 +210,7 @@
 		"enter_valid_path": "Wprowadź prawidłową ścieżkę"
 	},
 	"input": {
-		"task_prompt": "Co ma zrobić Zoo?",
+		"task_prompt": "Co ma zrobić MaveCode?",
 		"task_placeholder": "Wpisz swoje zadanie tutaj"
 	},
 	"settings": {
@@ -266,7 +266,7 @@
 			"description": "Zapobiegaj ukończeniu zadania gdy na liście zadań są nieukończone zadania"
 		}
 	},
-	"zooAuth": {
+	"mavecodeAuth": {
 		"errors": {
 			"invalid_token_received": "MaveCode: Otrzymano nieprawidłowy token uwierzytelniania.",
 			"token_verification_failed": "MaveCode: Weryfikacja tokenu nie powiodła się.",
