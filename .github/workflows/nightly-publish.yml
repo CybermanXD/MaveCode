@@ -89,7 +89,7 @@ jobs:
                   PKG_RELEASE_CHANNEL: prerelease
               run: |
                   mkdir -p bin
-                  pnpm --filter ./src vsix -- --pre-release
+                  pnpm --filter ./src exec vsce package --pre-release --no-dependencies --no-prepublish --out ../bin
 
             - name: Verify VSIX contents
               if: steps.release-check.outputs.skip != 'true'
