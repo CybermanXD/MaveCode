@@ -1,4 +1,5 @@
-import { render, waitFor } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 
 import { ExtensionStateContext } from "@/context/ExtensionStateContext"
 import { vscode } from "@/utils/vscode"
@@ -70,6 +71,18 @@ describe("MarketplaceView", () => {
 			checkpointTimeout: DEFAULT_CHECKPOINT_TIMEOUT_SECONDS,
 			// ... other required context properties
 		}
+	})
+
+	it("renders a manual refresh action and posts a force-refresh message", async () => {
+		const user = userEvent.setup()
+		render(
+			<ExtensionStateContext.Provider value={mockExtensionState}>
+				<MarketplaceView stateManager={stateManager} />
+			</ExtensionStateContext.Provider>,
+		)
+
+		await user.click(screen.getByRole("button", { name: "Refresh Marketplace" }))
+		expect(vscode.postMessage).toHaveBeenCalledWith({ type: "refreshMarketplaceData" })
 	})
 
 	it("should trigger fetchMarketplaceData when organization settings version changes", async () => {

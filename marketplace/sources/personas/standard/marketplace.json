@@ -1,7 +1,7 @@
 {
 	"id": "standard",
 	"name": "Standard",
-	"description": "Self-contained Standard project engineering persona",
-	"tags": ["mavecode", "engineering", "general"],
+	"description": "Universal client-agnostic email development persona for any brand",
+	"tags": ["email-development", "email-html", "responsive-email", "client-agnostic"],
 	"minimumMaveCodeVersion": "3.76.11"
 }

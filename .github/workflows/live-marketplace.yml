@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "src/assets/personas/**"
+      - "src/assets/marketplace/mcps.yml"
       - "marketplace/sources/**"
       - "scripts/marketplace/**"
       - ".github/workflows/live-marketplace.yml"

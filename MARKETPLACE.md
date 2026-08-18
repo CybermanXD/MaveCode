@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The MaveCode repository is the source of truth for the public marketplace. Standard and Enphase remain bundled in every VSIX as offline-safe personas, while a signed catalog can deliver reviewed persona updates independently of extension releases.
+The MaveCode repository is the source of truth for the public marketplace. Standard and Enphase remain bundled in every VSIX as offline-safe personas, while signed catalogs deliver reviewed persona updates and MCP listings independently of extension releases.
 
 The publication boundary is deliberate:
 
@@ -30,6 +30,7 @@ marketplace/
     marketplace-ed25519-public.pem
   published/                 # generated; not edited by hand
     catalog-v1.json
+    mcp-catalog-v1.json
     packages/*.mavepersona
 scripts/
   marketplace/
@@ -39,6 +40,8 @@ scripts/
 ```
 
 Persona source content stays in `src/assets/personas`. This avoids maintaining two copies: the same reviewed Standard and Enphase definitions, rules, and references are bundled in the VSIX and packaged by marketplace CI.
+
+MCP listing source stays in `src/assets/marketplace/mcps.yml`. CI validates every installation template as JSON and publishes a separately signed `mcp-catalog-v1.json`. Clients prefer verified remote entries by stable ID and retain bundled entries as offline fallback.
 
 ## Package contract
 
@@ -69,6 +72,17 @@ The extension embeds only the public verification key. The private signing key e
 6. Clients fetch the catalog on Marketplace open/activation when stale, verify it, download changed packages, and atomically replace their verified cache.
 
 If CI fails, the previous Pages deployment remains live. A partially generated marketplace is never published.
+
+## Publishing MCP listings
+
+1. Add or update an entry in `src/assets/marketplace/mcps.yml` using a stable lowercase ID.
+2. Keep credentials as `{{PARAMETER_NAME}}` placeholders; never commit real tokens or secrets.
+3. Validate every installation method as one MCP server JSON object.
+4. Open and approve a pull request, then merge it to `main`.
+5. `live-marketplace.yml` builds and signs `mcp-catalog-v1.json` and atomically deploys it with the persona catalog.
+6. Compatible clients discover the new or updated listing on their next stale Marketplace refresh, normally within four hours of Marketplace use.
+
+Remote MCP publication updates the listing and installation template. It never silently rewrites an MCP configuration already installed in a user's project or global settings. Users explicitly install the new listing or run Install again to replace the server entry with the reviewed template.
 
 ## Client refresh and fallback
 
@@ -101,6 +115,12 @@ https://cybermanxd.github.io/MaveCode/catalog-v1.json
 
 Package URLs are derived from that base. Repository or organization renames require an extension update or a signed redirect mechanism.
 
+The production MCP catalog URL is:
+
+```text
+https://cybermanxd.github.io/MaveCode/mcp-catalog-v1.json
+```
+
 ## Signing-key setup and rotation
 
 Generate an Ed25519 key pair offline. Commit only the public PEM file and store the private PEM as the protected GitHub Actions secret. Require approval for the `marketplace-production` environment.
@@ -121,7 +141,7 @@ For rotation, ship an extension version that trusts both old and new key IDs, be
 
 ## Compatibility and VSIX releases
 
-Persona definitions, rules, references, descriptions, and supported MCP configuration can update through the live marketplace after this client is shipped. Changes to extension code, schemas, cryptography, transports, UI capabilities, or security policy still require a new VSIX.
+Persona definitions, rules, references, descriptions, and MCP listings can update through the live marketplace after this client is shipped. An updated MCP listing does not overwrite an already-installed local server automatically. Changes to extension code, schemas, cryptography, transports, UI capabilities, or security policy still require a new VSIX.
 
 ## Acceptance criteria
 
@@ -132,3 +152,11 @@ Persona definitions, rules, references, descriptions, and supported MCP configur
 - User custom modes cannot override managed persona IDs.
 - No private signing material is committed or packaged in the VSIX.
 - A failed update leaves the last verified persona usable.
+
+# Live refresh behavior
+
+The extension refreshes signed persona packages and MCP listings asynchronously at startup. Opening or revealing Marketplace forces network revalidation, and its visible **Refresh** action refreshes both catalogs with a deduplicated request and loading state. Background consumers retain a moderate four-hour TTL. If the network is unavailable or validation fails, the last verified cache and bundled entries remain usable.
+
+Remote same-ID entries take precedence over bundled listings. Persona packages update managed definitions for future tasks only: active tasks remain stable and unrelated custom modes are never overwritten. MCP refresh updates Marketplace listings only; it never silently rewrites an installed server's local configuration.
+
+Future source changes are built, signed, and deployed by the live Marketplace workflow on `main`, so compatible content can reach installed copies without publishing a new VSIX. Runtime validation enforces HTTPS GitHub Pages hosting, bounded response sizes, schema and duplicate-ID checks, minimum extension compatibility, trusted signing key and Ed25519 signatures; persona packages additionally require exact size and immutable SHA-256 digest matches.

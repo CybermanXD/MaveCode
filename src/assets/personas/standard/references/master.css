@@ -1,0 +1,270 @@
+:root {
+	color-scheme: light dark;
+	supported-color-schemes: light dark;
+}
+body {
+	margin: 0 auto;
+	padding: 0;
+	-webkit-text-size-adjust: 100% !important;
+	-ms-text-size-adjust: 100% !important;
+	-webkit-font-smoothing: antialiased !important;
+}
+img {
+	border: 0 !important;
+	outline: none !important;
+}
+p {
+	margin: 0px !important;
+	padding: 0px !important;
+}
+table {
+	border-collapse: collapse;
+	mso-table-lspace: 0px;
+	mso-table-rspace: 0px;
+}
+td,
+a,
+span {
+	border-collapse: collapse;
+	mso-line-height-rule: exactly;
+}
+.ExternalClass * {
+	line-height: 100%;
+}
+.em_defaultlink a {
+	color: inherit;
+	text-decoration: none;
+}
+.em_defaultlink1 a {
+	color: inherit;
+	text-decoration: underline;
+}
+.em_g_img + div {
+	display: none;
+}
+a[x-apple-data-detectors],
+u + .em_body a,
+#MessageViewBody a {
+	color: inherit;
+	text-decoration: none;
+	font-size: inherit;
+	font-family: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+}
+.tpl-content {
+	padding: 0px !important;
+}
+
+@media only screen and (max-width: 599px) {
+	.em_main_table {
+		width: 100% !important;
+	}
+
+	.em_wrapper {
+		width: 100% !important;
+	}
+
+	.em_stack {
+		display: block !important;
+		width: 100% !important;
+	}
+
+	.em_full_img img {
+		width: 100% !important;
+		height: auto !important;
+	}
+
+	.em_txt_center {
+		text-align: center !important;
+	}
+	.em_txt_right {
+		text-align: right !important;
+	}
+	.em_txt_left {
+		text-align: left !important;
+	}
+
+	.em_font_16 {
+		font-size: 16px !important;
+		line-height: 19px !important;
+	}
+	.em_font_18 {
+		font-size: 18px !important;
+		line-height: 21px !important;
+	}
+	.em_font_20 {
+		font-size: 20px !important;
+		line-height: 23px !important;
+	}
+	.em_font_22 {
+		font-size: 22px !important;
+		line-height: 25px !important;
+	}
+	.em_font_24 {
+		font-size: 24px !important;
+		line-height: 27px !important;
+	}
+	.em_font_26 {
+		font-size: 26px !important;
+		line-height: 29px !important;
+	}
+	.em_font_28 {
+		font-size: 28px !important;
+		line-height: 31px !important;
+	}
+	.em_font_30 {
+		font-size: 30px !important;
+		line-height: 33px !important;
+	}
+	.em_font_32 {
+		font-size: 32px !important;
+		line-height: 35px !important;
+	}
+	.em_font_36 {
+		font-size: 36px !important;
+		line-height: 39px !important;
+	}
+	.em_font_38 {
+		font-size: 38px !important;
+		line-height: 41px !important;
+	}
+
+	.em_plr0 {
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+	.em_plr10 {
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+	}
+	.em_plr15 {
+		padding-left: 15px !important;
+		padding-right: 15px !important;
+	}
+	.em_plr20 {
+		padding-left: 20px !important;
+		padding-right: 20px !important;
+	}
+
+	.em_pbottom {
+		padding-bottom: 20px !important;
+	}
+	.em_ptop {
+		padding-top: 20px !important;
+	}
+
+	.em_pbottom10 {
+		padding-bottom: 10px !important;
+	}
+	.em_ptop10 {
+		padding-top: 10px !important;
+	}
+
+	.em_pbottom20 {
+		padding-bottom: 20px !important;
+	}
+	.em_ptop20 {
+		padding-top: 20px !important;
+	}
+
+	.em_pbottom30 {
+		padding-bottom: 30px !important;
+	}
+	.em_ptop30 {
+		padding-top: 30px !important;
+	}
+
+	.em_pbottom0 {
+		padding-bottom: 0px !important;
+	}
+	.em_ptop0 {
+		padding-top: 0px !important;
+	}
+
+	.em_pr0 {
+		padding-right: 0px !important;
+	}
+	.em_pr20 {
+		padding-right: 20px !important;
+	}
+
+	.em_pl0 {
+		padding-left: 0px !important;
+	}
+	.em_pl20 {
+		padding-left: 20px !important;
+	}
+
+	.em_width10 {
+		width: 10px !important;
+	}
+	.em_width15 {
+		width: 15px !important;
+	}
+	.em_width20 {
+		width: 20px !important;
+	}
+
+	.em_aside0 {
+		padding: 0px 0px !important;
+	}
+	.em_aside10 {
+		padding: 0px 10px !important;
+	}
+	.em_aside15 {
+		padding: 0px 15px !important;
+	}
+	.em_aside20 {
+		padding: 0px 20px !important;
+	}
+	.em_aside25 {
+		padding: 0px 25px !important;
+	}
+
+	.em_hauto {
+		height: auto !important;
+	}
+	.em_h10 {
+		height: 10px !important;
+	}
+	.em_h20 {
+		height: 20px !important;
+	}
+	.em_h30 {
+		height: 30px !important;
+	}
+
+	.em_mob_block {
+		display: block !important;
+	}
+
+	.em_hide {
+		display: none !important;
+	}
+
+	.em_clear {
+		clear: both !important;
+		width: 100% !important;
+		display: block !important;
+	}
+	.em_hide_desktop {
+		display: table !important;
+		float: none !important;
+		width: 100% !important;
+		overflow: visible !important;
+		height: auto !important;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.em_main_table {
+		width: 375px !important;
+	}
+}
+
+@media screen and (max-width: 374px) {
+	.em_main_table {
+		width: 320px !important;
+	}
+}

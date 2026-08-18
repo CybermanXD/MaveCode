@@ -1040,6 +1040,11 @@ export class CustomModesManager {
 		this.cachedAt = 0
 	}
 
+	/** Invalidates merged mode state after verified managed personas change remotely. */
+	public invalidateCache(): void {
+		this.clearCache()
+	}
+
 	dispose(): void {
 		for (const disposable of this.disposables) {
 			disposable.dispose()

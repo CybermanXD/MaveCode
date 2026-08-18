@@ -340,6 +340,17 @@ export class ClineProvider
 		})
 
 		this.marketplaceManager = new MarketplaceManager(this.context, this.customModesManager)
+		void this.marketplaceManager
+			.refreshRemoteMarketplace({ force: true })
+			.then((result) => {
+				if (result.changed) {
+					void this.fetchMarketplaceData(false)
+					void this.postStateToWebview()
+				}
+			})
+			.catch((error) =>
+				this.log(`[Marketplace startup refresh] ${error instanceof Error ? error.message : String(error)}`),
+			)
 
 		// Forward <most> task events to the provider.
 		// We do something fairly similar for the IPC-based API.
@@ -925,9 +936,8 @@ export class ClineProvider
 		this.clearWebviewResources()
 		this.view = webviewView
 		const inTabMode = "onDidChangeViewState" in webviewView
-		const { createMaveCodeSignInUrl, getCachedMaveCodeToken, startMaveCodeSignIn } = await import(
-			"../../services/mave-code-auth"
-		)
+		const { createMaveCodeSignInUrl, getCachedMaveCodeToken, startMaveCodeSignIn } =
+			await import("../../services/mave-code-auth")
 		if (!getCachedMaveCodeToken()) {
 			const nonce = getNonce()
 			webviewView.webview.options = { enableScripts: true }
@@ -981,7 +991,9 @@ export class ClineProvider
 							copied = true
 						}
 					} catch (error) {
-						this.log(`[copyMaveCodeSignInUrl] Error: ${error instanceof Error ? error.message : String(error)}`)
+						this.log(
+							`[copyMaveCodeSignInUrl] Error: ${error instanceof Error ? error.message : String(error)}`,
+						)
 					}
 					await webviewView.webview.postMessage({ type: "maveCodeSignInUrlCopied", copied })
 					return
@@ -1005,7 +1017,9 @@ export class ClineProvider
 						webviewView.webview.postMessage({ type: "maveCodeSignInLaunchComplete", launched }),
 					)
 					.catch((error) => {
-						this.log(`[startMaveCodeSignIn] Error: ${error instanceof Error ? error.message : String(error)}`)
+						this.log(
+							`[startMaveCodeSignIn] Error: ${error instanceof Error ? error.message : String(error)}`,
+						)
 					})
 			}
 			return
@@ -1094,6 +1108,7 @@ export class ClineProvider
 			const viewStateDisposable = webviewView.onDidChangeViewState(() => {
 				if (this.view?.visible) {
 					void this.postMessageToWebview({ type: "action", action: "didBecomeVisible" })
+					void this.fetchMarketplaceData(true)
 				} else {
 					this.logWebviewHiddenDiagnostics()
 				}
@@ -1105,6 +1120,7 @@ export class ClineProvider
 			const visibilityDisposable = webviewView.onDidChangeVisibility(() => {
 				if (this.view?.visible) {
 					void this.postMessageToWebview({ type: "action", action: "didBecomeVisible" })
+					void this.fetchMarketplaceData(true)
 				} else {
 					this.logWebviewHiddenDiagnostics()
 				}
@@ -1146,7 +1162,6 @@ export class ClineProvider
 		if (!currentTask || currentTask.abandoned || currentTask.abort) {
 			await this.removeClineFromStack()
 		}
-
 	}
 
 	public async revealAuthenticatedWebview(): Promise<void> {
@@ -1697,7 +1712,9 @@ export class ClineProvider
 			const currentMode = (task as any)._taskMode ?? state.mode
 			const currentConfig = getModeBySlug(currentMode, state.customModes)
 			if (currentConfig?.immutablePersona && newMode !== currentMode) {
-				throw new Error(`Persona '${currentConfig.name}' is locked for this task. Start a new chat to change personas.`)
+				throw new Error(
+					`Persona '${currentConfig.name}' is locked for this task. Start a new chat to change personas.`,
+				)
 			}
 			TelemetryService.instance.captureModeSwitch(task.taskId, newMode)
 			task.emit(RooCodeEventName.TaskModeSwitched, task.taskId, newMode)
@@ -2436,8 +2453,10 @@ export class ClineProvider
 	/**
 	 * Fetches marketplace data on demand to avoid blocking main state updates
 	 */
-	async fetchMarketplaceData() {
+	async fetchMarketplaceData(force = false, showRefreshState = false) {
 		try {
+			if (showRefreshState) await this.postMessageToWebview({ type: "marketplaceRefreshState", bool: true })
+			if (force) await this.marketplaceManager.refreshRemoteMarketplace({ force: true })
 			const [marketplaceResult, marketplaceInstalledMetadata] = await Promise.all([
 				this.marketplaceManager.getMarketplaceItems().catch((error) => {
 					console.error("Failed to fetch marketplace items:", error)
@@ -2475,6 +2494,8 @@ export class ClineProvider
 					"Marketplace data could not be loaded due to network restrictions. Core functionality remains available.",
 				)
 			}
+		} finally {
+			if (showRefreshState) await this.postMessageToWebview({ type: "marketplaceRefreshState", bool: false })
 		}
 	}
 
@@ -2811,8 +2832,10 @@ export class ClineProvider
 			openRouterImageGenerationSelectedModel,
 			autoCloseMaveCodeOpenedFiles: autoCloseMaveCodeOpenedFiles ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES,
 			autoCloseMaveCodeOpenedFilesAfterUserEdited:
-				autoCloseMaveCodeOpenedFilesAfterUserEdited ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES_AFTER_USER_EDITED,
-			autoCloseMaveCodeOpenedNewFiles: autoCloseMaveCodeOpenedNewFiles ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_NEW_FILES,
+				autoCloseMaveCodeOpenedFilesAfterUserEdited ??
+				DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES_AFTER_USER_EDITED,
+			autoCloseMaveCodeOpenedNewFiles:
+				autoCloseMaveCodeOpenedNewFiles ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_NEW_FILES,
 			openAiCodexIsAuthenticated: await (async () => {
 				try {
 					const { openAiCodexOAuthManager } = await import("../../integrations/openai-codex/oauth")
@@ -3633,7 +3656,8 @@ export class ClineProvider
 	}
 
 	private getModeFallback(modes: readonly { slug: string }[]): Mode {
-		const fallback = modes.find(({ slug }) => slug === "standard") ?? modes.find(({ slug }) => slug === "enphase") ?? modes[0]
+		const fallback =
+			modes.find(({ slug }) => slug === "standard") ?? modes.find(({ slug }) => slug === "enphase") ?? modes[0]
 
 		if (!fallback) {
 			throw new Error("No authorized MaveCode persona is available.")

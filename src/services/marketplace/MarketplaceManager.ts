@@ -14,6 +14,7 @@ import type { CustomModesManager } from "../../core/config/CustomModesManager"
 import { RemotePersonaManager } from "../personas/RemotePersonaManager"
 
 import { ConfigLoader } from "./ConfigLoader"
+import { RemoteMcpManager } from "./RemoteMcpManager"
 import { SimpleInstaller } from "./SimpleInstaller"
 
 export interface MarketplaceItemsResponse {
@@ -22,10 +23,16 @@ export interface MarketplaceItemsResponse {
 	errors?: string[]
 }
 
+export interface MarketplaceRefreshResult extends MarketplaceItemsResponse {
+	changed: boolean
+}
+
 export class MarketplaceManager {
 	private configLoader: ConfigLoader
 	private installer: SimpleInstaller
 	private remotePersonaManager: RemotePersonaManager
+	private remoteMcpManager: RemoteMcpManager
+	private refreshPromise?: Promise<MarketplaceRefreshResult>
 
 	constructor(
 		private readonly context: vscode.ExtensionContext,
@@ -34,15 +41,37 @@ export class MarketplaceManager {
 		this.configLoader = new ConfigLoader(context.extensionUri.fsPath)
 		this.installer = new SimpleInstaller(context, customModesManager)
 		this.remotePersonaManager = new RemotePersonaManager(context.globalStorageUri.fsPath)
+		this.remoteMcpManager = new RemoteMcpManager(
+			context.globalStorageUri.fsPath,
+			String(context.extension?.packageJSON?.version ?? "0.0.0"),
+		)
+	}
+
+	async refreshRemoteMarketplace(options: { force?: boolean } = {}): Promise<MarketplaceRefreshResult> {
+		if (this.refreshPromise) return this.refreshPromise
+		this.refreshPromise = (async () => {
+			const [personasChanged, mcpsChanged] = await Promise.all([
+				this.remotePersonaManager.refresh(options),
+				this.remoteMcpManager.refresh(options),
+			])
+			if (personasChanged) this.customModesManager?.invalidateCache()
+			return { ...(await this.getMarketplaceItems()), changed: personasChanged || mcpsChanged }
+		})().finally(() => {
+			this.refreshPromise = undefined
+		})
+		return this.refreshPromise
 	}
 
 	async getMarketplaceItems(): Promise<MarketplaceItemsResponse> {
 		try {
-			const [localItems, personaItems] = await Promise.all([
+			const [localItems, personaItems, remoteMcpItems] = await Promise.all([
 				this.configLoader.loadAllItems(),
 				this.remotePersonaManager.getMarketplaceItems(),
+				this.remoteMcpManager.getMarketplaceItems(),
 			])
-			const marketplaceItems = [...personaItems, ...localItems.filter((item) => item.type === "mcp")]
+			const remoteMcpIds = new Set(remoteMcpItems.map((item) => item.id))
+			const bundledMcpFallbacks = localItems.filter((item) => item.type === "mcp" && !remoteMcpIds.has(item.id))
+			const marketplaceItems = [...personaItems, ...remoteMcpItems, ...bundledMcpFallbacks]
 
 			return {
 				organizationMcps: [],

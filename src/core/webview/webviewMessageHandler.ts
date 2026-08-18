@@ -3278,7 +3278,12 @@ export const webviewMessageHandler = async (
 
 		case "fetchMarketplaceData": {
 			// Fetch marketplace data on demand
-			await provider.fetchMarketplaceData()
+			await provider.fetchMarketplaceData(true)
+			break
+		}
+
+		case "refreshMarketplaceData": {
+			await provider.fetchMarketplaceData(true, true)
 			break
 		}
 
@@ -3362,7 +3367,11 @@ export const webviewMessageHandler = async (
 		}
 
 		case "setManagedPersonaEnabled": {
-			if (marketplaceManager && message.mpItem?.type === "persona" && typeof message.personaEnabled === "boolean") {
+			if (
+				marketplaceManager &&
+				message.mpItem?.type === "persona" &&
+				typeof message.personaEnabled === "boolean"
+			) {
 				try {
 					await marketplaceManager.setManagedPersonaEnabled(message.mpItem, message.personaEnabled)
 					await provider.fetchMarketplaceData()

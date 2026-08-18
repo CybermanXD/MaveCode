@@ -76,6 +76,7 @@ export interface ExtensionMessage {
 		| "marketplaceInstallResult"
 		| "marketplaceRemoveResult"
 		| "marketplaceData"
+		| "marketplaceRefreshState"
 		| "shareTaskSuccess"
 		| "codeIndexSettingsSaved"
 		| "codeIndexSecretStatus"
@@ -168,6 +169,7 @@ export interface ExtensionMessage {
 	marketplaceItems?: MarketplaceItem[]
 	organizationMcps?: MarketplaceItem[]
 	marketplaceInstalledMetadata?: MarketplaceInstalledMetadata
+	bool?: boolean
 	visibility?: ShareVisibility
 	tab?: string
 	errors?: string[]
@@ -624,6 +626,7 @@ export interface WebviewMessage {
 		// Marketplace messages
 		| "showMdmAuthRequiredNotification"
 		| "fetchMarketplaceData"
+		| "refreshMarketplaceData"
 		| "removeInstalledMarketplaceItem"
 		| "setManagedPersonaEnabled"
 		| "marketplaceInstallResult"

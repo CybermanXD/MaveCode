@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo, useContext } from "react"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, RefreshCw } from "lucide-react"
 import { Tab, TabContent, TabHeader } from "../common/Tab"
 import { MarketplaceViewStateManager } from "./MarketplaceViewStateManager"
 import { useStateManager } from "./useStateManager"
@@ -19,10 +19,19 @@ export function MarketplaceView({ stateManager, onDone, targetTab }: Marketplace
 	const { t } = useAppTranslation()
 	const [state, manager] = useStateManager(stateManager)
 	const [hasReceivedInitialState, setHasReceivedInitialState] = useState(false)
+	const [isRefreshing, setIsRefreshing] = useState(false)
 	const extensionState = useContext(ExtensionStateContext)
 	const [lastOrganizationSettingsVersion, setLastOrganizationSettingsVersion] = useState<number>(
 		extensionState?.organizationSettingsVersion ?? -1,
 	)
+
+	useEffect(() => {
+		const handleRefreshState = (event: MessageEvent) => {
+			if (event.data?.type === "marketplaceRefreshState") setIsRefreshing(Boolean(event.data.bool))
+		}
+		window.addEventListener("message", handleRefreshState)
+		return () => window.removeEventListener("message", handleRefreshState)
+	}, [])
 
 	useEffect(() => {
 		const currentVersion = extensionState?.organizationSettingsVersion ?? -1
@@ -111,6 +120,14 @@ export function MarketplaceView({ stateManager, onDone, targetTab }: Marketplace
 							</Button>
 							<h3 className="font-bold m-0">{t("marketplace:title")}</h3>
 						</div>
+						<Button
+							variant="ghost"
+							disabled={isRefreshing}
+							onClick={() => vscode.postMessage({ type: "refreshMarketplaceData" })}
+							aria-label="Refresh Marketplace">
+							<RefreshCw className={isRefreshing ? "animate-spin" : ""} />
+							<span>Refresh</span>
+						</Button>
 					</div>
 					<div className="flex gap-1 px-2 pt-2 border-b border-vscode-panel-border">
 						{(["mcp", "persona"] as const).map((tab) => (
@@ -126,7 +143,12 @@ export function MarketplaceView({ stateManager, onDone, targetTab }: Marketplace
 				</TabHeader>
 
 				<TabContent className="p-3 pt-2">
-					<MarketplaceListView stateManager={stateManager} allTags={allTags} filteredTags={filteredTags} filterByType={state.activeTab} />
+					<MarketplaceListView
+						stateManager={stateManager}
+						allTags={allTags}
+						filteredTags={filteredTags}
+						filterByType={state.activeTab}
+					/>
 				</TabContent>
 			</Tab>
 		</TooltipProvider>

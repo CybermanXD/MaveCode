@@ -50,8 +50,8 @@ u + .em_body .em_full_wrap { width: 100% !important; width: 100vw !important; }
 .em_aside2 { padding: 20px 15px 0px 15px !important; }
 .em_aside3 { padding: 0 15px 40px 15px !important; }
 .em_aside4 { padding: 20px 15px 40px 15px !important; }
-.em_aside5 { padding: 0 15px 10px 15px !important; }
-.em_aside6 { padding: 40 15px 10px 15px !important; }
+.em_aside5 { padding: 0px 15px 10px 15px !important; }
+.em_aside6 { padding: 40px 15px 10px 15px !important; }
 .em_padd_none { padding: 0px !important; }
 .em_padd_bottom_none { padding-bottom: 0px !important; }
 .em_cta { padding: 0px 32px !important; font-size: 16px !important; height: 48px !important; }

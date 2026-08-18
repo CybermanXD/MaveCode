@@ -7,6 +7,7 @@ import YAML from "yaml"
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..")
 const personaRoot = path.join(root, "src/assets/personas")
+const mcpSourcePath = path.join(root, "src/assets/marketplace/mcps.yml")
 const sourceRoot = path.join(root, "marketplace/sources/personas")
 const outputRoot = path.join(root, "marketplace/published")
 const packageRoot = path.join(outputRoot, "packages")
@@ -136,13 +137,49 @@ const catalogPayload = {
 const catalogSignedPayload = { ...catalogPayload, signingKeyId: keyId }
 const catalog = { ...catalogSignedPayload, signature: signValue(catalogSignedPayload) }
 await writeFile(path.join(outputRoot, "catalog-v1.json"), `${canonical(catalog)}\n`, "utf8")
+
+const mcpSource = YAML.parse(await readFile(mcpSourcePath, "utf8"))
+assert(Array.isArray(mcpSource?.items), "MCP marketplace source is invalid")
+assert(mcpSource.items.length <= 500, "MCP marketplace has too many entries")
+const mcpIds = new Set()
+const mcpItems = mcpSource.items.map((item) => {
+	assert(item && typeof item === "object", "MCP marketplace item must be an object")
+	assert(slug.test(item.id), `Invalid MCP ID: ${item.id}`)
+	assert(!mcpIds.has(item.id), `Duplicate MCP ID: ${item.id}`)
+	mcpIds.add(item.id)
+	assert(typeof item.name === "string" && item.name.length > 0, `Missing MCP name for ${item.id}`)
+	assert(typeof item.description === "string", `Missing MCP description for ${item.id}`)
+	assert(typeof item.url === "string" && /^https:\/\//.test(item.url), `Invalid MCP URL for ${item.id}`)
+	const methods = Array.isArray(item.content) ? item.content : [{ content: item.content }]
+	assert(methods.length > 0, `Missing MCP installation method for ${item.id}`)
+	for (const method of methods) {
+		assert(typeof method?.content === "string" && method.content.length > 0, `Invalid MCP content for ${item.id}`)
+		const configuration = JSON.parse(method.content)
+		assert(configuration && typeof configuration === "object" && !Array.isArray(configuration), `Invalid MCP configuration for ${item.id}`)
+	}
+	return { type: "mcp", ...item }
+})
+const extensionPackage = JSON.parse(await readFile(path.join(root, "src/package.json"), "utf8"))
+assert(semver.test(extensionPackage.version), "Extension package has an invalid version")
+const mcpCatalogPayload = {
+	schemaVersion: 1,
+	publishedAt: catalogPayload.publishedAt,
+	sourceCommit: catalogPayload.sourceCommit,
+	minimumMaveCodeVersion: extensionPackage.version,
+	items: mcpItems.sort((left, right) => left.id.localeCompare(right.id)),
+}
+const mcpCatalogSignedPayload = { ...mcpCatalogPayload, signingKeyId: keyId }
+const mcpCatalog = { ...mcpCatalogSignedPayload, signature: signValue(mcpCatalogSignedPayload) }
+await writeFile(path.join(outputRoot, "mcp-catalog-v1.json"), `${canonical(mcpCatalog)}\n`, "utf8")
 await writeFile(path.join(outputRoot, ".nojekyll"), "", "utf8")
 if (process.argv.includes("--update-version-digests")) {
 	await writeFile(immutableDigestPath, `${JSON.stringify(nextImmutableDigests, null, 2)}\n`, "utf8")
 }
 
 const generated = await readdir(packageRoot)
-console.log(`Built marketplace catalog with ${items.length} personas and ${generated.length} packages.`)
+console.log(
+	`Built marketplace catalogs with ${items.length} personas, ${mcpItems.length} MCP listings, and ${generated.length} packages.`,
+)
 if (privateKeyPem && process.env.MARKETPLACE_PUBLIC_KEY_OUTPUT) {
 	await writeFile(process.env.MARKETPLACE_PUBLIC_KEY_OUTPUT, createPublicKey(privateKeyPem).export({ type: "spki", format: "pem" }))
 }

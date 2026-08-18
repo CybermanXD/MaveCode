@@ -4,6 +4,12 @@ import type { MarketplaceItem } from "@roo-code/types"
 
 import { MarketplaceManager } from "../MarketplaceManager"
 
+vi.mock("../RemoteMcpManager", () => ({
+	RemoteMcpManager: vi.fn().mockImplementation(() => ({
+		getMarketplaceItems: vi.fn().mockResolvedValue([]),
+	})),
+}))
+
 // Mock TelemetryService
 vi.mock("../../../../packages/telemetry/src/TelemetryService", () => ({
 	TelemetryService: {
@@ -50,6 +56,7 @@ const mockContext = {
 		update: vi.fn(),
 	},
 	extensionUri: { fsPath: "/test/extension" },
+	extension: { packageJSON: { version: "3.76.12" } },
 } as any
 
 // Mock fs

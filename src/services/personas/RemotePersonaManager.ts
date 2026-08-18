@@ -98,6 +98,7 @@ export class RemotePersonaManager {
 	private readonly root: string
 	private readonly catalogPath: string
 	private readonly packagesPath: string
+	private refreshPromise?: Promise<boolean>
 
 	constructor(globalStoragePath: string) {
 		this.root = path.join(globalStoragePath, "managed-personas")
@@ -105,8 +106,8 @@ export class RemotePersonaManager {
 		this.packagesPath = path.join(this.root, "packages")
 	}
 
-	async getPersonas(): Promise<ModeConfig[]> {
-		await this.refreshIfStale().catch((error) =>
+	async getPersonas(options: { force?: boolean } = {}): Promise<ModeConfig[]> {
+		await this.refresh(options).catch((error) =>
 			console.warn("[RemotePersonaManager] Using cached or bundled personas:", error),
 		)
 		try {
@@ -119,8 +120,8 @@ export class RemotePersonaManager {
 		}
 	}
 
-	async getMarketplaceItems(): Promise<MarketplaceItem[]> {
-		await this.refreshIfStale().catch(() => undefined)
+	async getMarketplaceItems(options: { force?: boolean } = {}): Promise<MarketplaceItem[]> {
+		await this.refresh(options).catch(() => undefined)
 		try {
 			return (await this.readVerifiedCatalog()).items as MarketplaceItem[]
 		} catch {
@@ -128,9 +129,18 @@ export class RemotePersonaManager {
 		}
 	}
 
-	private async refreshIfStale(): Promise<void> {
+	async refresh(options: { force?: boolean } = {}): Promise<boolean> {
+		if (this.refreshPromise) return this.refreshPromise
+		this.refreshPromise = this.performRefresh(Boolean(options.force)).finally(() => {
+			this.refreshPromise = undefined
+		})
+		return this.refreshPromise
+	}
+
+	private async performRefresh(force: boolean): Promise<boolean> {
 		const stat = await fs.stat(this.catalogPath).catch(() => undefined)
-		if (stat && Date.now() - stat.mtimeMs < REFRESH_INTERVAL_MS) return
+		if (!force && stat && Date.now() - stat.mtimeMs < REFRESH_INTERVAL_MS) return false
+		const previous = await fs.readFile(this.catalogPath).catch(() => undefined)
 
 		const catalogBytes = await fetchBounded(CATALOG_URL, MAX_CATALOG_BYTES)
 		const catalog = JSON.parse(catalogBytes.toString("utf8")) as Catalog
@@ -149,6 +159,7 @@ export class RemotePersonaManager {
 			await this.atomicWrite(this.packagePath(item), bytes)
 		}
 		await this.atomicWrite(this.catalogPath, catalogBytes)
+		return !previous || !previous.equals(catalogBytes)
 	}
 
 	private async readVerifiedCatalog(): Promise<Catalog> {
