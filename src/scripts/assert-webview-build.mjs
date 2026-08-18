@@ -34,7 +34,7 @@ const app = readSource("App.tsx")
 const chatView = readSource("ChatView.tsx")
 
 const requiredMaveCodeMarkers = [
-	[settingsView.includes("maveCodeIsAdmin"), "managed Settings visibility"],
+	[!settingsView.includes("maveCodeIsAdmin"), "unrestricted Settings visibility"],
 	[settingsView.includes("setManagedSettingsInert"), "managed Settings disabled state"],
 	[!settingsView.includes('{ id: "about", icon: Info }'), "reduced Settings navigation"],
 	[marketplaceView.includes('["mcp", "persona"]'), "MCP/Personas Marketplace tabs"],

@@ -9,6 +9,8 @@ dist/
 out/
 out-*/
 build/
+!packages/build/
+!packages/build/**
 bin/
 *.vsix
 roo-cli-*.tar.gz*

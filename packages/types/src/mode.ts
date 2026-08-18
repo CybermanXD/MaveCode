@@ -238,7 +238,5 @@ const LEGACY_DEFAULT_MODES: readonly ModeConfig[] = [
 	},
 ] as const
 
-/** MaveCode exposes project personas plus admin-only Code and Ask modes. */
-export const DEFAULT_MODES: readonly ModeConfig[] = LEGACY_DEFAULT_MODES.filter(({ slug }) =>
-	["code", "ask"].includes(slug),
-)
+/** MaveCode exposes all default development personas in addition to managed marketplace personas. */
+export const DEFAULT_MODES: readonly ModeConfig[] = LEGACY_DEFAULT_MODES
