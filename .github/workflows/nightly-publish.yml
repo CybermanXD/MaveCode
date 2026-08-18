@@ -81,6 +81,7 @@ jobs:
               run: |
                   pnpm --filter @roo-code/build build
                   pnpm --filter @roo-code/vscode-webview build
+                  pnpm --filter ./src bundle -- --production
 
             - name: Package pre-release VSIX
               if: steps.release-check.outputs.skip != 'true'
