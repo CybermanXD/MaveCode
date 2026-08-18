@@ -1,7 +1,7 @@
 import { HTMLAttributes, useState, useCallback, useEffect } from "react"
 import { useAppTranslation } from "@/i18n/TranslationContext"
 import { vscode } from "@/utils/vscode"
-import { VSCodeCheckbox, VSCodeLink } from "@vscode/webview-ui-toolkit/react"
+import { VSCodeCheckbox } from "@vscode/webview-ui-toolkit/react"
 import { Trans } from "react-i18next"
 import { useEvent, useMount } from "react-use"
 import { Terminal } from "lucide-react"
@@ -177,9 +177,7 @@ export const TerminalSettings = ({
 								</span>
 							</VSCodeCheckbox>
 							<div className="text-vscode-descriptionForeground text-sm mt-1">
-								<Trans i18nKey="settings:terminal.shellIntegrationDisabled.description">
-									
-								</Trans>
+								<Trans i18nKey="settings:terminal.shellIntegrationDisabled.description"></Trans>
 							</div>
 						</SearchableSetting>
 
@@ -242,9 +240,7 @@ export const TerminalSettings = ({
 									)}
 
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
-										<Trans i18nKey="settings:terminal.profile.description">
-											
-										</Trans>
+										<Trans i18nKey="settings:terminal.profile.description"></Trans>
 									</div>
 								</SearchableSetting>
 
@@ -266,9 +262,7 @@ export const TerminalSettings = ({
 										<span className="font-medium">{t("settings:terminal.inheritEnv.label")}</span>
 									</VSCodeCheckbox>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
-										<Trans i18nKey="settings:terminal.inheritEnv.description">
-											
-										</Trans>
+										<Trans i18nKey="settings:terminal.inheritEnv.description"></Trans>
 									</div>
 								</SearchableSetting>
 
@@ -297,9 +291,7 @@ export const TerminalSettings = ({
 										</span>
 									</div>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
-										<Trans i18nKey="settings:terminal.shellIntegrationTimeout.description">
-											
-										</Trans>
+										<Trans i18nKey="settings:terminal.shellIntegrationTimeout.description"></Trans>
 									</div>
 								</SearchableSetting>
 
@@ -326,9 +318,7 @@ export const TerminalSettings = ({
 										<span className="w-10">{terminalCommandDelay ?? 0}ms</span>
 									</div>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
-										<Trans i18nKey="settings:terminal.commandDelay.description">
-											
-										</Trans>
+										<Trans i18nKey="settings:terminal.commandDelay.description"></Trans>
 									</div>
 								</SearchableSetting>
 
@@ -347,9 +337,7 @@ export const TerminalSettings = ({
 										</span>
 									</VSCodeCheckbox>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
-										<Trans i18nKey="settings:terminal.powershellCounter.description">
-											
-										</Trans>
+										<Trans i18nKey="settings:terminal.powershellCounter.description"></Trans>
 									</div>
 								</SearchableSetting>
 
@@ -368,9 +356,7 @@ export const TerminalSettings = ({
 										</span>
 									</VSCodeCheckbox>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
-										<Trans i18nKey="settings:terminal.zshClearEolMark.description">
-											
-										</Trans>
+										<Trans i18nKey="settings:terminal.zshClearEolMark.description"></Trans>
 									</div>
 								</SearchableSetting>
 
@@ -385,9 +371,7 @@ export const TerminalSettings = ({
 										<span className="font-medium">{t("settings:terminal.zshOhMy.label")}</span>
 									</VSCodeCheckbox>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
-										<Trans i18nKey="settings:terminal.zshOhMy.description">
-											
-										</Trans>
+										<Trans i18nKey="settings:terminal.zshOhMy.description"></Trans>
 									</div>
 								</SearchableSetting>
 
@@ -402,9 +386,7 @@ export const TerminalSettings = ({
 										<span className="font-medium">{t("settings:terminal.zshP10k.label")}</span>
 									</VSCodeCheckbox>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
-										<Trans i18nKey="settings:terminal.zshP10k.description">
-											
-										</Trans>
+										<Trans i18nKey="settings:terminal.zshP10k.description"></Trans>
 									</div>
 								</SearchableSetting>
 
@@ -419,9 +401,7 @@ export const TerminalSettings = ({
 										<span className="font-medium">{t("settings:terminal.zdotdir.label")}</span>
 									</VSCodeCheckbox>
 									<div className="text-vscode-descriptionForeground text-sm mt-1">
-										<Trans i18nKey="settings:terminal.zdotdir.description">
-											
-										</Trans>
+										<Trans i18nKey="settings:terminal.zdotdir.description"></Trans>
 									</div>
 								</SearchableSetting>
 							</>

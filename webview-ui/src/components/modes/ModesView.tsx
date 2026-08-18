@@ -4,7 +4,6 @@ import {
 	VSCodeRadioGroup,
 	VSCodeRadio,
 	VSCodeTextArea,
-	VSCodeLink,
 	VSCodeTextField,
 } from "@vscode/webview-ui-toolkit/react"
 import { Trans } from "react-i18next"
@@ -1293,7 +1292,8 @@ const ModesView = () => {
 								mode: getCurrentMode()?.name || "Code",
 								slug: getCurrentMode()?.slug || "code",
 							}}>
-							components={{
+							components=
+							{{
 								span: (
 									<span
 										className="text-vscode-textLink-foreground cursor-pointer underline"

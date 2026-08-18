@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react"
 import { Plus, Globe, Folder, Edit, Trash2 } from "lucide-react"
-import { Trans } from "react-i18next"
 
 import type { Command } from "@roo-code/types"
 
@@ -146,7 +145,7 @@ export const SlashCommandsSettings: React.FC = () => {
 				<SectionHeader>{t("settings:sections.slashCommands")}</SectionHeader>
 				<div className="flex flex-col gap-2 px-5 py-2">
 					<p className="text-vscode-descriptionForeground text-sm m-0">
-					{t("settings:slashCommands.description")}
+						{t("settings:slashCommands.description")}
 					</p>
 
 					{/* Add Command button */}

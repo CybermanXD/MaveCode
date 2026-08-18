@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.76.13
+
+- Restored the Modes settings tab for all users after it was hidden behind the admin-only account gate.
+- Restored default personas, including Code and Ask, in the chat mode selector and backend mode list.
+- Removed the admin-only runtime block that prevented switching to Code and Ask.
+
 ## 3.76.12
 
 - Restored separate MCP and Personas tabs in Marketplace.

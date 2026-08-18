@@ -10,30 +10,22 @@ import React, {
 } from "react"
 import {
 	CheckCheck,
-	GitBranch,
 	Bell,
 	Database,
-	SquareTerminal,
-	FlaskConical,
 	TriangleAlert,
 	Globe,
-	MessageSquare,
 	LucideIcon,
-	SquareSlash,
 	Glasses,
 	Plug,
 	Server,
 	UsersRound,
 	ArrowLeft,
 	GitCommitVertical,
-	GraduationCap,
-	ScrollText,
 } from "lucide-react"
 
 import {
 	type ProviderSettings,
 	type ExperimentId,
-	type TelemetrySetting,
 	DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES,
 	DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES_AFTER_USER_EDITED,
 	DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_NEW_FILES,
@@ -132,7 +124,7 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 	const { t } = useAppTranslation()
 
 	const extensionState = useExtensionState()
-	const { currentApiConfigName, listApiConfigMeta, uriScheme, settingsImportedAt, mode, maveCodeIsAdmin } = extensionState
+	const { currentApiConfigName, listApiConfigMeta, uriScheme, settingsImportedAt, mode } = extensionState
 
 	const [isDiscardDialogShow, setDiscardDialogShow] = useState(false)
 	const [isChangeDetected, setChangeDetected] = useState(false)
@@ -306,28 +298,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 		})
 	}, [])
 
-	const setTelemetrySetting = useCallback((setting: TelemetrySetting) => {
-		setCachedState((prevState) => {
-			if (prevState.telemetrySetting === setting) {
-				return prevState
-			}
-
-			setChangeDetected(true)
-			return { ...prevState, telemetrySetting: setting }
-		})
-	}, [])
-
-	const setDebug = useCallback((debug: boolean) => {
-		setCachedState((prevState) => {
-			if (prevState.debug === debug) {
-				return prevState
-			}
-
-			setChangeDetected(true)
-			return { ...prevState, debug }
-		})
-	}, [])
-
 	const setImageGenerationProvider = useCallback((provider: ImageGenerationProvider) => {
 		setCachedState((prevState) => {
 			if (prevState.imageGenerationProvider !== provider) {
@@ -436,10 +406,13 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 					includeCurrentTime: includeCurrentTime ?? true,
 					includeCurrentCost: includeCurrentCost ?? true,
 					maxGitStatusFiles: maxGitStatusFiles ?? 0,
-					autoCloseMaveCodeOpenedFiles: autoCloseMaveCodeOpenedFiles ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES,
+					autoCloseMaveCodeOpenedFiles:
+						autoCloseMaveCodeOpenedFiles ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES,
 					autoCloseMaveCodeOpenedFilesAfterUserEdited:
-						autoCloseMaveCodeOpenedFilesAfterUserEdited ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES_AFTER_USER_EDITED,
-					autoCloseMaveCodeOpenedNewFiles: autoCloseMaveCodeOpenedNewFiles ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_NEW_FILES,
+						autoCloseMaveCodeOpenedFilesAfterUserEdited ??
+						DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_FILES_AFTER_USER_EDITED,
+					autoCloseMaveCodeOpenedNewFiles:
+						autoCloseMaveCodeOpenedNewFiles ?? DEFAULT_AUTO_CLOSE_MAVECODE_OPENED_NEW_FILES,
 					profileThresholds,
 					imageGenerationProvider,
 					openRouterImageApiKey,
@@ -533,16 +506,16 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 	const sections: { id: SectionName; icon: LucideIcon }[] = useMemo(
 		() => [
 			{ id: "providers", icon: Plug },
-			...(maveCodeIsAdmin ? [{ id: "modes" as const, icon: UsersRound }] : []),
+			{ id: "modes", icon: UsersRound },
 			{ id: "autoApprove", icon: CheckCheck },
 			{ id: "mcp", icon: Server },
 			{ id: "checkpoints", icon: GitCommitVertical },
 			{ id: "notifications", icon: Bell },
-			...(maveCodeIsAdmin ? [{ id: "contextManagement" as const, icon: Database }] : []),
+			{ id: "contextManagement", icon: Database },
 			{ id: "ui", icon: Glasses },
 			{ id: "language", icon: Globe },
 		],
-		[maveCodeIsAdmin],
+		[],
 	)
 
 	// Update target section logic to set active tab
@@ -945,7 +918,9 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 								enterBehavior={enterBehavior ?? "send"}
 								chatFontSize={chatFontSize ?? undefined}
 								autoCloseMaveCodeOpenedFiles={autoCloseMaveCodeOpenedFiles}
-								autoCloseMaveCodeOpenedFilesAfterUserEdited={autoCloseMaveCodeOpenedFilesAfterUserEdited}
+								autoCloseMaveCodeOpenedFilesAfterUserEdited={
+									autoCloseMaveCodeOpenedFilesAfterUserEdited
+								}
 								autoCloseMaveCodeOpenedNewFiles={autoCloseMaveCodeOpenedNewFiles}
 								setCachedStateField={setCachedStateField}
 							/>
@@ -973,7 +948,6 @@ const SettingsView = forwardRef<SettingsViewRef, SettingsViewProps>(({ onDone, t
 						{renderTab === "language" && (
 							<LanguageSettings language={language || "en"} setCachedStateField={setCachedStateField} />
 						)}
-
 					</SearchIndexProvider>
 				</TabContent>
 			</div>

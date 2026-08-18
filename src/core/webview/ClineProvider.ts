@@ -1691,10 +1691,6 @@ export class ClineProvider
 	 * current task. Pass null to apply only global mode/profile effects for a pending child.
 	 */
 	public async handleModeSwitch(newMode: Mode, targetTask: Task | null | undefined = this.getCurrentTask()) {
-		const { isMaveCodeAdmin } = await import("../../services/mave-code-auth")
-		if (["code", "ask"].includes(newMode) && !isMaveCodeAdmin()) {
-			throw new Error("This mode is available to MaveCode administrators only.")
-		}
 		return this.enqueueProviderProfileMutation((signal) =>
 			this.handleModeSwitchUnlocked(newMode, targetTask, signal),
 		)
@@ -3649,10 +3645,7 @@ export class ClineProvider
 	// Modes
 
 	private async getAuthorizedModes(customModes?: Awaited<ReturnType<CustomModesManager["getCustomModes"]>>) {
-		const modes = [...DEFAULT_MODES, ...(customModes ?? (await this.customModesManager.getCustomModes()))]
-		const { isMaveCodeAdmin } = await import("../../services/mave-code-auth")
-
-		return isMaveCodeAdmin() ? modes : modes.filter(({ slug }) => !["code", "ask"].includes(slug))
+		return [...DEFAULT_MODES, ...(customModes ?? (await this.customModesManager.getCustomModes()))]
 	}
 
 	private getModeFallback(modes: readonly { slug: string }[]): Mode {

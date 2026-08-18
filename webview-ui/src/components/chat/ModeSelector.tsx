@@ -48,7 +48,7 @@ export const ModeSelector = ({
 	const scrollContainerRef = React.useRef<HTMLDivElement>(null)
 	const lastNotifiedInvalidModeRef = React.useRef<string | null>(null)
 	const portalContainer = useRooPortal("roo-portal")
-	const { hasOpenedModeSelector, setHasOpenedModeSelector, maveCodeIsAdmin } = useExtensionState()
+	const { hasOpenedModeSelector, setHasOpenedModeSelector } = useExtensionState()
 	const { t } = useAppTranslation()
 
 	const trackModeSelectorOpened = React.useCallback(() => {
@@ -64,20 +64,20 @@ export const ModeSelector = ({
 
 	// Get all modes including custom modes and merge custom prompt descriptions.
 	const modes = React.useMemo(() => {
-		const allModes = getAllModes(customModes).filter(
-			(mode) => maveCodeIsAdmin || !["code", "ask"].includes(mode.slug),
-		)
+		const allModes = getAllModes(customModes)
 
 		return allModes.map((mode) => ({
 			...mode,
 			description: customModePrompts?.[mode.slug]?.description ?? mode.description,
 		}))
-	}, [customModes, customModePrompts, maveCodeIsAdmin])
+	}, [customModes, customModePrompts])
 
 	// Find the selected mode, falling back to the first authorized persona when the
 	// built-in default (Code) is intentionally unavailable to non-admin users.
 	const selectedMode = React.useMemo(() => {
-		return modes.find((mode) => mode.slug === value) ?? modes.find((mode) => mode.slug === defaultModeSlug) ?? modes[0]
+		return (
+			modes.find((mode) => mode.slug === value) ?? modes.find((mode) => mode.slug === defaultModeSlug) ?? modes[0]
+		)
 	}, [modes, value])
 
 	// Notify parent when current mode is invalid so it can update its state
