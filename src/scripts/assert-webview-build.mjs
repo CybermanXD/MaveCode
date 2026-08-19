@@ -1,6 +1,8 @@
 import { access, readFile } from "node:fs/promises"
 import path from "node:path"
 
+/* global console */
+
 const requiredAssets = [
 	path.join("webview-ui", "build", "assets", "index.js"),
 	path.join("webview-ui", "build", "assets", "index.css"),

@@ -428,7 +428,11 @@ export class CustomModesManager {
 		if (!managedSlugs.has(slug)) throw new Error(`Unknown managed persona '${slug}'.`)
 		if (slug === requiredPersona && !enabled) throw new Error("Standard persona cannot be disabled.")
 		const disabled = new Set(this.context.globalState.get<string[]>(key, []))
-		enabled ? disabled.delete(slug) : disabled.add(slug)
+		if (enabled) {
+			disabled.delete(slug)
+		} else {
+			disabled.add(slug)
+		}
 		disabled.delete(requiredPersona)
 		await this.context.globalState.update(key, [...disabled].sort())
 		this.clearCache()

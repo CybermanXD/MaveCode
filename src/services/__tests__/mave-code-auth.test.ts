@@ -45,6 +45,13 @@ function createSecretStorage(initial: Record<string, string> = {}): SecretStorag
 	}
 }
 
+function createInstalledSecretStorage(initial: Record<string, string> = {}): SecretStorage {
+	return createSecretStorage({
+		"mave-code-auth-installation-version": "3.76.0:",
+		...initial,
+	})
+}
+
 function contextWith(secrets: SecretStorage): ExtensionContext {
 	return { secrets, extension: { packageJSON: { version: "3.76.0" } } } as unknown as ExtensionContext
 }
@@ -60,18 +67,17 @@ describe("mave-code-auth", () => {
 	})
 
 	it("preloads and verifies a persisted managed session", async () => {
-		const secrets = createSecretStorage({
-			"mave-code-auth-installation-version": "3.76.0:",
+		const secrets = createInstalledSecretStorage({
 			"mave-code-session-token": "mave_ext_persisted_session_12345",
 			"mave-code-session-expiry": String(Date.now() + 3_600_000),
-			"mave-code-backend-url": "https://example.invalid/exec",
+			"mave-code-backend-url": "https://script.google.com/macros/s/example/exec",
 		})
-		mockAction.mockResolvedValueOnce({ valid: true })
+		mockAction.mockResolvedValueOnce({ claims: { subject: "user", role: "user", issuedAt: 1, expiresAt: 2 } })
 
 		await initMaveCodeAuth(contextWith(secrets))
 
 		expect(getCachedMaveCodeToken()).toBe("mave_ext_persisted_session_12345")
-		expect(getMaveCodeBaseUrl()).toBe("https://example.invalid/exec")
+		expect(getMaveCodeBaseUrl()).toBe("https://script.google.com/macros/s/example/exec")
 		expect(mockAction).toHaveBeenCalledWith("session-verify", {
 			sessionToken: "mave_ext_persisted_session_12345",
 		})
@@ -93,7 +99,7 @@ describe("mave-code-auth", () => {
 
 	it("clears a definitively invalid persisted session", async () => {
 		const { MaveCodeBackendError } = await import("../mavecode-appscript-client")
-		const secrets = createSecretStorage({
+		const secrets = createInstalledSecretStorage({
 			"mave-code-session-token": "mave_ext_expired_session_12345",
 			"mave-code-session-expiry": String(Date.now() + 3_600_000),
 		})
@@ -105,7 +111,7 @@ describe("mave-code-auth", () => {
 	})
 
 	it("preserves a session when verification is temporarily unreachable", async () => {
-		const secrets = createSecretStorage({
+		const secrets = createInstalledSecretStorage({
 			"mave-code-session-token": "mave_ext_cached_session_12345",
 			"mave-code-session-expiry": String(Date.now() + 3_600_000),
 		})
@@ -150,7 +156,7 @@ describe("mave-code-auth", () => {
 		const state = "s".repeat(43)
 		const verifier = "v".repeat(43)
 		const callbackUri = "vscode://MaveCode.mave-code/auth-callback"
-		const secrets = createSecretStorage({
+		const secrets = createInstalledSecretStorage({
 			"mave-code-auth-state": state,
 			"mave-code-auth-verifier": verifier,
 			"mave-code-auth-callback": callbackUri,
@@ -177,7 +183,7 @@ describe("mave-code-auth", () => {
 
 	it("rejects a mismatched stale callback without consuming the active transaction", async () => {
 		const activeState = "s".repeat(43)
-		const secrets = createSecretStorage({
+		const secrets = createInstalledSecretStorage({
 			"mave-code-auth-state": activeState,
 			"mave-code-auth-verifier": "v".repeat(43),
 			"mave-code-auth-callback": "vscode://MaveCode.mave-code/auth-callback",
@@ -200,7 +206,7 @@ describe("mave-code-auth", () => {
 	it("classifies verification failures", async () => {
 		const { MaveCodeBackendError } = await import("../mavecode-appscript-client")
 		await setMaveCodeToken("mave_ext_active_session_12345")
-		mockAction.mockResolvedValueOnce({ valid: true })
+		mockAction.mockResolvedValueOnce({ claims: { subject: "user", role: "user", issuedAt: 1, expiresAt: 2 } })
 		await expect(verifyMaveCodeToken()).resolves.toBe("valid")
 
 		mockAction.mockRejectedValueOnce(new MaveCodeBackendError("UNAUTHENTICATED", "invalid"))

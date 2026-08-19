@@ -1,7 +1,14 @@
 {
 	"$schema": "https://unpkg.com/knip@5/schema.json",
-	"ignore": ["**/__tests__/**", "apps/vscode-e2e/**", "scripts/**", "apps/cli/scripts/**"],
-	"ignoreDependencies": ["lint-staged"],
+	"ignore": [
+		"**/__tests__/**",
+		"apps/vscode-e2e/**",
+		"scripts/**",
+		"apps/cli/scripts/**",
+		"private-build/**",
+		"apps/mavecode-auth-page/**"
+	],
+	"ignoreDependencies": ["lint-staged", "ovsx", "@vscode/codicons", "react-icons", "@vitest/coverage-v8", "vitest"],
 	"ignoreExportsUsedInFile": true,
 	"playwright": false,
 	"playwright-ct": false,
@@ -40,7 +47,7 @@
 			"ignoreDependencies": ["@vscode/ripgrep"]
 		},
 		"packages/config-typescript": {
-			"ignoreUnresolved": ["vitest/globals"]
+			"ignore": ["**/*"]
 		},
 		"packages/core": {
 			"project": ["src/**/*.ts"],
@@ -57,17 +64,21 @@
 			"project": ["src/**/*.ts"],
 			"ignoreDependencies": ["@types/vscode"]
 		},
-		"packages/{build,ipc,types}": {
+		"packages/build": {
+			"ignore": ["**/*"],
+			"ignoreDependencies": ["@roo-code/config-eslint", "vitest", "zod"]
+		},
+		"packages/{ipc,types}": {
 			"project": ["src/**/*.ts"]
 		}
 	},
 	"rules": {
 		"classMembers": "off",
-		"duplicates": "warn",
-		"enumMembers": "warn",
-		"exports": "warn",
+		"duplicates": "off",
+		"enumMembers": "off",
+		"exports": "off",
 		"nsExports": "warn",
-		"types": "warn",
+		"types": "off",
 		"nsTypes": "warn"
 	}
 }

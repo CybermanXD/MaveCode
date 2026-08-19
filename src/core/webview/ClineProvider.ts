@@ -106,6 +106,7 @@ import { Task } from "../task/Task"
 
 import { webviewMessageHandler } from "./webviewMessageHandler"
 import type { ClineMessage, TodoItem } from "@roo-code/types"
+
 import {
 	readApiMessages,
 	saveApiMessages,
@@ -113,6 +114,7 @@ import {
 	TaskHistoryStore,
 	assertValidTransition,
 } from "../task-persistence"
+import type { ApiMessage } from "../task-persistence/apiMessages"
 import { readTaskMessages } from "../task-persistence/taskMessages"
 import { getNonce } from "./getNonce"
 import { getUri } from "./getUri"
@@ -491,7 +493,7 @@ export class ClineProvider
 		event: K,
 		listener: (...args: TaskProviderEvents[K]) => void | Promise<void>,
 	): this {
-		return super.on(event, listener as any)
+		return super.on(event, listener as never)
 	}
 
 	/**
@@ -501,7 +503,7 @@ export class ClineProvider
 		event: K,
 		listener: (...args: TaskProviderEvents[K]) => void | Promise<void>,
 	): this {
-		return super.off(event, listener as any)
+		return super.off(event, listener as never)
 	}
 
 	/**
@@ -864,7 +866,7 @@ export class ClineProvider
 	public static async handleCodeAction(
 		command: CodeActionId,
 		promptType: CodeActionName,
-		params: Record<string, string | any[]>,
+		params: Record<string, string | unknown[]>,
 	): Promise<void> {
 		// Capture telemetry for code action usage
 		TelemetryService.instance.captureCodeActionUsed(promptType)
@@ -896,7 +898,7 @@ export class ClineProvider
 	public static async handleTerminalAction(
 		command: TerminalActionId,
 		promptType: TerminalActionPromptType,
-		params: Record<string, string | any[]>,
+		params: Record<string, string | unknown[]>,
 	): Promise<void> {
 		TelemetryService.instance.captureCodeActionUsed(promptType)
 
@@ -1705,7 +1707,7 @@ export class ClineProvider
 
 		if (task) {
 			const state = await this.getState()
-			const currentMode = (task as any)._taskMode ?? state.mode
+			const currentMode = task.taskMode ?? state.mode
 			const currentConfig = getModeBySlug(currentMode, state.customModes)
 			if (currentConfig?.immutablePersona && newMode !== currentMode) {
 				throw new Error(
@@ -1726,7 +1728,7 @@ export class ClineProvider
 				}
 
 				// Only update the task's mode after successful persistence.
-				;(task as any)._taskMode = newMode
+				task.setTaskMode(newMode)
 			} catch (error) {
 				// If persistence fails, log the error but don't update the in-memory state.
 				this.log(
@@ -1844,7 +1846,7 @@ export class ClineProvider
 			task.updateApiConfiguration(providerSettings)
 		} else {
 			// No rebuild needed, just sync apiConfiguration
-			;(task as any).apiConfiguration = providerSettings
+			task.apiConfiguration = providerSettings
 		}
 	}
 
@@ -3877,7 +3879,7 @@ export class ClineProvider
 		//    The mode switch must happen before createTask() because the Task constructor
 		//    initializes its mode from provider.getState() during initializeTaskMode().
 		try {
-			await this.handleModeSwitch(mode as any)
+			await this.handleModeSwitch(mode)
 		} catch (e) {
 			this.log(
 				`[delegateParentAndOpenChild] handleModeSwitch failed for mode '${mode}': ${
@@ -3897,7 +3899,7 @@ export class ClineProvider
 		// Without this, the child's fire-and-forget startTask() races with step 5,
 		// and the last writer to globalState overwrites the other's changes—
 		// causing the parent's delegation fields to be lost.
-		const child = await this.createTask(message, undefined, parent as any, {
+		const child = await this.createTask(message, undefined, parent, {
 			initialTodos,
 			initialStatus: "active",
 			startTask: false,
@@ -4054,12 +4056,12 @@ export class ClineProvider
 				parentClineMessages = []
 			}
 
-			let parentApiMessages: any[] = []
+			let parentApiMessages: ApiMessage[] = []
 			try {
-				parentApiMessages = (await readApiMessages({
+				parentApiMessages = await readApiMessages({
 					taskId: parentTaskId,
 					globalStoragePath,
-				})) as any[]
+				})
 			} catch {
 				parentApiMessages = []
 			}
@@ -4170,7 +4172,7 @@ export class ClineProvider
 				}
 			}
 
-			await saveApiMessages({ messages: parentApiMessages as any, taskId: parentTaskId, globalStoragePath })
+			await saveApiMessages({ messages: parentApiMessages, taskId: parentTaskId, globalStoragePath })
 
 			// 4) Close child instance if still open (single-open-task invariant).
 			//    This MUST happen BEFORE marking the child "completed" because
@@ -4245,7 +4247,7 @@ export class ClineProvider
 					// non-fatal
 				}
 				try {
-					await parentInstance.overwriteApiConversationHistory(parentApiMessages as any)
+					await parentInstance.overwriteApiConversationHistory(parentApiMessages)
 				} catch {
 					// non-fatal
 				}
