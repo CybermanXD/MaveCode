@@ -16,7 +16,7 @@
 	"bugs": {
 		"url": "https://github.com/MaveCode-Org/MaveCode/issues"
 	},
-	"homepage": "https://mavecode.dev",
+	"homepage": "https://mavecode.blogspot.com",
 	"keywords": ["mavecode", "mave-code", "ai"],
 	"files": ["dist"]
 }

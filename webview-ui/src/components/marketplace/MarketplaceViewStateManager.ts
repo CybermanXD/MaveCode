@@ -429,12 +429,14 @@ export class MarketplaceViewStateManager {
 				// Check if a specific tab is requested
 				if (
 					message.values?.marketplaceTab &&
-					(message.values.marketplaceTab === "mcp" || message.values.marketplaceTab === "mode")
+					["mcp", "mode", "persona"].includes(message.values.marketplaceTab)
 				) {
 					// Set the active tab
 					void this.transition({
 						type: "SET_ACTIVE_TAB",
-						payload: { tab: message.values.marketplaceTab },
+						payload: {
+							tab: message.values.marketplaceTab === "mode" ? "persona" : message.values.marketplaceTab,
+						},
 					})
 				}
 

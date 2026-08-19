@@ -318,11 +318,14 @@ export const ModeSelector = ({
 								iconClass="codicon-settings-gear"
 								title={t("chat:modeSelector.settings")}
 								onClick={() => {
-									vscode.postMessage({
-										type: "switchTab",
-										tab: "settings",
-										values: { section: "modes" },
-									})
+									window.postMessage(
+										{
+											type: "action",
+											action: "marketplaceButtonClicked",
+											values: { marketplaceTab: "persona" },
+										},
+										"*",
+									)
 									setOpen(false)
 								}}
 							/>

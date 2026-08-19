@@ -14,7 +14,7 @@ const extensionStateMock = {
 	maveCodeIsAuthenticated: true,
 	maveCodeUserEmail: "user@example.com",
 	maveCodeUserName: "User",
-	maveCodeBaseUrl: "https://www.mavecode.dev",
+	maveCodeBaseUrl: "https://mavecode.blogspot.com",
 	uriScheme: "vscode",
 	deviceName: "Test Device",
 }
@@ -24,7 +24,7 @@ vi.mock("@src/context/ExtensionStateContext", () => ({
 }))
 
 vi.mock("@src/oauth/urls", () => ({
-	getMaveCodeAuthUrl: () => "https://www.mavecode.dev/dashboard/connect",
+	getMaveCodeAuthUrl: () => "https://mavecode.blogspot.com/dashboard/connect",
 }))
 
 vi.mock("../../ModelPicker", () => ({

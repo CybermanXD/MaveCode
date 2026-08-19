@@ -61,13 +61,30 @@ const CHAT_VIEWPORT_BUFFER = {
 	top: 600,
 	bottom: 800,
 } as const
+const GITHUB_RELEASES_URL = "https://github.com/CybermanXD/MaveCode/releases"
+const GITHUB_LATEST_RELEASE_API = "https://api.github.com/repos/CybermanXD/MaveCode/releases/latest"
 
 const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0
 
-const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewProps> = (
-	{ isHidden },
-	ref,
-) => {
+function compareVersions(left: string, right: string): number {
+	const leftParts = left
+		.replace(/^v/, "")
+		.split(/[.-]/)
+		.map((part) => Number.parseInt(part, 10) || 0)
+	const rightParts = right
+		.replace(/^v/, "")
+		.split(/[.-]/)
+		.map((part) => Number.parseInt(part, 10) || 0)
+
+	for (let index = 0; index < Math.max(leftParts.length, rightParts.length); index++) {
+		const delta = (leftParts[index] ?? 0) - (rightParts[index] ?? 0)
+		if (delta !== 0) return delta
+	}
+
+	return 0
+}
+
+const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewProps> = ({ isHidden }, ref) => {
 	const [audioBaseUri] = useState(() => {
 		return (window as unknown as { AUDIO_BASE_URI?: string }).AUDIO_BASE_URI || ""
 	})
@@ -91,7 +108,23 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 		messageQueue = [],
 		showWorktreesInHomeScreen,
 		telemetrySetting,
+		version,
 	} = useExtensionState()
+	const [latestRelease, setLatestRelease] = useState<string | null>(null)
+
+	useEffect(() => {
+		const controller = new AbortController()
+
+		fetch(GITHUB_LATEST_RELEASE_API, { signal: controller.signal })
+			.then((response) => (response.ok ? response.json() : undefined))
+			.then((release: { tag_name?: string } | undefined) => {
+				const tagName = release?.tag_name?.replace(/^v/, "")
+				if (tagName && version && compareVersions(tagName, version) > 0) setLatestRelease(tagName)
+			})
+			.catch(() => undefined)
+
+		return () => controller.abort()
+	}, [version])
 
 	// Show a WarningRow when the user sends a message with a retired provider.
 	const [showRetiredProviderWarning, setShowRetiredProviderWarning] = useState(false)
@@ -1667,6 +1700,13 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 		<div
 			data-testid="chat-view"
 			className={isHidden ? "hidden" : "fixed top-0 left-0 right-0 bottom-0 flex flex-col overflow-hidden"}>
+			{latestRelease && (
+				<button
+					className="mx-3 mt-2 rounded-full border border-vscode-focusBorder bg-vscode-button-background px-3 py-1 text-xs text-vscode-button-foreground hover:bg-vscode-button-hoverBackground"
+					onClick={() => vscode.postMessage({ type: "openExternal", url: GITHUB_RELEASES_URL })}>
+					Update available: v{latestRelease} — download from GitHub
+				</button>
+			)}
 			{telemetrySetting === "unset" && <TelemetryBanner />}
 			{task ? (
 				<>

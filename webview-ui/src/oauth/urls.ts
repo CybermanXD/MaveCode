@@ -12,7 +12,7 @@ export function getRequestyAuthUrl(uriScheme?: string) {
 	return `https://app.requesty.ai/oauth/authorize?callback_url=${getCallbackUrl("requesty", uriScheme)}`
 }
 
-const MAVE_CODE_DEFAULT_BASE_URL = "https://www.mavecode.dev"
+const MAVE_CODE_DEFAULT_BASE_URL = "https://mavecode.blogspot.com"
 
 export function getMaveCodeAuthUrl(uriScheme?: string, baseUrl?: string, deviceName?: string) {
 	const resolvedBaseUrl = baseUrl || MAVE_CODE_DEFAULT_BASE_URL

@@ -82,8 +82,11 @@ export const MarketplaceItemCard: React.FC<MarketplaceItemCardProps> = ({ item, 
 	const personaMetadata = item.type === "persona" ? installed.global : undefined
 	const personaEnabled = personaMetadata?.enabled !== false
 	const personaRequired = personaMetadata?.required === true || item.id === "standard"
+	const isComingSoon = item.status === "coming-soon"
 
 	const handleInstallClick = () => {
+		if (isComingSoon) return
+
 		// Send telemetry for install button click
 		telemetryClient.capture(TelemetryEventName.MARKETPLACE_INSTALL_BUTTON_CLICKED, {
 			itemId: item.id,
@@ -117,14 +120,24 @@ export const MarketplaceItemCard: React.FC<MarketplaceItemCardProps> = ({ item, 
 						</div>
 					</div>
 					<div className="flex items-center gap-1">
-						{item.type === "persona" ? (
+						{isComingSoon ? (
+							<Button size="sm" variant="secondary" className="text-xs h-5 py-0 px-2" disabled>
+								Coming soon
+							</Button>
+						) : item.type === "persona" ? (
 							<Button
 								size="sm"
 								variant={personaEnabled ? "secondary" : "primary"}
 								className="text-xs h-5 py-0 px-2"
 								disabled={personaRequired}
 								title={personaRequired ? "Standard is always enabled" : undefined}
-								onClick={() => vscode.postMessage({ type: "setManagedPersonaEnabled", mpItem: item, personaEnabled: !personaEnabled })}>
+								onClick={() =>
+									vscode.postMessage({
+										type: "setManagedPersonaEnabled",
+										mpItem: item,
+										personaEnabled: !personaEnabled,
+									})
+								}>
 								{personaRequired ? "Always enabled" : personaEnabled ? "Disable" : "Enable"}
 							</Button>
 						) : isInstalled ? (
@@ -212,55 +225,59 @@ export const MarketplaceItemCard: React.FC<MarketplaceItemCardProps> = ({ item, 
 			</div>
 
 			{/* Installation Modal - Outside the clickable card */}
-			{item.type !== "persona" && <MarketplaceInstallModal
-				item={item}
-				isOpen={showInstallModal}
-				onClose={() => setShowInstallModal(false)}
-				hasWorkspace={!!cwd}
-			/>}
+			{item.type !== "persona" && (
+				<MarketplaceInstallModal
+					item={item}
+					isOpen={showInstallModal}
+					onClose={() => setShowInstallModal(false)}
+					hasWorkspace={!!cwd}
+				/>
+			)}
 
 			{/* Remove Confirmation Dialog */}
-			{item.type !== "persona" && <AlertDialog open={showRemoveConfirm} onOpenChange={setShowRemoveConfirm}>
-				<AlertDialogContent>
-					<AlertDialogHeader>
-						<AlertDialogTitle>
-							{item.type === "mode"
-								? t("marketplace:removeConfirm.mode.title")
-								: t("marketplace:removeConfirm.mcp.title")}
-						</AlertDialogTitle>
-						<AlertDialogDescription>
-							{item.type === "mode" ? (
-								<>
-									{t("marketplace:removeConfirm.mode.message", { modeName: item.name })}
-									<div className="mt-2 text-sm">
-										{t("marketplace:removeConfirm.mode.rulesWarning")}
-									</div>
-								</>
-							) : (
-								t("marketplace:removeConfirm.mcp.message", { mcpName: item.name })
-							)}
-						</AlertDialogDescription>
-					</AlertDialogHeader>
-					<AlertDialogFooter>
-						<AlertDialogCancel>{t("marketplace:removeConfirm.cancel")}</AlertDialogCancel>
-						<AlertDialogAction
-							onClick={() => {
-								// Clear any previous error
-								setRemoveError(null)
+			{item.type !== "persona" && (
+				<AlertDialog open={showRemoveConfirm} onOpenChange={setShowRemoveConfirm}>
+					<AlertDialogContent>
+						<AlertDialogHeader>
+							<AlertDialogTitle>
+								{item.type === "mode"
+									? t("marketplace:removeConfirm.mode.title")
+									: t("marketplace:removeConfirm.mcp.title")}
+							</AlertDialogTitle>
+							<AlertDialogDescription>
+								{item.type === "mode" ? (
+									<>
+										{t("marketplace:removeConfirm.mode.message", { modeName: item.name })}
+										<div className="mt-2 text-sm">
+											{t("marketplace:removeConfirm.mode.rulesWarning")}
+										</div>
+									</>
+								) : (
+									t("marketplace:removeConfirm.mcp.message", { mcpName: item.name })
+								)}
+							</AlertDialogDescription>
+						</AlertDialogHeader>
+						<AlertDialogFooter>
+							<AlertDialogCancel>{t("marketplace:removeConfirm.cancel")}</AlertDialogCancel>
+							<AlertDialogAction
+								onClick={() => {
+									// Clear any previous error
+									setRemoveError(null)
 
-								vscode.postMessage({
-									type: "removeInstalledMarketplaceItem",
-									mpItem: item,
-									mpInstallOptions: { target: removeTarget },
-								})
+									vscode.postMessage({
+										type: "removeInstalledMarketplaceItem",
+										mpItem: item,
+										mpInstallOptions: { target: removeTarget },
+									})
 
-								setShowRemoveConfirm(false)
-							}}>
-							{t("marketplace:removeConfirm.confirm")}
-						</AlertDialogAction>
-					</AlertDialogFooter>
-				</AlertDialogContent>
-			</AlertDialog>}
+									setShowRemoveConfirm(false)
+								}}>
+								{t("marketplace:removeConfirm.confirm")}
+							</AlertDialogAction>
+						</AlertDialogFooter>
+					</AlertDialogContent>
+				</AlertDialog>
+			)}
 		</>
 	)
 }

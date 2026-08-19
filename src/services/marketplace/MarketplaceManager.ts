@@ -27,6 +27,28 @@ export interface MarketplaceRefreshResult extends MarketplaceItemsResponse {
 	changed: boolean
 }
 
+const createComingSoonPersona = (id: string, name: string, description: string, tags: string[]): MarketplaceItem => ({
+	id,
+	name: `${name} [Coming Soon]`,
+	description: `${description} This persona is disabled until a future MaveCode release.`,
+	type: "persona",
+	author: "MaveCode",
+	tags: ["coming soon", ...tags],
+	status: "coming-soon",
+	version: "0.0.0",
+	packageUrl: "https://github.com/CybermanXD/MaveCode/releases",
+	sha256: "0".repeat(64),
+	packageSize: 1,
+	signingKeyId: "mavecode-marketplace-2026-01",
+	minimumMaveCodeVersion: "999.0.0",
+})
+
+const COMING_SOON_PERSONAS: MarketplaceItem[] = [
+	createComingSoonPersona("architect", "🏗️ Architect", "Plan and design before implementation.", ["planning"]),
+	createComingSoonPersona("debug", "🪲 Debug", "Diagnose and fix software issues.", ["debugging"]),
+	createComingSoonPersona("orchestrator", "🪃 Orchestrator", "Coordinate tasks across multiple modes.", ["workflow"]),
+]
+
 export class MarketplaceManager {
 	private configLoader: ConfigLoader
 	private installer: SimpleInstaller
@@ -71,7 +93,12 @@ export class MarketplaceManager {
 			])
 			const remoteMcpIds = new Set(remoteMcpItems.map((item) => item.id))
 			const bundledMcpFallbacks = localItems.filter((item) => item.type === "mcp" && !remoteMcpIds.has(item.id))
-			const marketplaceItems = [...personaItems, ...remoteMcpItems, ...bundledMcpFallbacks]
+			const marketplaceItems = [
+				...personaItems,
+				...COMING_SOON_PERSONAS,
+				...remoteMcpItems,
+				...bundledMcpFallbacks,
+			]
 
 			return {
 				organizationMcps: [],
@@ -142,6 +169,10 @@ export class MarketplaceManager {
 		item: MarketplaceItem,
 		options?: { target?: "global" | "project"; parameters?: Record<string, any> },
 	): Promise<string> {
+		if (item.status === "coming-soon") {
+			throw new Error(`${item.name} is coming soon and cannot be enabled yet.`)
+		}
+
 		const { target = "project", parameters } = options || {}
 
 		vscode.window.showInformationMessage(t("marketplace:installation.installing", { itemName: item.name }))
@@ -201,6 +232,7 @@ export class MarketplaceManager {
 
 	async setManagedPersonaEnabled(item: MarketplaceItem, enabled: boolean): Promise<void> {
 		if (item.type !== "persona") throw new Error("Only managed personas can be enabled or disabled.")
+		if (item.status === "coming-soon") throw new Error(`${item.name} is coming soon and cannot be enabled yet.`)
 		if (!this.customModesManager) throw new Error("Managed persona settings are unavailable.")
 		await this.customModesManager.setManagedPersonaEnabled(item.id, enabled)
 	}

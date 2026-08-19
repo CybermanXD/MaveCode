@@ -238,5 +238,10 @@ const LEGACY_DEFAULT_MODES: readonly ModeConfig[] = [
 	},
 ] as const
 
-/** MaveCode exposes all default development personas in addition to managed marketplace personas. */
-export const DEFAULT_MODES: readonly ModeConfig[] = LEGACY_DEFAULT_MODES
+/** Architect, Debug, and Orchestrator are hidden until their MaveCode personas are ready. */
+const COMING_SOON_MODE_SLUGS = new Set(["architect", "debug", "orchestrator"])
+
+/** MaveCode exposes currently enabled default personas; coming-soon personas stay unavailable. */
+export const DEFAULT_MODES: readonly ModeConfig[] = LEGACY_DEFAULT_MODES.filter(
+	({ slug }) => !COMING_SOON_MODE_SLUGS.has(slug),
+)

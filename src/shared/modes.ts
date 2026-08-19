@@ -43,6 +43,10 @@ export function getToolsForMode(groups: readonly GroupEntry[]): string[] {
 
 // Main modes configuration as an ordered array
 export const modes = DEFAULT_MODES
+const disabledComingSoonModeSlugs = new Set(["architect", "debug", "orchestrator"])
+
+const excludeComingSoonModes = (modeList: ModeConfig[]) =>
+	modeList.filter((mode) => !disabledComingSoonModeSlugs.has(mode.slug))
 
 // Export the default mode slug
 export const defaultModeSlug = modes[0].slug
@@ -80,7 +84,7 @@ export function getAllModes(customModes?: ModeConfig[]): ModeConfig[] {
 	const allModes = [...modes]
 
 	// Process custom modes
-	customModes.forEach((customMode) => {
+	excludeComingSoonModes(customModes).forEach((customMode) => {
 		const index = allModes.findIndex((mode) => mode.slug === customMode.slug)
 		if (index !== -1) {
 			// Override existing mode

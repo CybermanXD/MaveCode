@@ -42,6 +42,7 @@ const baseMarketplaceItemSchema = z.object({
 	authorUrl: z.string().url("Author URL must be a valid URL").optional(),
 	tags: z.array(z.string()).optional(),
 	prerequisites: z.array(z.string()).optional(),
+	status: z.enum(["available", "coming-soon"]).optional(),
 })
 
 /**

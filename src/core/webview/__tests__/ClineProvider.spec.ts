@@ -301,7 +301,7 @@ vi.mock("../../../api/providers/fetchers/lmstudio", () => ({
 }))
 
 vi.mock("../../../services/mave-code-auth", () => ({
-	getMaveCodeBaseUrl: vi.fn(() => "https://www.mavecode.dev"),
+	getMaveCodeBaseUrl: vi.fn(() => "https://mavecode.blogspot.com"),
 	getCachedMaveCodeToken: vi.fn(() => "mave_ext_test_session"),
 	isMaveCodeAdmin: vi.fn(() => true),
 	startMaveCodeSignIn: vi.fn().mockResolvedValue(true),
@@ -4497,7 +4497,7 @@ describe("ClineProvider - Comprehensive Edit/Delete Edge Cases", () => {
 					expect.objectContaining({
 						apiProvider: "mave-gateway",
 						maveSessionToken: "mave_ext_token",
-						maveGatewayBaseUrl: "https://www.mavecode.dev/api/gateway/v1",
+						maveGatewayBaseUrl: "https://mavecode.blogspot.com/api/gateway/v1",
 					}),
 					false,
 				)
@@ -4541,7 +4541,7 @@ describe("ClineProvider - Comprehensive Edit/Delete Edge Cases", () => {
 					"MaveCode",
 					expect.objectContaining({
 						maveSessionToken: "new-token",
-						maveGatewayBaseUrl: "https://www.mavecode.dev/api/gateway/v1",
+						maveGatewayBaseUrl: "https://mavecode.blogspot.com/api/gateway/v1",
 					}),
 					true,
 				)
@@ -4549,7 +4549,7 @@ describe("ClineProvider - Comprehensive Edit/Delete Edge Cases", () => {
 					"Backup MaveCode",
 					expect.objectContaining({
 						maveSessionToken: "new-token",
-						maveGatewayBaseUrl: "https://www.mavecode.dev/api/gateway/v1",
+						maveGatewayBaseUrl: "https://mavecode.blogspot.com/api/gateway/v1",
 					}),
 				)
 			})
@@ -4596,7 +4596,7 @@ describe("ClineProvider - Comprehensive Edit/Delete Edge Cases", () => {
 					listConfig: vi.fn().mockResolvedValue([{ name: "MaveCode", apiProvider: "mave-gateway" }]),
 					getProfile: vi.fn().mockResolvedValue({
 						maveSessionToken: "current-token",
-						maveGatewayBaseUrl: "https://www.mavecode.dev/api/gateway/v1",
+						maveGatewayBaseUrl: "https://mavecode.blogspot.com/api/gateway/v1",
 					}),
 				}
 
@@ -4615,7 +4615,7 @@ describe("ClineProvider - Comprehensive Edit/Delete Edge Cases", () => {
 					listConfig: vi.fn().mockResolvedValue([{ name: "MaveCode", apiProvider: "mave-gateway" }]),
 					getProfile: vi.fn().mockResolvedValue({
 						maveSessionToken: "stale-token",
-						maveGatewayBaseUrl: "https://www.mavecode.dev/api/gateway/v1",
+						maveGatewayBaseUrl: "https://mavecode.blogspot.com/api/gateway/v1",
 					}),
 				}
 
@@ -4633,7 +4633,7 @@ describe("ClineProvider - Comprehensive Edit/Delete Edge Cases", () => {
 					listConfig: vi.fn().mockResolvedValue([{ name: "MaveCode", apiProvider: "mave-gateway" }]),
 					getProfile: vi.fn().mockResolvedValue({
 						maveSessionToken: "current-token",
-						maveGatewayBaseUrl: "https://staging.mavecode.dev/api/gateway/v1",
+						maveGatewayBaseUrl: "https://mavecode.blogspot.com/api/gateway/v1",
 					}),
 				}
 

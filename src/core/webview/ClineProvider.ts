@@ -2687,7 +2687,7 @@ export class ClineProvider
 			maveCodeUserName: undefined,
 			maveCodeUserEmail: undefined,
 			maveCodeUserImage: undefined,
-			maveCodeBaseUrl: "https://www.mavecode.dev",
+			maveCodeBaseUrl: "https://mavecode.blogspot.com",
 			deviceName: os.hostname(),
 		}
 
