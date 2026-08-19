@@ -33,6 +33,11 @@ interface ImportData {
 	customModes: ExportedModeConfig[]
 }
 
+const DISABLED_BUILT_IN_MODE_SLUGS = new Set(["architect", "debug", "orchestrator"])
+
+const excludeDisabledBuiltInModes = (modes: ModeConfig[]) =>
+	modes.filter((mode) => !DISABLED_BUILT_IN_MODE_SLUGS.has(mode.slug))
+
 interface ExportResult {
 	success: boolean
 	yaml?: string
@@ -398,7 +403,7 @@ export class CustomModesManager {
 		}
 
 		// Combine modes in the correct order: project modes first, then global modes.
-		const mergedModes = [
+		const mergedModes = excludeDisabledBuiltInModes([
 			...bundledPersonas,
 			...roomodesModes
 				.filter((mode) => !bundledSlugs.has(mode.slug))
@@ -406,7 +411,7 @@ export class CustomModesManager {
 			...settingsModes
 				.filter((mode) => !projectModes.has(mode.slug) && !bundledSlugs.has(mode.slug))
 				.map((mode) => ({ ...mode, source: "global" as const })),
-		].filter((mode, index, modes) => modes.findIndex(({ slug }) => slug === mode.slug) === index)
+		]).filter((mode, index, modes) => modes.findIndex(({ slug }) => slug === mode.slug) === index)
 
 		await this.context.globalState.update("customModes", mergedModes)
 

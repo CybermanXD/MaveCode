@@ -53,6 +53,7 @@ import { useEscapeKey } from "@src/hooks/useEscapeKey"
 
 // Get all available groups that should show in prompts view
 const availableGroups = (Object.keys(TOOL_GROUPS) as ToolGroup[]).filter((group) => !TOOL_GROUPS[group].alwaysAvailable)
+const DISABLED_BUILT_IN_MODE_SLUGS = new Set(["architect", "debug", "orchestrator"])
 
 type ModeSource = "global" | "project"
 
@@ -85,7 +86,7 @@ const ModesView = () => {
 	const [visualMode, setVisualMode] = useState(mode)
 
 	// Build modes fresh each render so search reflects inline rename updates immediately
-	const modes = getAllModes(customModes)
+	const modes = getAllModes(customModes).filter((mode) => !DISABLED_BUILT_IN_MODE_SLUGS.has(mode.slug))
 
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
 	const [selectedPromptContent, setSelectedPromptContent] = useState("")

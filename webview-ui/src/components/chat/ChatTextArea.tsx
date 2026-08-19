@@ -33,6 +33,8 @@ import ContextMenu from "./ContextMenu"
 import { MaveCodeAuthBadge } from "./MaveCodeAuthBadge"
 import { usePromptHistory } from "./hooks/usePromptHistory"
 
+const DISABLED_BUILT_IN_MODE_SLUGS = new Set(["architect", "debug", "orchestrator"])
+
 interface ChatTextAreaProps {
 	inputValue: string
 	setInputValue: (value: string) => void
@@ -253,7 +255,10 @@ export const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 			}
 		}, [inputValue, setInputValue, t])
 
-		const allModes = useMemo(() => getAllModes(customModes), [customModes])
+		const allModes = useMemo(
+			() => getAllModes(customModes).filter((mode) => !DISABLED_BUILT_IN_MODE_SLUGS.has(mode.slug)),
+			[customModes],
+		)
 
 		// Memoized check for whether the input has content (text or images)
 		const hasInputContent = useMemo(() => {

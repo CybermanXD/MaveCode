@@ -17,6 +17,7 @@ import { Popover, PopoverContent, PopoverTrigger, StandardTooltip } from "@/comp
 import { IconButton } from "./IconButton"
 
 const SEARCH_THRESHOLD = 6
+const DISABLED_BUILT_IN_MODE_SLUGS = new Set(["architect", "debug", "orchestrator"])
 
 interface ModeSelectorProps {
 	value: Mode
@@ -64,7 +65,7 @@ export const ModeSelector = ({
 
 	// Get all modes including custom modes and merge custom prompt descriptions.
 	const modes = React.useMemo(() => {
-		const allModes = getAllModes(customModes)
+		const allModes = getAllModes(customModes).filter((mode) => !DISABLED_BUILT_IN_MODE_SLUGS.has(mode.slug))
 
 		return allModes.map((mode) => ({
 			...mode,
