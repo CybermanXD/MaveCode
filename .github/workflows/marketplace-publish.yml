@@ -61,7 +61,13 @@ jobs:
             - name: Package extension
               env:
                   POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
+                  MAVE_CODE_AUTH_PAGE_URL: https://mavecode.blogspot.com/
+                  MAVE_CODE_BACKEND_URL: ${{ secrets.MAVE_CODE_BACKEND_URL }}
               run: |
+                  test -n "$MAVE_CODE_AUTH_PAGE_URL"
+                  test -n "$MAVE_CODE_BACKEND_URL"
+                  echo "$MAVE_CODE_BACKEND_URL" | grep -Eq '^https://script\.google\.com/macros/s/[^/]+/exec/?$'
+
                   package_version=$(node -p "require('./src/package.json').version")
                   pnpm --filter ./src vsix
 
@@ -76,6 +82,8 @@ jobs:
                   grep -q "extension/webview-ui/build/assets/index.js" /tmp/mave-code-vsix-contents.txt
                   grep -q "extension/assets/codicons/codicon.ttf" /tmp/mave-code-vsix-contents.txt
                   grep -q "extension/assets/vscode-material-icons/icons/3d.svg" /tmp/mave-code-vsix-contents.txt
+                  unzip -p "$vsix_path" extension/dist/extension.js | grep -q "script.google.com/macros/s/"
+                  unzip -p "$vsix_path" extension/dist/extension.js | grep -q "https://mavecode.blogspot.com/"
 
             - name: Validate packaged manifest identity
               run: |
