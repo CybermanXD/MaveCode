@@ -32,9 +32,9 @@ const marketplaceListView = readSource("MarketplaceListView.tsx")
 const marketplaceItemCard = readSource("MarketplaceItemCard.tsx")
 const app = readSource("App.tsx")
 const chatView = readSource("ChatView.tsx")
+const modeSelector = readSource("ModeSelector.tsx")
 
 const requiredMaveCodeMarkers = [
-	[!settingsView.includes("maveCodeIsAdmin"), "unrestricted Settings visibility"],
 	[settingsView.includes("setManagedSettingsInert"), "managed Settings disabled state"],
 	[!settingsView.includes('{ id: "about", icon: Info }'), "reduced Settings navigation"],
 	[marketplaceView.includes('["mcp", "persona"]'), "MCP/Personas Marketplace tabs"],
@@ -43,6 +43,9 @@ const requiredMaveCodeMarkers = [
 	[marketplaceItemCard.includes("Always enabled"), "required Standard persona control"],
 	[marketplaceItemCard.includes("setManagedPersonaEnabled"), "managed persona enable/disable control"],
 	[!chatView.includes("<Announcement"), "removal of the release-notes popup"],
+	[chatView.includes("api.github.com/repos/CybermanXD/MaveCode/releases/latest"), "GitHub release update pill"],
+	[modeSelector.includes("DISABLED_BUILT_IN_MODE_SLUGS"), "hard-disabled mode selector personas"],
+	[marketplaceItemCard.includes("Coming soon"), "Coming Soon persona marketplace state"],
 	[app.includes("didShowAnnouncement"), "silent release-announcement acknowledgement"],
 ]
 

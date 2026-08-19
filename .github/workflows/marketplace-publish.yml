@@ -1,4 +1,4 @@
-name: Publish Stable Extension
+name: Release Stable VSIX
 
 on:
     push:
@@ -12,7 +12,7 @@ permissions:
     contents: read
 
 jobs:
-    publish-stable:
+    release-stable-vsix:
         runs-on: ubuntu-latest
         environment: marketplace-production
         permissions:
@@ -87,22 +87,6 @@ jobs:
 
                   test "$artifact_name" = "mave-code"
                   test "$artifact_publisher" = "MaveCode"
-
-            - name: Publish to VS Code Marketplace
-              env:
-                  VSCE_PAT: ${{ secrets.VSCE_PAT }}
-              run: |
-                  package_version=$(node -p "require('./src/package.json').version")
-                  npx @vscode/vsce publish --packagePath "bin/mave-code-${package_version}.vsix"
-                  echo "Published MaveCode.mave-code ${package_version} to VS Code Marketplace"
-
-            - name: Publish to Open VSX Registry
-              env:
-                  OVSX_PAT: ${{ secrets.OVSX_PAT }}
-              run: |
-                  package_version=$(node -p "require('./src/package.json').version")
-                  pnpm exec ovsx publish "bin/mave-code-${package_version}.vsix" --skip-duplicate
-                  echo "Published MaveCode.mave-code ${package_version} to Open VSX Registry"
 
             - name: Create GitHub release
               env:
