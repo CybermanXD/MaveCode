@@ -205,7 +205,15 @@ describe("App", () => {
 		expect(chatView.getAttribute("data-hidden")).toBe("false")
 		const footer = screen.getByText("Curated by Arya")
 		expect(footer).toBeInTheDocument()
-		expect(footer.closest("footer")).toHaveClass("h-4", "whitespace-nowrap")
+		expect(footer.closest("footer")).toHaveClass(
+			"fixed",
+			"right-0",
+			"bottom-0",
+			"left-0",
+			"z-10",
+			"h-4",
+			"whitespace-nowrap",
+		)
 	}, 10000)
 
 	it("shows welcome view when setup is incomplete", () => {
