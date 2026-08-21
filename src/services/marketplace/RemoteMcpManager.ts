@@ -4,7 +4,7 @@ import * as path from "node:path"
 
 import { type McpMarketplaceItem, mcpMarketplaceItemSchema } from "@roo-code/types"
 
-const CATALOG_URL = "https://cybermanxd.github.io/MaveCode/mcp-catalog-v1.json"
+const CATALOG_URL = "https://arkofheavean.github.io/MaveCode/mcp-catalog-v1.json"
 const KEY_ID = "mavecode-marketplace-2026-01"
 const REFRESH_INTERVAL_MS = 4 * 60 * 60 * 1000
 const MAX_CATALOG_BYTES = 2 * 1024 * 1024
@@ -53,7 +53,7 @@ const verifyCatalog = (catalog: McpCatalog): void => {
 
 const fetchBounded = async (url: string): Promise<Buffer> => {
 	const parsed = new URL(url)
-	if (parsed.protocol !== "https:" || parsed.hostname !== "cybermanxd.github.io") {
+	if (parsed.protocol !== "https:" || parsed.hostname !== "arkofheavean.github.io") {
 		throw new Error("MCP marketplace URL is not trusted")
 	}
 	const response = await fetch(parsed, { signal: AbortSignal.timeout(15_000) })

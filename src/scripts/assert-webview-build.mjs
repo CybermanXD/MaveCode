@@ -45,7 +45,7 @@ const requiredMaveCodeMarkers = [
 	[marketplaceItemCard.includes("Always enabled"), "required Standard persona control"],
 	[marketplaceItemCard.includes("setManagedPersonaEnabled"), "managed persona enable/disable control"],
 	[!chatView.includes("<Announcement"), "removal of the release-notes popup"],
-	[chatView.includes("api.github.com/repos/CybermanXD/MaveCode/releases/latest"), "GitHub release update pill"],
+	[chatView.includes("api.github.com/repos/arkofheavean/MaveCode/releases/latest"), "GitHub release update pill"],
 	[modeSelector.includes("DISABLED_BUILT_IN_MODE_SLUGS"), "hard-disabled mode selector personas"],
 	[marketplaceItemCard.includes("Coming soon"), "Coming Soon persona marketplace state"],
 	[app.includes("didShowAnnouncement"), "silent release-announcement acknowledgement"],

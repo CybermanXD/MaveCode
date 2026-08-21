@@ -12,7 +12,7 @@ const sourceRoot = path.join(root, "marketplace/sources/personas")
 const outputRoot = path.join(root, "marketplace/published")
 const packageRoot = path.join(outputRoot, "packages")
 const immutableDigestPath = path.join(root, "marketplace/version-digests.json")
-const catalogBaseUrl = (process.env.MARKETPLACE_BASE_URL || "https://cybermanxd.github.io/MaveCode").replace(/\/$/, "")
+const catalogBaseUrl = (process.env.MARKETPLACE_BASE_URL || "https://arkofheavean.github.io/MaveCode").replace(/\/$/, "")
 const keyId = process.env.MARKETPLACE_SIGNING_KEY_ID || "mavecode-marketplace-2026-01"
 const privateKeyPem = process.env.MARKETPLACE_ED25519_PRIVATE_KEY?.replace(/\\n/g, "\n")
 const allowUnsigned = process.argv.includes("--unsigned")
@@ -99,7 +99,7 @@ for (const entry of manifest.personas) {
 		rules: await readPersonaFiles(directory, entry.rules, "rule"),
 		references: await readPersonaFiles(directory, entry.references, "reference"),
 		source: {
-			repository: process.env.GITHUB_REPOSITORY || "CybermanXD/MaveCode",
+			repository: process.env.GITHUB_REPOSITORY || "arkofheavean/MaveCode",
 		},
 	}
 	const packageSignedPayload = { ...payload, signingKeyId: keyId }

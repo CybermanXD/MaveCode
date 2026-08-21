@@ -110,7 +110,7 @@ The generated catalog can revoke a package in a future schema revision. Until ex
 The workflow deploys the generated `marketplace/published` directory as the Pages artifact. The production catalog URL is:
 
 ```text
-https://cybermanxd.github.io/MaveCode/catalog-v1.json
+https://arkofheavean.github.io/MaveCode/catalog-v1.json
 ```
 
 Package URLs are derived from that base. Repository or organization renames require an extension update or a signed redirect mechanism.
@@ -118,7 +118,7 @@ Package URLs are derived from that base. Repository or organization renames requ
 The production MCP catalog URL is:
 
 ```text
-https://cybermanxd.github.io/MaveCode/mcp-catalog-v1.json
+https://arkofheavean.github.io/MaveCode/mcp-catalog-v1.json
 ```
 
 ## Signing-key setup and rotation

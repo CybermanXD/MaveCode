@@ -52,7 +52,7 @@ jobs:
         env:
           MARKETPLACE_ED25519_PRIVATE_KEY: ${{ secrets.MARKETPLACE_ED25519_PRIVATE_KEY }}
           MARKETPLACE_SIGNING_KEY_ID: mavecode-marketplace-2026-01
-          MARKETPLACE_BASE_URL: https://cybermanxd.github.io/MaveCode
+          MARKETPLACE_BASE_URL: https://arkofheavean.github.io/MaveCode
         run: |
           export SOURCE_DATE_EPOCH="$(git show -s --format=%ct HEAD)"
           node scripts/marketplace/build-marketplace.mjs

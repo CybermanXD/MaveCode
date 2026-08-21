@@ -4,7 +4,7 @@ import * as path from "path"
 
 import { modeConfigSchema, type MarketplaceItem, type ModeConfig } from "@roo-code/types"
 
-const CATALOG_URL = "https://cybermanxd.github.io/MaveCode/catalog-v1.json"
+const CATALOG_URL = "https://arkofheavean.github.io/MaveCode/catalog-v1.json"
 const KEY_ID = "mavecode-marketplace-2026-01"
 const PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
 MCowBQYDK2VwAyEApi3b8BLwImWFo6PKVc5V9S0hsbqZnhp7qHo+to41PH8=
@@ -82,7 +82,7 @@ const verifyDocument = <T extends { signingKeyId: string; signature?: string }>(
 
 const fetchBounded = async (url: string, maximumBytes: number): Promise<Buffer> => {
 	const parsed = new URL(url)
-	if (parsed.protocol !== "https:" || parsed.hostname !== "cybermanxd.github.io") {
+	if (parsed.protocol !== "https:" || parsed.hostname !== "arkofheavean.github.io") {
 		throw new Error("Marketplace URL is not trusted")
 	}
 	const response = await fetch(url, { signal: AbortSignal.timeout(10_000), headers: { Accept: "application/json" } })
