@@ -61,8 +61,8 @@ const CHAT_VIEWPORT_BUFFER = {
 	top: 600,
 	bottom: 800,
 } as const
-const GITHUB_RELEASES_URL = "https://github.com/CybermanXD/MaveCode/releases"
-const GITHUB_LATEST_RELEASE_API = "https://api.github.com/repos/CybermanXD/MaveCode/releases/latest"
+const GITHUB_RELEASES_URL = "https://github.com/arkofheavean/MaveCode/releases"
+const GITHUB_LATEST_RELEASE_API = "https://api.github.com/repos/arkofheavean/MaveCode/releases/latest"
 
 const isMac = navigator.platform.toUpperCase().indexOf("MAC") >= 0
 
