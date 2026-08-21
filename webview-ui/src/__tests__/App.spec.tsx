@@ -203,7 +203,9 @@ describe("App", () => {
 		const chatView = screen.getByTestId("chat-view")
 		expect(chatView).toBeInTheDocument()
 		expect(chatView.getAttribute("data-hidden")).toBe("false")
-		expect(screen.getByText("Curated by Arya")).toBeInTheDocument()
+		const footer = screen.getByText("Curated by Arya")
+		expect(footer).toBeInTheDocument()
+		expect(footer.closest("footer")).toHaveClass("h-4", "whitespace-nowrap")
 	}, 10000)
 
 	it("shows welcome view when setup is incomplete", () => {

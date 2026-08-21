@@ -315,7 +315,7 @@ const App = () => {
 }
 
 const AppFooter = () => (
-	<footer className="flex h-5 shrink-0 items-center justify-end border-t border-vscode-panel-border px-2 text-[10px] text-vscode-descriptionForeground">
+	<footer className="flex h-4 shrink-0 items-center justify-end whitespace-nowrap border-t border-vscode-panel-border px-2 text-[10px] leading-none text-vscode-descriptionForeground">
 		Curated by Arya
 	</footer>
 )
