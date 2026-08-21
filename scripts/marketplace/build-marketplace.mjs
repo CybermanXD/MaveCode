@@ -173,7 +173,7 @@ const mcpCatalog = { ...mcpCatalogSignedPayload, signature: signValue(mcpCatalog
 await writeFile(path.join(outputRoot, "mcp-catalog-v1.json"), `${canonical(mcpCatalog)}\n`, "utf8")
 await writeFile(path.join(outputRoot, ".nojekyll"), "", "utf8")
 if (process.argv.includes("--update-version-digests")) {
-	await writeFile(immutableDigestPath, `${JSON.stringify(nextImmutableDigests, null, 2)}\n`, "utf8")
+await writeFile(immutableDigestPath, `${JSON.stringify(nextImmutableDigests, null, "\t")}\n`, "utf8")
 }
 
 const generated = await readdir(packageRoot)
