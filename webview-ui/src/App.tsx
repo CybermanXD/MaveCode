@@ -228,24 +228,29 @@ const App = () => {
 	const isSetupGatedTab = showWelcome && tab !== "settings" && tab !== "marketplace"
 
 	return isSetupGatedTab ? (
-		<WelcomeView />
+		<div className="flex h-full min-h-0 flex-col">
+			<div className="min-h-0 flex-1 overflow-hidden">
+				<WelcomeView />
+			</div>
+			<AppFooter />
+		</div>
 	) : (
-		<>
-			{tab === "history" && <HistoryView onDone={() => switchTab("chat")} />}
-			{tab === "settings" && (
-				<SettingsView ref={settingsRef} onDone={() => setTab("chat")} targetSection={currentSection} />
-			)}
-			{tab === "marketplace" && (
-				<MarketplaceView
-					stateManager={marketplaceStateManager}
-					onDone={() => switchTab("chat")}
-					targetTab={currentMarketplaceTab as "mcp" | "persona" | undefined}
-				/>
-			)}
-			<ChatView
-				ref={chatViewRef}
-				isHidden={tab !== "chat"}
-			/>
+		<div className="flex h-full min-h-0 flex-col">
+			<div className="min-h-0 flex-1 overflow-hidden">
+				{tab === "history" && <HistoryView onDone={() => switchTab("chat")} />}
+				{tab === "settings" && (
+					<SettingsView ref={settingsRef} onDone={() => setTab("chat")} targetSection={currentSection} />
+				)}
+				{tab === "marketplace" && (
+					<MarketplaceView
+						stateManager={marketplaceStateManager}
+						onDone={() => switchTab("chat")}
+						targetTab={currentMarketplaceTab as "mcp" | "persona" | undefined}
+					/>
+				)}
+				<ChatView ref={chatViewRef} isHidden={tab !== "chat"} />
+			</div>
+			<AppFooter />
 			{deleteMessageDialogState.hasCheckpoint ? (
 				<MemoizedCheckpointRestoreDialog
 					open={deleteMessageDialogState.isOpen}
@@ -305,9 +310,15 @@ const App = () => {
 					}}
 				/>
 			)}
-		</>
+		</div>
 	)
 }
+
+const AppFooter = () => (
+	<footer className="flex h-5 shrink-0 items-center justify-end border-t border-vscode-panel-border px-2 text-[10px] text-vscode-descriptionForeground">
+		Curated by Arya
+	</footer>
+)
 
 const queryClient = new QueryClient()
 

@@ -2,7 +2,7 @@ import assert from "node:assert/strict"
 import { readFile } from "node:fs/promises"
 import test from "node:test"
 
-const configuredGoogleClientId = "882071644277-evs0shjikfr98hg5k0k6g2ce20qkrna3.apps.googleusercontent.com"
+const configuredGoogleClientId = "675028173582-mihpcs5bbsk7395jiq9nctaegj9uh7ae.apps.googleusercontent.com"
 
 test("static sign-in page uses Google Identity Services and never embeds secrets", async () => {
 	const [html, source] = await Promise.all([readFile(new URL("../index.html", import.meta.url), "utf8"), readFile(new URL("../auth.js", import.meta.url), "utf8")])

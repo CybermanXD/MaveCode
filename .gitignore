@@ -77,6 +77,9 @@ Desktop.ini
 *.code-workspace
 
 # Local prompts, plans, and machine-specific test state
+/context.md
+/Duply - Formless/
+/Build-Ref.md
 /local-prompts/
 /plans/
 /PRODUCT_PLAN.md

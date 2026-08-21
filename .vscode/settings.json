@@ -13,5 +13,20 @@
 	// Surface invisible (zero-width) and ambiguous/homoglyph Unicode in the
 	// editor. Pairs with the code-qa.yml invisible-chars CI check.
 	"editor.unicodeHighlight.invisibleCharacters": true,
-	"editor.unicodeHighlight.ambiguousCharacters": true
+	"editor.unicodeHighlight.ambiguousCharacters": true,
+	"[ampscript]": {
+		"editor.defaultFormatter": "joernberkefeld.sfmc-language"
+	},
+	"[ssjs]": {
+		"editor.defaultFormatter": "joernberkefeld.sfmc-language"
+	},
+	"[sfmc]": {
+		"editor.defaultFormatter": "joernberkefeld.sfmc-language"
+	},
+	"[handlebars]": {
+		"editor.defaultFormatter": "joernberkefeld.sfmc-language"
+	},
+	"[sql]": {
+		"editor.defaultFormatter": "joernberkefeld.sfmc-language"
+	}
 }

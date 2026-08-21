@@ -9,29 +9,60 @@
 		<b:skin><![CDATA[
 			:root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
 			* { box-sizing: border-box; }
-			body { min-height: 100vh; margin: 0; display: grid; place-items: center; padding: 24px; color: #fff8d6; background: #0d0b03; }
-			.mave-card { width: min(100%, 460px); padding: 38px; border: 1px solid #8f6b00; border-radius: 20px; background: #1e1702; box-shadow: 0 20px 60px rgba(0, 0, 0, .45); text-align: center; }
-			.mave-logo { margin: 0 auto 22px; color: #facc15; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: clamp(40px, 10vw, 52px); font-style: normal; font-weight: 800; letter-spacing: -2px; line-height: 1; }
-			h1 { margin: 0 0 12px; font-size: 28px; }
-			p { color: #e7ddb0; line-height: 1.55; }
-			#google-button { min-height: 44px; margin: 24px auto 14px; display: flex; justify-content: center; }
-			.mave-status { min-height: 24px; margin: 12px 0; color: #c9b96e; }
+			body { min-height: 100vh; margin: 0; color: #ffffff; background: radial-gradient(circle at 16% 16%, rgba(112, 60, 255, .26), transparent 30%), radial-gradient(circle at 84% 26%, rgba(255, 60, 183, .15), transparent 28%), radial-gradient(circle at 74% 84%, rgba(0, 223, 252, .20), transparent 32%), #05060b; }
+			.mave-page { min-height: 100vh; display: flex; flex-direction: column; }
+			.mave-header { display: flex; align-items: center; padding: 24px 32px; border-bottom: 1px solid rgba(255, 255, 255, .10); background: rgba(5, 6, 11, .28); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+			.mave-wordmark { color: #ffffff; font-family: "Neue Haas Grotesk Display Pro", Archivo, Inter, sans-serif; font-size: 24px; font-weight: 500; letter-spacing: -.03em; line-height: 1; text-shadow: 0 0 24px rgba(143, 74, 255, .42); }
+			.mave-content { width: min(100%, 1080px); margin: auto; padding: 80px 32px; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr); gap: 80px; align-items: center; }
+			.mave-intro { max-width: 620px; }
+			.mave-kicker { margin: 0 0 24px; color: #b6fbff; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; text-shadow: 0 0 14px rgba(100, 250, 255, .42); }
+			h1 { margin: 0; color: #ffffff; font-family: "Neue Haas Grotesk Display Pro", Archivo, Inter, sans-serif; font-size: clamp(48px, 8vw, 88px); font-weight: 500; letter-spacing: -.055em; line-height: .96; text-shadow: 0 12px 42px rgba(0, 0, 0, .44); }
+			.mave-description { max-width: 440px; margin: 32px 0 0; color: rgba(255, 255, 255, .62); font-size: 17px; line-height: 1.5; }
+			.mave-card { position: relative; overflow: hidden; padding: 36px; border: 1px solid rgba(255, 255, 255, .16); border-radius: 20px; background: linear-gradient(145deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .045)); box-shadow: 0 32px 90px rgba(0, 0, 0, .48), inset 0 1px 0 rgba(255, 255, 255, .18), 0 0 60px rgba(0, 223, 252, .08); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+			.mave-card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: linear-gradient(140deg, rgba(0, 239, 255, .82), rgba(255, 255, 255, .08) 36%, rgba(255, 255, 255, .03) 60%, rgba(255, 67, 190, .74)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+			.mave-card::after { content: ""; position: absolute; width: 190px; height: 190px; right: -68px; top: 110px; border-radius: 50%; background: rgba(143, 74, 255, .20); filter: blur(60px); pointer-events: none; }
+			.mave-card-title { position: relative; z-index: 1; margin: 0; color: #ffffff; font-family: "Neue Haas Grotesk Display Pro", Archivo, Inter, sans-serif; font-size: 30px; font-weight: 500; letter-spacing: -.025em; line-height: 1; }
+			.mave-card-copy { position: relative; z-index: 1; margin: 16px 0 0; color: rgba(255, 255, 255, .62); font-size: 16px; line-height: 1.5; }
+			#google-button { position: relative; z-index: 1; min-height: 44px; margin: 32px 0 16px; display: flex; justify-content: center; filter: drop-shadow(0 10px 22px rgba(0, 223, 252, .16)); }
+			.mave-status { position: relative; z-index: 1; min-height: 24px; margin: 0; color: rgba(255, 255, 255, .62); font-size: 14px; line-height: 1.5; }
 			.mave-status.success { color: #86efac; }
 			.mave-status.error { color: #fca5a5; }
-			.mave-privacy { margin: 22px 0 0; font-size: 12px; color: #9f9257; }
+			.mave-privacy { position: relative; z-index: 1; margin: 32px 0 0; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, .12); color: rgba(255, 255, 255, .40); font-size: 12px; line-height: 1.55; }
+			.mave-footer { display: flex; justify-content: space-between; gap: 24px; padding: 24px 32px; border-top: 1px solid rgba(255, 255, 255, .10); color: rgba(255, 255, 255, .38); font-size: 12px; background: rgba(5, 6, 11, .22); }
 			#mavecode-required-section { display: none; }
+			@media (max-width: 720px) {
+				.mave-header { padding: 20px 24px; }
+				.mave-content { padding: 64px 24px; grid-template-columns: 1fr; gap: 48px; }
+				.mave-card { padding: 28px 24px; }
+				.mave-footer { padding: 20px 24px; flex-direction: column; }
+			}
 		]]></b:skin>
 		<script src="https://accounts.google.com/gsi/client" async="async" defer="defer"></script>
 	</head>
 	<body>
-		<main class="mave-card">
-			<div class="mave-logo" aria-label="MaveCode">MaveCode</div>
-			<h1>Sign in to MaveCode</h1>
-			<p>Use an approved Google account to unlock the MaveCode workspace in VS Code.</p>
-			<div id="google-button" aria-live="polite"></div>
-			<p id="status" class="mave-status">Preparing secure sign-in…</p>
-			<p class="mave-privacy">Only your verified Google identity is sent to the MaveCode backend. Provider credentials are never sent to this page or the extension.</p>
-		</main>
+		<div class="mave-page">
+			<header class="mave-header">
+				<div class="mave-wordmark" aria-label="MaveCode">MaveCode</div>
+			</header>
+			<main class="mave-content">
+				<section class="mave-intro" aria-labelledby="mave-title">
+					<p class="mave-kicker">Code better with AI</p>
+					<h1 id="mave-title">Make more with your code.</h1>
+					<p class="mave-description">Sign in with an approved Google account to continue to your managed MaveCode workspace in VS Code.</p>
+				</section>
+				<section class="mave-card" aria-label="MaveCode sign-in">
+					<h2 class="mave-card-title">Welcome back.</h2>
+					<p class="mave-card-copy">Use your approved Google account to securely connect MaveCode.</p>
+					<div id="google-button" aria-live="polite"></div>
+					<p id="status" class="mave-status">Preparing secure sign-in…</p>
+					<p class="mave-privacy">Only your verified Google identity is sent to the MaveCode backend. Provider credentials are never sent to this page or the extension.</p>
+				</section>
+			</main>
+			<footer class="mave-footer">
+				<span>© MaveCode</span>
+				<span>Private, managed workspace access</span>
+			</footer>
+		</div>
 
 		<!-- Blogger requires a section in a theme even though this dedicated page has no widgets. -->
 		<b:section id="mavecode-required-section" class="mavecode-required-section" maxwidgets="0" showaddelement="no"/>
@@ -43,7 +74,7 @@
 			 */
 			const MAVECODE_AUTH_CONFIG = Object.freeze({
 				appsScriptUrl: "https://script.google.com/macros/s/AKfycbzzh46NrOfcTOlQjl2mxmfHH5UX5Q-vtrQTbx9burYTAeYGkFUYImjX7UW6TO4NhwdU/exec",
-				googleClientId: "882071644277-evs0shjikfr98hg5k0k6g2ce20qkrna3.apps.googleusercontent.com"
+				googleClientId: "675028173582-mihpcs5bbsk7395jiq9nctaegj9uh7ae.apps.googleusercontent.com"
 			});
 
 			(() => {

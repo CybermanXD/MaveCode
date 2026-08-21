@@ -236,7 +236,7 @@ Source reviewed: `references/Enphase_Main_Reference.html`
 - Use `.em_full_img` on image wrapper cells when an image must scale down fluidly on mobile.
 - Use `.em_clear` on side-by-side cells that must stack on mobile.
 - Use `.em_hide` for spacer cells or content that should disappear on mobile.
-- Use `.em_cta` for large pill CTAs that need mobile height/font adjustments.
+- Use `.em_cta` for all large pill CTAs that need mobile height/font adjustments.
 - Use `.em_font_cta_new*` and `.em_width_cta_new*` for CTA text/width adjustments in compact mobile layouts.
 - Use `.em_pxy*` only when the block’s desktop/mobile padding matches the reference behavior; do not apply randomly.
 - Use `.em_h20` or `.em_h30` for vertical spacer cells instead of margins.
@@ -454,7 +454,7 @@ Source reviewed: `references/Enphase_Main_Reference.html`
 - `data-linkto` values observed:
     - `https://` for web URLs.
     - `http://` for some web URLs.
-    - `other` for SFMC redirect URLs and `tel:` links.
+    - `other` for `tel:` or `mailto:` links.
 - For phone CTAs:
     - Use `href="tel:+[countrycode][number]"`.
     - Do not add `target="_blank"` unless specifically required; phone links can work without it.
